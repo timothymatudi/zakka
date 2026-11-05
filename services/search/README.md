@@ -36,9 +36,13 @@ Returns `{ hits: SearchDocument[], found, facets, page }` (types in `packages/sh
 - Results are always limited to products whose offers ship to `country`. Each hit lists only the offers that ship there, cheapest first, and `min_price_usd` / `fastest_days` are for that country.
 - `min_price` and `max_price` are in **USD** and compare against `display_price_usd`. `max_days` compares against the best offer's `delivery_days_max`.
 - `category` accepts a category slug (`phones`), a category id, or a localized category name.
+- `min_rating` (0-5) keeps products rated at least that much. `ships_from=CN,KE` keeps products with at least one offer shipping from one of those countries (comma-separated ISO codes).
+- Each offer in a hit also has `display_price_local` and `currency`, in the request country's currency. The value is converted with `fx_rates` and rounded to `currencies.decimals` (the offline fallback is the FX table and Intl's ISO decimals). This is a display conversion, not the catalog's checkout price with round-up rules; if no rate is known, the price is given in USD.
 - `per_page` defaults to 20 (max 100); `page` starts at 1.
-- Facets: `category_path`, `source_kind` (dropship or affiliate), `ships_from`, `price_bucket` (USD buckets for the shopper's country: `0-10`, `10-25`, `25-50`, `50-100`, `100-250`, `250+`), and `rating` (`4.5+`, `4.0-4.5`, `3.0-4.0`, `<3.0`, `unrated`).
+- Facets: `category_path`, `category_slug` (`{ value: slug, label: localized name, count }`, which can be passed straight to `category=`), `source_kind` (dropship or affiliate), `ships_from`, `price_bucket` (USD buckets for the shopper's country: `0-10`, `10-25`, `25-50`, `50-100`, `100-250`, `250+`), and `rating` (`4.5+`, `4.0-4.5`, `3.0-4.0`, `<3.0`, `unrated`).
 - `debug=1` adds a `debug` object (engine, parsed query, effective filters). It is not part of the contract, so don't depend on it in production.
+
+`GET /products/{id}?locale=&country=` returns one hit: the same shape as a `/search` hit, with offers filtered to the country and local prices. It returns 404 if the product is unknown or does not ship to `country`, and 400 on a bad locale or country.
 
 `GET /health` returns `{ status, engine: "typesense"|"memory", query_understanding: "ai"|"rules", documents }`.
 
@@ -88,7 +92,7 @@ npm run schema -- zh                  # print a collection schema
 
 There is one collection per locale, `products_<locale>`, holding the contract fields plus internal fields that are stripped from API responses:
 
-- Facets: `source_kinds`, `source_codes`, `offer_ships_from`, `category_slugs`, `rating_bucket`.
+- Facets: `source_kinds`, `source_codes`, `offer_ships_from`, `category_slugs`, `category_keys` (`slug|name`, exposed as `category_slug`), `rating_bucket`.
 - Per-country dynamic fields: `cprice_<CC>`, `cdays_<CC>`, `cdmax_<CC>`, `csell_<CC>`, and `cpbucket_<CC>` (facetable).
 
 Per-locale text settings:

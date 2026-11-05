@@ -1,5 +1,5 @@
-import type { IndexedDocument, RawProduct, SearchDocument, SearchOffer } from './types';
-import { priceBucket, ratingBucket } from './money';
+import type { IndexedDocument, RawProduct, SearchHit, SearchOffer } from './types';
+import { currencyForCountry, fromUsd, priceBucket, ratingBucket } from './money';
 import { median, sellScore } from './ranking';
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -47,6 +47,7 @@ export function buildDocument(raw: RawProduct): IndexedDocument | null {
     popularity: Math.min(1, Math.max(0, raw.popularity ?? 0)),
     bullets: (raw.bullet_points ?? []).join(' \n '),
     category_slugs: raw.category_slugs,
+    category_keys: raw.category_slugs.map((slug, i) => `${slug}|${raw.category_path[i] ?? slug}`),
     source_kinds: [...new Set(offers.map((o) => o.kind))].sort(),
     source_codes: [...new Set(offers.map((o) => o.source_code))].sort(),
     offer_ships_from: [...new Set(offers.map((o) => o.ships_from).filter((x): x is string => !!x))].sort(),
@@ -112,13 +113,21 @@ export function attachSellScores(docs: IndexedDocument[]): void {
 
 /**
  * Contract-shaped hit for a shopper's country: only offers that ship there,
- * cheapest first, with min_price_usd / fastest_days for that country.
- * Internal fields are dropped.
+ * cheapest first, with min_price_usd / fastest_days for that country, and each
+ * offer's price in the country's currency. Internal fields are dropped.
+ * If no FX rate is known for that currency, prices are given in USD.
  */
-export function toHit(doc: IndexedDocument, country: string): SearchDocument {
+export function toHit(doc: IndexedDocument, country: string): SearchHit {
   const cc = country.toUpperCase();
   const local = offersFor(doc.offers, cc);
-  const offers = (local.length ? local : doc.offers).slice().sort((a, b) => a.display_price_usd - b.display_price_usd);
+  const cur = currencyForCountry(cc);
+  const offers = (local.length ? local : doc.offers)
+    .slice()
+    .sort((a, b) => a.display_price_usd - b.display_price_usd)
+    .map((o) => {
+      const price = fromUsd(o.display_price_usd, cur);
+      return { ...o, display_price_local: price ?? o.display_price_usd, currency: price == null ? 'USD' : cur };
+    });
   return {
     id: doc.id,
     title: doc.title,

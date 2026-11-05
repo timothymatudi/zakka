@@ -3,6 +3,7 @@ import type { Config } from '../config';
 import type { EngineQuery, EngineResult, IndexedDocument, Locale, SearchEngine } from '../types';
 import { collectionName, collectionSchema } from '../schema';
 import { RELEVANCE_BUCKETS } from '../ranking';
+import { categoryKeyFacet } from './memory';
 
 type Client = InstanceType<typeof Typesense.Client>;
 
@@ -38,6 +39,8 @@ export function buildSearchParams(q: EngineQuery): Record<string, string | numbe
   if (q.min_price != null) filters.push(`cprice_${cc}:>=${q.min_price}`);
   if (q.max_price != null) filters.push(`cprice_${cc}:<=${q.max_price}`);
   if (q.max_days != null) filters.push(`cdmax_${cc}:<=${Math.floor(q.max_days)}`);
+  if (q.min_rating != null) filters.push(`rating_sort:>=${q.min_rating}`);
+  if (q.ships_from?.length) filters.push(`offer_ships_from:=[${q.ships_from.map(cc2).filter(Boolean).join(',')}]`);
 
   const sortBy: Record<EngineQuery['sort'], string> = {
     relevance: `_text_match(buckets: ${RELEVANCE_BUCKETS}):desc,csell_${cc}:desc`,
@@ -52,7 +55,7 @@ export function buildSearchParams(q: EngineQuery): Record<string, string | numbe
     query_by_weights: '6,4,4,2,1',
     filter_by: filters.join(' && '),
     sort_by: text === '*' && q.sort === 'relevance' ? `csell_${cc}:desc` : sortBy[q.sort],
-    facet_by: `category_path,source_kinds,offer_ships_from,cpbucket_${cc},rating_bucket`,
+    facet_by: `category_path,category_keys,source_kinds,offer_ships_from,cpbucket_${cc},rating_bucket`,
     max_facet_values: 20,
     page: q.page,
     per_page: q.per_page,
@@ -65,6 +68,7 @@ export function buildSearchParams(q: EngineQuery): Record<string, string | numbe
 
 const FACET_NAMES = (cc: string): Record<string, string> => ({
   category_path: 'category_path',
+  category_keys: 'category_slug',
   source_kinds: 'source_kind',
   offer_ships_from: 'ships_from',
   [`cpbucket_${cc}`]: 'price_bucket',
@@ -84,13 +88,24 @@ export class TypesenseEngine implements SearchEngine {
     const facets: EngineResult['facets'] = {};
     for (const fc of res.facet_counts ?? []) {
       const key = names[fc.field_name];
-      if (key) facets[key] = (fc.counts ?? []).map((c: { value: string; count: number }) => ({ value: c.value, count: c.count }));
+      if (!key) continue;
+      const values = (fc.counts ?? []).map((c: { value: string; count: number }) => ({ value: c.value, count: c.count }));
+      facets[key] = key === 'category_slug' ? values.map(categoryKeyFacet) : values;
     }
     return {
       docs: (res.hits ?? []).map((h: { document: IndexedDocument }) => h.document),
       found: res.found ?? 0,
       facets,
     };
+  }
+
+  async getById(locale: Locale, id: string): Promise<IndexedDocument | null> {
+    try {
+      return (await this.client.collections(collectionName(locale)).documents(id).retrieve()) as unknown as IndexedDocument;
+    } catch (err) {
+      if ((err as { httpStatus?: number }).httpStatus === 404) return null;
+      throw err;
+    }
   }
 }
 

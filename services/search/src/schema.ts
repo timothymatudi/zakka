@@ -71,6 +71,8 @@ export function collectionSchema(locale: Locale): TsCollectionSchema {
       { name: 'category_path', type: 'string[]', facet: true, ...(tsLocale ? { locale: tsLocale } : {}) },
       { name: 'category_ids', type: 'string[]', facet: true },
       { name: 'category_slugs', type: 'string[]', facet: true },
+      // "slug|Localized name" pairs so the category facet can carry slugs and labels.
+      { name: 'category_keys', type: 'string[]', facet: true },
       { name: 'image', type: 'string', optional: true, index: false },
       { name: 'rating', type: 'float', optional: true },
       { name: 'rating_sort', type: 'float' },

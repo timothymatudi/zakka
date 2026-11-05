@@ -45,6 +45,19 @@ export async function loadFxFromDb(databaseUrl: string): Promise<Record<string, 
   }
 }
 
+export async function loadCurrencyDecimalsFromDb(databaseUrl: string): Promise<Record<string, number> | null> {
+  const client = new pg.Client({ connectionString: databaseUrl, connectionTimeoutMillis: 3000 });
+  try {
+    await client.connect();
+    const { rows } = await client.query(`select code, decimals from currencies`);
+    return Object.fromEntries(rows.map((r) => [String(r.code).trim(), Number(r.decimals)]));
+  } catch {
+    return null;
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 export async function loadRawProductsFromDb(
   databaseUrl: string,
   locale: Locale,

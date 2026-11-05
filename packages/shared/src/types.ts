@@ -14,6 +14,9 @@ export interface SearchOffer {
   source_code: SourceCode;
   kind: SourceKind;
   display_price_usd: number;
+  /** Set on API responses for the request country; absent in stored documents. */
+  display_price_local?: number;
+  currency?: string;
   delivery_days_min: number | null;
   delivery_days_max: number | null;
   ships_from: string | null;
@@ -48,6 +51,8 @@ export interface SearchQuery {
   min_price?: number;
   max_price?: number;
   max_days?: number;
+  min_rating?: number;
+  ships_from?: string[];
   sort?: SearchSort;
   page?: number;
   per_page?: number;
@@ -56,9 +61,12 @@ export interface SearchQuery {
 export interface SearchResponse {
   hits: SearchDocument[];
   found: number;
-  facets: Record<string, { value: string; count: number }[]>;
+  facets: Record<string, { value: string; count: number; label?: string }[]>;
   page: number;
 }
+
+/** GET /products/{id}: one document with offers filtered to the request country. */
+export type ProductResponse = SearchDocument;
 
 export interface OfferPrice {
   offer_id: string;

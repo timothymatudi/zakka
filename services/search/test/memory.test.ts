@@ -57,7 +57,7 @@ describe('memory engine', () => {
   it('returns facets and paginates', async () => {
     const r = await engine.search(q({ per_page: 5, page: 2 }));
     expect(r.docs).toHaveLength(5);
-    expect(Object.keys(r.facets).sort()).toEqual(['category_path', 'price_bucket', 'rating', 'ships_from', 'source_kind']);
+    expect(Object.keys(r.facets).sort()).toEqual(['category_path', 'category_slug', 'price_bucket', 'rating', 'ships_from', 'source_kind']);
     expect(r.facets.source_kind.map((f) => f.value).sort()).toEqual(['affiliate', 'dropship']);
   });
 });

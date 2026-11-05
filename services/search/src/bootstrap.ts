@@ -5,8 +5,8 @@ import { fixtureRawProducts } from './sources/fixtures';
 import { MemoryEngine } from './engines/memory';
 import { TypesenseEngine, typesenseClient, typesenseHealthy } from './engines/typesense';
 import { SearchService } from './search';
-import { loadFxFromDb } from './sources/postgres';
-import { setFxRates } from './money';
+import { loadCurrencyDecimalsFromDb, loadFxFromDb } from './sources/postgres';
+import { setCurrencyDecimals, setFxRates } from './money';
 
 export function fixtureDocuments(): Record<Locale, IndexedDocument[]> {
   return Object.fromEntries(LOCALES.map((l) => [l, buildDocuments(fixtureRawProducts(l))])) as Record<Locale, IndexedDocument[]>;
@@ -34,6 +34,8 @@ export async function createService(cfg: Config): Promise<{ service: SearchServi
   if (cfg.databaseUrl) {
     const fx = await loadFxFromDb(cfg.databaseUrl);
     if (fx && Object.keys(fx).length) setFxRates(fx);
+    const decimals = await loadCurrencyDecimalsFromDb(cfg.databaseUrl);
+    if (decimals && Object.keys(decimals).length) setCurrencyDecimals(decimals);
   }
   const service = new SearchService(engine, engine === memory ? null : memory, cfg.anthropic);
   return { service, memory, engine };

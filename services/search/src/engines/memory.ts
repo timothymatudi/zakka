@@ -2,7 +2,7 @@
 // Typesense is unreachable or TYPESENSE_API_KEY is empty, so other agents can
 // run offline. It mirrors the Typesense engine's filters, sorts and facets.
 
-import type { EngineQuery, EngineResult, IndexedDocument, Locale, SearchEngine } from '../types';
+import type { EngineQuery, EngineResult, FacetValue, IndexedDocument, Locale, SearchEngine } from '../types';
 import { normalize, tokenize, hasCjk } from '../text';
 
 // Relevance is grouped in tiers of 0.1; full matches are kept when partial ones are added below this count.
@@ -96,6 +96,10 @@ export class MemoryEngine implements SearchEngine {
     }
   }
 
+  async getById(locale: Locale, id: string): Promise<IndexedDocument | null> {
+    return (this.byLocale.get(locale) ?? []).find((e) => e.doc.id === id)?.doc ?? null;
+  }
+
   count(locale: Locale): number {
     return this.byLocale.get(locale)?.length ?? 0;
   }
@@ -114,6 +118,8 @@ export class MemoryEngine implements SearchEngine {
       if (q.min_price != null && price < q.min_price) return false;
       if (q.max_price != null && price > q.max_price) return false;
       if (q.max_days != null && (doc[`cdmax_${cc}`] as number) > q.max_days) return false;
+      if (q.min_rating != null && doc.rating_sort < q.min_rating) return false;
+      if (q.ships_from?.length && !doc.offer_ships_from.some((c) => q.ships_from!.includes(c))) return false;
       return true;
     });
 
@@ -168,6 +174,7 @@ export class MemoryEngine implements SearchEngine {
 export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['facets'] {
   const counters: Record<string, Map<string, number>> = {
     category_path: new Map(),
+    category_slug: new Map(),
     source_kind: new Map(),
     ships_from: new Map(),
     price_bucket: new Map(),
@@ -176,6 +183,7 @@ export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['fa
   const bump = (k: string, v: string) => counters[k].set(v, (counters[k].get(v) ?? 0) + 1);
   for (const d of docs) {
     d.category_path.forEach((v) => bump('category_path', v));
+    d.category_keys.forEach((v) => bump('category_slug', v));
     d.source_kinds.forEach((v) => bump('source_kind', v));
     d.offer_ships_from.forEach((v) => bump('ships_from', v));
     bump('price_bucket', d[`cpbucket_${cc}`] as string);
@@ -188,5 +196,12 @@ export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['fa
       .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value))
       .slice(0, 20);
   }
+  out.category_slug = out.category_slug.map(categoryKeyFacet);
   return out;
+}
+
+/** "phones|Simu" facet value -> { value: "phones", label: "Simu", count }. */
+export function categoryKeyFacet(f: FacetValue): FacetValue {
+  const i = f.value.indexOf('|');
+  return i < 0 ? f : { value: f.value.slice(0, i), label: f.value.slice(i + 1), count: f.count };
 }

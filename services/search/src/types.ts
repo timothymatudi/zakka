@@ -11,7 +11,31 @@ export type {
 } from '../../../packages/shared/src/types';
 export { LOCALES } from '../../../packages/shared/src/types';
 
-import type { Locale, SearchOffer } from '../../../packages/shared/src/types';
+import type { Locale, SearchDocument, SearchOffer } from '../../../packages/shared/src/types';
+
+/**
+ * Offer as returned by the API: the contract's SearchOffer plus the price in the
+ * request country's currency. (Shared-type request: add these two fields to
+ * SearchOffer in packages/shared.)
+ */
+export interface SearchOfferLocal extends SearchOffer {
+  display_price_local: number;
+  /** ISO 4217 code of display_price_local (the request country's currency). */
+  currency: string;
+}
+
+/** A hit as returned by /search and /products/{id}. */
+export interface SearchHit extends Omit<SearchDocument, 'offers'> {
+  offers: SearchOfferLocal[];
+}
+
+/** Facet value; `label` is set on the category_slug facet (localized name). */
+export interface FacetValue {
+  value: string;
+  count: number;
+  label?: string;
+}
+export type Facets = Record<string, FacetValue[]>;
 
 /**
  * A product as loaded from Postgres (or fixtures) for one locale, before it is
@@ -69,6 +93,8 @@ export interface IndexedDocument {
   // internal
   bullets: string;
   category_slugs: string[];
+  /** "slug|Localized name" per category level, faceted as category_slug. */
+  category_keys: string[];
   source_kinds: string[];
   source_codes: string[];
   offer_ships_from: string[];
@@ -97,6 +123,9 @@ export interface EngineQuery {
   min_price?: number;
   max_price?: number;
   max_days?: number;
+  min_rating?: number;
+  /** ISO country codes; matches products with at least one offer shipping from one of them. */
+  ships_from?: string[];
   sort: 'relevance' | 'price_asc' | 'fastest' | 'rating';
   page: number;
   per_page: number;
@@ -105,10 +134,12 @@ export interface EngineQuery {
 export interface EngineResult {
   docs: IndexedDocument[];
   found: number;
-  facets: Record<string, { value: string; count: number }[]>;
+  facets: Facets;
 }
 
 export interface SearchEngine {
   readonly name: 'typesense' | 'memory';
   search(q: EngineQuery): Promise<EngineResult>;
+  /** One document by product id, or null if the locale collection has no such product. */
+  getById(locale: Locale, id: string): Promise<IndexedDocument | null>;
 }

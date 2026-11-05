@@ -16,6 +16,30 @@ export function setFxRates(rates: Record<string, number>): void {
   fx = { ...FALLBACK_FX, ...rates, USD: 1 };
 }
 
+// Display decimals per currency: currencies.decimals from the DB when loaded,
+// otherwise the ISO 4217 minor units that Intl knows.
+let decimalsOverride: Record<string, number> = {};
+export function setCurrencyDecimals(d: Record<string, number>): void {
+  decimalsOverride = { ...d };
+}
+export function currencyDecimals(currency: string): number {
+  const code = currency.toUpperCase();
+  if (decimalsOverride[code] != null) return decimalsOverride[code];
+  try {
+    return new Intl.NumberFormat('en', { style: 'currency', currency: code }).resolvedOptions().maximumFractionDigits ?? 2;
+  } catch {
+    return 2;
+  }
+}
+
+/** USD -> local currency, rounded to the currency's display decimals. Null if no rate. */
+export function fromUsd(usd: number, currency: string): number | null {
+  const rate = fx[currency.toUpperCase()];
+  if (!rate) return null;
+  const f = 10 ** currencyDecimals(currency);
+  return Math.round(usd * rate * f) / f;
+}
+
 export function toUsd(amount: number, currency: string): number | null {
   const rate = fx[currency.toUpperCase()];
   if (!rate) return null;

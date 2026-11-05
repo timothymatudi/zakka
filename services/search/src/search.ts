@@ -1,10 +1,20 @@
 import type { Config } from './config';
-import type { EngineQuery, EngineResult, QueryUnderstanding, SearchEngine, SearchQuery, SearchResponse } from './types';
+import type { EngineQuery, EngineResult, Facets, Locale, QueryUnderstanding, SearchEngine, SearchHit, SearchQuery } from './types';
 import { toHit } from './documents';
 import { understandQuery } from './understanding';
 import { currencyForCountry, toUsd } from './money';
 
-export interface SearchOutcome extends SearchResponse {
+/** Contract SearchQuery plus the additions not yet in packages/shared. */
+export interface SearchParams extends SearchQuery {
+  min_rating?: number;
+  ships_from?: string[];
+}
+
+export interface SearchOutcome {
+  hits: SearchHit[];
+  found: number;
+  facets: Facets;
+  page: number;
   /** Only returned with debug=1; not part of the contract shape. */
   debug?: { engine: string; understanding: QueryUnderstanding | null; effective: EngineQuery };
 }
@@ -30,7 +40,22 @@ export class SearchService {
     }
   }
 
-  async search(params: SearchQuery, opts: { debug?: boolean } = {}): Promise<SearchOutcome> {
+  /** One product for a country, or null when unknown or not shippable there. */
+  async product(id: string, locale: Locale, country: string): Promise<SearchHit | null> {
+    let doc;
+    try {
+      doc = await this.engine.getById(locale, id);
+    } catch (err) {
+      if (!this.fallback) throw err;
+      console.warn(`[search] ${this.engine.name} getById failed (${(err as Error).message}); using ${this.fallback.name}`);
+      doc = await this.fallback.getById(locale, id);
+    }
+    const cc = country.toUpperCase();
+    if (!doc || !doc.ships_to.includes(cc)) return null;
+    return toHit(doc, cc);
+  }
+
+  async search(params: SearchParams, opts: { debug?: boolean } = {}): Promise<SearchOutcome> {
     const country = params.country.toUpperCase();
     const page = Math.max(1, params.page ?? 1);
     const per_page = Math.min(100, Math.max(1, params.per_page ?? 20));
@@ -57,6 +82,8 @@ export class SearchService {
       min_price: params.min_price,
       max_price: maxPrice,
       max_days: params.max_days ?? understanding?.max_days ?? undefined,
+      min_rating: params.min_rating,
+      ships_from: params.ships_from,
       sort: params.sort ?? 'relevance',
       page,
       per_page,

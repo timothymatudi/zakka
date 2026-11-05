@@ -22,7 +22,7 @@ from __future__ import annotations
 import hmac
 import logging
 from decimal import Decimal
-from typing import Mapping
+from typing import Literal, Mapping
 from uuid import UUID
 
 from fastapi import Body, Depends, FastAPI, Header, HTTPException, Query
@@ -44,7 +44,7 @@ def _num(d: Decimal) -> float | int:
 
 class PriceOut(BaseModel):
     offer_id: str
-    price: float
+    price: int | float  # int for 0-decimal currencies, so JSON shows 2192 not 2192.0
     currency: str
     price_usd: float
     delivery_days_min: int | None
@@ -58,8 +58,53 @@ class BatchPriceIn(BaseModel):
     offer_ids: list[UUID] = Field(max_length=500)
 
 
+OrderStatus = Literal["pending_payment", "paid", "forwarded", "shipped", "delivered", "cancelled", "refunded"]
+
+
+class SnapshotOrder(BaseModel):
+    """Subset of the concierge's Order we trust; other fields are ignored."""
+
+    id: UUID
+    status: OrderStatus
+    currency: str = Field(min_length=3, max_length=3)
+    shipping_address: Address | None = None
+
+
+class SnapshotItem(BaseModel):
+    offer_id: UUID
+    qty: int = Field(gt=0, le=1000)
+    unit_price: Decimal = Field(ge=0)
+
+
 class ForwardIn(BaseModel):
     shipping_address: Address | None = None
+    order: SnapshotOrder | None = None  # used only when the store has no shared DB (memory mode)
+    items: list[SnapshotItem] | None = Field(default=None, max_length=200)
+
+
+def adopt_order_snapshot(store: Store, order_id: UUID, body: ForwardIn) -> bool:
+    """Persist a posted order into a memory store if it doesn't know the order yet.
+
+    Only ids, status, currency, quantities and unit prices are taken from the body;
+    product ids and unit costs come from our own offers. Returns True if adopted.
+    """
+    if not getattr(store, "accepts_order_snapshots", False) or body.order is None:
+        return False
+    if body.order.id != order_id:
+        raise HTTPException(422, "order.id does not match the order id in the path")
+    if store.get_order(order_id) is not None:
+        return False  # already known: never overwrite stored state from the request
+    if not body.items:
+        raise HTTPException(422, "items are required to forward an order the catalog does not know")
+    unknown = [str(i.offer_id) for i in body.items if store.get_offer(i.offer_id) is None]
+    if unknown:
+        raise HTTPException(422, f"unknown offer(s): {', '.join(unknown)}")
+    address = body.shipping_address or body.order.shipping_address
+    store.add_order(order_id, body.order.status, body.order.currency.upper(),
+                    [{"offer_id": i.offer_id, "qty": i.qty, "unit_price": i.unit_price} for i in body.items],
+                    address.model_dump() if address else None)
+    log.info("adopted posted order snapshot %s (%d items) into the memory store", order_id, len(body.items))
+    return True
 
 
 def price_offer(store: Store, offer_id: UUID, country_code: str) -> PriceOut:
@@ -149,6 +194,8 @@ def create_app(store: Store | None = None, connectors: Mapping[str, Connector] |
 
     @app.post("/orders/{order_id}/forward", dependencies=write_auth)
     def forward(order_id: UUID, body: ForwardIn | None = Body(default=None)):
+        if body is not None:
+            adopt_order_snapshot(store, order_id, body)
         try:
             res = forward_order(store, order_id, connectors, body.shipping_address if body else None)
         except OrderNotFound:

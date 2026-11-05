@@ -101,12 +101,12 @@ def test_resync_is_idempotent_and_retranslates_on_change(store):
 
 
 def test_matched_product_from_other_source_keeps_existing_translations(store):
-    sync_source(store, ListConnector("cj", [sp("A", gtin="123", title="CJ title")]), MockEnricher())
+    sync_source(store, ListConnector("cj", [sp("A", gtin="123", title="First title")]), MockEnricher())
     r = sync_source(store, ListConnector("aliexpress_ds", [sp("Z", gtin="123", title="Other title")]),
                     MockEnricher())
     assert r.products_matched == 1 and r.translations_written == 0
     pid = store.find_offer("cj", "A").product_id
-    assert store.get_translation(pid, "en").title == "CJ title"
+    assert store.get_translation(pid, "en").title == "First title"
 
 
 def test_invalid_items_are_skipped_not_fatal(store):

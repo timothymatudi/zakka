@@ -7,9 +7,13 @@ Dropship offer::
     price_usd = (cost_usd + shipping_usd) * (1 + percent/100) + fixed_usd
     price     = round_up(price_usd * fx_rate, round_to)          # local currency
 
-Affiliate offer::
+Affiliate offer (no markup)::
 
-    price     = (list_price_usd + shipping_usd) * fx_rate         # no markup
+    if shopper currency == list_currency:                          # exact partner price
+        price = list_price_local + shipping_local   (both in list_currency, exact;
+                                                     shipping_usd * fx_rate if shipping_local is null)
+    else:
+        price = (list_price_usd + shipping_usd) * fx_rate
 
 Rule selection: only active rules; the first scope tier that has a matching rule
 wins, in the order product > source > category > global. Within that tier the
@@ -46,6 +50,18 @@ Scope = Literal["global", "category", "source", "product"]
 SCOPE_PRECEDENCE: tuple[Scope, ...] = ("product", "source", "category", "global")
 
 CENT = Decimal("0.01")
+
+#: Display decimals for currencies shown in whole units (lead decision; mirrors
+#: currencies.decimals). Used only as a fallback when the currencies table has no row.
+ZERO_DECIMAL_CURRENCIES = frozenset({"KES", "IDR", "TZS", "UGX", "NGN", "JPY", "KRW", "VND", "CLP", "PKR"})
+THREE_DECIMAL_CURRENCIES = frozenset({"KWD", "BHD", "OMR", "JOD", "TND", "LYD", "IQD"})
+
+
+def default_decimals(currency: str) -> int:
+    c = currency.upper()
+    if c in ZERO_DECIMAL_CURRENCIES:
+        return 0
+    return 3 if c in THREE_DECIMAL_CURRENCIES else 2
 
 
 class PricingError(ValueError):
@@ -189,6 +205,9 @@ class OfferPricingInput:
     shipping_usd: Decimal
     product_id: UUID | str | None = None
     source_id: UUID | str | None = None
+    list_price_local: Decimal | None = None  # affiliate: partner price in list_currency (migration 0006)
+    list_currency: str | None = None
+    shipping_local: Decimal | None = None  # affiliate: shipping in list_currency (migration 0006)
 
 
 @dataclass(frozen=True)
@@ -230,7 +249,13 @@ def quote(
         base = D(offer.list_price_usd) + shipping
         if base < 0:
             raise PricingError("negative affiliate price")
-        price = round_half_up(base * rate, decimals)
+        if (offer.list_price_local is not None and offer.list_currency
+                and offer.list_currency.strip().upper() == currency):
+            # Shopper pays in the partner's own currency: show its price exactly (no USD round trip).
+            ship_local = (D(offer.shipping_local) if offer.shipping_local is not None else shipping * rate)
+            price = round_half_up(D(offer.list_price_local) + ship_local, decimals)
+        else:
+            price = round_half_up(base * rate, decimals)
         rule_id = None
     elif offer.kind == "dropship":
         rule = select_markup_rule(rules, product_id=offer.product_id, source_id=offer.source_id,

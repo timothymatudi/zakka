@@ -45,10 +45,26 @@ For `forward` and `track`, it also loads the demo order from `fixtures/orders.js
 | Method & path | Notes |
 | --- | --- |
 | `GET /offers/{offer_id}/price?country=XX` | Contract endpoint. Returns `{price, currency, price_usd, delivery_days_min, delivery_days_max}` plus `offer_id`, `kind`, and `ships_to_country`. Errors: 404 unknown offer, 410 inactive offer, 422 unknown country or bad id, 503 missing FX rate. |
-| `POST /orders/{order_id}/forward` | Contract endpoint. **Needs the bearer token.** Optional body `{"shipping_address": {...}}`. Returns per-supplier results. Errors: 404 unknown order, 409 order not `paid`/`forwarded`. |
+| `POST /orders/{order_id}/forward` | Contract endpoint. **Needs the bearer token.** Optional body `{shipping_address, order, items}` (see "Order snapshots" below). Returns per-supplier results. Errors: 404 unknown order, 409 order not `paid`/`forwarded`. |
 | `GET /health` | Shows the store (`postgres` or `memory`) and each connector's mock/live mode. |
 | `POST /prices` | Addition: batch pricing, `{"country":"AE","offer_ids":[...]}` → `{prices, errors}`. |
 | `POST /tracking/poll` | Addition: polls tracking for open supplier orders. **Needs the bearer token.** |
+
+### Order snapshots on forward
+
+The concierge posts `{shipping_address, order, items}` to the forward route.
+
+* **Postgres store:** `order` and `items` are ignored, and the DB is the source of truth.
+  An unknown order returns 404.
+* **Memory store (no DB):** if the order is unknown, the posted snapshot is validated,
+  saved to the store, and then forwarded as normal. The checks are:
+  * `order.id` must equal the path id.
+  * Every `items[].offer_id` must be a known offer.
+  * `qty` must be 1..1000.
+  * `status` must be a contract status.
+* **Fields taken from the body:** order status, currency, quantities, unit prices and the address.
+* **Fields that come from our own data:** `product_id` and `unit_cost_usd` (from the offer). Supplier costs are computed by us.
+* An order the store already knows is never overwritten from the request.
 
 ### Auth
 
@@ -75,7 +91,10 @@ Offer and product ids there are deterministic UUIDv5 values, so they stay the sa
 This is the reference implementation of the contract rule.
 
 * Dropship: `price_usd = (cost_usd + shipping_usd) * (1 + percent/100) + fixed_usd`. The result is converted with `fx_rates` and rounded **up** using the rule's `round_to`.
-* Affiliate: `list_price_usd + shipping_usd` converted to local currency, with **no markup**. It is rounded half-up to the currency's decimals, with no charm endings.
+* Affiliate: **no markup**, rounded half-up to the currency's decimals, with no charm endings.
+  * If the shopper's currency equals `offers.list_currency` (migration 0006), the price is `list_price_local + shipping_local`, exactly. Older rows with no `shipping_local` convert `shipping_usd` instead.
+  * Otherwise it is `list_price_usd + shipping_usd`, converted to the shopper's currency.
+  * Sync fills `list_price_local`, `shipping_local` and `list_currency` from each affiliate item's own currency. `list_price_usd` is still kept.
 * Rule choice uses the first scope that matches, in the order **product > source > category > global**. Within that scope the highest `priority` wins, and ties go to the lowest id.
 * Category rules **inherit down the tree**. The product's own category is checked first, then its parent, grandparent, and so on, and the nearest category with an active rule wins.
 * If no rule matches, the offer is priced at cost with x.99 rounding (`FALLBACK_RULE`). Agent 1 should seed a global rule.
@@ -84,7 +103,7 @@ This is the reference implementation of the contract rule.
   * `1`, `5`, `10`, `100` round up to that multiple.
   * `9.99` gives 9.99, 19.99, 29.99, …
   * `0` (or less) rounds up to the currency's minor unit.
-* Currencies with 0 decimals (JPY, and KES, IDR, or TZS when `currencies.decimals = 0`): the charm offset is cut to the currency's precision. So `0.99` becomes whole units and `9.99` becomes multiples of 10. With 3-decimal currencies (KWD), `0.99` gives x.990.
+* Currencies with 0 display decimals: KES, IDR, TZS, UGX, NGN, JPY, KRW, VND, CLP, PKR. These come from `currencies.decimals`, falling back to `pricing.default_decimals()` when a row is missing. Their prices are whole numbers and are sent as JSON integers, e.g. `2192`: the charm offset is cut to the currency's precision. So `0.99` becomes whole units and `9.99` becomes multiples of 10. With 3-decimal currencies (KWD), `0.99` gives x.990.
 * `display_price_usd()` is the USD price written for the search index.
 
 ## Sync (`zakka_catalog/sync.py`)
@@ -96,6 +115,9 @@ For each connector page, sync does the following:
 3. Runs the enricher when a product is new, its source text changed, it has no category, or locales are missing.
 4. Upserts the offer. `is_active` is true when stock is unknown or greater than 0.
 5. Computes `display_price_usd`.
+
+Customer-facing copy (title, description, bullet points, brand) has supplier and partner names removed before it is stored (contract owner rule).
+Introducing words go with the name ("Sold on X - Lamp" becomes "Lamp"), and no stray separators or spaces are left. A brand that contains a partner name is dropped, and an item whose title is only a partner name is skipped. "noon" is only matched as `noon.com`, because it is an ordinary word.
 
 After a complete run, offers from that source that were not seen in the run are marked inactive. Partial runs (`--max-pages`) and runs that fail during a fetch never deactivate anything.
 `display_price_usd` is always included in the sync report. It is written to
@@ -132,7 +154,7 @@ After a complete run, offers from that source that were not seen in the run are 
 ## Tests
 
 ```bash
-python -m pytest            # 134 tests, no network (sockets are blocked except loopback)
+python -m pytest            # 200 tests, no network (sockets are blocked except loopback)
 ```
 
 Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport`.

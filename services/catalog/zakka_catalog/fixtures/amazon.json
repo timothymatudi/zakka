@@ -9,7 +9,7 @@
       "image_urls": [
         "https://images.zakka.example/amazon/B0MOCKUS01.jpg"
       ],
-      "description": "Mock Amazon US listing for testing (not a real ASIN).",
+      "description": "True wireless earbuds with a compact charging case and 30h total playtime.",
       "brand": "Soundloop",
       "gtin": "2000000000015",
       "category_hint": "Electronics > Headphones",
@@ -35,7 +35,7 @@
       "image_urls": [
         "https://images.zakka.example/amazon/B0MOCKAE01.jpg"
       ],
-      "description": "Mock Amazon.ae listing.",
+      "description": "4-litre digital air fryer with 8 presets and a dishwasher-safe basket.",
       "category_hint": "Home & Kitchen > Appliances",
       "rating": "4.6",
       "review_count": 3100,
@@ -60,7 +60,7 @@
       "image_urls": [
         "https://images.zakka.example/amazon/B0MOCKIN01.jpg"
       ],
-      "description": "Mock Amazon.in listing.",
+      "description": "Three-piece cotton kurta set with dupatta, regular fit.",
       "category_hint": "Fashion > Women's Clothing",
       "rating": "4.2",
       "review_count": 870,
@@ -85,7 +85,7 @@
       "image_urls": [
         "https://images.zakka.example/amazon/B0MOCKUS02.jpg"
       ],
-      "description": "Mock Amazon US listing.",
+      "description": "500-piece classic building block set in 12 colours, ages 4+.",
       "category_hint": "Toys & Games",
       "rating": "4.8",
       "review_count": 4400,

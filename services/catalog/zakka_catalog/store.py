@@ -18,7 +18,7 @@ from uuid import UUID
 
 from .config import PHASE1_LOCALES
 from .models import CategoryRef, TrackingInfo, Translation
-from .pricing import MarkupRule, OfferPricingInput
+from .pricing import MarkupRule, OfferPricingInput, default_decimals
 
 MOCK_NS = UUID("6f1c2a52-6a8e-4c7e-9a7b-2b0d7d9e5a10")  # same namespace as the fixtures
 
@@ -72,6 +72,9 @@ class OfferWrite:
     commission_rate: Decimal | None
     last_synced_at: datetime
     is_active: bool = True
+    list_price_local: Decimal | None = None
+    list_currency: str | None = None
+    shipping_local: Decimal | None = None
 
 
 @dataclass
@@ -94,11 +97,15 @@ class OfferView:
     is_active: bool
     category_id: UUID | None = None
     last_synced_at: datetime | None = None
+    list_price_local: Decimal | None = None
+    list_currency: str | None = None
+    shipping_local: Decimal | None = None
 
     def pricing_input(self) -> OfferPricingInput:
         return OfferPricingInput(kind=self.kind, cost_usd=self.cost_usd, list_price_usd=self.list_price_usd,
                                  shipping_usd=self.shipping_usd, product_id=self.product_id,
-                                 source_id=self.source_id)
+                                 source_id=self.source_id, list_price_local=self.list_price_local,
+                                 list_currency=self.list_currency, shipping_local=self.shipping_local)
 
 
 @dataclass
@@ -206,6 +213,7 @@ class MemoryStore:
 
     name = "memory"
     supports_display_price = True
+    accepts_order_snapshots = True  # no shared DB: forward may persist an order posted by the caller
 
     def __init__(self, reference: dict[str, Any] | None = None, echo: Callable[[str], None] | None = None):
         ref = reference if reference is not None else load_reference()
@@ -240,7 +248,7 @@ class MemoryStore:
         return self.countries.get(code.upper())
 
     def get_currency_decimals(self, code):
-        return self.currencies.get(code.upper(), 2)
+        return self.currencies.get(code.upper(), default_decimals(code))
 
     def get_fx_rate(self, quote):
         return Decimal(1) if quote.upper() == "USD" else self.fx.get(quote.upper())
@@ -321,7 +329,8 @@ class MemoryStore:
         self.offers[oid] = {**o.__dict__, "id": oid}
         self._log(
             f"UPSERT offer {oid} ext={o.external_id} cost_usd={o.cost_usd} list_price_usd={o.list_price_usd} "
-            f"shipping_usd={o.shipping_usd} ships_from={o.ships_from} to={len(o.ships_to)} countries "
+            f"shipping_usd={o.shipping_usd} list_local={o.list_price_local}+{o.shipping_local} {o.list_currency or ''} "
+            f"ships_from={o.ships_from} to={len(o.ships_to)} countries "
             f"days={o.delivery_days_min}-{o.delivery_days_max} active={o.is_active}"
         )
         return oid
@@ -349,7 +358,8 @@ class MemoryStore:
                          ships_from=o["ships_from"], ships_to=list(o["ships_to"]),
                          delivery_days_min=o["delivery_days_min"], delivery_days_max=o["delivery_days_max"],
                          is_active=o["is_active"], category_id=self.get_product_category(o["product_id"]),
-                         last_synced_at=o["last_synced_at"])
+                         last_synced_at=o["last_synced_at"], list_price_local=o.get("list_price_local"),
+                         list_currency=o.get("list_currency"), shipping_local=o.get("shipping_local"))
 
     def get_offer(self, offer_id):
         o = self.offers.get(offer_id)
@@ -453,6 +463,7 @@ class PostgresStore:
     """psycopg 3 implementation against the contract schema."""
 
     name = "postgres"
+    accepts_order_snapshots = False  # the DB is the source of truth for orders
 
     def __init__(self, dsn: str, connect_timeout: int = 3):
         import psycopg
@@ -462,6 +473,8 @@ class PostgresStore:
         # display_price_usd is not in 0001_core.sql (contract request); write it only if Agent 1 adds it.
         self.supports_display_price = self._has_column("offers", "display_price_usd")
         self._has_shipping_address = self._has_column("orders", "shipping_address")
+        self._has_list_local = all(self._has_column("offers", c)
+                                   for c in ("list_price_local", "list_currency", "shipping_local"))
 
     def _has_column(self, table: str, column: str) -> bool:
         row = self._one("select 1 as ok from information_schema.columns where table_schema = current_schema() "
@@ -497,7 +510,7 @@ class PostgresStore:
 
     def get_currency_decimals(self, code):
         r = self._one("select decimals from currencies where code = %s", (code.upper(),))
-        return int(r["decimals"]) if r else 2
+        return int(r["decimals"]) if r else default_decimals(code)
 
     def get_fx_rate(self, quote):
         if quote.upper() == "USD":
@@ -601,6 +614,9 @@ class PostgresStore:
             (o.product_id, o.source_id, o.external_id, o.url, o.cost_usd, o.list_price_usd, o.shipping_usd,
              o.stock, o.ships_from, o.ships_to, o.delivery_days_min, o.delivery_days_max, o.commission_rate,
              o.last_synced_at, o.is_active))
+        if self._has_list_local:  # migration 0006
+            self._exec("update offers set list_price_local = %s, list_currency = %s, shipping_local = %s "
+                       "where id = %s", (o.list_price_local, o.list_currency, o.shipping_local, r["id"]))
         return r["id"]
 
     def deactivate_stale_offers(self, source_id, synced_before):
@@ -622,7 +638,10 @@ class PostgresStore:
             list_price_usd=r["list_price_usd"], shipping_usd=r["shipping_usd"] or Decimal(0), stock=r["stock"],
             ships_from=(r["ships_from"] or "").strip() or None, ships_to=list(r["ships_to"] or []),
             delivery_days_min=r["delivery_days_min"], delivery_days_max=r["delivery_days_max"],
-            is_active=r["is_active"], category_id=r["category_id"], last_synced_at=r["last_synced_at"])
+            is_active=r["is_active"], category_id=r["category_id"], last_synced_at=r["last_synced_at"],
+            list_price_local=r.get("list_price_local"),
+            list_currency=(r.get("list_currency") or "").strip() or None,
+            shipping_local=r.get("shipping_local"))
 
     def get_offer(self, offer_id):
         r = self._one(self._OFFER_SQL + "where o.id = %s", (offer_id,))

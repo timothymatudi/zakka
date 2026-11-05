@@ -110,12 +110,22 @@ Base URL: `CATALOG_API_URL` (default `http://localhost:4020`).
 
 ## Ownership decisions (lead)
 - **Payments and payment webhooks belong to the concierge** for both channels. Web checkout creates the order, then calls `POST {CONCIERGE_PUBLIC_URL}/internal/payments/checkout` (with `x-internal-token`) to get a payment link. The web app's payment stubs are mock-only.
+- **Shared data:** in production every service uses the same Supabase Postgres. In mock or no-DB mode, the catalog's forward endpoint uses the `order` and `items` posted in the request body when it can't find the order.
+- **Display decimals:** KES, IDR, TZS, UGX, NGN, JPY, KRW, VND, CLP and PKR display with 0 decimals. Catalog checkout prices, search's `display_price_local` and every UI follow `currencies.decimals`.
+- **Kenya pays with M-Pesa by default.** Other options stay available.
 - **Admin auth:** a Supabase user with `app_metadata.role = 'admin'`. Admin writes (`markup_rules`, sources) go through server routes that check that role and then use the service role. Nothing writes those tables from the browser.
 - **Categories for the web app:** `categories`, `category_translations` and the `top_level_categories` view are public-read under RLS, so no service role is needed.
 - **Search additions (to be built):** `GET /products/{id}?locale&country`, `min_rating` and `ships_from` parameters, category facets that carry slugs, and `display_price_local` plus `currency` in each hit's offers.
 
 ## Phase 1 locales
 `en, es, fr, pt, ar, zh, hi, sw, de, id`
+
+## Source names are hidden from customers (owner's decision)
+- Customer-facing UI and WhatsApp messages **never show supplier or partner names** (CJ, AliExpress, Spocket, Printful, Amazon, Temu, Shein, Jumia, Noon, Flipkart). No logos, no "Ships via X", no "Buy on X".
+- **Dropship** items look like Zakka's own products, for example "Sold by Zakka".
+- **Affiliate** items use a generic label, such as "Partner store", and the button "Continue to partner store". The "Affiliate link: Zakka may earn a commission" disclosure stays on every affiliate item.
+- Disclosure statements that a program requires (for example "As an Amazon Associate, Zakka earns from qualifying purchases") appear only on the site-wide footer and the `/legal/affiliates` page, never on product cards.
+- `source_code` stays in APIs, the database and the admin, which is internal.
 
 ## Rules for every agent
 1. Use official APIs and feeds only. Never scrape Amazon, Temu, Shein, or any other retailer.

@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK reference data used by --dry-run and the in-memory store when DATABASE_URL is empty/unreachable. FX rates are static approximations, NOT live. Currency 'decimals' are display decimals (KES/IDR/TZS shown as whole units).",
+  "_note": "MOCK reference data used by --dry-run and the in-memory store when DATABASE_URL is empty/unreachable. FX rates are static approximations, NOT live. Currency 'decimals' are display decimals: KES, IDR, TZS, UGX, NGN, JPY, KRW, VND, CLP and PKR are shown as whole units.",
   "locales": [
     "en",
     "es",
@@ -51,7 +51,7 @@
     {
       "code": "NGN",
       "symbol": "₦",
-      "decimals": 2
+      "decimals": 0
     },
     {
       "code": "INR",
@@ -81,7 +81,7 @@
     {
       "code": "PKR",
       "symbol": "₨",
-      "decimals": 2
+      "decimals": 0
     },
     {
       "code": "JPY",
@@ -101,6 +101,26 @@
     {
       "code": "TZS",
       "symbol": "TSh",
+      "decimals": 0
+    },
+    {
+      "code": "UGX",
+      "symbol": "USh",
+      "decimals": 0
+    },
+    {
+      "code": "KRW",
+      "symbol": "₩",
+      "decimals": 0
+    },
+    {
+      "code": "VND",
+      "symbol": "₫",
+      "decimals": 0
+    },
+    {
+      "code": "CLP",
+      "symbol": "CLP$",
       "decimals": 0
     }
   ],
@@ -194,6 +214,26 @@
       "base": "USD",
       "quote": "TZS",
       "rate": "2700"
+    },
+    {
+      "base": "USD",
+      "quote": "UGX",
+      "rate": "3700"
+    },
+    {
+      "base": "USD",
+      "quote": "KRW",
+      "rate": "1380.00"
+    },
+    {
+      "base": "USD",
+      "quote": "VND",
+      "rate": "25400"
+    },
+    {
+      "base": "USD",
+      "quote": "CLP",
+      "rate": "950.00"
     }
   ],
   "countries": [
@@ -316,6 +356,30 @@
       "name": "Japan",
       "currency": "JPY",
       "default_locale": "en"
+    },
+    {
+      "code": "UG",
+      "name": "Uganda",
+      "currency": "UGX",
+      "default_locale": "sw"
+    },
+    {
+      "code": "KR",
+      "name": "South Korea",
+      "currency": "KRW",
+      "default_locale": "en"
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "currency": "VND",
+      "default_locale": "en"
+    },
+    {
+      "code": "CL",
+      "name": "Chile",
+      "currency": "CLP",
+      "default_locale": "es"
     }
   ],
   "categories": [

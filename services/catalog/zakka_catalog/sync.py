@@ -18,6 +18,7 @@ inactive (stale). Partial runs (``max_pages``) or fetch errors never deactivate.
 from __future__ import annotations
 
 import logging
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from decimal import ROUND_HALF_UP, Decimal
@@ -82,6 +83,49 @@ def to_usd(amount: Decimal | None, currency: str, store: Store) -> Decimal | Non
     if rate is None or rate <= 0:
         raise SyncItemError(f"no fx rate USD->{currency}")
     return (Decimal(amount) / rate).quantize(CENT, rounding=ROUND_HALF_UP)
+
+
+# Contract: customer-facing text never shows supplier/partner names. Product copy we store
+# (titles, descriptions, bullets, brand) is customer-facing, so partner names are removed.
+# "noon" is only matched as a domain (it is an ordinary English word).
+_PARTNER = (r"(?:cj\s*dropshipping|aliexpress|spocket|printful|amazon(?:\.[a-z.]+)?|temu|shein"
+            r"|jumia(?:\.[a-z.]+)?|flipkart|noon\.com|cj)")
+_PARTNER_RE = re.compile(rf"(?i)\b{_PARTNER}\b")
+# A partner mention plus the words that only exist to introduce it ("Sold on X", "ships from X").
+_MENTION_RE = re.compile(
+    r"(?i)(?:\b(?:sold|ships|shipped|delivered|fulfilled|available|buy|only|exclusively)\s+)?"
+    rf"(?:\b(?:on|by|from|via|at|in)\s+)?\b{_PARTNER}\b")
+_SEP = r"[-\u2013\u2014|/\u2022\u00b7:;,]"
+
+
+def scrub_partner_names(text: str | None) -> str | None:
+    """Remove partner names without leaving stray separators or whitespace."""
+    if text is None:
+        return None
+    out = _MENTION_RE.sub(" ", text)
+    out = re.sub(r"\(\s*\)|\[\s*\]", " ", out)                   # emptied brackets
+    out = re.sub(rf"\s*({_SEP})(?:\s*{_SEP})+", r" \1", out)       # "a | | b" -> "a | b"
+    out = re.sub(r"([(\[])\s+", r"\1", out)                       # "( x" -> "(x"
+    out = re.sub(r"\s+([)\].,;:!?])", r"\1", out)                  # "x ." -> "x."
+    out = re.sub(r"\s{2,}", " ", out)
+    out = re.sub(rf"^(?:\s|{_SEP})+|(?:\s|{_SEP})+$", "", out)     # trim edge separators
+    return out
+
+
+def customer_copy(sp: SourceProduct) -> SourceProduct:
+    """Copy of ``sp`` whose customer-facing fields contain no partner names."""
+    brand = sp.brand
+    if brand and _PARTNER_RE.search(brand):
+        brand = None  # e.g. a retailer's own label: don't name the partner
+    title = scrub_partner_names(sp.title)
+    if not title:
+        raise SyncItemError("title is only a partner name")
+    return sp.model_copy(update={
+        "title": title,
+        "description": scrub_partner_names(sp.description),
+        "bullet_points": [b for b in (scrub_partner_names(x) for x in sp.bullet_points) if b],
+        "brand": brand,
+    })
 
 
 def _validate(sp: SourceProduct, kind: str) -> None:
@@ -149,6 +193,7 @@ def sync_source(
 def _sync_item(store, connector, source_id, sp: SourceProduct, enricher, categories, slug_to_id, locales,
                rules, run_started, report: SourceReport) -> OfferResult:
     _validate(sp, connector.kind)
+    sp = customer_copy(sp)
     cost_usd = to_usd(sp.cost, sp.currency, store)
     list_usd = to_usd(sp.list_price, sp.currency, store)
     ship_usd = to_usd(sp.shipping, sp.currency, store) or Decimal(0)
@@ -200,7 +245,13 @@ def _sync_item(store, connector, source_id, sp: SourceProduct, enricher, categor
         ships_to=list(sp.ships_to), delivery_days_min=sp.delivery_days_min,
         delivery_days_max=sp.delivery_days_max,
         commission_rate=sp.commission_rate if connector.kind == "affiliate" else None,
-        last_synced_at=run_started, is_active=is_active))
+        last_synced_at=run_started, is_active=is_active,
+        # Keep the partner's own-currency price so it displays exactly in that currency (0006).
+        list_price_local=(Decimal(sp.list_price).quantize(CENT, rounding=ROUND_HALF_UP)
+                          if connector.kind == "affiliate" and sp.list_price is not None else None),
+        list_currency=sp.currency if connector.kind == "affiliate" and sp.list_price is not None else None,
+        shipping_local=(Decimal(sp.shipping).quantize(CENT, rounding=ROUND_HALF_UP)
+                        if connector.kind == "affiliate" and sp.list_price is not None else None)))
     report.offers_upserted += 1
 
     offer = store.get_offer(offer_id)

@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+
+/* Zakka design tokens (docs/CONTRACT.md design system). */
+@theme {
+  --color-teal: #0f766e;
+  --color-teal-dark: #0b5952;
+  --color-teal-soft: #e3f1ef;
+  --color-coral: #f97362;
+  --color-coral-soft: #feeae6;
+  --color-cream: #fbf8f3;
+  --color-sand: #f2ece2;
+  --color-ink: #1f2937;
+  --color-muted: #4f5f5c; /* neutral tinted toward teal, 6:1 on cream */
+  --color-line: #e4ded2;
+  --color-wa: #1d8f52;
+
+  --font-sans: 'Plus Jakarta Sans Variable', 'Noto Sans Arabic Variable', 'Noto Sans Devanagari Variable',
+    system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  --radius-card: 1.125rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-coral);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    transition: background-color 0.15s, transform 0.1s;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--color-teal);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-teal-dark);
+  }
+  .btn-outline {
+    border: 1.5px solid var(--color-teal);
+    color: var(--color-teal);
+    background: #fff;
+  }
+  .btn-outline:hover {
+    background: var(--color-teal-soft);
+  }
+  .field {
+    width: 100%;
+    border: 1.5px solid var(--color-line);
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+  }
+  .field:focus {
+    border-color: var(--color-teal);
+    outline: none;
+  }
+  .rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(10.5rem, 1fr);
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    scroll-snap-align: start;
+  }
+  @media (min-width: 1024px) {
+    .rail {
+      grid-auto-columns: calc((100% - 4 * 0.75rem) / 5);
+    }
+  }
+}

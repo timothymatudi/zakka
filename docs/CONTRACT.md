@@ -108,6 +108,12 @@ Base URL: `CATALOG_API_URL` (default `http://localhost:4020`).
 - Every new table must enable RLS and grant access explicitly, because default grants are revoked.
 - `fx_rates` with `fetched_at` before 2001 are sample values.
 
+## Ownership decisions (lead)
+- **Payments and payment webhooks belong to the concierge** for both channels. Web checkout creates the order, then calls `POST {CONCIERGE_PUBLIC_URL}/internal/payments/checkout` (with `x-internal-token`) to get a payment link. The web app's payment stubs are mock-only.
+- **Admin auth:** a Supabase user with `app_metadata.role = 'admin'`. Admin writes (`markup_rules`, sources) go through server routes that check that role and then use the service role. Nothing writes those tables from the browser.
+- **Categories for the web app:** `categories`, `category_translations` and the `top_level_categories` view are public-read under RLS, so no service role is needed.
+- **Search additions (to be built):** `GET /products/{id}?locale&country`, `min_rating` and `ships_from` parameters, category facets that carry slugs, and `display_price_local` plus `currency` in each hit's offers.
+
 ## Phase 1 locales
 `en, es, fr, pt, ar, zh, hi, sw, de, id`
 

@@ -21,7 +21,23 @@ export const SOURCE_NAMES: Record<SourceCode, string> = {
   temu: 'Temu', shein: 'SHEIN', aliexpress_aff: 'AliExpress', jumia: 'Jumia', noon: 'noon', flipkart: 'Flipkart',
 };
 
-export const orderRef = (id: string) => `ZK-${id.replace(/-/g, '').slice(0, 8).toUpperCase()}`;
+export const SHIPMENT_STATUSES = ['pending', 'in_transit', 'delivered', 'exception', 'cancelled'] as const;
+export type ShipmentStatus = (typeof SHIPMENT_STATUSES)[number];
+export interface ShipmentUpdate {
+  status?: ShipmentStatus;
+  carrier?: string | null;
+  tracking_number?: string | null;
+  tracking_url?: string | null;
+  last_event?: string | null;
+}
+const asShipmentStatus = (s: string | null | undefined): ShipmentStatus | undefined =>
+  (SHIPMENT_STATUSES as readonly string[]).includes(s ?? '') ? (s as ShipmentStatus) : undefined;
+const ORDER_TO_SHIPMENT: Partial<Record<Order['status'], ShipmentStatus>> = { shipped: 'in_transit', delivered: 'delivered', cancelled: 'cancelled' };
+const SHIPMENT_TO_ORDER: Record<Exclude<ShipmentStatus, 'exception'>, Order['status']> = {
+  pending: 'forwarded', in_transit: 'shipped', delivered: 'delivered', cancelled: 'cancelled',
+};
+
+export const orderRef =(id: string) => `ZK-${id.replace(/-/g, '').slice(0, 8).toUpperCase()}`;
 
 export interface Deps {
   config: Config;
@@ -459,25 +475,42 @@ export class Concierge {
   // ------------------------------------------------------------------ proactive (templates)
 
   /** Order status notifications (shipping/delivery) from catalog/fulfilment. Utility templates outside the window. */
-  async notifyOrderUpdate(orderId: string): Promise<{ sent: boolean; mode?: string; reason?: string }> {
+  /**
+   * Shipment notification from catalog (POST /internal/orders/:id/notify). Fields missing from the
+   * update are filled from the stored shipment/order. `pending` sends nothing; `delivered` sends
+   * delivery_update; `in_transit` with tracking sends shipping_update; anything else delivery_update.
+   */
+  async notifyOrderUpdate(orderId: string, update: ShipmentUpdate = {}): Promise<{ sent: boolean; mode?: string; template?: TemplateName; reason?: string }> {
     const { store, messenger, config } = this.d;
     const order = await store.getOrder(orderId);
     if (!order?.customer_id) return { sent: false, reason: 'order_not_found' };
+    const tr = (await store.getTracking(order.id))[0];
+    const status = update.status ?? asShipmentStatus(tr?.status) ?? ORDER_TO_SHIPMENT[order.status] ?? 'pending';
+    if (status === 'pending') return { sent: false, reason: 'pending' };
+
     const customer = await store.getCustomer(order.customer_id);
     const conv = await store.getConversationByCustomer(order.customer_id);
     if (!customer || !conv) return { sent: false, reason: 'no_conversation' };
-    const locale: Locale = customer.locale ?? 'en';
+    const locale: Locale = customer.locale ?? conv.context.locale ?? 'en';
     const ref = orderRef(order.id);
-    const tr = (await store.getTracking(order.id))[0];
-    const status = t(locale, `status_${order.status}`);
-    const url = tr?.tracking_url ?? `${config.webBaseUrl}/orders/${order.id}`;
-    const text = [t(locale, 'track_status', { ref, status }), tr?.carrier && tr.tracking_number ? `${tr.carrier} ${tr.tracking_number}` : null, t(locale, 'track_link', { url })].filter(Boolean).join('\n');
-    const template: { name: TemplateName; params: string[] } = order.status === 'shipped' && tr
-      ? { name: 'shipping_update', params: [ref, tr.carrier ?? '-', tr.tracking_number ?? '-'] }
-      : { name: 'delivery_update', params: [ref, status, tr?.last_event ?? '-'] };
+    const carrier = update.carrier || tr?.carrier || null;
+    const trackingNumber = update.tracking_number || tr?.tracking_number || null;
+    const lastEvent = update.last_event || tr?.last_event || null;
+    const url = update.tracking_url || tr?.tracking_url || `${config.webBaseUrl}/orders/${order.id}`;
+    const label = status === 'exception' ? t(locale, 'ship_exception') : t(locale, `status_${SHIPMENT_TO_ORDER[status]}`);
+
+    const text = [
+      t(locale, 'track_status', { ref, status: label }),
+      carrier || trackingNumber ? [carrier, trackingNumber].filter(Boolean).join(' ') : null,
+      lastEvent,
+      t(locale, 'track_link', { url }),
+    ].filter(Boolean).join('\n');
+    const template: { name: TemplateName; params: string[] } = status === 'in_transit' && (carrier || trackingNumber)
+      ? { name: 'shipping_update', params: [ref, carrier ?? '-', trackingNumber ?? '-'] }
+      : { name: 'delivery_update', params: [ref, label, lastEvent ?? '-'] };
     const mode = await messenger.sendOrTemplate(conv, customer, { kind: 'text', body: text, previewUrl: true },
       { name: template.name, locale, params: template.params, buttonUrlParam: order.id });
-    return { sent: true, mode };
+    return { sent: true, mode, template: template.name };
   }
 
   /** Marketing template (price_drop_alert / weekly_deals). Only for whatsapp_opt_in customers. */

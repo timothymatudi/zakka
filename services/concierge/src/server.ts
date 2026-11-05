@@ -2,7 +2,7 @@ import Fastify, { type FastifyInstance, type FastifyRequest } from 'fastify';
 import { createSupportAI, type SupportAI } from './ai/support';
 import { HttpCatalogClient, HttpSearchClient, type CatalogClient, type SearchClient } from './clients/services';
 import type { Config } from './config';
-import { Concierge } from './flows/concierge';
+import { Concierge, SHIPMENT_STATUSES, type ShipmentStatus } from './flows/concierge';
 import { log } from './log';
 import { createProviders, type Providers, type ProviderName } from './payments';
 import { WebhookSignatureError } from './payments/types';
@@ -163,7 +163,18 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
     if (config.internalToken ? token !== config.internalToken : !loopback) return reply.code(401).send({ error: 'unauthorized' });
   });
 
-  app.post('/internal/orders/:id/notify', async (req) => concierge.notifyOrderUpdate((req.params as { id: string }).id));
+  app.post('/internal/orders/:id/notify', async (req, reply) => {
+    const b = (req.body ?? {}) as Record<string, unknown>;
+    if (b.status !== undefined && !(SHIPMENT_STATUSES as readonly unknown[]).includes(b.status)) {
+      return reply.code(400).send({ error: `status must be one of ${SHIPMENT_STATUSES.join(', ')}` });
+    }
+    const str = (k: string) => (typeof b[k] === 'string' && (b[k] as string).trim() ? (b[k] as string).trim() : null);
+    const result = await concierge.notifyOrderUpdate((req.params as { id: string }).id, {
+      status: b.status as ShipmentStatus | undefined,
+      carrier: str('carrier'), tracking_number: str('tracking_number'), tracking_url: str('tracking_url'), last_event: str('last_event'),
+    });
+    return reply.code(result.reason === 'order_not_found' ? 404 : 200).send(result);
+  });
 
   app.post('/internal/conversations/:waId/reply', async (req) => {
     const b = (req.body ?? {}) as { text?: string; resume?: boolean };

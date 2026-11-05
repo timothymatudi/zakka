@@ -3,8 +3,8 @@ import { log } from '../log';
 import type { Locale, OfferPrice, SearchDocument, SearchResponse } from '../shared';
 import type { ShippingAddress } from '../store/types';
 
-/** Catalog price response; `ships_to_country` per the contract (not yet in the shared OfferPrice type). */
-export type CatalogPrice = OfferPrice & { offer_id?: string; kind?: string; ships_to_country?: boolean };
+/** Catalog price response (contract: GET /offers/{id}/price). */
+export type CatalogPrice = OfferPrice;
 
 export interface SearchClient {
   search(q: { q: string; locale: Locale; country: string; perPage?: number }): Promise<{ hits: SearchDocument[]; fixture: boolean }>;

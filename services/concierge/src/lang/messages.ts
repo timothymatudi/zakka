@@ -4,13 +4,14 @@ type Key =
   | 'welcome' | 'results_header' | 'results_body' | 'results_button' | 'no_results' | 'affiliate_label' | 'days'
   | 'confirm_body' | 'buy_btn' | 'back_btn' | 'cancel_btn' | 'pay_body' | 'pay_btn' | 'paid' | 'forwarded'
   | 'forward_pending' | 'affiliate_body' | 'affiliate_btn' | 'track_status' | 'track_link' | 'no_orders'
-  | 'stopped' | 'started'
+  | 'stopped' | 'started' | 'ship_exception'
   | 'address_prompt' | 'address_invalid' | 'address_confirm' | 'address_saved' | 'address_ok_btn' | 'address_edit_btn' | 'address_new_btn' | 'handoff' | 'cancelled' | 'pick_again' | 'error' | 'opt_in_hint'
   | `status_${OrderStatus}`;
 
 type Dict = Record<Key, string>;
 
 const en: Dict = {
+  ship_exception: "delivery problem, our team is on it",
   address_prompt: "Where should we deliver? Reply with your address, one item per line:\nFull name\nStreet address (house, street, building)\nCity\nRegion or county (optional)\nPostal code (optional)",
   address_invalid: "I need at least your full name, street address and city, each on its own line. Please try again.",
   address_confirm: "Deliver to:\n{address}\n\nIs this correct?",
@@ -51,6 +52,7 @@ const en: Dict = {
 };
 
 const es: Dict = {
+  ship_exception: "incidencia en la entrega, nuestro equipo ya se encarga",
   address_prompt: "¿Dónde lo entregamos? Responde con tu dirección, un dato por línea:\nNombre completo\nCalle y número\nCiudad\nProvincia o región (opcional)\nCódigo postal (opcional)",
   address_invalid: "Necesito al menos tu nombre completo, la calle y la ciudad, cada uno en su línea. Inténtalo de nuevo.",
   address_confirm: "Entregar en:\n{address}\n\n¿Es correcto?",
@@ -88,6 +90,7 @@ const es: Dict = {
 };
 
 const fr: Dict = {
+  ship_exception: "problème de livraison, notre équipe s'en occupe",
   address_prompt: "Où devons-nous livrer ? Répondez avec votre adresse, un élément par ligne :\nNom complet\nAdresse (numéro, rue, bâtiment)\nVille\nRégion (facultatif)\nCode postal (facultatif)",
   address_invalid: "Il me faut au moins votre nom complet, votre adresse et votre ville, chacun sur une ligne. Réessayez.",
   address_confirm: "Livraison à :\n{address}\n\nEst-ce correct ?",
@@ -125,6 +128,7 @@ const fr: Dict = {
 };
 
 const pt: Dict = {
+  ship_exception: "problema na entrega, nossa equipe já está cuidando",
   address_prompt: "Onde devemos entregar? Responda com seu endereço, um item por linha:\nNome completo\nRua e número\nCidade\nEstado ou região (opcional)\nCEP (opcional)",
   address_invalid: "Preciso pelo menos do nome completo, rua e cidade, cada um em uma linha. Tente de novo.",
   address_confirm: "Entregar em:\n{address}\n\nEstá correto?",
@@ -162,6 +166,7 @@ const pt: Dict = {
 };
 
 const ar: Dict = {
+  ship_exception: "مشكلة في التوصيل، فريقنا يتابعها",
   address_prompt: "أين نوصل طلبك؟ أرسل عنوانك، كل معلومة في سطر:\nالاسم الكامل\nعنوان الشارع (المبنى، الشارع)\nالمدينة\nالمنطقة (اختياري)\nالرمز البريدي (اختياري)",
   address_invalid: "أحتاج على الأقل إلى الاسم الكامل وعنوان الشارع والمدينة، كل منها في سطر. حاول مرة أخرى.",
   address_confirm: "التوصيل إلى:\n{address}\n\nهل هذا صحيح؟",
@@ -199,6 +204,7 @@ const ar: Dict = {
 };
 
 const zh: Dict = {
+  ship_exception: "配送异常，我们的团队正在处理",
   address_prompt: "请告诉我们收货地址，每项一行：\n收件人姓名\n街道地址（门牌、街道、楼栋）\n城市\n省/地区（可选）\n邮编（可选）",
   address_invalid: "至少需要姓名、街道地址和城市，每项一行。请重新发送。",
   address_confirm: "配送至：\n{address}\n\n地址正确吗？",
@@ -236,6 +242,7 @@ const zh: Dict = {
 };
 
 const hi: Dict = {
+  ship_exception: "डिलीवरी में समस्या, हमारी टीम इसे देख रही है",
   address_prompt: "हम कहाँ डिलीवर करें? अपना पता भेजें, हर जानकारी अलग लाइन में:\nपूरा नाम\nपता (मकान, गली, बिल्डिंग)\nशहर\nराज्य (वैकल्पिक)\nपिन कोड (वैकल्पिक)",
   address_invalid: "कम से कम पूरा नाम, पता और शहर चाहिए, हर एक अलग लाइन में। फिर से भेजें।",
   address_confirm: "डिलीवरी का पता:\n{address}\n\nक्या यह सही है?",
@@ -273,6 +280,7 @@ const hi: Dict = {
 };
 
 const sw: Dict = {
+  ship_exception: "tatizo la usafirishaji, timu yetu inalishughulikia",
   address_prompt: "Tukuletee wapi? Tuma anwani yako, kila kitu kwenye mstari wake:\nJina kamili\nAnwani ya mtaa (nyumba, mtaa, jengo)\nMji\nKaunti au mkoa (si lazima)\nNamba ya posta (si lazima)",
   address_invalid: "Nahitaji angalau jina kamili, anwani ya mtaa na mji, kila kimoja kwenye mstari wake. Jaribu tena.",
   address_confirm: "Peleka kwa:\n{address}\n\nJe, ni sahihi?",
@@ -310,6 +318,7 @@ const sw: Dict = {
 };
 
 const de: Dict = {
+  ship_exception: "Zustellproblem, unser Team kümmert sich darum",
   address_prompt: "Wohin sollen wir liefern? Schick uns deine Adresse, eine Angabe pro Zeile:\nVollständiger Name\nStraße und Hausnummer\nStadt\nBundesland (optional)\nPostleitzahl (optional)",
   address_invalid: "Ich brauche mindestens Name, Straße und Stadt, jeweils in einer eigenen Zeile. Bitte versuch es noch einmal.",
   address_confirm: "Lieferung an:\n{address}\n\nStimmt das?",
@@ -347,6 +356,7 @@ const de: Dict = {
 };
 
 const id: Dict = {
+  ship_exception: "ada kendala pengiriman, tim kami sedang menanganinya",
   address_prompt: "Ke mana kami kirim? Balas dengan alamat Anda, satu data per baris:\nNama lengkap\nAlamat jalan (rumah, jalan, gedung)\nKota\nProvinsi (opsional)\nKode pos (opsional)",
   address_invalid: "Saya perlu setidaknya nama lengkap, alamat jalan, dan kota, masing-masing di baris sendiri. Coba lagi.",
   address_confirm: "Kirim ke:\n{address}\n\nSudah benar?",

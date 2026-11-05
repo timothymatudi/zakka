@@ -4,7 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useCart, useMarket } from '@/components/Providers';
-import { formatMoney, usdToLocal } from '@/lib/money';
+import { cartUnit, formatMoney } from '@/lib/money';
 import { regionName } from '@/lib/format';
 import { methodsFor, type PaymentMethod } from '@/lib/payment-methods';
 import { CheckIcon } from '@/components/icons';
@@ -35,7 +35,7 @@ export function CheckoutForm() {
   }
 
   const money = (v: number) => formatMoney(v, market.currency, locale, market.decimals);
-  const estimate = items.reduce((s, i) => s + usdToLocal(i.priceUsd, market) * i.qty, 0);
+  const estimate = items.reduce((s, i) => s + cartUnit(i, market) * i.qty, 0);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,7 +52,6 @@ export function CheckoutForm() {
           provider: method,
           contact: {
             name: fd.get('name'),
-            email: fd.get('email'),
             phone: fd.get('phone'),
             line1: fd.get('line1'),
             line2: fd.get('line2'),
@@ -64,7 +63,20 @@ export function CheckoutForm() {
         }),
       });
       const data = (await res.json()) as { redirectUrl?: string; error?: string };
-      if (!res.ok || !data.redirectUrl) throw new Error(data.error ?? 'failed');
+      if (!res.ok || !data.redirectUrl) {
+        // Friendly messages for the concierge's payment errors (400/409 rejected, 502 provider down).
+        setError(
+          data.error === 'provider_unavailable'
+            ? t('providerUnavailable')
+            : data.error === 'payment_rejected'
+              ? t('paymentRejected')
+              : data.error === 'missing_contact'
+                ? t('checkDetails')
+                : t('error'),
+        );
+        setBusy(false);
+        return;
+      }
       clear();
       window.location.assign(data.redirectUrl);
     } catch {
@@ -82,11 +94,7 @@ export function CheckoutForm() {
             {t('name')}
             <input name="name" required autoComplete="name" className="field mt-1" />
           </label>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-sm font-semibold">
-              {t('email')}
-              <input name="email" type="email" autoComplete="email" className="field mt-1" />
-            </label>
+          <div>
             <label className="block text-sm font-semibold">
               {t('phone')}
               <input name="phone" type="tel" required autoComplete="tel" placeholder="+" pattern="\+[0-9 ]{7,20}" className="field mt-1" dir="ltr" />
@@ -154,7 +162,7 @@ export function CheckoutForm() {
               <span className="line-clamp-1">
                 {i.qty} × {i.title}
               </span>
-              <span className="shrink-0 font-semibold">{money(usdToLocal(i.priceUsd, market) * i.qty)}</span>
+              <span className="shrink-0 font-semibold">{money(cartUnit(i, market) * i.qty)}</span>
             </li>
           ))}
         </ul>

@@ -71,7 +71,8 @@ export async function SearchResults({
   });
   const pages = Math.max(1, Math.ceil(res.found / res.per_page));
   // Facet values may be display names (live) or slugs (mock); only slugs can drive the category filter.
-  const catFacet = (res.facets.category_path ?? []).filter((f) => CATEGORIES.some((c) => c.slug === f.value));
+  const catFacet = res.facets.category_slug ?? (res.facets.category_path ?? []).filter((f) => CATEGORIES.some((c) => c.slug === f.value));
+  const catLabel = (f: { value: string; label?: string }) => (CATEGORIES.some((c) => c.slug === f.value) ? tc(f.value) : (f.label ?? f.value));
   const fromFacet = res.facets.ships_from ?? [];
 
   const current: Record<string, string> = {};
@@ -205,7 +206,7 @@ export async function SearchResults({
                 href={{ pathname: basePath, query: { ...current, category: f.value } }}
                 className="shrink-0 rounded-full bg-teal-soft px-3 py-1 text-xs font-semibold text-teal"
               >
-                {tc(f.value)} · {f.count}
+                {catLabel(f)} · {f.count}
               </Link>
             ))}
           </div>

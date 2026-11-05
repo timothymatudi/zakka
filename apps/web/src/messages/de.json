@@ -82,10 +82,10 @@
     "days": "{min}–{max} Tage",
     "daysTo": "{min}–{max} Tage nach {country}",
     "shipsFrom": "Versand aus {country}",
-    "zakkaCheckout": "Kasse bei Zakka",
-    "affiliate": "Affiliate",
-    "affiliateDisclosure": "Affiliate — du kaufst bei {partner}. Zakka erhält ggf. eine Provision, ohne Kosten für dich.",
-    "buyOn": "Bei {partner} kaufen",
+    "zakkaCheckout": "Verkauf durch Zakka",
+    "affiliate": "Partnershop",
+    "affiliateDisclosure": "Affiliate-Link — Zakka erhält ggf. eine Provision.",
+    "buyOn": "Weiter zum Partnershop",
     "addToCart": "In den Warenkorb",
     "added": "Hinzugefügt ✓",
     "compare": "{count, plural, one {# Angebot} other {# Angebote}} vergleichen",
@@ -98,7 +98,9 @@
     "notShipping": "Dieses Produkt wird noch nicht nach {country} geliefert.",
     "highlights": "Highlights",
     "priceNote": "Preise inklusive Versand nach {country}. Bei Lieferung können Steuern oder Zölle anfallen.",
-    "notFound": "Produkt nicht gefunden."
+    "notFound": "Produkt nicht gefunden.",
+    "partnerN": "Partnershop {n}",
+    "sellerZakka": "Zakka"
   },
   "cart": {
     "title": "Dein Warenkorb",
@@ -117,7 +119,6 @@
     "title": "Kasse",
     "contact": "Kontakt & Lieferung",
     "name": "Vollständiger Name",
-    "email": "E-Mail",
     "phone": "Telefon (WhatsApp)",
     "address": "Lieferadresse",
     "city": "Stadt",
@@ -138,7 +139,10 @@
     },
     "line2": "Wohnung, Etage usw. (optional)",
     "region": "Bundesland / Region (optional)",
-    "postal": "Postleitzahl (optional)"
+    "postal": "Postleitzahl (optional)",
+    "providerUnavailable": "Dieser Zahlungsanbieter ist gerade nicht verfügbar. Bitte wähle eine andere Zahlungsart.",
+    "paymentRejected": "Die Zahlung konnte nicht gestartet werden. Bitte prüfe deinen Warenkorb und versuche es erneut.",
+    "checkDetails": "Bitte prüfe Name, Adresse und Telefonnummer (mit Ländervorwahl, z. B. +49…)."
   },
   "order": {
     "title": "Bestellung verfolgen",
@@ -181,12 +185,22 @@
   "footer": {
     "tagline": "Zakka durchsucht vertrauenswürdige Shops weltweit und zeigt den ehrlichen Gesamtpreis.",
     "affiliate": "Manche Links sind Affiliate-Links: Wenn du auf einer Partnerseite kaufst, erhält Zakka ggf. eine Provision. Sie sind immer gekennzeichnet.",
-    "rights": "© {year} Zakka"
+    "rights": "© {year} Zakka",
+    "programs": "Als Amazon-Partner verdient Zakka an qualifizierten Verkäufen.",
+    "legalLink": "Hinweise zu Affiliate-Links"
   },
   "common": {
     "loading": "Lädt…",
     "back": "Zurück",
     "notFound": "Seite nicht gefunden",
     "goHome": "Zur Startseite"
+  },
+  "legal": {
+    "title": "Hinweise zu Affiliate-Links",
+    "intro": "Zakka zeigt zwei Arten von Angeboten. Artikel mit „Verkauf durch Zakka“ verkauft und betreut Zakka. Artikel mit „Partnershop“ verkauft ein anderer Shop: Wenn du dort kaufst, erhält Zakka ggf. eine Provision. Dein Preis bleibt gleich.",
+    "programsTitle": "Programme, an denen wir teilnehmen",
+    "amazon": "Als Amazon-Partner verdient Zakka an qualifizierten Verkäufen.",
+    "others": "Zakka nimmt außerdem an den Partnerprogrammen von Temu, Shein, AliExpress, Jumia, noon und Flipkart teil und erhält ggf. eine Provision für qualifizierte Käufe über Links auf Zakka.",
+    "ranking": "Provisionen ändern nie den angezeigten Preis, und Affiliate-Angebote sind immer als „Partnershop“ gekennzeichnet."
   }
 }

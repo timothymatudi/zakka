@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useCart, useMarket } from '@/components/Providers';
-import { formatMoney, usdToLocal } from '@/lib/money';
+import { cartUnit, formatMoney } from '@/lib/money';
 
 export function CartView() {
   const t = useTranslations('cart');
@@ -25,7 +25,7 @@ export function CartView() {
   }
 
   const money = (v: number) => formatMoney(v, market.currency, locale, market.decimals);
-  const lines = items.map((i) => ({ ...i, unit: usdToLocal(i.priceUsd, market) }));
+  const lines = items.map((i) => ({ ...i, unit: cartUnit(i, market) }));
   const subtotal = lines.reduce((s, l) => s + l.unit * l.qty, 0);
 
   return (

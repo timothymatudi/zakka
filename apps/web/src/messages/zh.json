@@ -82,10 +82,10 @@
     "days": "{min}–{max} 天",
     "daysTo": "{min}–{max} 天送达{country}",
     "shipsFrom": "从{country}发货",
-    "zakkaCheckout": "在 Zakka 结账",
-    "affiliate": "联盟推广",
-    "affiliateDisclosure": "联盟推广 — 你将在 {partner} 购买。Zakka 可能获得佣金，你无需额外付费。",
-    "buyOn": "前往 {partner} 购买",
+    "zakkaCheckout": "Zakka 自营",
+    "affiliate": "合作商店",
+    "affiliateDisclosure": "联盟推广链接 — Zakka 可能获得佣金。",
+    "buyOn": "前往合作商店",
     "addToCart": "加入购物车",
     "added": "已加入 ✓",
     "compare": "比较 {count, plural, other {# 个报价}}",
@@ -98,7 +98,9 @@
     "notShipping": "此商品暂不支持配送至{country}。",
     "highlights": "亮点",
     "priceNote": "价格已含运至{country}的运费。收货时可能需缴纳税费或关税。",
-    "notFound": "找不到该商品。"
+    "notFound": "找不到该商品。",
+    "partnerN": "合作商店 {n}",
+    "sellerZakka": "Zakka"
   },
   "cart": {
     "title": "你的购物车",
@@ -117,7 +119,6 @@
     "title": "结账",
     "contact": "联系与配送",
     "name": "姓名",
-    "email": "电子邮箱",
     "phone": "电话（WhatsApp）",
     "address": "收货地址",
     "city": "城市",
@@ -138,7 +139,10 @@
     },
     "line2": "门牌号、楼层等（可选）",
     "region": "省 / 州（可选）",
-    "postal": "邮政编码（可选）"
+    "postal": "邮政编码（可选）",
+    "providerUnavailable": "该支付方式暂时不可用，请换一种方式。",
+    "paymentRejected": "无法发起付款，请检查购物车后重试。",
+    "checkDetails": "请检查姓名、地址和电话号码（含国家代码，例如 +86…）。"
   },
   "order": {
     "title": "查询订单",
@@ -181,12 +185,22 @@
   "footer": {
     "tagline": "Zakka 搜索全球可信赖的商店，诚实展示总价。",
     "affiliate": "部分链接为联盟推广链接：在合作方网站购买时，Zakka 可能获得佣金。这些链接都会明确标注。",
-    "rights": "© {year} Zakka"
+    "rights": "© {year} Zakka",
+    "programs": "作为亚马逊联盟成员，Zakka 从符合条件的购买中赚取收入。",
+    "legalLink": "联盟推广说明"
   },
   "common": {
     "loading": "加载中…",
     "back": "返回",
     "notFound": "页面不存在",
     "goHome": "返回首页"
+  },
+  "legal": {
+    "title": "联盟推广说明",
+    "intro": "Zakka 展示两类报价。标注“Zakka 自营”的商品由 Zakka 销售并提供服务。标注“合作商店”的商品由其他商店销售：你前往该商店购买时，Zakka 可能获得佣金，你支付的价格不变。",
+    "programsTitle": "我们参与的推广计划",
+    "amazon": "作为亚马逊联盟成员，Zakka 从符合条件的购买中赚取收入。",
+    "others": "Zakka 还参与 Temu、Shein、AliExpress、Jumia、noon 和 Flipkart 的联盟推广计划，通过 Zakka 链接完成的合格购买可能为 Zakka 带来佣金。",
+    "ranking": "佣金绝不会改变你看到的价格，联盟推广报价始终标注为“合作商店”。"
   }
 }

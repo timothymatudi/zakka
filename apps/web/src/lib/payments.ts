@@ -1,46 +1,85 @@
 import 'server-only';
 import { config } from './config';
-import { PAYMENT_METHODS, type PaymentMethod } from './payment-methods';
+import type { PaymentMethod } from './payment-methods';
+import type { StoredOrder } from './orders';
 
-export interface PaymentInit {
-  orderId: string;
-  amount: number;
-  currency: string;
-  locale: string;
-  email?: string;
-  phone?: string;
-}
+export type PaymentOutcome =
+  | { ok: true; mode: 'concierge'; provider: PaymentMethod; reference: string; redirectUrl: string; settled: false }
+  | { ok: true; mode: 'mock'; provider: PaymentMethod; reference: string; redirectUrl: string; settled: true }
+  | { ok: false; error: 'payment_rejected' | 'provider_unavailable' | 'payment_error'; status: number };
 
-export interface PaymentResult {
-  mode: 'mock' | 'live';
-  provider: PaymentMethod;
-  reference: string;
-  /** Where to send the browser next (provider-hosted page in live mode, order page in mock mode). */
-  redirectUrl: string;
-  /** Mock mode settles immediately so the full flow can be demoed offline. */
-  settled: boolean;
+/** The contract `orders` row plus shipping_address and items, as the concierge expects it. */
+function orderPayload(order: StoredOrder) {
+  return {
+    id: order.id,
+    customer_id: order.customer_id,
+    status: order.status,
+    currency: order.currency,
+    subtotal: order.subtotal,
+    shipping: order.shipping,
+    tax: order.tax,
+    total: order.total,
+    total_usd: order.total_usd,
+    payment_provider: order.payment_provider,
+    payment_ref: order.payment_ref,
+    channel: order.channel,
+    created_at: order.created_at,
+    shipping_address: order.shipping_address,
+    items: order.items.map((i) => ({
+      offer_id: i.offer_id,
+      product_id: i.product_id,
+      qty: i.qty,
+      unit_price: i.unit_price,
+      unit_cost_usd: i.unit_cost_usd,
+    })),
+  };
 }
 
 /**
- * Payment provider stubs. Each provider runs in mock mode until its keys are set.
- * Live integrations are TODO here; the contract places payments with the concierge service,
- * so these may later proxy to it instead (see README "Contract requests").
+ * Starts payment through the concierge (POST /internal/payments/checkout).
+ * Concierge not configured or unreachable: instant mock payment so the flow works offline.
  */
-export async function createPayment(provider: PaymentMethod, init: PaymentInit): Promise<PaymentResult> {
-  if (!PAYMENT_METHODS.includes(provider)) throw new Error('unknown provider');
-  const hasKey = Boolean(config.payments[provider]);
-  const orderPage = `/${init.locale}/orders/${init.orderId}`;
-  if (hasKey) {
-    // TODO(live): Stripe Checkout Session / PayPal Orders v2 / Flutterwave Standard /
-    // Paystack initialize / M-Pesa STK push. Until implemented, behave like mock but do not settle.
-    console.warn(`[payments] ${provider} key present but live integration not implemented; using mock`);
-    return { mode: 'mock', provider, reference: `pending_${provider}_${init.orderId.slice(0, 8)}`, redirectUrl: orderPage, settled: false };
-  }
-  return {
+export async function startPayment(provider: PaymentMethod, order: StoredOrder, locale: string): Promise<PaymentOutcome> {
+  const orderPage = `/${locale}/orders/${order.id}`;
+  const mock: PaymentOutcome = {
+    ok: true,
     mode: 'mock',
     provider,
-    reference: `mock_${provider}_${init.orderId.slice(0, 8)}`,
+    reference: `mock_${provider}_${order.id.slice(0, 8)}`,
     redirectUrl: `${orderPage}?placed=1`,
     settled: true,
   };
+  if (!config.conciergeUrl || !config.conciergeToken) return mock;
+
+  let res: Response;
+  try {
+    res = await fetch(`${config.conciergeUrl}/internal/payments/checkout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-internal-token': config.conciergeToken },
+      body: JSON.stringify({
+        order_id: order.id,
+        provider,
+        return_url: `${config.webBaseUrl}${orderPage}?paid=1`,
+        cancel_url: `${config.webBaseUrl}/${locale}/checkout`,
+        order: orderPayload(order),
+      }),
+      signal: AbortSignal.timeout(10_000),
+      cache: 'no-store',
+    });
+  } catch (err) {
+    console.warn('[payments] concierge unreachable, using mock payment', err);
+    return mock;
+  }
+
+  if (res.ok) {
+    const data = (await res.json().catch(() => null)) as { payment_url?: string; payment_ref?: string } | null;
+    if (data?.payment_url && /^https?:\/\//.test(data.payment_url)) {
+      return { ok: true, mode: 'concierge', provider, reference: data.payment_ref ?? '', redirectUrl: data.payment_url, settled: false };
+    }
+    return { ok: false, error: 'payment_error', status: 502 };
+  }
+  if (res.status === 400 || res.status === 409) return { ok: false, error: 'payment_rejected', status: res.status };
+  if (res.status === 502) return { ok: false, error: 'provider_unavailable', status: 502 };
+  console.error('[payments] concierge error', res.status, await res.text().catch(() => ''));
+  return { ok: false, error: 'payment_error', status: 502 };
 }

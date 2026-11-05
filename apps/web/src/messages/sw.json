@@ -82,10 +82,10 @@
     "days": "siku {min}–{max}",
     "daysTo": "siku {min}–{max} hadi {country}",
     "shipsFrom": "Inatumwa kutoka {country}",
-    "zakkaCheckout": "Lipa kupitia Zakka",
-    "affiliate": "Ushirika",
-    "affiliateDisclosure": "Kiungo cha ushirika — unanunua kwenye {partner}. Zakka inaweza kupata kamisheni bila gharama kwako.",
-    "buyOn": "Nunua kwenye {partner}",
+    "zakkaCheckout": "Inauzwa na Zakka",
+    "affiliate": "Duka mshirika",
+    "affiliateDisclosure": "Kiungo cha ushirika — Zakka inaweza kupata kamisheni.",
+    "buyOn": "Endelea kwenye duka mshirika",
     "addToCart": "Weka kikapuni",
     "added": "Imewekwa ✓",
     "compare": "Linganisha {count, plural, one {ofa #} other {ofa #}}",
@@ -98,7 +98,9 @@
     "notShipping": "Bidhaa hii bado haitumwi {country}.",
     "highlights": "Mambo muhimu",
     "priceNote": "Bei zinajumuisha usafirishaji hadi {country}. Kodi au ushuru unaweza kutozwa wakati wa kupokea.",
-    "notFound": "Hatukuweza kupata bidhaa hiyo."
+    "notFound": "Hatukuweza kupata bidhaa hiyo.",
+    "partnerN": "Duka mshirika {n}",
+    "sellerZakka": "Zakka"
   },
   "cart": {
     "title": "Kikapu chako",
@@ -117,7 +119,6 @@
     "title": "Malipo",
     "contact": "Mawasiliano na kufikishwa",
     "name": "Jina kamili",
-    "email": "Barua pepe",
     "phone": "Simu (WhatsApp)",
     "address": "Anwani ya kufikishwa",
     "city": "Mji",
@@ -138,7 +139,10 @@
     },
     "line2": "Nyumba, ghorofa n.k. (si lazima)",
     "region": "Mkoa / jimbo (si lazima)",
-    "postal": "Msimbo wa posta (si lazima)"
+    "postal": "Msimbo wa posta (si lazima)",
+    "providerUnavailable": "Njia hii ya malipo haipatikani kwa sasa. Tafadhali jaribu njia nyingine.",
+    "paymentRejected": "Hatukuweza kuanzisha malipo. Tafadhali kagua kikapu chako na ujaribu tena.",
+    "checkDetails": "Tafadhali kagua jina, anwani na namba ya simu (pamoja na msimbo wa nchi, k.m. +254…)."
   },
   "order": {
     "title": "Fuatilia oda yako",
@@ -181,12 +185,22 @@
   "footer": {
     "tagline": "Zakka hutafuta katika maduka ya kuaminika duniani kote na kuonyesha bei kamili kwa uaminifu.",
     "affiliate": "Baadhi ya viungo ni vya ushirika: ukinunua kwenye tovuti ya mshirika, Zakka inaweza kupata kamisheni. Huwekewa alama kila mara.",
-    "rights": "© {year} Zakka"
+    "rights": "© {year} Zakka",
+    "programs": "Kama mshirika wa Amazon (Amazon Associate), Zakka hupata mapato kutokana na manunuzi yanayostahili.",
+    "legalLink": "Taarifa za ushirika"
   },
   "common": {
     "loading": "Inapakia…",
     "back": "Rudi",
     "notFound": "Ukurasa haupatikani",
     "goHome": "Nenda ukurasa wa mwanzo"
+  },
+  "legal": {
+    "title": "Taarifa za ushirika",
+    "intro": "Zakka huonyesha aina mbili za ofa. Bidhaa zenye alama “Inauzwa na Zakka” huuzwa na kuhudumiwa na Zakka. Bidhaa zenye alama “Duka mshirika” huuzwa na duka jingine: ukiendelea huko na kununua, Zakka inaweza kupata kamisheni. Bei unayolipa haibadiliki.",
+    "programsTitle": "Programu tunazoshiriki",
+    "amazon": "Kama mshirika wa Amazon (Amazon Associate), Zakka hupata mapato kutokana na manunuzi yanayostahili.",
+    "others": "Zakka pia inashiriki programu za ushirika za Temu, Shein, AliExpress, Jumia, noon na Flipkart, na inaweza kupata kamisheni kwa manunuzi yanayostahili kupitia viungo vya Zakka.",
+    "ranking": "Kamisheni haibadilishi kamwe bei unayoona, na ofa za ushirika huwekewa alama “Duka mshirika” kila mara."
   }
 }

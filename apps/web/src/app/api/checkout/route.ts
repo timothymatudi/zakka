@@ -4,7 +4,7 @@ import { isLocale } from '@/i18n/routing';
 import { COUNTRY_CODES, marketFor } from '@/lib/markets';
 import { getOfferPrice, resolveOffer } from '@/lib/products';
 import { newOrderId, saveOrder, updateOrder, type ShippingAddress, type StoredOrder, type StoredOrderItem } from '@/lib/orders';
-import { createPayment } from '@/lib/payments';
+import { startPayment } from '@/lib/payments';
 import { isMethodAvailable } from '@/lib/payment-methods';
 
 interface Body {
@@ -13,7 +13,6 @@ interface Body {
   provider?: string;
   contact?: {
     name?: string;
-    email?: string;
     phone?: string;
     line1?: string;
     line2?: string;
@@ -105,17 +104,13 @@ export async function POST(req: Request) {
   };
   await saveOrder(order);
 
-  const payment = await createPayment(provider, {
-    orderId: order.id,
-    amount: order.total,
-    currency: order.currency,
-    locale,
-    email: str(c.email) || undefined,
-    phone,
-  });
+  // Payments are owned by the concierge, which also handles webhooks and forwarding paid orders.
+  const payment = await startPayment(provider, order, locale);
+  if (!payment.ok) {
+    await updateOrder(order.id, { status: 'cancelled' });
+    return NextResponse.json({ error: payment.error, orderId: order.id }, { status: payment.status });
+  }
   await updateOrder(order.id, { payment_ref: payment.reference, status: payment.settled ? 'paid' : 'pending_payment' });
-  // TODO(live): on a real payment webhook -> status 'paid' -> forwardPaidOrder(id) (lib/catalog-forward.ts,
-  // sends Authorization: Bearer CATALOG_API_TOKEN). Mock settlements are never forwarded.
 
   return NextResponse.json({ orderId: order.id, redirectUrl: payment.redirectUrl, mode: payment.mode });
 }

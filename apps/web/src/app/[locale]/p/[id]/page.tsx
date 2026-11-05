@@ -5,10 +5,10 @@ import type { Locale, SearchOffer } from '@shared/types';
 import { Link } from '@/i18n/navigation';
 import { getMarket } from '@/lib/market.server';
 import { getOfferPrice, getProduct } from '@/lib/products';
-import { formatMoney, formatUsdAsLocal } from '@/lib/money';
+import { formatMoney, offerLocal } from '@/lib/money';
 import { regionName, whatsappLink } from '@/lib/format';
 import { CATEGORIES } from '@/lib/mock/catalog';
-import { affiliateHref, partnerName, ProductImage, productIcon } from '@/components/ProductCard';
+import { affiliateHref, ProductImage, productIcon } from '@/components/ProductCard';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { ChatIcon, ExternalIcon, StarIcon } from '@/components/icons';
 
@@ -42,10 +42,12 @@ export default async function ProductPage({ params }: Props) {
   const priced = await Promise.all(
     product.offers.map(async (offer) => {
       const p = await getOfferPrice(offer.offer_id, market.country);
+      const local = p && p.currency === market.currency ? p.price : offerLocal(offer, market);
       return {
         offer,
         priceUsd: p?.price_usd ?? offer.display_price_usd,
-        label: p ? formatMoney(p.price, p.currency, locale, p.currency === market.currency ? market.decimals : undefined) : formatUsdAsLocal(offer.display_price_usd, market, locale),
+        local,
+        label: formatMoney(local, market.currency, locale, market.decimals),
         dmin: p?.delivery_days_min ?? offer.delivery_days_min,
         dmax: p?.delivery_days_max ?? offer.delivery_days_max,
       };
@@ -97,6 +99,8 @@ export default async function ProductPage({ params }: Props) {
                       icon,
                       image: product.image,
                       priceUsd: best.priceUsd,
+                      priceLocal: best.local,
+                      currency: market.currency,
                       deliveryMin: best.dmin,
                       deliveryMax: best.dmax,
                     }}
@@ -108,7 +112,7 @@ export default async function ProductPage({ params }: Props) {
                     rel="sponsored nofollow noopener"
                     className="btn btn-primary flex-1 sm:flex-none"
                   >
-                    {t('buyOn', { partner: partnerName(best.offer.source_code) })} <ExternalIcon />
+                    {t('buyOn')} <ExternalIcon />
                   </a>
                 )}
                 <a
@@ -122,7 +126,7 @@ export default async function ProductPage({ params }: Props) {
               </div>
               {best.offer.kind === 'affiliate' && (
                 <p className="mt-2 rounded-lg bg-coral-soft px-3 py-2 text-xs text-ink">
-                  {t('affiliateDisclosure', { partner: partnerName(best.offer.source_code) })}
+                  {t('affiliateDisclosure')}
                 </p>
               )}
             </div>
@@ -151,7 +155,8 @@ export default async function ProductPage({ params }: Props) {
             {rows.map((r) => {
               const isBest = r === best;
               const aff = r.offer.kind === 'affiliate';
-              const partner = partnerName(r.offer.source_code);
+              // Partner stores are numbered in display order instead of named (owner rule).
+              const partnerNo = aff ? rows.slice(0, rows.indexOf(r) + 1).filter((x) => x.offer.kind === 'affiliate').length : 0;
               return (
                 <li
                   key={r.offer.offer_id}
@@ -164,7 +169,7 @@ export default async function ProductPage({ params }: Props) {
                       </span>
                     )}
                     <p className="text-xs text-muted">{t('seller')}</p>
-                    <p className="font-bold">{aff ? `${partner} · ${t('affiliate')}` : t('zakkaCheckout')}</p>
+                    <p className="font-bold">{aff ? t('partnerN', { n: partnerNo }) : t('sellerZakka')}</p>
                     {r.offer.ships_from && <p className="text-xs text-muted">{t('shipsFrom', { country: regionName(r.offer.ships_from, locale) })}</p>}
                   </div>
                   <div>
@@ -184,9 +189,9 @@ export default async function ProductPage({ params }: Props) {
                           rel="sponsored nofollow noopener"
                           className="btn btn-outline w-full py-2 text-sm"
                         >
-                          {t('buyOn', { partner })} <ExternalIcon />
+                          {t('buyOn')} <ExternalIcon />
                         </a>
-                        <p className="mt-1 max-w-56 text-[11px] leading-snug text-muted">{t('affiliateDisclosure', { partner })}</p>
+                        <p className="mt-1 max-w-56 text-[11px] leading-snug text-muted">{t('affiliateDisclosure')}</p>
                       </>
                     ) : (
                       <AddToCartButton
@@ -198,6 +203,8 @@ export default async function ProductPage({ params }: Props) {
                           icon,
                           image: product.image,
                           priceUsd: r.priceUsd,
+                          priceLocal: r.local,
+                          currency: market.currency,
                           deliveryMin: r.dmin,
                           deliveryMax: r.dmax,
                         }}

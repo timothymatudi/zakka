@@ -12,7 +12,14 @@ export async function Footer() {
           <Logo />
           <p>{t('tagline')}</p>
         </div>
-        <p className="md:col-span-1">{t('affiliate')}</p>
+        {/* Program-required disclosures live only here and on /legal/affiliates (owner rule). */}
+        <div className="space-y-2">
+          <p>{t('affiliate')}</p>
+          <p>{t('programs')}</p>
+          <Link href="/legal/affiliates" className="font-semibold text-teal hover:underline">
+            {t('legalLink')}
+          </Link>
+        </div>
         <ul className="space-y-1.5 font-semibold text-ink">
           <li>
             <Link href="/orders">{nav('orders')}</Link>

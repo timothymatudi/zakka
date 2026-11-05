@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import '@fontsource-variable/plus-jakarta-sans';
 import '@fontsource-variable/noto-sans-arabic';
 import '@fontsource-variable/noto-sans-devanagari';
@@ -16,6 +16,8 @@ import type { Locale } from '@shared/types';
 
 // Every page depends on the visitor's country cookie (prices, delivery), so render per request.
 export const dynamic = 'force-dynamic';
+
+const CLIENT_NAMESPACES = ['nav', 'product', 'cart', 'checkout', 'account', 'admin'] as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -34,11 +36,14 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const market = await getMarket(locale as Locale);
+  // Only the namespaces client components use (keeps payload small; footer/legal disclosures stay server-rendered).
+  const all = (await getMessages()) as Record<string, unknown>;
+  const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((ns) => [ns, all[ns]]));
 
   return (
     <html lang={locale} dir={dirFor(locale)}>
       <body className="min-h-dvh">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <Providers market={market}>
             <Header />
             <main id="main" className="mx-auto max-w-6xl px-4 pt-4">

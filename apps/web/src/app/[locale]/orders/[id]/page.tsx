@@ -8,7 +8,7 @@ import { CURRENCY_DECIMALS } from '@/lib/markets';
 import { formatDate, shortOrderId } from '@/lib/format';
 import { CheckIcon } from '@/components/icons';
 
-type Props = { params: Promise<{ locale: Locale; id: string }>; searchParams: Promise<{ placed?: string }> };
+type Props = { params: Promise<{ locale: Locale; id: string }>; searchParams: Promise<{ placed?: string; paid?: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -22,7 +22,7 @@ const PROVIDER_NAMES: Record<string, string> = { stripe: 'Card', paypal: 'PayPal
 export default async function OrderPage({ params, searchParams }: Props) {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  const { placed } = await searchParams;
+  const { placed, paid } = await searchParams;
   const t = await getTranslations('order');
   const order = await getOrder(id);
 
@@ -43,7 +43,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl space-y-5">
-      {placed && (
+      {(placed || paid) && (
         <p className="flex items-center gap-2 rounded-xl bg-teal px-4 py-3 font-bold text-white" role="status">
           <CheckIcon /> {t('placed')}
         </p>

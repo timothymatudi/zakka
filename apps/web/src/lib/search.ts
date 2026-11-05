@@ -140,7 +140,11 @@ export function mockSearch(p: SearchParams): SearchResult {
     hits: filtered.slice((page - 1) * per_page, page * per_page).map((x) => x.doc),
     found: filtered.length,
     // Same facet keys as the search API (category_path values are slugs in mock mode).
-    facets: { category_path: toFacet(facetCat), ships_from: toFacet(facetFrom) },
+    facets: {
+      category_slug: toFacet(facetCat).map((f) => ({ ...f, label: f.value })),
+      category_path: toFacet(facetCat),
+      ships_from: toFacet(facetFrom),
+    },
     page,
     per_page,
     source: 'mock',

@@ -18,6 +18,8 @@ export interface CartItem {
   icon: string | null;
   image: string | null;
   priceUsd: number; // catalog display_price_usd (markup already applied by the catalog)
+  priceLocal?: number | null; // catalog local price in `currency` (preferred for display)
+  currency?: string;
   qty: number;
   deliveryMin: number | null;
   deliveryMax: number | null;

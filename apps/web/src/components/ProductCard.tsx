@@ -1,10 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import type { SearchDocument, SearchOffer } from '@shared/types';
 import { Link } from '@/i18n/navigation';
-import { formatUsdAsLocal } from '@/lib/money';
+import { formatOfferPrice } from '@/lib/money';
 import { regionName } from '@/lib/format';
 import type { Market } from '@/lib/markets';
-import { CATEGORIES, SOURCE_NAME } from '@/lib/mock/catalog';
+import { CATEGORIES } from '@/lib/mock/catalog';
 import { ExternalIcon, StarIcon, TruckIcon } from './icons';
 
 const TILE_TINTS = ['#E3F1EF', '#FEEAE6', '#F2ECE2', '#E8EEF7', '#F5EBD9'];
@@ -19,7 +19,7 @@ export function ProductImage({ doc, size = 'card' }: { doc: SearchDocument & { i
   const tint = TILE_TINTS[(doc.id.charCodeAt(doc.id.length - 1) + doc.id.charCodeAt(doc.id.length - 2)) % TILE_TINTS.length];
   if (doc.image) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element -- remote partner/supplier images, any host
+      // eslint-disable-next-line @next/next/no-img-element -- remote product images from any host
       <img src={doc.image} alt="" loading="lazy" decoding="async" className="aspect-square w-full rounded-xl bg-white object-contain" />
     );
   }
@@ -35,16 +35,13 @@ export function affiliateHref(offer: SearchOffer, productId: string, locale: str
   return `/api/out/${encodeURIComponent(offer.offer_id)}?${qs}`;
 }
 
-export function partnerName(code: SearchOffer['source_code']): string {
-  return SOURCE_NAME[code] ?? code;
-}
+// Owner rule: customer-facing pages never name suppliers or partners (admin pages may).
 
 export async function ProductCard({ doc, market, locale }: { doc: SearchDocument & { icon?: string }; market: Market; locale: string }) {
   const t = await getTranslations('product');
   const offer = doc.offers[0];
   if (!offer) return null;
   const isAff = offer.kind === 'affiliate';
-  const partner = partnerName(offer.source_code);
   const country = regionName(market.country, locale);
 
   return (
@@ -57,7 +54,7 @@ export async function ProductCard({ doc, market, locale }: { doc: SearchDocument
               isAff ? 'bg-white text-ink ring-1 ring-line' : 'bg-teal text-white'
             }`}
           >
-            {isAff ? `${t('affiliate')} · ${partner}` : t('zakkaCheckout')}
+            {isAff ? t('affiliate') : t('zakkaCheckout')}
           </span>
         </div>
         <h3 className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-teal">{doc.title}</h3>
@@ -70,7 +67,7 @@ export async function ProductCard({ doc, market, locale }: { doc: SearchDocument
         )}
         <div className="mt-auto">
           {doc.offers.length > 1 && <span className="text-xs text-muted">{t('from')} </span>}
-          <span className="num text-lg font-extrabold text-ink">{formatUsdAsLocal(doc.min_price_usd, market, locale)}</span>
+          <span className="num text-lg font-extrabold text-ink">{formatOfferPrice(offer, market, locale)}</span>
           {offer.delivery_days_min != null && offer.delivery_days_max != null && (
             <p className="mt-0.5 flex items-center gap-1 text-xs font-medium text-teal">
               <TruckIcon width={14} height={14} />
@@ -81,14 +78,14 @@ export async function ProductCard({ doc, market, locale }: { doc: SearchDocument
       </Link>
       {isAff && (
         <div className="mt-2 border-t border-line pt-2">
-          <p className="text-[11px] leading-snug text-muted">{t('affiliateDisclosure', { partner })}</p>
+          <p className="text-[11px] leading-snug text-muted">{t('affiliateDisclosure')}</p>
           <a
             href={affiliateHref(offer, doc.id, locale, market.country)}
             target="_blank"
             rel="sponsored nofollow noopener"
             className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-teal hover:underline"
           >
-            {t('buyOn', { partner })}
+            {t('buyOn')}
             <ExternalIcon />
           </a>
         </div>

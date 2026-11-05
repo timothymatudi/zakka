@@ -82,10 +82,10 @@
     "days": "{min}–{max} days",
     "daysTo": "{min}–{max} days to {country}",
     "shipsFrom": "Ships from {country}",
-    "zakkaCheckout": "Checkout on Zakka",
-    "affiliate": "Affiliate",
-    "affiliateDisclosure": "Affiliate — you buy on {partner}. Zakka may earn a commission at no cost to you.",
-    "buyOn": "Buy on {partner}",
+    "zakkaCheckout": "Sold by Zakka",
+    "affiliate": "Partner store",
+    "affiliateDisclosure": "Affiliate link — Zakka may earn a commission.",
+    "buyOn": "Continue to partner store",
     "addToCart": "Add to cart",
     "added": "Added ✓",
     "compare": "Compare {count, plural, one {# offer} other {# offers}}",
@@ -98,7 +98,9 @@
     "notShipping": "This product doesn't ship to {country} yet.",
     "highlights": "Highlights",
     "priceNote": "Prices include shipping to {country}. Taxes or duties may apply at delivery.",
-    "notFound": "We couldn't find that product."
+    "notFound": "We couldn't find that product.",
+    "partnerN": "Partner store {n}",
+    "sellerZakka": "Zakka"
   },
   "cart": {
     "title": "Your cart",
@@ -117,7 +119,6 @@
     "title": "Checkout",
     "contact": "Contact & delivery",
     "name": "Full name",
-    "email": "Email",
     "phone": "Phone (WhatsApp)",
     "address": "Delivery address",
     "city": "City",
@@ -142,7 +143,10 @@
     },
     "line2": "Apartment, suite, etc. (optional)",
     "region": "State / region (optional)",
-    "postal": "Postal code (optional)"
+    "postal": "Postal code (optional)",
+    "providerUnavailable": "This payment provider is unavailable right now. Please try another method.",
+    "paymentRejected": "We couldn’t start this payment. Please check your cart and try again.",
+    "checkDetails": "Please check your name, address and phone number (with country code, e.g. +254…)."
   },
   "order": {
     "title": "Track your order",
@@ -185,7 +189,9 @@
   "footer": {
     "tagline": "Zakka searches trusted shops worldwide and shows the honest total price.",
     "affiliate": "Some links are affiliate links: when you buy on a partner site, Zakka may earn a commission. These are always labelled.",
-    "rights": "© {year} Zakka"
+    "rights": "© {year} Zakka",
+    "programs": "As an Amazon Associate, Zakka earns from qualifying purchases.",
+    "legalLink": "Affiliate disclosures"
   },
   "common": {
     "loading": "Loading…",
@@ -240,5 +246,13 @@
     "saveRules": "Save rules",
     "saved": "Saved (mock)",
     "delete": "Delete"
+  },
+  "legal": {
+    "title": "Affiliate disclosures",
+    "intro": "Zakka shows two kinds of offers. Items marked “Sold by Zakka” are sold and supported by Zakka. Items marked “Partner store” are sold by another shop: when you continue to that store and buy, Zakka may earn a commission. The price you pay is the same.",
+    "programsTitle": "Programs we take part in",
+    "amazon": "As an Amazon Associate, Zakka earns from qualifying purchases.",
+    "others": "Zakka also takes part in the affiliate programs of Temu, Shein, AliExpress, Jumia, noon and Flipkart, and may earn a commission on qualifying purchases made through links on Zakka.",
+    "ranking": "Commissions never change the price shown to you, and affiliate offers are always labelled “Partner store”."
   }
 }

@@ -11,9 +11,12 @@ const AVAILABILITY: Record<PaymentMethod, string[] | null> = {
   mpesa: ['KE', 'TZ'],
 };
 
-/** Methods for a country, local ones first. */
+/** Local methods in preference order (so Kenya defaults to M-Pesa, Nigeria to Paystack). */
+const LOCAL_PRIORITY: PaymentMethod[] = ['mpesa', 'paystack', 'flutterwave'];
+
+/** Methods for a country, local ones first; the first entry is the default selection. */
 export function methodsFor(country: string): PaymentMethod[] {
-  const local = PAYMENT_METHODS.filter((m) => AVAILABILITY[m]?.includes(country));
+  const local = LOCAL_PRIORITY.filter((m) => AVAILABILITY[m]?.includes(country));
   const global = PAYMENT_METHODS.filter((m) => AVAILABILITY[m] === null);
   return [...local, ...global];
 }

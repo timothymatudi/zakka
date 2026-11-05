@@ -82,10 +82,10 @@
     "days": "{min}–{max} hari",
     "daysTo": "{min}–{max} hari ke {country}",
     "shipsFrom": "Dikirim dari {country}",
-    "zakkaCheckout": "Checkout di Zakka",
-    "affiliate": "Afiliasi",
-    "affiliateDisclosure": "Afiliasi — kamu membeli di {partner}. Zakka mungkin mendapat komisi tanpa biaya tambahan untukmu.",
-    "buyOn": "Beli di {partner}",
+    "zakkaCheckout": "Dijual oleh Zakka",
+    "affiliate": "Toko mitra",
+    "affiliateDisclosure": "Tautan afiliasi — Zakka mungkin mendapat komisi.",
+    "buyOn": "Lanjut ke toko mitra",
     "addToCart": "Masukkan ke keranjang",
     "added": "Ditambahkan ✓",
     "compare": "Bandingkan {count, plural, other {# penawaran}}",
@@ -98,7 +98,9 @@
     "notShipping": "Produk ini belum bisa dikirim ke {country}.",
     "highlights": "Keunggulan",
     "priceNote": "Harga sudah termasuk ongkir ke {country}. Pajak atau bea mungkin dikenakan saat diterima.",
-    "notFound": "Produk tidak ditemukan."
+    "notFound": "Produk tidak ditemukan.",
+    "partnerN": "Toko mitra {n}",
+    "sellerZakka": "Zakka"
   },
   "cart": {
     "title": "Keranjangmu",
@@ -117,7 +119,6 @@
     "title": "Pembayaran",
     "contact": "Kontak & pengiriman",
     "name": "Nama lengkap",
-    "email": "Email",
     "phone": "Telepon (WhatsApp)",
     "address": "Alamat pengiriman",
     "city": "Kota",
@@ -138,7 +139,10 @@
     },
     "line2": "Unit, lantai, dll. (opsional)",
     "region": "Provinsi / wilayah (opsional)",
-    "postal": "Kode pos (opsional)"
+    "postal": "Kode pos (opsional)",
+    "providerUnavailable": "Penyedia pembayaran ini sedang tidak tersedia. Silakan coba metode lain.",
+    "paymentRejected": "Pembayaran tidak bisa dimulai. Periksa keranjangmu lalu coba lagi.",
+    "checkDetails": "Periksa nama, alamat, dan nomor telepon (dengan kode negara, mis. +62…)."
   },
   "order": {
     "title": "Lacak pesananmu",
@@ -181,12 +185,22 @@
   "footer": {
     "tagline": "Zakka mencari di toko-toko tepercaya di seluruh dunia dan menampilkan harga total dengan jujur.",
     "affiliate": "Beberapa tautan adalah tautan afiliasi: saat kamu membeli di situs mitra, Zakka mungkin mendapat komisi. Tautan ini selalu diberi label.",
-    "rights": "© {year} Zakka"
+    "rights": "© {year} Zakka",
+    "programs": "Sebagai Amazon Associate, Zakka memperoleh penghasilan dari pembelian yang memenuhi syarat.",
+    "legalLink": "Pengungkapan afiliasi"
   },
   "common": {
     "loading": "Memuat…",
     "back": "Kembali",
     "notFound": "Halaman tidak ditemukan",
     "goHome": "Ke beranda"
+  },
+  "legal": {
+    "title": "Pengungkapan afiliasi",
+    "intro": "Zakka menampilkan dua jenis penawaran. Barang berlabel “Dijual oleh Zakka” dijual dan dilayani oleh Zakka. Barang berlabel “Toko mitra” dijual toko lain: jika kamu lanjut ke toko itu dan membeli, Zakka mungkin mendapat komisi. Harga yang kamu bayar tetap sama.",
+    "programsTitle": "Program yang kami ikuti",
+    "amazon": "Sebagai Amazon Associate, Zakka memperoleh penghasilan dari pembelian yang memenuhi syarat.",
+    "others": "Zakka juga mengikuti program afiliasi Temu, Shein, AliExpress, Jumia, noon, dan Flipkart, dan mungkin mendapat komisi dari pembelian yang memenuhi syarat melalui tautan di Zakka.",
+    "ranking": "Komisi tidak pernah mengubah harga yang kamu lihat, dan penawaran afiliasi selalu diberi label “Toko mitra”."
   }
 }

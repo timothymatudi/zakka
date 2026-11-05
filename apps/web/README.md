@@ -26,7 +26,8 @@ Shared types come from `../../packages/shared/src` through the `@shared/*` path 
 | `CATALOG_API_TOKEN` | Bearer token for catalog POST calls (`lib/catalog-forward.ts`). |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Server-only PostgREST inserts into `orders`, `order_items`, `affiliate_clicks`. Empty: in-memory store. |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Digits only, used for `wa.me` links. Empty: `https://wa.me/?text=…` (opens WhatsApp's chooser). |
-| `STRIPE_SECRET_KEY`, `PAYPAL_CLIENT_ID/SECRET`, `FLUTTERWAVE_SECRET_KEY`, `PAYSTACK_SECRET_KEY`, `MPESA_CONSUMER_KEY/SECRET` | Payment providers. All mock today. |
+| `CONCIERGE_PUBLIC_URL`, `CONCIERGE_INTERNAL_TOKEN` | Payments are owned by the concierge. Checkout calls `POST /internal/payments/checkout` with header `x-internal-token`. Empty or unreachable: instant mock payment. |
+| `WEB_BASE_URL` | Base for the payment `return_url` and `cancel_url`. |
 | `ZAKKA_FORCE_MOCK=1` | Ignore service URLs and use mock data. |
 
 A down service is remembered for 30 seconds (`lib/http.ts`), so each page pays at most one timeout of 2.5 seconds.
@@ -37,25 +38,28 @@ A down service is remembered for 30 seconds (`lib/http.ts`), so each page pays a
 - `/search?q=&category=&min=&max=&max_days=&rating=&from=&sort=&page=`: works without JavaScript (GET forms). Price is typed in local currency and converted to USD for the API.
 - `/c/{slug}`: category page (the same results view).
 - `/p/{id}`: every offer compared (total price, delivery, ships from). The best offer is highlighted: lowest price with each delivery day costing 2%.
-- `/cart` and `/checkout`: the cart lives in localStorage. The checkout picker shows local methods first (M-Pesa KE/TZ, Paystack NG/GH/ZA/KE, Flutterwave in African markets, then card and PayPal everywhere). It collects `shipping_address`.
+- `/cart` and `/checkout`: the cart lives in localStorage. The checkout picker shows local methods first (M-Pesa is the default in Kenya and Tanzania, Paystack in Nigeria, Ghana and South Africa, then Flutterwave, then card and PayPal everywhere). It collects `shipping_address`, creates the order on the server, then redirects to the concierge's `payment_url`. A 400 or 409 shows "couldn't start this payment"; a 502 shows "provider unavailable, try another method".
 - `/orders` (lookup and a sample order) and `/orders/{id}`: status timeline and shipments.
 - `/account`: language, country/currency, WhatsApp opt-in (**unticked by default**, STOP hint) and email opt-in.
+- `/legal/affiliates`: affiliate program disclosures.
 - `/admin`: dashboard, products, markup rules editor, orders, sources. **Not protected yet. Add auth before deploying.**
 
 API routes: `POST /api/checkout`, `GET /api/out/{offerId}` (records an affiliate click, then 302s to the partner), `POST /api/account`, `POST /api/admin/markup-rules`, `GET /api/orders/lookup`.
+
+**Partner names:** customer pages never name suppliers or partners. Dropship offers say "Sold by Zakka". Affiliate offers say "Partner store" with a "Continue to partner store" button and an "Affiliate link — Zakka may earn a commission" note. Comparison rows read "Zakka" and "Partner store 1, 2…". Program-required wording (for example the Amazon Associates sentence) appears only in the footer and on `/legal/affiliates`. Admin pages keep real names. Client components receive only the message namespaces they use.
 
 Country comes from the `zakka_country` cookie, then an edge geo header, then the locale's default. The header shows a persistent language and country picker and a "Chat on WhatsApp" button.
 
 ## Pricing
 
-The web app never computes markup. Product pages use the catalog's `/offers/{id}/price`. Cards and rails convert the search document's `display_price_usd` with an FX table that rounds **up**. Checkout re-prices every item on the server and rejects affiliate offers.
+The web app never computes markup. Product pages use the catalog's `/offers/{id}/price`. Cards and rails use `offers[].display_price_local` when its `currency` matches the visitor's market. Offline, they convert `display_price_usd` with the fallback FX table, rounding **up**. KES, IDR, TZS, UGX, NGN, JPY, KRW, VND, CLP and PKR show 0 decimals; other currencies show 2. The cart stores the catalog's local price. Checkout re-prices every item on the server and rejects affiliate offers.
 
 ## What is mocked
 
 - **Catalog and search** (`src/lib/mock/catalog.ts`): 40 invented products in 10 categories, with 94 offers across all 11 source codes. Dropship and affiliate offers are mixed, ship from 9 countries and cover 18 destination countries. Offer prices stand in for catalog output. Partner URLs point at `partner.example.com`. Images are emoji tiles; real `image` URLs render when present.
 - **Reference data** (`src/lib/markets.ts`): the countries, currencies and FX rates are mock values.
-- **Orders**: an in-memory store with 5 seeded demo orders, used when Supabase is not configured. Mock payments settle at once, so the order shows as paid.
-- **Payments** (`src/lib/payments.ts`): stubs only. A provider whose key is set still runs mock without settling. TODO: real Stripe, PayPal, Flutterwave, Paystack and M-Pesa calls, plus webhooks.
+- **Orders**: an in-memory store with 5 seeded demo orders, used when Supabase is not configured.
+- **Payments**: handled by the concierge. When it is not configured or unreachable, the order is paid at once (mock).
 - **Account**: saved in cookies only. TODO: sign-in, then update the customer's own row (allowed columns only).
 - **Admin**: shows mock data. Markup rules are validated and kept in memory. TODO: auth, and the `markup_rules` and `public_sources` reads and writes.
 

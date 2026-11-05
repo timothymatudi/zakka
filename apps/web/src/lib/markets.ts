@@ -38,8 +38,9 @@ export const FX_USD: Record<string, number> = {
 };
 
 /** currencies.decimals */
+// Display decimals (lead decision): these currencies show whole units; everything else shows 2.
 export const CURRENCY_DECIMALS: Record<string, number> = {
-  NGN: 0, KES: 0, TZS: 0, IDR: 0, EGP: 0, INR: 0,
+  KES: 0, IDR: 0, TZS: 0, UGX: 0, NGN: 0, JPY: 0, KRW: 0, VND: 0, CLP: 0, PKR: 0,
 };
 
 export const LOCALE_DEFAULT_COUNTRY: Record<Locale, string> = {

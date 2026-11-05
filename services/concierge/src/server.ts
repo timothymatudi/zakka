@@ -2,12 +2,13 @@ import Fastify, { type FastifyInstance, type FastifyRequest } from 'fastify';
 import { createSupportAI, type SupportAI } from './ai/support';
 import { HttpCatalogClient, HttpSearchClient, type CatalogClient, type SearchClient } from './clients/services';
 import type { Config } from './config';
-import { Concierge, SHIPMENT_STATUSES, type ShipmentStatus } from './flows/concierge';
+import { CheckoutError, Concierge, SHIPMENT_STATUSES, type ShipmentStatus } from './flows/concierge';
 import { log } from './log';
 import { createProviders, type Providers, type ProviderName } from './payments';
-import { WebhookSignatureError } from './payments/types';
+import { PROVIDER_NAMES, WebhookSignatureError } from './payments/types';
 import { createStore } from './store';
-import type { Store } from './store/types';
+import type { Order, Store } from './store/types';
+import { parseOrderBody } from './store/validate';
 import { createWhatsAppClient, type WhatsAppClient } from './whatsapp/client';
 import { Messenger } from './whatsapp/messenger';
 import { parseWebhook } from './whatsapp/parse';
@@ -36,7 +37,8 @@ export interface App {
   idle(): Promise<void>;
 }
 
-const PROVIDERS: ProviderName[] = ['stripe', 'paypal', 'flutterwave', 'paystack'];
+/** Only http(s) URLs may be used as mock-pay redirect targets. */
+const safeUrl = (u: string | undefined) => { try { const x = new URL(u ?? ''); return /^https?:$/.test(x.protocol) ? x.toString() : null; } catch { return null; } };
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App> {
@@ -77,7 +79,7 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
 
   app.get('/health', async () => ({
     ok: true, store: store.kind, whatsapp: whatsapp.mock ? 'mock' : 'live', ai: ai.mock ? 'mock' : 'live',
-    payments: Object.fromEntries(PROVIDERS.map((p) => [p, providers[p].mock ? 'mock' : 'live'])),
+    payments: Object.fromEntries(PROVIDER_NAMES.map((p) => [p, providers[p].mock ? 'mock' : 'live'])),
   }));
 
   // ---- WhatsApp webhook -----------------------------------------------------
@@ -110,7 +112,9 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
     const provider = providers[name];
     if (!provider) return reply.code(404).send({ error: 'unknown provider' });
     try {
-      const evt = await provider.parseWebhook(req.rawBody ?? Buffer.from(JSON.stringify(req.body ?? {})), req.headers);
+      const token = (req.query as Record<string, string | undefined>).token;
+      const headers = token ? { ...req.headers, 'x-callback-token': token } : req.headers; // M-Pesa callback URL token
+      const evt = await provider.parseWebhook(req.rawBody ?? Buffer.from(JSON.stringify(req.body ?? {})), headers);
       if (!evt) return reply.send({ ignored: true });
       const result = await concierge.handlePaymentEvent(evt);
       return reply.send({ ...result, order: result.order ? { id: result.order.id, status: result.order.status } : undefined });
@@ -132,8 +136,8 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
 .muted{color:#6b7280;font-size:13px}</style></head><body><form class="card" method="post">
 <p class="muted">MOCK ${esc(provider)} checkout. No real money moves.</p><h2>${esc(q.currency ?? '')} ${esc(q.amount ?? '')}</h2>
 <p class="muted">Order ${esc(q.order ?? '')}<br>Ref ${esc(ref)}</p>
-<input type="hidden" name="order" value="${esc(q.order ?? '')}"><input type="hidden" name="amount" value="${esc(q.amount ?? '')}"><input type="hidden" name="currency" value="${esc(q.currency ?? '')}">
-<button type="submit">Pay (mock)</button></form></body></html>`);
+<input type="hidden" name="order" value="${esc(q.order ?? '')}"><input type="hidden" name="amount" value="${esc(q.amount ?? '')}"><input type="hidden" name="currency" value="${esc(q.currency ?? '')}"><input type="hidden" name="return" value="${esc(q.return ?? '')}">
+<button type="submit">Pay (mock)</button>${safeUrl(q.cancel) ? `<p class="muted"><a href="${esc(safeUrl(q.cancel)!)}">Cancel</a></p>` : ''}</form></body></html>`);
   });
 
   app.post('/mock-pay/:provider/:ref', async (req, reply) => {
@@ -148,11 +152,14 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
       }),
     });
     const result = res.json();
+    const returnUrl = safeUrl(b.return);
     if ((req.headers.accept ?? '').includes('text/html')) {
+      // Web checkout: send the shopper back to the storefront's return_url.
+      if (result.ok && returnUrl) return reply.redirect(returnUrl, 303);
       return reply.type('text/html').send(`<!doctype html><meta charset="utf-8"><body style="font-family:system-ui;background:#FBF8F3;padding:24px">
 <h2 style="color:#0F766E">${result.ok ? 'Payment received (mock)' : 'Payment not applied'}</h2><pre>${esc(JSON.stringify(result, null, 2))}</pre><p>You can return to WhatsApp.</p></body>`);
     }
-    return reply.code(res.statusCode).send(result);
+    return reply.code(res.statusCode).send(returnUrl ? { ...result, return_url: returnUrl } : result);
   });
 
   // ---- Internal API (catalog/fulfilment, human agents, marketing jobs) -------
@@ -161,6 +168,29 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
     const token = req.headers['x-internal-token'];
     const loopback = ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.ip);
     if (config.internalToken ? token !== config.internalToken : !loopback) return reply.code(401).send({ error: 'unauthorized' });
+  });
+
+  app.post('/internal/payments/checkout', async (req, reply) => {
+    const b = (req.body ?? {}) as Record<string, unknown>;
+    const orderId = typeof b.order_id === 'string' ? b.order_id : '';
+    const returnUrl = safeUrl(b.return_url as string | undefined);
+    const cancelUrl = safeUrl(b.cancel_url as string | undefined);
+    if (!orderId || !returnUrl || !cancelUrl) return reply.code(400).send({ error: 'order_id, return_url and cancel_url (http/https) are required' });
+    if (b.provider !== undefined && !PROVIDER_NAMES.includes(b.provider as ProviderName)) {
+      return reply.code(400).send({ error: `provider must be one of ${PROVIDER_NAMES.join(', ')}` });
+    }
+    let fallbackOrder: Order | undefined;
+    if (b.order !== undefined) {
+      fallbackOrder = parseOrderBody(b.order, orderId) ?? undefined;
+      if (!fallbackOrder) return reply.code(400).send({ error: 'order must match the contract orders row and have id = order_id' });
+    }
+    try {
+      return await concierge.checkout({ orderId, provider: b.provider as ProviderName | undefined, returnUrl, cancelUrl, fallbackOrder });
+    } catch (e) {
+      if (e instanceof CheckoutError) return reply.code(e.status).send({ error: e.message });
+      log.error('checkout failed', { order_id: orderId, error: (e as Error).message });
+      return reply.code(502).send({ error: 'payment provider error' });
+    }
   });
 
   app.post('/internal/orders/:id/notify', async (req, reply) => {

@@ -121,6 +121,8 @@ export interface Store {
   createOrder(order: Omit<Order, 'id' | 'created_at'>, items: OrderItem[]): Promise<Order>;
   getOrder(id: string): Promise<Order | null>;
   findOrderByPaymentRef(provider: string, ref: string): Promise<Order | null>;
+  /** Stores an order created elsewhere (web checkout) under its own id; no-op if it already exists. */
+  upsertOrder(order: Order): Promise<void>;
   getOrderItems(orderId: string): Promise<OrderItem[]>;
   updateOrder(id: string, patch: Partial<Omit<Order, 'id'>>): Promise<void>;
   /** Atomically moves an order from one status to another. Returns false if it was not in `from`. */

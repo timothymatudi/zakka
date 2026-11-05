@@ -141,6 +141,13 @@ export class PostgresStore implements Store {
     const r = await this.q('select * from orders where id = $1', [id]);
     return r.rows[0] ? toOrder(r.rows[0]) : null;
   }
+  async upsertOrder(o: Order) {
+    await this.q(
+      `insert into orders (id, customer_id, status, currency, subtotal, shipping, tax, total, total_usd, payment_provider, payment_ref, channel, shipping_address)
+       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13::jsonb) on conflict (id) do nothing`,
+      [o.id, o.customer_id, o.status, o.currency, o.subtotal, o.shipping, o.tax, o.total, o.total_usd, o.payment_provider, o.payment_ref, o.channel,
+        o.shipping_address ? JSON.stringify(o.shipping_address) : null]);
+  }
   async findOrderByPaymentRef(provider: string, ref: string) {
     const r = await this.q('select * from orders where payment_provider = $1 and payment_ref = $2 limit 1', [provider, ref]);
     return r.rows[0] ? toOrder(r.rows[0]) : null;

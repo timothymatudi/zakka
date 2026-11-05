@@ -37,5 +37,7 @@ describe('catalog forward call', () => {
     expect(calls[0]!.url).toBe('http://catalog.test/orders/order-1/forward');
     expect((calls[0]!.init.headers as Record<string, string>).authorization).toBe('Bearer cat-token');
     expect(JSON.parse(String(calls[0]!.init.body))).toEqual({ shipping_address: addr });
+    await c.forward('order-1', addr, { order: { id: 'order-1' } as never, items: [] });
+    expect(JSON.parse(String(calls[1]!.init.body))).toEqual({ shipping_address: addr, order: { id: 'order-1' }, items: [] });
   });
 });

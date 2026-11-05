@@ -1,13 +1,13 @@
 import type { SupportAI } from '../ai/support';
 import type { CatalogClient, SearchClient } from '../clients/services';
 import type { Config } from '../config';
-import { countryFromPhone, countryInfo, fallbackLocalPrice, formatMoney } from '../geo';
+import { countryFromPhone, countryInfo, fallbackLocalPrice, formatMoney, ZERO_DECIMAL } from '../geo';
 import { detectLanguage } from '../lang/detect';
 import { countryName, t } from '../lang/messages';
 import { log } from '../log';
-import { PROVIDER_LABEL, providerForCountry, type Providers } from '../payments';
+import { PROVIDER_LABEL, providerForCountry, type ProviderName, type Providers } from '../payments';
 import type { PaymentEvent } from '../payments/types';
-import type { Locale, SearchDocument, SourceCode } from '../shared';
+import type { Locale, SearchDocument } from '../shared';
 import type { Conversation, ConvContext, Customer, Order, ResultItem, Store } from '../store/types';
 import { TEMPLATES, type TemplateName } from '../templates/registry';
 import type { Inbound } from '../whatsapp/parse';
@@ -15,11 +15,18 @@ import { NotOptedInError, WindowClosedError, type Messenger } from '../whatsapp/
 import { formatAddress, parseAddress } from './address';
 import { isCancel, isGreeting, isHumanRequest, isResumeBot, isStart, isStop, isSupport, isTracking, pickIndex } from './intents';
 import { transition, type FlowEvent } from './states';
+import { scrubPartnerNames } from '../brand-safety';
 
-export const SOURCE_NAMES: Record<SourceCode, string> = {
-  cj: 'CJ Dropshipping', aliexpress_ds: 'AliExpress', spocket: 'Spocket', printful: 'Printful', amazon: 'Amazon',
-  temu: 'Temu', shein: 'SHEIN', aliexpress_aff: 'AliExpress', jumia: 'Jumia', noon: 'noon', flipkart: 'Flipkart',
-};
+/** Product titles from search may contain a partner name (e.g. a store's house brand): drop it. */
+const cleanTitle = (title: string) =>
+  scrubPartnerNames(title, '').replace(/\s*[-–|:,]\s*(?=[-–|:,]|$)/g, '').replace(/^[\s\-–|:,]+/, '').replace(/\s{2,}/g, ' ').trim() || 'Zakka pick';
+
+const chargeAmount = (amount: number, currency: string) => (ZERO_DECIMAL.has(currency) ? Math.ceil(amount - 1e-9) : amount);
+
+/** Customer-facing seller label. Never the supplier/partner name (owner rule, see brand-safety.ts). */
+export function sellerLabel(kind: ResultItem['kind'], locale: Locale): string {
+  return kind === 'dropship' ? t(locale, 'sold_by') : `${t(locale, 'partner_store')} · ${t(locale, 'affiliate_label')}`;
+}
 
 export const SHIPMENT_STATUSES = ['pending', 'in_transit', 'delivered', 'exception', 'cancelled'] as const;
 export type ShipmentStatus = (typeof SHIPMENT_STATUSES)[number];
@@ -37,7 +44,12 @@ const SHIPMENT_TO_ORDER: Record<Exclude<ShipmentStatus, 'exception'>, Order['sta
   pending: 'forwarded', in_transit: 'shipped', delivered: 'delivered', cancelled: 'cancelled',
 };
 
-export const orderRef =(id: string) => `ZK-${id.replace(/-/g, '').slice(0, 8).toUpperCase()}`;
+/** Thrown by checkout with an HTTP status for the internal API. */
+export class CheckoutError extends Error {
+  constructor(readonly status: number, message: string) { super(message); }
+}
+
+export const orderRef = (id: string) => `ZK-${id.replace(/-/g, '').slice(0, 8).toUpperCase()}`;
 
 export interface Deps {
   config: Config;
@@ -181,9 +193,13 @@ export class Concierge {
     if (!offer) return null;
     const priced = await this.d.catalog.price(offer.offer_id, turn.country).catch(() => null);
     if (priced?.ships_to_country === false) return null;
-    const local = priced ? { price: priced.price, currency: priced.currency } : fallbackLocalPrice(offer.display_price_usd, turn.currency);
+    // Catalog price first, then the search hit's own local price, then a dev-only FX approximation.
+    const local = priced ? { price: priced.price, currency: priced.currency }
+      : offer.currency && typeof offer.display_price_local === 'number' && Number.isFinite(offer.display_price_local)
+        ? { price: offer.display_price_local, currency: offer.currency }
+        : fallbackLocalPrice(offer.display_price_usd, turn.currency);
     return {
-      product_id: doc.id, offer_id: offer.offer_id, title: doc.title, kind: offer.kind, source_code: offer.source_code,
+      product_id: doc.id, offer_id: offer.offer_id, title: cleanTitle(doc.title), kind: offer.kind, source_code: offer.source_code,
       price: local.price, currency: local.currency, price_usd: priced?.price_usd ?? offer.display_price_usd,
       days_min: priced?.delivery_days_min ?? offer.delivery_days_min, days_max: priced?.delivery_days_max ?? offer.delivery_days_max,
       url: offer.url,
@@ -210,9 +226,7 @@ export class Concierge {
   }
 
   private describe(turn: Turn, it: ResultItem): string {
-    const parts = [formatMoney(it.price, it.currency, turn.locale), this.days(turn.locale, it.days_min, it.days_max), SOURCE_NAMES[it.source_code]];
-    if (it.kind === 'affiliate') parts.push(t(turn.locale, 'affiliate_label'));
-    return parts.join(' · ');
+    return [formatMoney(it.price, it.currency, turn.locale), this.days(turn.locale, it.days_min, it.days_max), sellerLabel(it.kind, turn.locale)].join(' · ');
   }
 
   private async showResults(turn: Turn, event: 'results' | 'back') {
@@ -235,7 +249,6 @@ export class Concierge {
   private async pick(turn: Turn, index: number) {
     const it = turn.conv.context.results?.[index];
     if (!it) return this.reply(turn, { kind: 'text', body: t(turn.locale, 'pick_again') });
-    const source = SOURCE_NAMES[it.source_code];
     const price = formatMoney(it.price, it.currency, turn.locale);
     const days = this.days(turn.locale, it.days_min, it.days_max);
 
@@ -245,7 +258,7 @@ export class Concierge {
         customer_id: turn.customer.id, offer_id: it.offer_id, country_code: turn.country, locale: turn.locale, channel: 'whatsapp',
       }).catch((e) => log.warn('affiliate click not recorded', { error: (e as Error).message }));
       return this.reply(turn, {
-        kind: 'cta_url', body: t(turn.locale, 'affiliate_body', { title: it.title, source, price, days }),
+        kind: 'cta_url', body: t(turn.locale, 'affiliate_body', { title: it.title, price, days }),
         displayText: t(turn.locale, 'affiliate_btn'), url: it.url ?? this.d.config.webBaseUrl, footer: t(turn.locale, 'affiliate_label'),
       });
     }
@@ -253,7 +266,7 @@ export class Concierge {
     this.go(turn, 'pick_dropship');
     turn.conv.context.selected = it;
     return this.reply(turn, {
-      kind: 'buttons', body: t(turn.locale, 'confirm_body', { title: it.title, price, days, source }),
+      kind: 'buttons', body: t(turn.locale, 'confirm_body', { title: it.title, price, days }),
       buttons: [
         { id: 'buy', title: t(turn.locale, 'buy_btn') },
         { id: 'back', title: t(turn.locale, 'back_btn') },
@@ -312,32 +325,71 @@ export class Concierge {
       return this.reply(turn, { kind: 'text', body: t(turn.locale, 'pick_again') });
     }
     if (!address) return this.askAddress(turn, true);
-    const { store, providers, config } = this.d;
+    const { store, config } = this.d;
     const providerName = providerForCountry(turn.country);
-    const provider = providers[providerName];
     const order = await store.createOrder({
       customer_id: turn.customer.id, status: 'pending_payment', currency: it.currency,
       subtotal: it.price, shipping: 0, tax: 0, total: it.price, total_usd: it.price_usd,
       payment_provider: providerName, payment_ref: null, channel: 'whatsapp', shipping_address: address,
     }, [{ offer_id: it.offer_id, product_id: it.product_id, qty: 1, unit_price: it.price, unit_cost_usd: null, title: it.title }]);
 
-    const charge = provider.supportsCurrency(it.currency) ? { amount: it.price, currency: it.currency } : { amount: it.price_usd, currency: 'USD' };
-    const link = await provider.createPaymentLink({
-      orderId: order.id, amount: charge.amount, currency: charge.currency, description: `Zakka ${orderRef(order.id)}: ${it.title}`,
-      customerPhone: turn.customer.phone_e164 ?? `+${turn.conv.wa_id}`,
-      successUrl: `${config.webBaseUrl}/orders/${order.id}?paid=1`, cancelUrl: `${config.webBaseUrl}/orders/${order.id}?cancelled=1`,
+    const link = await this.startPayment(order, providerName, {
+      description: `Zakka ${orderRef(order.id)}: ${it.title}`, phone: this.phone(turn),
+      returnUrl: `${config.webBaseUrl}/orders/${order.id}?paid=1`, cancelUrl: `${config.webBaseUrl}/orders/${order.id}?cancelled=1`,
     });
-    await store.updateOrder(order.id, { payment_ref: link.ref });
     this.go(turn, 'address_confirmed');
     delete turn.conv.context.pending_address;
     turn.conv.context.order_id = order.id;
     turn.conv.context.order_days = this.days(turn.locale, it.days_min, it.days_max);
-    log.info('order created', { order_id: order.id, provider: providerName, mock: provider.mock, ref: link.ref });
     return this.reply(turn, {
       kind: 'cta_url',
-      body: t(turn.locale, 'pay_body', { ref: orderRef(order.id), price: formatMoney(charge.amount, charge.currency, turn.locale), provider: PROVIDER_LABEL[providerName] }),
+      body: t(turn.locale, 'pay_body', { ref: orderRef(order.id), price: formatMoney(link.amount, link.currency, turn.locale), provider: PROVIDER_LABEL[providerName] }),
       displayText: t(turn.locale, 'pay_btn'), url: link.url,
     });
+  }
+
+  /**
+   * Creates the provider payment for an order (both channels) and stores provider + payment_ref.
+   * Charges in the order currency when the provider supports it, else in USD (orders.total_usd).
+   */
+  private async startPayment(order: Order, providerName: ProviderName, o: { description: string; phone: string; returnUrl: string; cancelUrl: string }) {
+    const provider = this.d.providers[providerName];
+    // Zero-decimal currencies (KES, ...) are charged in whole units, rounded up, matching the displayed price.
+    const charge = provider.supportsCurrency(order.currency) ? { amount: chargeAmount(order.total, order.currency), currency: order.currency }
+      : provider.supportsCurrency('USD') ? { amount: order.total_usd, currency: 'USD' } : null;
+    if (!charge) throw new CheckoutError(400, `${providerName} cannot charge ${order.currency}`);
+    const link = await provider.createPaymentLink({
+      orderId: order.id, amount: charge.amount, currency: charge.currency, description: o.description,
+      customerPhone: o.phone, successUrl: o.returnUrl, cancelUrl: o.cancelUrl,
+    });
+    await this.d.store.updateOrder(order.id, { payment_provider: providerName, payment_ref: link.ref });
+    log.info('payment started', { order_id: order.id, channel: order.channel, provider: providerName, mock: provider.mock, ref: link.ref });
+    return link;
+  }
+
+  /**
+   * POST /internal/payments/checkout (web + any channel). Loads the order from the store, or accepts
+   * `fallbackOrder` (same id) when the store does not have it, e.g. the web's in-memory mock.
+   */
+  async checkout(input: { orderId: string; provider?: ProviderName; returnUrl: string; cancelUrl: string; fallbackOrder?: Order }) {
+    const { store } = this.d;
+    let order = await store.getOrder(input.orderId);
+    if (!order && input.fallbackOrder) {
+      await store.upsertOrder(input.fallbackOrder);
+      order = await store.getOrder(input.orderId);
+    }
+    if (!order) throw new CheckoutError(404, 'order not found');
+    if (order.status !== 'pending_payment') throw new CheckoutError(409, `order is ${order.status}, not pending_payment`);
+    const customer = order.customer_id ? await store.getCustomer(order.customer_id) : null;
+    const country = order.shipping_address?.country_code ?? customer?.country_code ?? null;
+    const providerName = input.provider ?? providerForCountry(country);
+    const items = await store.getOrderItems(order.id);
+    const link = await this.startPayment(order, providerName, {
+      description: `Zakka ${orderRef(order.id)}${items[0]?.title ? `: ${items[0].title}` : ''}`,
+      phone: order.shipping_address?.phone_e164 ?? customer?.phone_e164 ?? '',
+      returnUrl: input.returnUrl, cancelUrl: input.cancelUrl,
+    });
+    return { provider: providerName, payment_url: link.url, payment_ref: link.ref };
   }
 
   private async cancel(turn: Turn) {
@@ -386,14 +438,14 @@ export class Concierge {
     const orders = await this.orderSummaries(turn.customer.id, turn.locale);
     const products = (turn.conv.context.results ?? []).map((r) => ({
       title: r.title, price: formatMoney(r.price, r.currency, turn.locale), delivery: this.days(turn.locale, r.days_min, r.days_max),
-      source: SOURCE_NAMES[r.source_code], affiliate: r.kind === 'affiliate',
+      sold_by: r.kind === 'dropship' ? 'Zakka' : 'a partner store', affiliate: r.kind === 'affiliate',
     }));
     const searchProducts = async (q: string) => {
       const { hits } = await this.d.search.search({ q, locale: turn.locale, country: turn.country, perPage: 3 });
       const items = (await Promise.all(hits.map((h) => this.toItem(h, turn)))).filter((x): x is ResultItem => !!x);
       return items.map((r) => ({
         title: r.title, price: formatMoney(r.price, r.currency, turn.locale), delivery: this.days(turn.locale, r.days_min, r.days_max),
-        source: SOURCE_NAMES[r.source_code], affiliate: r.kind === 'affiliate',
+        sold_by: r.kind === 'dropship' ? 'Zakka' : 'a partner store', affiliate: r.kind === 'affiliate',
       }));
     };
     const ans = await this.d.ai.answer({ question, locale: turn.locale, country: turn.country, orders: orders.map((o) => o.summary), products, searchProducts });
@@ -428,7 +480,8 @@ export class Concierge {
       return { ok: true, order };
     }
     if (evt.amount !== undefined && evt.currency) {
-      const matches = (evt.currency.toUpperCase() === order.currency && Math.abs(evt.amount - order.total) < 0.01)
+      const matches = (evt.currency.toUpperCase() === order.currency
+          && (Math.abs(evt.amount - order.total) < 0.01 || evt.amount === chargeAmount(order.total, order.currency)))
         || (evt.currency.toUpperCase() === 'USD' && Math.abs(evt.amount - order.total_usd) < 0.01);
       if (!matches) {
         log.error('paid amount does not match order total', { order_id: order.id, amount: evt.amount, currency: evt.currency });
@@ -439,7 +492,9 @@ export class Concierge {
     if (!moved) return { ok: true, duplicate: true, order };
     log.info('order paid', { order_id: order.id, provider: evt.provider, ref: evt.ref });
 
-    const fwd = await catalog.forward(order.id, order.shipping_address);
+    const paidOrder = (await store.getOrder(order.id)) ?? order;
+    const items = (await store.getOrderItems(order.id)).map(({ title: _t, ...i }) => i);
+    const fwd = await catalog.forward(order.id, order.shipping_address, { order: paidOrder, items });
     log.info('order forward attempt', { order_id: order.id, ok: fwd.ok, mock: fwd.mock, status: fwd.status, detail: fwd.detail });
     if (fwd.ok) await store.transitionOrder(order.id, ['paid'], 'forwarded');
 

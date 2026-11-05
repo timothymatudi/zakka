@@ -75,7 +75,8 @@ const FALLBACK_FX: Record<string, number> = {
   IDR: 15800, PHP: 57, KES: 129, TZS: 2700, UGX: 3700, RWF: 1350, NGN: 1600, GHS: 15.5, ZAR: 18, XOF: 605,
   XAF: 605, TRY: 34, JPY: 150, KRW: 1380,
 };
-const ZERO_DECIMAL = new Set(['JPY', 'KRW', 'UGX', 'RWF', 'XOF', 'XAF', 'CLP', 'IDR', 'TZS', 'COP']);
+/** Currencies shown without decimals (contract: currencies.decimals = 0), plus ISO zero-decimal ones. */
+export const ZERO_DECIMAL = new Set(['KES', 'IDR', 'TZS', 'UGX', 'NGN', 'JPY', 'KRW', 'VND', 'CLP', 'PKR', 'RWF', 'XOF', 'XAF', 'COP']);
 
 /** Dev-only approximation of the catalog's price: convert and round UP (x.99 or whole units). */
 export function fallbackLocalPrice(usd: number, currency: string): { price: number; currency: string } {
@@ -87,13 +88,16 @@ export function fallbackLocalPrice(usd: number, currency: string): { price: numb
   return { price: Math.round(x99 * 100) / 100, currency };
 }
 
+/** Local price display. Zero-decimal currencies are shown as whole units, rounded UP (never below the charge). */
 export function formatMoney(amount: number, currency: string, locale: string): string {
+  const zero = ZERO_DECIMAL.has(currency);
+  const value = zero ? Math.ceil(amount - 1e-9) : amount;
+  const digits = zero || Number.isInteger(value) ? 0 : 2;
   try {
     return new Intl.NumberFormat(locale, {
-      style: 'currency', currency, currencyDisplay: 'code',
-      maximumFractionDigits: ZERO_DECIMAL.has(currency) || Number.isInteger(amount) ? 0 : 2,
-    }).format(amount);
+      style: 'currency', currency, currencyDisplay: 'code', minimumFractionDigits: digits, maximumFractionDigits: digits,
+    }).format(value);
   } catch {
-    return `${currency} ${amount.toFixed(2)}`;
+    return `${currency} ${value.toFixed(digits)}`;
   }
 }

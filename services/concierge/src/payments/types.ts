@@ -1,4 +1,5 @@
-export type ProviderName = 'stripe' | 'paypal' | 'flutterwave' | 'paystack';
+export type ProviderName = 'stripe' | 'paypal' | 'flutterwave' | 'paystack' | 'mpesa';
+export const PROVIDER_NAMES: ProviderName[] = ['stripe', 'paypal', 'flutterwave', 'paystack', 'mpesa'];
 
 export interface PaymentLinkInput {
   orderId: string;

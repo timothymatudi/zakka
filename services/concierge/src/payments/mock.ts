@@ -7,11 +7,12 @@ import type { PaymentEvent, PaymentLink, PaymentLinkInput, PaymentProvider, Prov
  */
 export class MockProvider implements PaymentProvider {
   readonly mock = true;
-  constructor(readonly name: ProviderName, private publicUrl: string) {}
-  supportsCurrency() { return true; }
+  constructor(readonly name: ProviderName, private publicUrl: string, private currencies?: string[]) {}
+  /** Mirrors the real provider's currency limits when given (e.g. M-Pesa: KES only). */
+  supportsCurrency(c: string) { return !this.currencies || this.currencies.includes(c); }
   async createPaymentLink(i: PaymentLinkInput): Promise<PaymentLink> {
     const ref = `mock_${this.name}_${randomUUID().slice(0, 8)}`;
-    const qs = new URLSearchParams({ order: i.orderId, amount: String(i.amount), currency: i.currency });
+    const qs = new URLSearchParams({ order: i.orderId, amount: String(i.amount), currency: i.currency, return: i.successUrl, cancel: i.cancelUrl });
     return { url: `${this.publicUrl}/mock-pay/${this.name}/${ref}?${qs}`, ref, amount: i.amount, currency: i.currency };
   }
   async parseWebhook(raw: Buffer): Promise<PaymentEvent | null> {

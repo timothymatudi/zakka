@@ -1,7 +1,7 @@
 import { fixtureSearch } from '../fixtures/products';
 import { log } from '../log';
 import type { Locale, OfferPrice, SearchDocument, SearchResponse } from '../shared';
-import type { ShippingAddress } from '../store/types';
+import type { Order, OrderItem, ShippingAddress } from '../store/types';
 
 /** Catalog price response (contract: GET /offers/{id}/price). */
 export type CatalogPrice = OfferPrice;
@@ -12,7 +12,7 @@ export interface SearchClient {
 export interface CatalogClient {
   price(offerId: string, country: string): Promise<CatalogPrice | null>;
   /** POST /orders/{id}/forward with `Authorization: Bearer CATALOG_API_TOKEN` and the order's shipping address. */
-  forward(orderId: string, shippingAddress: ShippingAddress | null): Promise<{ ok: boolean; mock: boolean; status?: number; detail?: string }>;
+  forward(orderId: string, shippingAddress: ShippingAddress | null, snapshot?: { order: Order; items: OrderItem[] }): Promise<{ ok: boolean; mock: boolean; status?: number; detail?: string }>;
 }
 
 interface Opts { baseUrl: string; offline: boolean; fixtureFallback: boolean; timeoutMs?: number; token?: string }
@@ -58,13 +58,14 @@ export class HttpCatalogClient implements CatalogClient {
     }
   }
 
-  async forward(orderId: string, shippingAddress: ShippingAddress | null) {
+  async forward(orderId: string, shippingAddress: ShippingAddress | null, snapshot?: { order: Order; items: OrderItem[] }) {
     if (this.o.offline) return { ok: true, mock: true, detail: 'offline: forward simulated' };
     try {
       const headers: Record<string, string> = { 'content-type': 'application/json' };
       if (this.o.token) headers.authorization = `Bearer ${this.o.token}`;
       const res = await fetch(`${this.o.baseUrl}/orders/${encodeURIComponent(orderId)}/forward`, {
-        method: 'POST', headers, body: JSON.stringify({ shipping_address: shippingAddress }),
+        method: 'POST', headers, // The order snapshot lets catalog forward orders it cannot read from a shared database (dev/mock mode).
+        body: JSON.stringify({ shipping_address: shippingAddress, ...(snapshot ?? {}) }),
         signal: AbortSignal.timeout(this.o.timeoutMs ?? 15000),
       });
       const detail = (await res.text()).slice(0, 500);

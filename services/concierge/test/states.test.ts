@@ -45,7 +45,8 @@ describe('helpers', () => {
     expect(countryFromPhone('+2348031234567')).toBe('NG');
   });
   it('picks payment providers by country', () => {
-    expect(providerForCountry('KE')).toBe('paystack');
+    expect(providerForCountry('KE')).toBe('mpesa');
+    expect(providerForCountry('NG')).toBe('paystack');
     expect(providerForCountry('UG')).toBe('flutterwave');
     expect(providerForCountry('DE')).toBe('paypal');
     expect(providerForCountry('US')).toBe('stripe');
@@ -102,7 +103,7 @@ describe('conversation flows (engine + webhook, offline)', () => {
     const pay = t.wa.outbox.at(-1)!.message;
     expect(pay.kind).toBe('cta_url');
     const order = (await t.store.getOrder(conv.context.order_id!))!;
-    expect(order).toMatchObject({ status: 'pending_payment', channel: 'whatsapp', payment_provider: 'paystack', currency: 'KES' });
+    expect(order).toMatchObject({ status: 'pending_payment', channel: 'whatsapp', payment_provider: 'mpesa', currency: 'KES' });
     expect(order.shipping_address).toMatchObject({ line1: 'Kenyatta Ave 12', line2: 'Apt 4B', region: 'Nairobi County' });
 
     const url = new URL((pay as { url: string }).url);
@@ -118,7 +119,7 @@ describe('conversation flows (engine + webhook, offline)', () => {
     expect(again.json()).toMatchObject({ ok: true, duplicate: true });
 
     await t.send(phone, { text: 'where is my order?' });
-    expect(t.lastText()).toContain('sent to the supplier');
+    expect(t.lastText()).toContain('with our warehouse');
     expect(t.lastText()).toContain(`/orders/${order.id}`);
 
     // second purchase offers the saved address

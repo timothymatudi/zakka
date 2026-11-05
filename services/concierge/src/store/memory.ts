@@ -66,6 +66,9 @@ export class MemoryStore implements Store {
     return { ...order };
   }
   async getOrder(id: string) { const o = this.orders.get(id); return o ? { ...o } : null; }
+  async upsertOrder(order: Order) {
+    if (!this.orders.has(order.id)) this.orders.set(order.id, { ...order });
+  }
   async findOrderByPaymentRef(provider: string, ref: string) {
     for (const o of this.orders.values()) if (o.payment_provider === provider && o.payment_ref === ref) return { ...o };
     return null;

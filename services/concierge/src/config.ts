@@ -33,6 +33,7 @@ export interface Config {
   paystack: { secretKey: string };
   flutterwave: { secretKey: string; webhookHash: string };
   paypal: { clientId: string; clientSecret: string; webhookId: string; sandbox: boolean };
+  mpesa: { consumerKey: string; consumerSecret: string; shortcode: string; passkey: string; callbackToken: string; sandbox: boolean };
 }
 
 export function loadConfig(overrides: Partial<Config> = {}): Config {
@@ -66,6 +67,14 @@ export function loadConfig(overrides: Partial<Config> = {}): Config {
       webhookId: env('PAYPAL_WEBHOOK_ID'),
       sandbox: env('PAYPAL_ENV', 'sandbox') !== 'live',
     },
+    mpesa: {
+      consumerKey: env('MPESA_CONSUMER_KEY'),
+      consumerSecret: env('MPESA_CONSUMER_SECRET'),
+      shortcode: env('MPESA_SHORTCODE'),
+      passkey: env('MPESA_PASSKEY'),
+      callbackToken: env('MPESA_CALLBACK_TOKEN'),
+      sandbox: env('MPESA_ENV', 'sandbox') !== 'live',
+    },
   };
   return { ...base, ...overrides };
 }
@@ -82,6 +91,7 @@ export function mockConfig(overrides: Partial<Config> = {}): Config {
     paystack: { secretKey: '' },
     flutterwave: { secretKey: '', webhookHash: '' },
     paypal: { ...c.paypal, clientId: '', clientSecret: '' },
+    mpesa: { ...c.mpesa, consumerKey: '', consumerSecret: '' },
     ...overrides,
   };
 }

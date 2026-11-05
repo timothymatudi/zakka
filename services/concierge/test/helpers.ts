@@ -1,4 +1,5 @@
-import { mockConfig } from '../src/config';
+import { mockConfig, type Config } from '../src/config';
+import type { SearchClient } from '../src/clients/services';
 import { buildApp } from '../src/server';
 import { MemoryStore } from '../src/store/memory';
 import { MockWhatsAppClient, renderText } from '../src/whatsapp/client';
@@ -10,14 +11,15 @@ export const ADDRESS = 'Amina Wanjiru\nKenyatta Ave 12\nApt 4B\nNairobi\nNairobi
 
 process.env.CONCIERGE_SILENT = '1';
 
-export async function makeApp(opts: { now?: () => Date } = {}) {
+export async function makeApp(opts: { now?: () => Date; config?: Partial<Config>; search?: SearchClient } = {}) {
   const config = mockConfig({
     offline: true,
     whatsapp: { phoneNumberId: '', accessToken: '', verifyToken: 'verify-me', appSecret: APP_SECRET, graphVersion: 'v23.0' },
+    ...opts.config,
   });
   const store = new MemoryStore();
   const wa = new MockWhatsAppClient();
-  const built = await buildApp(config, { store, whatsapp: wa, now: opts.now });
+  const built = await buildApp(config, { store, whatsapp: wa, now: opts.now, search: opts.search });
 
   async function send(phone: string, msg: Parameters<typeof inboundPayload>[1], o: Parameters<typeof inboundPayload>[2] = {}) {
     const body = JSON.stringify(inboundPayload(phone, msg, o));

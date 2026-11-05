@@ -1,9 +1,13 @@
-import type { SearchDocument } from '../shared';
+import { countryInfo, fallbackLocalPrice } from '../geo';
+import type { SearchDocument, SearchOffer } from '../shared';
+
+/** Fixture offers omit the per-country local price; fixtureSearch fills it in for the requested country. */
+type FixtureDoc = Omit<SearchDocument, 'offers'> & { offers: Omit<SearchOffer, 'display_price_local' | 'currency'>[] };
 
 /** Built-in search fixtures (contract SearchDocument shape) used offline / when search is down in dev. */
 const ALL = ['US', 'GB', 'DE', 'FR', 'ES', 'AE', 'SA', 'EG', 'IN', 'KE', 'NG', 'GH', 'ZA', 'TZ', 'UG', 'BR', 'MX', 'ID', 'CN', 'CA', 'AU'];
 
-export const FIXTURE_DOCS: SearchDocument[] = [
+export const FIXTURE_DOCS: FixtureDoc[] = [
   {
     id: '0b4a8c1e-1111-4a6f-9a10-000000000001',
     title: 'Wireless Earbuds Pro with Charging Case', description: 'Bluetooth 5.3 earbuds, 30h battery, noise reduction, IPX5.',
@@ -81,5 +85,12 @@ export function fixtureSearch(q: string, country: string, perPage = 3): SearchDo
     })
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score || (cheap ? a.d.min_price_usd - b.d.min_price_usd : b.d.popularity - a.d.popularity));
-  return scored.slice(0, perPage).map((x) => x.d);
+  const currency = countryInfo(country).currency;
+  return scored.slice(0, perPage).map(({ d }) => ({
+    ...d,
+    offers: d.offers.map((o) => {
+      const local = fallbackLocalPrice(o.display_price_usd, currency);
+      return { ...o, display_price_local: local.price, currency: local.currency };
+    }),
+  }));
 }

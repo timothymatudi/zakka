@@ -30,7 +30,7 @@ Config comes from `.env` (service folder or repo root; see the root `.env.exampl
 
 | Flow | Trigger | What happens |
 | --- | --- | --- |
-| Search | Any free text, in any language | Country comes from the stored customer, else the phone's calling code. Calls `GET /search?q=&locale=&country=`. Replies with an interactive **list** of the top 3: title, local price (`GET /offers/{id}/price`), delivery days, and source, with affiliate items labelled **Affiliate**. State becomes `browsing`. |
+| Search | Any free text, in any language | Country comes from the stored customer, else the phone's calling code. Calls `GET /search?q=&locale=&country=`. Replies with an interactive **list** of the top 3: title, local price (`GET /offers/{id}/price`), delivery days, and seller: dropship items are **Sold by Zakka**, affiliate items **Partner store · Affiliate**. Supplier and partner names (CJ, AliExpress, Spocket, Printful, Amazon, Temu, Shein, Jumia, Noon, Flipkart) are never shown in any message, template, or AI reply (`src/brand-safety.ts`, enforced by `test/brand-safety.test.ts`); carrier names are allowed. State becomes `browsing`. |
 | Buy (dropship) | Tap a dropship row, then **Buy now** | State becomes `collecting_address`. The bot offers the customer's last address for the same country, or asks for one (one item per line: name, street, optional street 2, city, optional region, optional postal code; a comma-separated line also works). The phone comes from WhatsApp and the country from the customer. After **Yes, continue**, it creates an `orders` row (`channel='whatsapp'`, `pending_payment`, `shipping_address` jsonb) plus `order_items`, picks the provider by country, and sends a `cta_url` payment button. State becomes `awaiting_payment`. |
 | Paid | Provider webhook | Verifies the signature and checks that the amount matches. Moves the order `pending_payment → paid` atomically, so replays are no-ops. Then calls `POST CATALOG_API_URL/orders/{id}/forward` with `Authorization: Bearer $CATALOG_API_TOKEN` and body `{shipping_address}`; on success the order becomes `forwarded`. Confirms on WhatsApp: free-form inside the 24h window, otherwise the `order_confirmation` template. |
 | Affiliate | Tap an affiliate row | Sends the partner link with an affiliate disclosure and records `affiliate_clicks` (`channel='whatsapp'`). |
@@ -100,11 +100,40 @@ If a provider doesn't support the local currency, the charge is made in USD (`or
 | `POST /webhooks/whatsapp` | Inbound messages; returns 401 on a bad signature |
 | `POST /payments/webhook/:provider` | Provider webhooks; returns 400 on a bad signature |
 | `GET/POST /mock-pay/:provider/:ref` | Mock checkout page. Only active for providers in mock mode. |
-| `POST /internal/orders/:id/notify` | Catalog/fulfilment calls this after shipment changes. Sends `shipping_update` or `delivery_update` (as a template outside the window). |
+| `POST /internal/payments/checkout` | Payments for **both** channels (see below) |
+| `POST /internal/orders/:id/notify` | Catalog calls this when a shipment changes. Body: `{status: pending\|in_transit\|delivered\|exception\|cancelled, carrier, tracking_number, tracking_url, last_event}`. Missing fields are filled from the stored shipment and order. `pending` sends nothing. `in_transit` with a carrier or tracking number sends `shipping_update`. `delivered`, `exception`, `cancelled`, and `in_transit` without tracking send `delivery_update`. The message is free-form inside the 24h window and the template outside it. An unknown status returns 400 and an unknown order returns 404. |
 | `POST /internal/conversations/:waId/reply` | Human agent reply, body `{text, resume}` |
 | `POST /internal/customers/:id/marketing` | Sends `{template, params, url_param}`. Opt-in is enforced. |
 
 `/internal/*` requires the `x-internal-token: $CONCIERGE_INTERNAL_TOKEN` header. If the token is unset, these routes only accept loopback requests.
+
+### Web checkout: `POST /internal/payments/checkout`
+
+The concierge owns payments for both channels. Like the other `/internal/*` routes, it requires the `x-internal-token` header, or accepts loopback requests only when no token is set.
+
+```jsonc
+// request
+{
+  "order_id": "uuid",                       // required
+  "provider": "stripe|paypal|paystack|flutterwave|mpesa",   // optional; default picked by country
+  "return_url": "https://shop/checkout/done", // required, http(s)
+  "cancel_url": "https://shop/cart",          // required, http(s)
+  "order": { /* contract orders row, id must equal order_id */ } // optional fallback when the store doesn't have it
+}
+// 200 response
+{ "provider": "paystack", "payment_url": "https://...", "payment_ref": "..." }
+// errors: 400 invalid input, provider, or currency (e.g. M-Pesa is KES only) · 401 token · 404 order not found · 409 order not pending_payment · 502 provider error
+```
+
+How a checkout is handled:
+- **Order lookup:** the order is loaded from the store. If the store doesn't have it, the `order` object from the request is stored under its own id.
+- **Country:** taken from `shipping_address.country_code`, otherwise from the customer's country.
+- **Recording:** the provider and `payment_ref` are written to the order.
+- **Payment success:** runs the same paid → forward → confirm path as WhatsApp. A WhatsApp message is only sent if the customer has a WhatsApp conversation.
+- **Mock mode:** `payment_url` is the mock-pay page. Pressing pay 303-redirects the browser to `return_url`, and a JSON request gets `return_url` in the response. The page also has a Cancel link to `cancel_url`.
+- **M-Pesa:** uses STK push, so the customer approves on their phone. `payment_url` is `return_url`, and the callback goes to `/payments/webhook/mpesa?token=$MPESA_CALLBACK_TOKEN`. Configure it with `MPESA_CONSUMER_KEY`, `MPESA_CONSUMER_SECRET`, `MPESA_SHORTCODE`, `MPESA_PASSKEY`, `MPESA_CALLBACK_TOKEN`, and `MPESA_ENV` (`sandbox`/`live`). If any of these is missing, M-Pesa runs in mock mode, which accepts KES only.
+
+The forward call sends `{shipping_address, order, items}`, so catalog can forward even when it doesn't share a database with the concierge.
 
 ## What's mocked (when keys are empty)
 

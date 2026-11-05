@@ -1,9 +1,11 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { scrubPartnerNames } from '../brand-safety';
 import { log } from '../log';
 import type { Locale } from '../shared';
 
 export interface OrderSummary { ref: string; status: string; total: string; created_at: string; items: string[]; tracking_url: string | null }
-export interface ProductSummary { title: string; price: string; delivery: string; source: string; affiliate: boolean }
+/** `sold_by` is "Zakka" (dropship) or "a partner store" (affiliate): partner names are never given to the model. */
+export interface ProductSummary { title: string; price: string; delivery: string; sold_by: string; affiliate: boolean }
 
 export interface SupportContext {
   question: string;
@@ -27,6 +29,7 @@ const SYSTEM = `You are Zakka's WhatsApp shopping concierge, answering customer 
 Ground every statement in tool results. Look up orders with get_orders / get_order and products with search_products before answering questions about them.
 Never invent order details, prices, delivery dates, refund outcomes or store policies that the tools did not return.
 Hand off to a human (handoff: true) for refunds, returns, damaged or missing items, payment disputes, complaints, legal or safety issues, or whenever the data does not answer the question; the reply then tells the customer a team member will follow up here.
+Never reveal the names of our suppliers or partner stores. Call dropship items "sold by Zakka" and say "our partner warehouse" for fulfilment; call affiliate items "a partner store". Carrier names in tracking data are fine.
 Write short WhatsApp replies (at most 3 sentences, plain text, no markdown headings) in the language the request names.
 Finish every turn by calling reply_to_customer exactly once with the final reply.`;
 
@@ -45,7 +48,7 @@ const TOOLS: Anthropic.Beta.BetaTool[] = [
   },
   {
     name: 'search_products',
-    description: "Search Zakka's catalogue for products that ship to the customer's country. Returns title, local price, delivery estimate, source, and whether it is an affiliate offer.",
+    description: "Search Zakka's catalogue for products that ship to the customer's country. Returns title, local price, delivery estimate, who sells it (Zakka or a partner store), and whether it is an affiliate offer.",
     strict: true,
     input_schema: { type: 'object', properties: { query: { type: 'string' } }, required: ['query'], additionalProperties: false },
   },
@@ -123,12 +126,12 @@ export class AnthropicSupport implements SupportAI {
         if (final) {
           const a = final.input as { reply?: unknown; handoff?: unknown; reason?: unknown };
           if (typeof a.reply !== 'string' || typeof a.handoff !== 'boolean') return { reply: '', handoff: true, reason: 'invalid_reply' };
-          return { reply: a.reply.trim(), handoff: a.handoff, reason: typeof a.reason === 'string' && a.reason ? a.reason : undefined };
+          return { reply: scrubPartnerNames(a.reply.trim()), handoff: a.handoff, reason: typeof a.reason === 'string' && a.reason ? a.reason : undefined };
         }
         if (!toolUses.length) {
           // Ended without the reply tool: use plain text if any, otherwise escalate.
           const text = res.content.filter((b): b is Anthropic.Beta.BetaTextBlock => b.type === 'text').map((b) => b.text).join('\n').trim();
-          return text ? { reply: text, handoff: false } : { reply: '', handoff: true, reason: `no_reply:${res.stop_reason}` };
+          return text ? { reply: scrubPartnerNames(text), handoff: false } : { reply: '', handoff: true, reason: `no_reply:${res.stop_reason}` };
         }
         messages.push({ role: 'assistant', content: res.content });
         const results: Anthropic.Beta.BetaToolResultBlockParam[] = [];

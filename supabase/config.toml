@@ -1,0 +1,17 @@
+# Minimal Supabase CLI config for local development. Unset keys use CLI defaults.
+project_id = "zakka"
+
+[db]
+# Matches DATABASE_URL in .env.example
+port = 54322
+
+[db.seed]
+enabled = true
+# Order matters: reference data (locales) before categories.
+# To load the full Shopify tree, generate seed/categories_shopify.sql
+# (see README) and append "./seed/categories_shopify.sql" here.
+sql_paths = [
+  "./seed/00_reference.sql",
+  "./seed/01_sources_markup.sql",
+  "./seed/categories_starter.sql",
+]

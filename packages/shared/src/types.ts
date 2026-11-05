@@ -61,6 +61,9 @@ export interface SearchResponse {
 }
 
 export interface OfferPrice {
+  offer_id: string;
+  kind: SourceKind;
+  ships_to_country: boolean;
   price: number;
   currency: string;
   price_usd: number;

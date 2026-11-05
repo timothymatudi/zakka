@@ -49,7 +49,7 @@ The authoritative SQL is `supabase/migrations/0001_core.sql`. Summary:
 ## Pricing rule (everyone must match)
 For a dropship offer:
 `price_usd = (cost_usd + shipping_usd) * (1 + percent/100) + fixed_usd`
-Apply the highest-priority active markup rule, checked in the order product > source > category > global. Convert to local currency with `fx_rates`, then round **up** to `round_to`. For example, `0.99` means x.99 endings, and `1` means whole units. Affiliate offers show `list_price_usd + shipping_usd` converted, with no markup.
+Apply the highest-priority active markup rule, checked in the order product > source > category > global. Category rules inherit down the tree: the nearest category with an active rule wins, starting from the product's own category and moving through its ancestors. Affiliate offers never get a markup. Convert to local currency with `fx_rates`, then round **up** to `round_to`. For example, `0.99` means x.99 endings, and `1` means whole units. Affiliate offers show `list_price_usd + shipping_usd` converted, with no markup.
 
 The reference implementation is `services/catalog/zakka_catalog/pricing.py`. Search and web call the catalog's prices instead of re-implementing them. The catalog writes a computed `display_price_usd` into the search index.
 
@@ -80,17 +80,33 @@ Ranking: text relevance first, then a sell score made from popularity, rating, d
 `GET /search?q=&locale=&country=&category=&min_price=&max_price=&max_days=&sort=relevance|price_asc|fastest|rating&page=&per_page=`
 → `{ hits: SearchDocument[], found: number, facets: {...}, page }`
 Base URL: `SEARCH_API_URL` (default `http://localhost:4010`).
+- `min_price` and `max_price` are in **USD**. Clients convert from local currency first. Currency phrases in `q`, like "under 20,000 KES", are parsed by search itself.
+- `category` takes a slug (an id or a localized name is also accepted). `country` defaults to `US` when missing.
+- Explicit parameters override anything inferred from `q`.
+- The facets are `category_path`, `source_kind`, `ships_from`, `price_bucket` (USD buckets) and `rating` (buckets). Note that `ships_from` counts every offer, not only offers that ship to the user's country.
+- `popularity` is computed from the review count plus the last 90 days of affiliate clicks and ordered quantity.
 
 ## Catalog HTTP API (provided by Agent 3)
-- `GET /offers/{offer_id}/price?country=XX` → `{ price, currency, price_usd, delivery_days_min, delivery_days_max }`
-- `POST /orders/{order_id}/forward` → forwards paid dropship items to their suppliers
+- `GET /health`
+- `GET /offers/{offer_id}/price?country=XX` → `{ offer_id, kind, price, currency, price_usd, delivery_days_min, delivery_days_max, ships_to_country }`
+- `POST /prices` → batch pricing
+- `POST /orders/{order_id}/forward` → forwards paid dropship items to their suppliers (requires `Authorization: Bearer $CATALOG_API_TOKEN`)
+- `POST /tracking/poll`
+- `offers.display_price_usd` and `orders.shipping_address` were added in migration 0005. `currencies.decimals` holds display decimals.
 Base URL: `CATALOG_API_URL` (default `http://localhost:4020`).
 
 ## Design system (Agent 2 owns it; Agent 5 uses its colors in messages and links)
 - Colors: primary teal `#0F766E`, accent coral `#F97362`, background cream `#FBF8F3`, text charcoal `#1F2937`
 - Font: Plus Jakarta Sans (with Noto Sans Arabic and Noto Sans Devanagari as fallbacks)
-- Mobile-first, card-based, WhatsApp button always visible, RTL for `ar` and `ur`
+- Mobile-first, card-based, WhatsApp button always visible, RTL for `ar` (add `ur` in Phase 2)
 - Original design only. Never copy any rival's code, images, text, icons, or colors.
+
+## Data access (from the Database agent, approved)
+- Cost and commission columns are hidden from the anon and authenticated roles: `offers.cost_usd`, `offers.commission_rate`, `order_items.unit_cost_usd`, `supplier_orders.cost_usd` and `supplier_orders.external_order_id`. Client queries on those tables must name their columns. `select *` fails.
+- Customers may update only `locale`, `country_code`, `whatsapp_opt_in`, `whatsapp_opt_in_at` and `marketing_opt_in` on their own row.
+- Sources are public only through the `public_sources` view, which has no `config`.
+- Every new table must enable RLS and grant access explicitly, because default grants are revoked.
+- `fx_rates` with `fetched_at` before 2001 are sample values.
 
 ## Phase 1 locales
 `en, es, fr, pt, ar, zh, hi, sw, de, id`

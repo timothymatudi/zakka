@@ -1,0 +1,23 @@
+{
+  "version": "sample",
+  "verticals": [
+    {
+      "name": "Electronics",
+      "prefix": "el",
+      "categories": [
+        {"id": "gid://shopify/TaxonomyCategory/el", "level": 0, "name": "Electronics", "full_name": "Electronics", "parent_id": null},
+        {"id": "gid://shopify/TaxonomyCategory/el-1", "level": 1, "name": "Audio", "full_name": "Electronics > Audio", "parent_id": "gid://shopify/TaxonomyCategory/el"},
+        {"id": "gid://shopify/TaxonomyCategory/el-1-1", "level": 2, "name": "Headphones & Headsets", "full_name": "Electronics > Audio > Headphones & Headsets", "parent_id": "gid://shopify/TaxonomyCategory/el-1"},
+        {"id": "gid://shopify/TaxonomyCategory/el-1-1-1", "level": 3, "name": "Earbuds", "full_name": "Electronics > Audio > Headphones & Headsets > Earbuds", "parent_id": "gid://shopify/TaxonomyCategory/el-1-1"}
+      ]
+    },
+    {
+      "name": "Toys & Games",
+      "prefix": "tg",
+      "categories": [
+        {"id": "gid://shopify/TaxonomyCategory/tg", "level": 0, "name": "Toys & Games", "full_name": "Toys & Games", "parent_id": null},
+        {"id": "gid://shopify/TaxonomyCategory/tg-1", "level": 1, "name": "Children's Puzzles", "full_name": "Toys & Games > Children's Puzzles", "parent_id": "gid://shopify/TaxonomyCategory/tg"}
+      ]
+    }
+  ]
+}

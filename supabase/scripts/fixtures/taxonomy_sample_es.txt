@@ -1,0 +1,6 @@
+# Sample localized file in the categories.txt layout
+gid://shopify/TaxonomyCategory/el : Electrónica
+gid://shopify/TaxonomyCategory/el-1 : Electrónica > Audio
+gid://shopify/TaxonomyCategory/el-1-1 : Electrónica > Audio > Auriculares y cascos
+gid://shopify/TaxonomyCategory/tg : Juguetes y juegos
+gid://shopify/TaxonomyCategory/tg-1 : Juguetes y juegos > Rompecabezas para niños

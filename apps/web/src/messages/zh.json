@@ -184,9 +184,8 @@
   },
   "footer": {
     "tagline": "Zakka 搜索全球可信赖的商店，诚实展示总价。",
-    "affiliate": "部分链接为联盟推广链接：在合作方网站购买时，Zakka 可能获得佣金。这些链接都会明确标注。",
+    "affiliate": "部分链接为联盟推广链接；Zakka 可能获得佣金。",
     "rights": "© {year} Zakka",
-    "programs": "作为亚马逊联盟成员，Zakka 从符合条件的购买中赚取收入。",
     "legalLink": "联盟推广说明"
   },
   "common": {

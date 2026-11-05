@@ -184,9 +184,8 @@
   },
   "footer": {
     "tagline": "Zakka cherche dans des boutiques fiables du monde entier et affiche le prix total, honnêtement.",
-    "affiliate": "Certains liens sont affiliés : si vous achetez sur un site partenaire, Zakka peut percevoir une commission. Ils sont toujours signalés.",
+    "affiliate": "Certains liens sont affiliés ; Zakka peut percevoir une commission.",
     "rights": "© {year} Zakka",
-    "programs": "En tant que Partenaire Amazon, Zakka réalise un bénéfice sur les achats remplissant les conditions requises.",
     "legalLink": "Liens affiliés"
   },
   "common": {

@@ -1,0 +1,30 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "apps/web", "run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "search",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "services/search", "run", "start"],
+      "port": 4010
+    },
+    {
+      "name": "catalog",
+      "runtimeExecutable": "services/catalog/.venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "zakka_catalog", "serve"],
+      "cwd": "services/catalog",
+      "port": 4020
+    },
+    {
+      "name": "concierge",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "services/concierge", "run", "start"],
+      "port": 4030
+    }
+  ]
+}

@@ -47,7 +47,7 @@ export function MarketPicker() {
         <span>{market.country}</span>
         {pending && <span className="ms-1 h-2 w-2 animate-pulse rounded-full bg-coral" />}
       </summary>
-      <div className="card absolute end-0 z-40 mt-2 w-72 space-y-3 p-4 shadow-lg">
+      <div className="card absolute end-0 z-40 mt-2 w-72 max-w-[calc(100vw-2rem)] space-y-3 p-4 shadow-lg">
         <label className="block text-sm font-semibold">
           {t('language')}
           <select className="field mt-1" value={locale} onChange={(e) => onLocale(e.target.value)}>

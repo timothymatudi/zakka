@@ -1,0 +1,78 @@
+{
+  "_note": "MOCK fixture for source 'printful'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "printful",
+  "currency": "USD",
+  "tracking": {
+    "carrier": "DHL eCommerce",
+    "prefix": "GM",
+    "status": "in_transit",
+    "url_template": "https://track.zakka.example/dhl/{number}",
+    "last_event": "Shipment picked up"
+  },
+  "products": [
+    {
+      "external_id": "4001",
+      "title": "Unisex Heavy Cotton Tee - Sunrise Market Print (M)",
+      "image_urls": [
+        "https://images.zakka.example/printful/4001.jpg"
+      ],
+      "description": "Printed on demand, 100% cotton.",
+      "category_hint": "Fashion > Men's Clothing > T-Shirts",
+      "cost": "9.25",
+      "shipping": "4.75",
+      "stock": null,
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "MX",
+        "BR"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 8,
+      "attributes": {
+        "size": "M",
+        "color": "Black"
+      }
+    },
+    {
+      "external_id": "4002",
+      "title": "Ceramic Mug 11oz - Market Map",
+      "image_urls": [
+        "https://images.zakka.example/printful/4002.jpg"
+      ],
+      "description": "Printed on demand ceramic mug.",
+      "category_hint": "Home & Kitchen > Kitchen",
+      "cost": "7.95",
+      "shipping": "5.29",
+      "ships_from": "LV",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6
+    },
+    {
+      "external_id": "4003",
+      "title": "Embroidered Dad Hat - Zakka Wave",
+      "image_urls": [
+        "https://images.zakka.example/printful/4003.jpg"
+      ],
+      "description": "Low-profile cotton cap with embroidery.",
+      "category_hint": "Fashion > Accessories > Hats",
+      "cost": "13.50",
+      "shipping": "4.39",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "AE",
+        "SA",
+        "GB"
+      ],
+      "delivery_days_min": 5,
+      "delivery_days_max": 9
+    }
+  ]
+}

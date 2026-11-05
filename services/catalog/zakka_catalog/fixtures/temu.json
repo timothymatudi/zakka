@@ -1,0 +1,118 @@
+{
+  "_note": "MOCK fixture for source 'temu'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "temu",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "TM-601",
+      "title": "Reusable Silicone Food Bags 6pcs",
+      "image_urls": [
+        "https://images.zakka.example/temu/TM-601.jpg"
+      ],
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.5",
+      "review_count": 15200,
+      "url": "https://www.temu.com/mock-goods-601.html",
+      "list_price": "7.49",
+      "shipping": "0",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "TM-602",
+      "title": "Women's Ribbed Knit Cardigan",
+      "image_urls": [
+        "https://images.zakka.example/temu/TM-602.jpg"
+      ],
+      "category_hint": "Fashion > Women's Clothing",
+      "rating": "4.3",
+      "review_count": 6100,
+      "url": "https://www.temu.com/mock-goods-602.html",
+      "list_price": "13.99",
+      "shipping": "0",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "TM-603",
+      "title": "LED Strip Lights 10m with App Control",
+      "image_urls": [
+        "https://images.zakka.example/temu/TM-603.jpg"
+      ],
+      "category_hint": "Home > Lighting",
+      "rating": "4.4",
+      "review_count": 22000,
+      "url": "https://www.temu.com/mock-goods-603.html",
+      "list_price": "9.80",
+      "shipping": "2.99",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 8,
+      "delivery_days_max": 16,
+      "commission_rate": "0.10"
+    }
+  ]
+}

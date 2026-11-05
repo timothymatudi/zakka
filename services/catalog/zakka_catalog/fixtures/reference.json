@@ -1,0 +1,540 @@
+{
+  "_note": "MOCK reference data used by --dry-run and the in-memory store when DATABASE_URL is empty/unreachable. FX rates are static approximations, NOT live. Currency 'decimals' are display decimals (KES/IDR/TZS shown as whole units).",
+  "locales": [
+    "en",
+    "es",
+    "fr",
+    "pt",
+    "ar",
+    "zh",
+    "hi",
+    "sw",
+    "de",
+    "id"
+  ],
+  "currencies": [
+    {
+      "code": "USD",
+      "symbol": "$",
+      "decimals": 2
+    },
+    {
+      "code": "EUR",
+      "symbol": "€",
+      "decimals": 2
+    },
+    {
+      "code": "GBP",
+      "symbol": "£",
+      "decimals": 2
+    },
+    {
+      "code": "AED",
+      "symbol": "د.إ",
+      "decimals": 2
+    },
+    {
+      "code": "SAR",
+      "symbol": "﷼",
+      "decimals": 2
+    },
+    {
+      "code": "EGP",
+      "symbol": "E£",
+      "decimals": 2
+    },
+    {
+      "code": "KES",
+      "symbol": "KSh",
+      "decimals": 0
+    },
+    {
+      "code": "NGN",
+      "symbol": "₦",
+      "decimals": 2
+    },
+    {
+      "code": "INR",
+      "symbol": "₹",
+      "decimals": 2
+    },
+    {
+      "code": "BRL",
+      "symbol": "R$",
+      "decimals": 2
+    },
+    {
+      "code": "MXN",
+      "symbol": "MX$",
+      "decimals": 2
+    },
+    {
+      "code": "IDR",
+      "symbol": "Rp",
+      "decimals": 0
+    },
+    {
+      "code": "ZAR",
+      "symbol": "R",
+      "decimals": 2
+    },
+    {
+      "code": "PKR",
+      "symbol": "₨",
+      "decimals": 2
+    },
+    {
+      "code": "JPY",
+      "symbol": "¥",
+      "decimals": 0
+    },
+    {
+      "code": "KWD",
+      "symbol": "KD",
+      "decimals": 3
+    },
+    {
+      "code": "CNY",
+      "symbol": "¥",
+      "decimals": 2
+    },
+    {
+      "code": "TZS",
+      "symbol": "TSh",
+      "decimals": 0
+    }
+  ],
+  "fx_rates": [
+    {
+      "base": "USD",
+      "quote": "USD",
+      "rate": "1"
+    },
+    {
+      "base": "USD",
+      "quote": "EUR",
+      "rate": "0.92"
+    },
+    {
+      "base": "USD",
+      "quote": "GBP",
+      "rate": "0.78"
+    },
+    {
+      "base": "USD",
+      "quote": "AED",
+      "rate": "3.6725"
+    },
+    {
+      "base": "USD",
+      "quote": "SAR",
+      "rate": "3.75"
+    },
+    {
+      "base": "USD",
+      "quote": "EGP",
+      "rate": "48.50"
+    },
+    {
+      "base": "USD",
+      "quote": "KES",
+      "rate": "129.00"
+    },
+    {
+      "base": "USD",
+      "quote": "NGN",
+      "rate": "1550.00"
+    },
+    {
+      "base": "USD",
+      "quote": "INR",
+      "rate": "84.00"
+    },
+    {
+      "base": "USD",
+      "quote": "BRL",
+      "rate": "5.60"
+    },
+    {
+      "base": "USD",
+      "quote": "MXN",
+      "rate": "19.50"
+    },
+    {
+      "base": "USD",
+      "quote": "IDR",
+      "rate": "15800"
+    },
+    {
+      "base": "USD",
+      "quote": "ZAR",
+      "rate": "18.20"
+    },
+    {
+      "base": "USD",
+      "quote": "PKR",
+      "rate": "278.00"
+    },
+    {
+      "base": "USD",
+      "quote": "JPY",
+      "rate": "150.00"
+    },
+    {
+      "base": "USD",
+      "quote": "KWD",
+      "rate": "0.3070"
+    },
+    {
+      "base": "USD",
+      "quote": "CNY",
+      "rate": "7.20"
+    },
+    {
+      "base": "USD",
+      "quote": "TZS",
+      "rate": "2700"
+    }
+  ],
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "currency": "USD",
+      "default_locale": "en"
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "currency": "GBP",
+      "default_locale": "en"
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "currency": "EUR",
+      "default_locale": "de"
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "currency": "EUR",
+      "default_locale": "fr"
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "currency": "EUR",
+      "default_locale": "es"
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "currency": "BRL",
+      "default_locale": "pt"
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "currency": "MXN",
+      "default_locale": "es"
+    },
+    {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "currency": "AED",
+      "default_locale": "ar"
+    },
+    {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "currency": "SAR",
+      "default_locale": "ar"
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "currency": "EGP",
+      "default_locale": "ar"
+    },
+    {
+      "code": "KW",
+      "name": "Kuwait",
+      "currency": "KWD",
+      "default_locale": "ar"
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "currency": "INR",
+      "default_locale": "hi"
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "currency": "PKR",
+      "default_locale": "en"
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "currency": "KES",
+      "default_locale": "sw"
+    },
+    {
+      "code": "TZ",
+      "name": "Tanzania",
+      "currency": "TZS",
+      "default_locale": "sw"
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "currency": "NGN",
+      "default_locale": "en"
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "currency": "ZAR",
+      "default_locale": "en"
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "currency": "IDR",
+      "default_locale": "id"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "currency": "CNY",
+      "default_locale": "zh"
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "currency": "JPY",
+      "default_locale": "en"
+    }
+  ],
+  "categories": [
+    {
+      "id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "slug": "electronics",
+      "parent_id": null,
+      "name": "Electronics"
+    },
+    {
+      "id": "0e3ef3a6-b0b6-59fd-b69d-893069ea0fef",
+      "slug": "audio",
+      "parent_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "name": "Audio"
+    },
+    {
+      "id": "e185f49e-f82d-5cf6-bea6-9bb53c0c47c3",
+      "slug": "headphones",
+      "parent_id": "0e3ef3a6-b0b6-59fd-b69d-893069ea0fef",
+      "name": "Headphones"
+    },
+    {
+      "id": "50179ff3-9c9f-538b-8bfd-9605775a4642",
+      "slug": "phone-accessories",
+      "parent_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "name": "Phone Accessories"
+    },
+    {
+      "id": "f2342fe7-14aa-56ff-b0bb-ffb1145fffbc",
+      "slug": "computers",
+      "parent_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "name": "Computers & Office"
+    },
+    {
+      "id": "64f52856-27f8-596a-8701-a0e100bb4c0c",
+      "slug": "wearables",
+      "parent_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "name": "Wearables"
+    },
+    {
+      "id": "8c4f00bb-59b4-5bef-8db3-cc9032cbd346",
+      "slug": "home-kitchen",
+      "parent_id": null,
+      "name": "Home & Kitchen"
+    },
+    {
+      "id": "9748567b-5185-524b-ae61-27744d1ff2e3",
+      "slug": "kitchen",
+      "parent_id": "8c4f00bb-59b4-5bef-8db3-cc9032cbd346",
+      "name": "Kitchen"
+    },
+    {
+      "id": "9d7659cb-b0cd-563a-b2cb-b1bd8f0f1e5d",
+      "slug": "appliances",
+      "parent_id": "8c4f00bb-59b4-5bef-8db3-cc9032cbd346",
+      "name": "Appliances"
+    },
+    {
+      "id": "f69017c0-b63b-5c32-a6e6-aa0881355489",
+      "slug": "home-decor",
+      "parent_id": "8c4f00bb-59b4-5bef-8db3-cc9032cbd346",
+      "name": "Home Decor"
+    },
+    {
+      "id": "c6c12c0b-c4e5-5cac-8d5c-ed4b1a223a2f",
+      "slug": "lighting",
+      "parent_id": "8c4f00bb-59b4-5bef-8db3-cc9032cbd346",
+      "name": "Lighting"
+    },
+    {
+      "id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "slug": "fashion",
+      "parent_id": null,
+      "name": "Fashion"
+    },
+    {
+      "id": "3bf177a1-d788-5a89-8139-1b59dfdccb87",
+      "slug": "womens-clothing",
+      "parent_id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "name": "Women's Clothing"
+    },
+    {
+      "id": "64e555cc-b20b-5263-b07f-7ce4beb3cbc7",
+      "slug": "mens-clothing",
+      "parent_id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "name": "Men's Clothing"
+    },
+    {
+      "id": "218e88bd-0e34-5d0d-b2de-f6785a2151f6",
+      "slug": "shoes",
+      "parent_id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "name": "Shoes"
+    },
+    {
+      "id": "af225642-4759-51b4-a779-57785ee0be1d",
+      "slug": "bags",
+      "parent_id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "name": "Bags"
+    },
+    {
+      "id": "259d53b1-caeb-5f33-a3ab-c15a3504244b",
+      "slug": "accessories",
+      "parent_id": "44781f9b-1626-5530-9af1-a9aae43d40e1",
+      "name": "Accessories"
+    },
+    {
+      "id": "dbace268-9573-5c8e-89bc-0827912f5ab3",
+      "slug": "beauty",
+      "parent_id": null,
+      "name": "Beauty & Personal Care"
+    },
+    {
+      "id": "36ba62ba-3c31-52bc-a1f2-4a2446fd2430",
+      "slug": "sports-outdoors",
+      "parent_id": null,
+      "name": "Sports & Outdoors"
+    },
+    {
+      "id": "55b3d61f-ccae-50d7-9363-c8506be4047e",
+      "slug": "toys-games",
+      "parent_id": null,
+      "name": "Toys & Games"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fc6337c3-c35f-5230-b938-172af1781c6b",
+      "code": "cj",
+      "kind": "dropship",
+      "name": "CJ Dropshipping"
+    },
+    {
+      "id": "6749b855-9a49-5ecf-ba0e-888b0bfc0740",
+      "code": "aliexpress_ds",
+      "kind": "dropship",
+      "name": "AliExpress Dropshipping"
+    },
+    {
+      "id": "a456fc41-beea-52a1-826c-9173ff562e29",
+      "code": "spocket",
+      "kind": "dropship",
+      "name": "Spocket"
+    },
+    {
+      "id": "ae5d16bf-a46e-5c40-94c7-769a678a71dd",
+      "code": "printful",
+      "kind": "dropship",
+      "name": "Printful"
+    },
+    {
+      "id": "85e090e7-1e3c-5f2a-bff3-43a346f77a5e",
+      "code": "amazon",
+      "kind": "affiliate",
+      "name": "Amazon"
+    },
+    {
+      "id": "99218d0a-dd7f-53f2-bf91-e64380c6a8dc",
+      "code": "temu",
+      "kind": "affiliate",
+      "name": "Temu"
+    },
+    {
+      "id": "343b09af-1158-5827-9975-96eda1e30bc0",
+      "code": "shein",
+      "kind": "affiliate",
+      "name": "Shein"
+    },
+    {
+      "id": "e02714ba-2b72-5d24-afdf-c99cf55affcb",
+      "code": "aliexpress_aff",
+      "kind": "affiliate",
+      "name": "AliExpress Portals"
+    },
+    {
+      "id": "9d7d8676-69bc-57a5-9776-4543609c825f",
+      "code": "jumia",
+      "kind": "affiliate",
+      "name": "Jumia"
+    },
+    {
+      "id": "d8ca4c3a-7069-5709-8c2a-433889a40a3c",
+      "code": "noon",
+      "kind": "affiliate",
+      "name": "Noon"
+    },
+    {
+      "id": "95755c0c-b64e-56f3-a90c-ae9424f6fde9",
+      "code": "flipkart",
+      "kind": "affiliate",
+      "name": "Flipkart"
+    }
+  ],
+  "markup_rules": [
+    {
+      "id": "064deab7-2830-5b6d-8abd-b29ee67820a5",
+      "scope": "global",
+      "scope_id": null,
+      "percent": "35",
+      "fixed_usd": "1.00",
+      "round_to": "0.99",
+      "priority": 0
+    },
+    {
+      "id": "a57dc0b8-0024-50dc-9ef7-fe83c98a401c",
+      "scope": "category",
+      "scope_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+      "percent": "25",
+      "fixed_usd": "1.00",
+      "round_to": "0.99",
+      "priority": 0
+    },
+    {
+      "id": "7387a204-186d-5dfd-8437-b7151ec92dd5",
+      "scope": "source",
+      "scope_id": "ae5d16bf-a46e-5c40-94c7-769a678a71dd",
+      "percent": "40",
+      "fixed_usd": "0",
+      "round_to": "0.99",
+      "priority": 0
+    }
+  ]
+}

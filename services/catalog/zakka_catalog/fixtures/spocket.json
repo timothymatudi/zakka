@@ -1,0 +1,79 @@
+{
+  "_note": "MOCK fixture for source 'spocket'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "spocket",
+  "currency": "USD",
+  "tracking": {
+    "carrier": "USPS",
+    "prefix": "9400",
+    "status": "in_transit",
+    "url_template": "https://track.zakka.example/usps/{number}",
+    "last_event": "In transit to next facility"
+  },
+  "products": [
+    {
+      "external_id": "SPK-US-101",
+      "title": "Organic Cotton Tote Bag",
+      "image_urls": [
+        "https://images.zakka.example/spocket/SPK-US-101.jpg"
+      ],
+      "description": "Heavyweight organic cotton tote with inner pocket.",
+      "category_hint": "Fashion > Bags",
+      "rating": "4.8",
+      "review_count": 95,
+      "cost": "8.00",
+      "shipping": "4.50",
+      "stock": 220,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5
+    },
+    {
+      "external_id": "SPK-EU-102",
+      "title": "Handmade Ceramic Mug 350ml",
+      "image_urls": [
+        "https://images.zakka.example/spocket/SPK-EU-102.jpg"
+      ],
+      "description": "Wheel-thrown stoneware mug, dishwasher safe.",
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.9",
+      "review_count": 41,
+      "cost": "11.00",
+      "shipping": "6.00",
+      "stock": 60,
+      "ships_from": "ES",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7
+    },
+    {
+      "external_id": "SPK-GB-103",
+      "title": "Natural Soy Candle - Fig & Cedar",
+      "image_urls": [
+        "https://images.zakka.example/spocket/SPK-GB-103.jpg"
+      ],
+      "description": "Hand-poured soy wax candle, 40h burn time.",
+      "category_hint": "Home > Home Decor",
+      "rating": "4.7",
+      "review_count": 130,
+      "cost": "7.50",
+      "shipping": "3.90",
+      "stock": 400,
+      "ships_from": "GB",
+      "ships_to": [
+        "GB",
+        "DE",
+        "FR"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4
+    }
+  ]
+}

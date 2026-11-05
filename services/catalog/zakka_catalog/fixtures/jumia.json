@@ -1,0 +1,70 @@
+{
+  "_note": "MOCK fixture for source 'jumia'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "jumia",
+  "currency": "NGN",
+  "products": [
+    {
+      "external_id": "JM-NG-801",
+      "title": "Rechargeable Standing Fan 16 inch",
+      "image_urls": [
+        "https://images.zakka.example/jumia/JM-NG-801.jpg"
+      ],
+      "category_hint": "Home & Office > Appliances",
+      "rating": "4.1",
+      "review_count": 540,
+      "url": "https://www.jumia.com.ng/mock-801.html",
+      "currency": "NGN",
+      "list_price": "58500",
+      "shipping": "2500",
+      "ships_from": "NG",
+      "ships_to": [
+        "NG"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "JM-KE-802",
+      "title": "Gas Cooker 2 Burner Stainless",
+      "image_urls": [
+        "https://images.zakka.example/jumia/JM-KE-802.jpg"
+      ],
+      "category_hint": "Home & Kitchen > Appliances",
+      "rating": "4.0",
+      "review_count": 310,
+      "url": "https://www.jumia.co.ke/mock-802.html",
+      "currency": "KES",
+      "list_price": "4999",
+      "shipping": "250",
+      "ships_from": "KE",
+      "ships_to": [
+        "KE"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 4,
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "JM-EG-803",
+      "title": "Men's Leather Sandals",
+      "image_urls": [
+        "https://images.zakka.example/jumia/JM-EG-803.jpg"
+      ],
+      "category_hint": "Fashion > Shoes",
+      "rating": "4.3",
+      "review_count": 190,
+      "url": "https://www.jumia.com.eg/mock-803.html",
+      "currency": "EGP",
+      "list_price": "899",
+      "shipping": "45",
+      "ships_from": "EG",
+      "ships_to": [
+        "EG"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "commission_rate": "0.08"
+    }
+  ]
+}

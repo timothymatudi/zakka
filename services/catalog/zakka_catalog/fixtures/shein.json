@@ -1,0 +1,118 @@
+{
+  "_note": "MOCK fixture for source 'shein'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "shein",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "SH-701",
+      "title": "Floral Wrap Midi Dress",
+      "image_urls": [
+        "https://images.zakka.example/shein/SH-701.jpg"
+      ],
+      "category_hint": "Fashion > Women's Clothing > Dresses",
+      "rating": "4.6",
+      "review_count": 3300,
+      "url": "https://www.shein.com/mock-p-701.html",
+      "list_price": "18.99",
+      "shipping": "3.99",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 8,
+      "delivery_days_max": 14,
+      "commission_rate": "0.12"
+    },
+    {
+      "external_id": "SH-702",
+      "title": "Men's Linen Blend Shirt",
+      "image_urls": [
+        "https://images.zakka.example/shein/SH-702.jpg"
+      ],
+      "category_hint": "Fashion > Men's Clothing",
+      "rating": "4.4",
+      "review_count": 1200,
+      "url": "https://www.shein.com/mock-p-702.html",
+      "list_price": "16.50",
+      "shipping": "3.99",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 8,
+      "delivery_days_max": 14,
+      "commission_rate": "0.12"
+    },
+    {
+      "external_id": "SH-703",
+      "title": "Kids Light-up Sneakers",
+      "image_urls": [
+        "https://images.zakka.example/shein/SH-703.jpg"
+      ],
+      "category_hint": "Fashion > Shoes",
+      "rating": "4.5",
+      "review_count": 870,
+      "url": "https://www.shein.com/mock-p-703.html",
+      "list_price": "21.00",
+      "shipping": "0",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 9,
+      "delivery_days_max": 15,
+      "commission_rate": "0.12"
+    }
+  ]
+}

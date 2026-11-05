@@ -1,0 +1,150 @@
+{
+  "_note": "MOCK fixture for source 'aliexpress_ds'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "aliexpress_ds",
+  "currency": "USD",
+  "tracking": {
+    "carrier": "Cainiao",
+    "prefix": "LP",
+    "status": "in_transit",
+    "url_template": "https://track.zakka.example/cainiao/{number}",
+    "last_event": "Arrived at destination country"
+  },
+  "products": [
+    {
+      "external_id": "1005001001",
+      "title": "Stainless Steel Insulated Bottle 750ml",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_ds/1005001001.jpg"
+      ],
+      "description": "Double-wall vacuum bottle, keeps drinks cold 24h / hot 12h.",
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.7",
+      "review_count": 5120,
+      "cost": "5.40",
+      "shipping": "0",
+      "stock": 8000,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 12,
+      "delivery_days_max": 25
+    },
+    {
+      "external_id": "1005001002",
+      "title": "LED Desk Lamp with USB-C Port",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_ds/1005001002.jpg"
+      ],
+      "description": "Dimmable desk lamp with 5 colour temperatures.",
+      "category_hint": "Home > Lighting",
+      "rating": "4.5",
+      "review_count": 760,
+      "cost": "12.30",
+      "shipping": "4.10",
+      "stock": 150,
+      "ships_from": "ES",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 8
+    },
+    {
+      "external_id": "1005001003",
+      "title": "TWS Earbuds Bluetooth 5.3",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_ds/1005001003.jpg"
+      ],
+      "description": "True wireless earbuds with charging case.",
+      "brand": "Soundloop",
+      "gtin": "2000000000015",
+      "category_hint": "Consumer Electronics > Earphones & Headphones",
+      "rating": "4.3",
+      "review_count": 9800,
+      "cost": "6.20",
+      "shipping": "2.80",
+      "stock": 20000,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 10,
+      "delivery_days_max": 20
+    },
+    {
+      "external_id": "1005001004",
+      "title": "Silicone Kitchen Utensil Set 12pcs",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_ds/1005001004.jpg"
+      ],
+      "description": "Heat-resistant silicone utensils with wooden handles.",
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.6",
+      "review_count": 3400,
+      "cost": "7.10",
+      "shipping": "3.00",
+      "stock": 900,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 12,
+      "delivery_days_max": 22
+    }
+  ]
+}

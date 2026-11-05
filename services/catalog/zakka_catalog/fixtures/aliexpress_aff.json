@@ -1,0 +1,122 @@
+{
+  "_note": "MOCK fixture for source 'aliexpress_aff'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "aliexpress_aff",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "1005002001",
+      "title": "Mechanical Keyboard 68 Keys Hot-swap",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/1005002001.jpg"
+      ],
+      "category_hint": "Computer & Office > Keyboards",
+      "brand": "Keyvo",
+      "gtin": "2000000000022",
+      "rating": "4.7",
+      "review_count": 2900,
+      "url": "https://s.click.aliexpress.com/e/_mock2001",
+      "list_price": "34.90",
+      "shipping": "0",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 10,
+      "delivery_days_max": 20,
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "1005002002",
+      "title": "Smart Watch with Heart Rate Monitor",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/1005002002.jpg"
+      ],
+      "category_hint": "Consumer Electronics > Smart Electronics > Wearables",
+      "rating": "4.2",
+      "review_count": 18400,
+      "url": "https://s.click.aliexpress.com/e/_mock2002",
+      "list_price": "22.40",
+      "shipping": "1.99",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 10,
+      "delivery_days_max": 22,
+      "commission_rate": "0.08"
+    },
+    {
+      "external_id": "1005002003",
+      "title": "Soundloop TWS Earbuds",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/1005002003.jpg"
+      ],
+      "brand": "Soundloop",
+      "gtin": "2000000000015",
+      "category_hint": "Consumer Electronics > Earphones & Headphones",
+      "rating": "4.3",
+      "review_count": 9800,
+      "url": "https://s.click.aliexpress.com/e/_mock2003",
+      "list_price": "18.50",
+      "shipping": "0",
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 10,
+      "delivery_days_max": 20,
+      "commission_rate": "0.09"
+    }
+  ]
+}

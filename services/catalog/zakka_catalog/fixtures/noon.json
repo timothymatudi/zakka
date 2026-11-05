@@ -1,0 +1,73 @@
+{
+  "_note": "MOCK fixture for source 'noon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "noon",
+  "currency": "AED",
+  "products": [
+    {
+      "external_id": "NN-AE-901",
+      "title": "Arabic Coffee Dallah Set",
+      "image_urls": [
+        "https://images.zakka.example/noon/NN-AE-901.jpg"
+      ],
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.7",
+      "review_count": 420,
+      "url": "https://www.noon.com/uae-en/mock-901/p/",
+      "currency": "AED",
+      "list_price": "89",
+      "shipping": "0",
+      "ships_from": "AE",
+      "ships_to": [
+        "AE",
+        "SA"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "commission_rate": "0.05"
+    },
+    {
+      "external_id": "NN-SA-902",
+      "title": "Memory Foam Prayer Mat",
+      "image_urls": [
+        "https://images.zakka.example/noon/NN-SA-902.jpg"
+      ],
+      "category_hint": "Home > Home Decor",
+      "rating": "4.8",
+      "review_count": 1600,
+      "url": "https://www.noon.com/saudi-en/mock-902/p/",
+      "currency": "SAR",
+      "list_price": "79",
+      "shipping": "0",
+      "ships_from": "SA",
+      "ships_to": [
+        "SA"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "commission_rate": "0.05"
+    },
+    {
+      "external_id": "NN-AE-903",
+      "title": "RGB Gaming Headset with Mic",
+      "image_urls": [
+        "https://images.zakka.example/noon/NN-AE-903.jpg"
+      ],
+      "category_hint": "Electronics > Audio > Headphones",
+      "rating": "4.4",
+      "review_count": 980,
+      "url": "https://www.noon.com/uae-en/mock-903/p/",
+      "currency": "AED",
+      "list_price": "149",
+      "shipping": "0",
+      "ships_from": "AE",
+      "ships_to": [
+        "AE",
+        "SA",
+        "KW"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "commission_rate": "0.05"
+    }
+  ]
+}

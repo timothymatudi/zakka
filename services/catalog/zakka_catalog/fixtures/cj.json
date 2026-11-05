@@ -1,0 +1,190 @@
+{
+  "_note": "MOCK fixture for source 'cj'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "cj",
+  "currency": "USD",
+  "tracking": {
+    "carrier": "YunExpress",
+    "prefix": "YT",
+    "status": "in_transit",
+    "url_template": "https://track.zakka.example/yunexpress/{number}",
+    "last_event": "Departed sorting centre, Shenzhen"
+  },
+  "products": [
+    {
+      "external_id": "CJ-EAR-001",
+      "title": "Wireless Earbuds with Charging Case",
+      "image_urls": [
+        "https://images.zakka.example/cj/CJ-EAR-001.jpg"
+      ],
+      "description": "Bluetooth 5.3 earbuds with touch controls, 24h total battery and USB-C charging case.",
+      "bullet_points": [
+        "Bluetooth 5.3",
+        "24h battery with case",
+        "IPX4 splash resistant"
+      ],
+      "brand": "Soundloop",
+      "gtin": "2000000000015",
+      "category_hint": "Electronics > Audio > Headphones",
+      "rating": "4.4",
+      "review_count": 2310,
+      "cost": "6.80",
+      "shipping": "3.20",
+      "stock": 1200,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 8,
+      "delivery_days_max": 15
+    },
+    {
+      "external_id": "CJ-LMP-002",
+      "title": "Sunset Projection Lamp",
+      "image_urls": [
+        "https://images.zakka.example/cj/CJ-LMP-002.jpg"
+      ],
+      "description": "Rotating sunset projector lamp with 16 colours and remote.",
+      "brand": "Glowan",
+      "category_hint": "Home > Lighting",
+      "rating": "4.2",
+      "review_count": 640,
+      "cost": "4.10",
+      "shipping": "2.90",
+      "stock": 340,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6
+    },
+    {
+      "external_id": "CJ-YGM-003",
+      "title": "Non-slip Yoga Mat 6mm",
+      "image_urls": [
+        "https://images.zakka.example/cj/CJ-YGM-003.jpg"
+      ],
+      "description": "TPE yoga mat with alignment lines and carry strap.",
+      "category_hint": "Sports & Outdoors > Fitness",
+      "rating": "4.6",
+      "review_count": 880,
+      "cost": "9.50",
+      "shipping": "7.80",
+      "stock": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 10,
+      "delivery_days_max": 18
+    },
+    {
+      "external_id": "CJ-PHN-004",
+      "title": "Magnetic Phone Car Mount",
+      "image_urls": [
+        "https://images.zakka.example/cj/CJ-PHN-004.jpg"
+      ],
+      "description": "Dashboard magnetic mount compatible with MagSafe cases.",
+      "category_hint": "Electronics > Phone Accessories",
+      "rating": "4.1",
+      "review_count": 1530,
+      "cost": "2.30",
+      "shipping": "1.90",
+      "stock": 3000,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 14
+    },
+    {
+      "external_id": "CJ-BLD-005",
+      "title": "Mini Portable Blender 380ml",
+      "image_urls": [
+        "https://images.zakka.example/cj/CJ-BLD-005.jpg"
+      ],
+      "description": "USB rechargeable personal blender.",
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "3.9",
+      "review_count": 210,
+      "cost": "8.90",
+      "shipping": "4.50",
+      "stock": 0,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "JP",
+        "KW"
+      ],
+      "delivery_days_min": 9,
+      "delivery_days_max": 16
+    }
+  ]
+}

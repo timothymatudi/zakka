@@ -1,0 +1,107 @@
+{
+  "_note": "MOCK fixture for source 'amazon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "amazon",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "B0MOCKUS01",
+      "title": "Soundloop Wireless Earbuds",
+      "image_urls": [
+        "https://images.zakka.example/amazon/B0MOCKUS01.jpg"
+      ],
+      "description": "Mock Amazon US listing for testing (not a real ASIN).",
+      "brand": "Soundloop",
+      "gtin": "2000000000015",
+      "category_hint": "Electronics > Headphones",
+      "rating": "4.5",
+      "review_count": 12800,
+      "url": "https://www.amazon.com/dp/B0MOCKUS01",
+      "list_price": "24.99",
+      "shipping": "0",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "commission_rate": "0.03",
+      "attributes": {
+        "marketplace": "US"
+      }
+    },
+    {
+      "external_id": "B0MOCKAE01",
+      "title": "Digital Air Fryer 4L",
+      "image_urls": [
+        "https://images.zakka.example/amazon/B0MOCKAE01.jpg"
+      ],
+      "description": "Mock Amazon.ae listing.",
+      "category_hint": "Home & Kitchen > Appliances",
+      "rating": "4.6",
+      "review_count": 3100,
+      "url": "https://www.amazon.ae/dp/B0MOCKAE01",
+      "currency": "AED",
+      "list_price": "249.00",
+      "shipping": "0",
+      "ships_from": "AE",
+      "ships_to": [
+        "AE"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "commission_rate": "0.04",
+      "attributes": {
+        "marketplace": "AE"
+      }
+    },
+    {
+      "external_id": "B0MOCKIN01",
+      "title": "Cotton Kurta Set for Women",
+      "image_urls": [
+        "https://images.zakka.example/amazon/B0MOCKIN01.jpg"
+      ],
+      "description": "Mock Amazon.in listing.",
+      "category_hint": "Fashion > Women's Clothing",
+      "rating": "4.2",
+      "review_count": 870,
+      "url": "https://www.amazon.in/dp/B0MOCKIN01",
+      "currency": "INR",
+      "list_price": "1299",
+      "shipping": "40",
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "commission_rate": "0.06",
+      "attributes": {
+        "marketplace": "IN"
+      }
+    },
+    {
+      "external_id": "B0MOCKUS02",
+      "title": "Building Blocks Classic Set 500pcs",
+      "image_urls": [
+        "https://images.zakka.example/amazon/B0MOCKUS02.jpg"
+      ],
+      "description": "Mock Amazon US listing.",
+      "category_hint": "Toys & Games",
+      "rating": "4.8",
+      "review_count": 4400,
+      "url": "https://www.amazon.com/dp/B0MOCKUS02",
+      "list_price": "29.99",
+      "shipping": "0",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 4,
+      "commission_rate": "0.03",
+      "attributes": {
+        "marketplace": "US"
+      }
+    }
+  ]
+}

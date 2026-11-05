@@ -1,0 +1,69 @@
+{
+  "_note": "MOCK fixture for source 'flipkart'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "source": "flipkart",
+  "currency": "INR",
+  "products": [
+    {
+      "external_id": "FK-1001",
+      "title": "Aluminium Pressure Cooker 5L",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/FK-1001.jpg"
+      ],
+      "category_hint": "Home & Kitchen > Kitchen",
+      "rating": "4.4",
+      "review_count": 21000,
+      "url": "https://www.flipkart.com/mock-1001/p/itm1001",
+      "list_price": "1899",
+      "shipping": "0",
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "commission_rate": "0.05"
+    },
+    {
+      "external_id": "FK-1002",
+      "title": "Men's Running Shoes Mesh",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/FK-1002.jpg"
+      ],
+      "category_hint": "Fashion > Shoes",
+      "rating": "4.1",
+      "review_count": 8700,
+      "url": "https://www.flipkart.com/mock-1002/p/itm1002",
+      "list_price": "1249",
+      "shipping": "40",
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7,
+      "commission_rate": "0.06"
+    },
+    {
+      "external_id": "FK-1003",
+      "title": "Power Bank 20000mAh Fast Charge",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/FK-1003.jpg"
+      ],
+      "category_hint": "Electronics > Phone Accessories",
+      "brand": "Voltra",
+      "gtin": "2000000000039",
+      "rating": "4.3",
+      "review_count": 15600,
+      "url": "https://www.flipkart.com/mock-1003/p/itm1003",
+      "list_price": "1099",
+      "shipping": "0",
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "commission_rate": "0.04"
+    }
+  ]
+}

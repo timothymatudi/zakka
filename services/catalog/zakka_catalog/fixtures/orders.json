@@ -1,0 +1,41 @@
+{
+  "_note": "MOCK order used by the in-memory store (API demo/tests). Items reference offers by source code + external_id.",
+  "orders": [
+    {
+      "id": "a94a6fae-f05d-5f3f-9617-2acc55cac543",
+      "status": "paid",
+      "currency": "USD",
+      "channel": "whatsapp",
+      "shipping_address": {
+        "name": "Amina Njoroge",
+        "line1": "12 Mock Street",
+        "city": "Austin",
+        "region": "TX",
+        "postal_code": "78701",
+        "country_code": "US",
+        "phone": "+15550100",
+        "email": "amina@example.com"
+      },
+      "items": [
+        {
+          "source": "cj",
+          "external_id": "CJ-EAR-001",
+          "qty": 2,
+          "unit_price": "14.99"
+        },
+        {
+          "source": "printful",
+          "external_id": "4001",
+          "qty": 1,
+          "unit_price": "19.99"
+        },
+        {
+          "source": "amazon",
+          "external_id": "B0MOCKUS01",
+          "qty": 1,
+          "unit_price": "24.99"
+        }
+      ]
+    }
+  ]
+}

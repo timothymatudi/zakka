@@ -5,7 +5,7 @@ import { countryFromPhone, countryInfo, fallbackLocalPrice, formatMoney, ZERO_DE
 import { detectLanguage } from '../lang/detect';
 import { countryName, t } from '../lang/messages';
 import { log } from '../log';
-import { PROVIDER_LABEL, providerForCountry, type ProviderName, type Providers } from '../payments';
+import { PROVIDER_LABEL, providerForCountry, usableProvider, type ProviderName, type Providers } from '../payments';
 import type { PaymentEvent } from '../payments/types';
 import type { Locale, SearchDocument } from '../shared';
 import type { Conversation, ConvContext, Customer, Order, ResultItem, Store } from '../store/types';
@@ -330,7 +330,7 @@ export class Concierge {
     if (fresh === null) return this.reply(turn, { kind: 'text', body: t(turn.locale, 'pick_again') });
     if (fresh && fresh.currency === it.currency) Object.assign(it, { price: fresh.price, price_usd: fresh.price_usd });
     const { store, config } = this.d;
-    const providerName = providerForCountry(turn.country);
+    const providerName = usableProvider(this.d.providers, providerForCountry(turn.country));
     const order = await store.createOrder({
       customer_id: turn.customer.id, status: 'pending_payment', currency: it.currency,
       subtotal: it.price, shipping: 0, tax: 0, total: it.price, total_usd: it.price_usd,
@@ -386,7 +386,8 @@ export class Concierge {
     if (order.status !== 'pending_payment') throw new CheckoutError(409, `order is ${order.status}, not pending_payment`);
     const customer = order.customer_id ? await store.getCustomer(order.customer_id) : null;
     const country = order.shipping_address?.country_code ?? customer?.country_code ?? null;
-    const providerName = input.provider ?? providerForCountry(country);
+    if (input.provider && this.d.providers[input.provider].disabled) throw new CheckoutError(400, `${input.provider} is not available`);
+    const providerName = input.provider ?? usableProvider(this.d.providers, providerForCountry(country));
     const items = await store.getOrderItems(order.id);
     const link = await this.startPayment(order, providerName, {
       description: `Zakka ${orderRef(order.id)}${items[0]?.title ? `: ${items[0].title}` : ''}`,

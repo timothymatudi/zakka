@@ -121,3 +121,23 @@ describe('MpesaProvider (real adapter, fetch stubbed)', () => {
     await expect(p.parseWebhook(raw, { 'x-callback-token': 'tok' })).resolves.toMatchObject({ provider: 'mpesa', ref: 'ws_CO_123', status: 'paid', amount: 2257, currency: 'KES' });
   });
 });
+
+describe('createProviders: no mock payments next to live ones', () => {
+  it('disables unconfigured providers once any provider is live, and falls back to a live one', async () => {
+    const { createProviders, usableProvider } = await import('../src/payments');
+    const { mockConfig } = await import('../src/config');
+    const cfg = mockConfig({ stripe: { secretKey: 'sk_test_x', webhookSecret: 'whsec_x' } });
+    const p = createProviders(cfg);
+    expect(p.stripe.mock).toBe(false);
+    expect(p.paypal.disabled).toBe(true);
+    expect(p.paypal.mock).toBe(false); // so /mock-pay/paypal/... is 404
+    expect(usableProvider(p, 'mpesa')).toBe('stripe');
+  });
+  it('keeps mock mode when no provider is live (local development)', async () => {
+    const { createProviders } = await import('../src/payments');
+    const { mockConfig } = await import('../src/config');
+    const p = createProviders(mockConfig());
+    expect(p.paypal.mock).toBe(true);
+    expect(p.paypal.disabled).toBeFalsy();
+  });
+});

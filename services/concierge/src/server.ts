@@ -84,7 +84,7 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
 
   app.get('/health', async () => ({
     ok: true, store: store.kind, whatsapp: whatsapp.mock ? 'mock' : 'live', ai: ai.mock ? 'mock' : 'live',
-    payments: Object.fromEntries(PROVIDER_NAMES.map((p) => [p, providers[p].mock ? 'mock' : 'live'])),
+    payments: Object.fromEntries(PROVIDER_NAMES.map((p) => [p, providers[p].disabled ? 'disabled' : providers[p].mock ? 'mock' : 'live'])),
   }));
 
   // ---- WhatsApp webhook -----------------------------------------------------

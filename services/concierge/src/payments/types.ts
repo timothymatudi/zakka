@@ -26,6 +26,8 @@ export interface PaymentEvent {
 export interface PaymentProvider {
   readonly name: ProviderName;
   readonly mock: boolean;
+  /** Not configured while other providers are live: never offered, never charges, ignores webhooks. */
+  readonly disabled?: boolean;
   supportsCurrency(currency: string): boolean;
   createPaymentLink(input: PaymentLinkInput): Promise<PaymentLink>;
   /** Verifies the webhook signature and returns the normalised event (null for irrelevant events). Throws on bad signature. */

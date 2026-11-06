@@ -67,8 +67,9 @@ export async function startPayment(provider: PaymentMethod, order: StoredOrder, 
       cache: 'no-store',
     });
   } catch (err) {
-    console.warn('[payments] concierge unreachable, using mock payment', err);
-    return mock;
+    // Never settle a configured store's order without the payment service.
+    console.error('[payments] concierge unreachable', err);
+    return { ok: false, error: 'provider_unavailable', status: 502 };
   }
 
   if (res.ok) {

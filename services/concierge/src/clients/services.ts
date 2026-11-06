@@ -11,6 +11,11 @@ export interface SearchClient {
 }
 export interface CatalogClient {
   price(offerId: string, country: string): Promise<CatalogPrice | null>;
+  /**
+   * Checkout-time re-check at the supplier (POST /offers/{id}/refresh). `undefined` = catalog not
+   * reachable or not implemented (caller keeps the quoted price); `null` = no longer available.
+   */
+  checkoutPrice?(offerId: string, country: string): Promise<CatalogPrice | null | undefined>;
   /** POST /orders/{id}/forward with `Authorization: Bearer CATALOG_API_TOKEN` and the order's shipping address. */
   forward(orderId: string, shippingAddress: ShippingAddress | null, snapshot?: { order: Order; items: OrderItem[] }): Promise<{ ok: boolean; mock: boolean; status?: number; detail?: string }>;
 }
@@ -55,6 +60,24 @@ export class HttpCatalogClient implements CatalogClient {
     } catch (e) {
       if (!this.o.fixtureFallback) throw e;
       return null; // caller uses the fallback conversion
+    }
+  }
+
+  async checkoutPrice(offerId: string, country: string): Promise<CatalogPrice | null | undefined> {
+    if (this.o.offline) return undefined;
+    try {
+      const res = await fetch(`${this.o.baseUrl}/offers/${encodeURIComponent(offerId)}/refresh?country=${encodeURIComponent(country)}`, {
+        method: 'POST',
+        headers: this.o.token ? { authorization: `Bearer ${this.o.token}` } : {},
+        signal: AbortSignal.timeout(this.o.timeoutMs ?? 8000),
+      });
+      if (res.status === 404) return null;
+      if (!res.ok) return undefined;
+      const data = (await res.json()) as { is_active?: boolean; price?: CatalogPrice };
+      if (!data.is_active || !data.price || data.price.ships_to_country === false) return null;
+      return data.price;
+    } catch {
+      return undefined;
     }
   }
 

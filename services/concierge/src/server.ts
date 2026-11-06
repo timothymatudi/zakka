@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from 'node:crypto';
 import Fastify, { type FastifyInstance, type FastifyRequest } from 'fastify';
 import { createSupportAI, type SupportAI } from './ai/support';
 import { HttpCatalogClient, HttpSearchClient, type CatalogClient, type SearchClient } from './clients/services';
@@ -40,6 +41,10 @@ export interface App {
 /** Only http(s) URLs may be used as mock-pay redirect targets. */
 const safeUrl = (u: string | undefined) => { try { const x = new URL(u ?? ''); return /^https?:$/.test(x.protocol) ? x.toString() : null; } catch { return null; } };
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+const tokensEqual = (a: string, b: string) => {
+  const x = createHash('sha256').update(a).digest(), y = createHash('sha256').update(b).digest();
+  return timingSafeEqual(x, y);
+};
 
 export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App> {
   const store = deps.store ?? (await createStore(config.databaseUrl));
@@ -98,6 +103,9 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
         log.warn('rejected WhatsApp webhook: bad X-Hub-Signature-256');
         return reply.code(401).send({ error: 'invalid signature' });
       }
+    } else if (!whatsapp.mock) {
+      log.error('rejected WhatsApp webhook: WHATSAPP_APP_SECRET is required when WhatsApp is live');
+      return reply.code(503).send({ error: 'webhook signing not configured' });
     } else {
       log.warn('WHATSAPP_APP_SECRET empty: accepting unsigned webhook (mock mode only)');
     }
@@ -163,11 +171,13 @@ export async function buildApp(config: Config, deps: AppDeps = {}): Promise<App>
   });
 
   // ---- Internal API (catalog/fulfilment, human agents, marketing jobs) -------
+  // Match on the routed pattern, not the raw URL: '/%69nternal/...' routes to /internal/* but fails a raw prefix check.
   app.addHook('onRequest', async (req, reply) => {
-    if (!req.url.startsWith('/internal/')) return;
+    if (!(req.routeOptions.url ?? '').startsWith('/internal/')) return;
     const token = req.headers['x-internal-token'];
     const loopback = ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.ip);
-    if (config.internalToken ? token !== config.internalToken : !loopback) return reply.code(401).send({ error: 'unauthorized' });
+    const allowed = config.internalToken ? typeof token === 'string' && tokensEqual(token, config.internalToken) : loopback;
+    if (!allowed) return reply.code(401).send({ error: 'unauthorized' });
   });
 
   app.post('/internal/payments/checkout', async (req, reply) => {

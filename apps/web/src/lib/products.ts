@@ -55,6 +55,32 @@ export async function getOfferPrice(offerId: string, country: string): Promise<O
   };
 }
 
+/**
+ * Checkout-time price: asks the catalog to re-check the offer at the supplier when its data is
+ * older than 1h (POST /offers/{id}/refresh), so customers never pay a stale price or for gone stock.
+ * Returns null when the offer is no longer available. Offline (no catalog URL): the plain price.
+ */
+export async function getCheckoutPrice(offerId: string, country: string): Promise<OfferPrice | null> {
+  if (!config.catalogApiUrl) return getOfferPrice(offerId, country);
+  try {
+    const res = await fetch(
+      `${config.catalogApiUrl}/offers/${encodeURIComponent(offerId)}/refresh?country=${encodeURIComponent(country)}`,
+      {
+        method: 'POST',
+        headers: config.catalogApiToken ? { authorization: `Bearer ${config.catalogApiToken}` } : {},
+        signal: AbortSignal.timeout(8_000),
+        cache: 'no-store',
+      },
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as { is_active?: boolean; price?: OfferPrice };
+    if (!data.is_active || !data.price || data.price.ships_to_country === false) return null;
+    return data.price;
+  } catch {
+    return null;
+  }
+}
+
 /** Resolve an offer server-side (affiliate redirects and checkout validation). Never trusts a client URL. */
 export async function resolveOffer(offerId: string, productId: string | null, locale: Locale, country: string) {
   if (productId) {

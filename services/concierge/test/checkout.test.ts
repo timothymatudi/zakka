@@ -92,6 +92,12 @@ describe('POST /internal/payments/checkout', () => {
     expect((await checkout(args, { 'x-internal-token': 'wrong' })).statusCode).toBe(401);
     expect((await checkout(args, { 'x-internal-token': 'secret-token' })).statusCode).toBe(200);
   });
+
+  it('cannot skip the token with a percent-encoded /internal path', async () => {
+    t = await makeApp({ config: { internalToken: 'secret-token' } });
+    const res = await t.app.inject({ method: 'POST', url: '/%69nternal/payments/checkout', payload: { order_id: webOrder().id, return_url: RETURN, cancel_url: CANCEL, order: webOrder() } });
+    expect(res.statusCode).toBe(401);
+  });
 });
 
 describe('MpesaProvider (real adapter, fetch stubbed)', () => {

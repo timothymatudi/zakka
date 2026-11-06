@@ -325,6 +325,10 @@ export class Concierge {
       return this.reply(turn, { kind: 'text', body: t(turn.locale, 'pick_again') });
     }
     if (!address) return this.askAddress(turn, true);
+    // Re-check price and stock at the supplier before charging; never sell a stale or gone offer.
+    const fresh = await this.d.catalog.checkoutPrice?.(it.offer_id, turn.country);
+    if (fresh === null) return this.reply(turn, { kind: 'text', body: t(turn.locale, 'pick_again') });
+    if (fresh && fresh.currency === it.currency) Object.assign(it, { price: fresh.price, price_usd: fresh.price_usd });
     const { store, config } = this.d;
     const providerName = providerForCountry(turn.country);
     const order = await store.createOrder({
@@ -471,7 +475,7 @@ export class Concierge {
     let order = evt.orderId ? await store.getOrder(evt.orderId) : null;
     if (!order) order = await store.findOrderByPaymentRef(evt.provider, evt.ref);
     if (!order) return { ok: false, reason: 'order_not_found' };
-    if (order.payment_provider !== evt.provider || (order.payment_ref && order.payment_ref !== evt.ref)) {
+    if (order.payment_provider !== evt.provider || !order.payment_ref || order.payment_ref !== evt.ref) {
       log.error('payment event does not match order', { order_id: order.id, provider: evt.provider, ref: evt.ref });
       return { ok: false, reason: 'ref_mismatch' };
     }
@@ -479,16 +483,23 @@ export class Concierge {
       log.warn('payment failed', { order_id: order.id, provider: evt.provider });
       return { ok: true, order };
     }
-    if (evt.amount !== undefined && evt.currency) {
-      const matches = (evt.currency.toUpperCase() === order.currency
-          && (Math.abs(evt.amount - order.total) < 0.01 || evt.amount === chargeAmount(order.total, order.currency)))
-        || (evt.currency.toUpperCase() === 'USD' && Math.abs(evt.amount - order.total_usd) < 0.01);
-      if (!matches) {
-        log.error('paid amount does not match order total', { order_id: order.id, amount: evt.amount, currency: evt.currency });
-        return { ok: false, reason: 'amount_mismatch' };
-      }
+    if (evt.amount === undefined || !evt.currency) {
+      log.error('payment event without amount/currency', { order_id: order.id, provider: evt.provider });
+      return { ok: false, reason: 'amount_missing' };
     }
-    const moved = await store.transitionOrder(order.id, ['pending_payment', 'cancelled'], 'paid');
+    const amountMatches = (evt.currency.toUpperCase() === order.currency
+        && (Math.abs(evt.amount - order.total) < 0.01 || evt.amount === chargeAmount(order.total, order.currency)))
+      || (evt.currency.toUpperCase() === 'USD' && Math.abs(evt.amount - order.total_usd) < 0.01);
+    if (!amountMatches) {
+      log.error('paid amount does not match order total', { order_id: order.id, amount: evt.amount, currency: evt.currency });
+      return { ok: false, reason: 'amount_mismatch' };
+    }
+    // A cancelled order is never revived: the shopper may already have re-ordered. Refund it instead.
+    if (order.status === 'cancelled') {
+      log.error('payment received for cancelled order; needs refund', { order_id: order.id, provider: evt.provider, ref: evt.ref });
+      return { ok: false, order, reason: 'order_cancelled_refund_needed' };
+    }
+    const moved = await store.transitionOrder(order.id, ['pending_payment'], 'paid');
     if (!moved) return { ok: true, duplicate: true, order };
     log.info('order paid', { order_id: order.id, provider: evt.provider, ref: evt.ref });
 

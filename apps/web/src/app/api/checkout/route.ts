@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { Locale } from '@shared/types';
 import { isLocale } from '@/i18n/routing';
 import { COUNTRY_CODES, marketFor } from '@/lib/markets';
-import { getOfferPrice, resolveOffer } from '@/lib/products';
+import { getCheckoutPrice, resolveOffer } from '@/lib/products';
 import { newOrderId, saveOrder, updateOrder, type ShippingAddress, type StoredOrder, type StoredOrderItem } from '@/lib/orders';
 import { startPayment } from '@/lib/payments';
 import { isMethodAvailable } from '@/lib/payment-methods';
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
     const resolved = await resolveOffer(it.offerId!, it.productId!, locale, country);
     if (!resolved) return bad('unknown_offer');
     if (resolved.offer.kind !== 'dropship') return bad('affiliate_not_purchasable');
-    const price = await getOfferPrice(it.offerId!, country);
+    const price = await getCheckoutPrice(it.offerId!, country);
     if (!price) return bad('not_available_in_country');
     if (price.kind && price.kind !== 'dropship') return bad('affiliate_not_purchasable');
     if (price.currency !== market.currency) return bad('currency_mismatch');

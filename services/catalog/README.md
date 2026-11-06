@@ -49,6 +49,11 @@ For `forward` and `track`, it also loads the demo order from `fixtures/orders.js
 | `GET /health` | Shows the store (`postgres` or `memory`) and each connector's mock/live mode. |
 | `POST /prices` | Addition: batch pricing, `{"country":"AE","offer_ids":[...]}` → `{prices, errors}`. |
 | `POST /tracking/poll` | Addition: polls tracking for open supplier orders. **Needs the bearer token.** |
+| `POST /offers/{id}/refresh?country=&force=` | Just-in-time re-price and stock check, for use before checkout or when a product page opens. Only refreshes if the offer is older than 1h. **Bearer token.** |
+| `POST /signals` | `{engaged_offer_ids, impression_product_ids, viewed:[{product_id, locale}]}`: engaged offers become hot, impressions become warm, and a locale view triggers a lazy translation. **Bearer token.** |
+| `GET /live?q=&country=&locale=` | Live affiliate search → `{hits:[{id,title,gtin,brand,image,rating,review_count,offers:[SearchOffer + list_price_local, list_currency, shipping_local]}]}`. Cached for 1h, with partner quotas. **Bearer token** (it spends partner quota). |
+| `POST /live/{source}/{external_id}/materialize` | Stores an affiliate item a customer saw or clicked, under the same offer id `/live` returned. **Bearer token.** |
+| `POST /admin/reprice` | Recomputes stored `display_price_usd` after markup or FX edits. **Bearer token.** |
 
 ### Order snapshots on forward
 
@@ -148,13 +153,93 @@ After a complete run, offers from that source that were not seen in the run are 
   * Request: `POST {CONCIERGE_PUBLIC_URL}/internal/orders/{order_id}/notify` with header `x-internal-token: $CONCIERGE_INTERNAL_TOKEN`.
   * Body: `{status, carrier, tracking_number, tracking_url, last_event}`, where `status` is the shipment status: `pending`, `in_transit`, `delivered`, `exception` or `cancelled`.
   * `CONCIERGE_PUBLIC_URL` defaults to `http://localhost:4030`.
-  * Mock mode (`CONCIERGE_INTERNAL_TOKEN` empty) only logs. Failures are logged and polling continues. It rolls the order up to `shipped`/`delivered` once all of its supplier orders get there.
+  * Mock mode (`CONCIERGE_INTERNAL_TOKEN` empty) only logs. Failures are logged and polling continues. With a job queue, notifications are durable `notify` jobs.
+  * The order rolls up to `shipped`/`delivered` once all of its supplier orders get there.
 * `supplier_orders.status` values: `pending`, `placed`, `failed`, `shipped`, `delivered`, `cancelled`.
+
+## Scale: millions of products (`zakka_catalog/scale/`, `scheduler.py`)
+
+The hourly `sync` above is the simple path, used for dev data and small catalogs. Production
+refresh uses the scale pipeline. Its targets are suppliers with 10k to 1M+ products, bounded
+memory, and no full re-fetch every hour.
+
+```bash
+python -m zakka_catalog scheduler [--once] [--workers 4] [--local]   # plan jobs + drain the queue every SYNC_INTERVAL_MINUTES (60)
+python -m zakka_catalog worker --workers 4                           # extra queue workers (any number of machines)
+python -m zakka_catalog bench --products 1000000                     # synthetic benchmark (not stored)
+python -m zakka_catalog export-dev                                   # shared dev catalog for every service
+```
+
+* **Store and queue.** With `DATABASE_URL` reachable, both use Postgres (migrations 0005 to 0007).
+  Otherwise, or with `--local`, they use `.cache/catalog.sqlite` and `.cache/jobs.sqlite`.
+* **Only dropship catalogs are imported.** Affiliate APIs are query-based and rate-limited, so
+  their catalogs are never downloaded (`scale/live.py`):
+  * Search calls `GET /live`.
+  * Results are cached for 1 hour, with a daily quota per partner (`Connector.daily_quota`).
+  * An affiliate item is stored only when a customer sees or clicks it (`POST /live/{source}/{id}/materialize`). It then keeps the same deterministic offer id that `/live` returned.
+* **Streaming and checkpoints.**
+  * `ImportRun` reads the supplier listing by cursor, in pages of 1,000.
+  * Each page's products, translations and offers are written with multi-row upserts, in one transaction together with the `sync_checkpoints` row.
+  * If the process is killed, only the page in flight is lost. The next run resumes from the cursor (tested by killing a run midway).
+* **Incremental.**
+  * A full scan runs weekly. It also deactivates offers that are gone at the supplier.
+  * In between, suppliers with an "updated since" API (`supports_delta`) are read as deltas.
+  * Hot and warm offers are re-priced by `refresh_offers` jobs in bulk lookups (`fetch_offers`).
+* **Content hash** (`offers.content_hash`). If a listing is unchanged, only commercial fields are written (price, stock, delivery, availability, `display_price_usd`). Changed content is handled according to the offer's tier.
+* **Tiers** (`offers.refresh_tier`, `next_refresh_at`), recomputed each run with set-based SQL:
+
+  | Tier | Rule | Refreshed |
+  | --- | --- | --- |
+  | hot | viewed, clicked or ordered in the last 7 days | hourly |
+  | warm | shown in search in the last 30 days | daily |
+  | cold | everything else | by the weekly scan |
+
+  Promoted offers are refreshed immediately and get `fetch_detail` jobs.
+* **Lazy cost.**
+  * New and cold products get a rule-based category (no AI), the source-language text, partner-provided translations, and supplier image URLs.
+  * Full detail, image mirroring (dropship only) and AI translation run only for hot and warm products.
+  * A product first viewed in a locale it lacks gets a translation (`POST /signals`).
+* **Import scope** per source, in `sources.config.import`: `categories` (slugs, which match descendants), `min_rating`, `ships_to`, `min_price_usd`, `max_price_usd`, `max_items`.
+* **Job queue** (`scale/jobqueue.py`, table `jobs`):
+  * Postgres workers claim jobs with `SELECT … FOR UPDATE SKIP LOCKED`. SQLite has the same semantics locally.
+  * Failed jobs retry with exponential backoff, then move to `dead` (the dead-letter state). Non-retryable errors go to `dead` straight away.
+  * Stale leases are re-queued, and dedupe keys are honored.
+  * Job kinds: `import_source`, `refresh_offers`, `fetch_detail`, `translate`, `mirror_images`, `reprice`, `reindex`, `notify`.
+  * `RedisJobQueue` marks where a Redis adapter would plug in.
+* **Stored prices stay current.**
+  * Every scan and refresh recomputes `display_price_usd`.
+  * A change to markup rules or FX (fingerprinted per source) enqueues a streaming `reprice` job, which uses keyset pagination and also recomputes affiliate `list_price_usd` from `list_price_local`.
+  * `POST /admin/reprice` reprices inline for small stores.
+* **Calls** go through `RetryPolicy`: per-source throttling (`rate_limit_per_sec`), backoff that honors `Retry-After` on 429, and a daily quota.
+* **Run summary.** Each run logs and writes `.cache/last-run.json`: scanned/new/changed/failed per source, API calls vs quota, job counts (done/retried/dead), tiers, and duration.
+
+### Benchmark (this dev PC: Windows, about 0.7 to 3 GB free RAM, about 4 GB free disk, other services running)
+
+| Run | Store | Result |
+| --- | --- | --- |
+| 1,000,000 products, full import | SQLite, lite mode | 171.6 s, **5,828 items/s**, peak memory **51.6 MB**, 1,000 pages of 1,000 rows, 247 MB DB (deleted afterwards) |
+| same, incremental with 1% changed | SQLite, lite mode | **10,000 items** read via delta in 3.1 s; the other 990,000 were not touched |
+| 100,000 products, full import | SQLite, full rows (`--full-rows`) | 40.8 s, 2,450 items/s, peak 53 MB, 120 MB DB |
+
+No Postgres was available, so the benchmark ran on SQLite. The 1M run used lite mode, which
+stores only the offer index that incremental sync needs: product content and translations are
+processed but not written. Full rows need about 1.2 GB per 1M products, and this PC doesn't have
+that much free disk. Memory stays flat because the source is streamed.
+
+### Deploying the scheduler
+
+* **Fly.io**
+  * Run `python -m zakka_catalog worker --workers 4` as a normal always-on process group. Scale its machine count with load.
+  * Run the planner as a scheduled machine:
+    `fly machine run <image> --schedule hourly -- python -m zakka_catalog scheduler --once --workers 2`.
+  * Set `DATABASE_URL`, supplier keys, `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` as Fly secrets.
+* **cron**: `0 * * * * cd /srv/zakka/services/catalog && .venv/bin/python -m zakka_catalog scheduler --once --workers 4 >> /var/log/zakka-catalog.log 2>&1`
+* **Overlap**: overlapping runs are safe. Imports are deduplicated per source, and workers claim jobs with SKIP LOCKED.
 
 ## Tests
 
 ```bash
-python -m pytest            # 200 tests, no network (sockets are blocked except loopback)
+python -m pytest            # about 225 tests (about 1 min), no network (sockets are blocked except loopback)
 ```
 
 Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport`.
@@ -163,7 +248,7 @@ Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport
 
 | Area | Mock behaviour |
 | --- | --- |
-| All 11 connectors | Mock mode when any of their env keys is empty. Uses fictional products, brands, ids and `*.example` image URLs. Data spans 12 ship-from countries, 7 currencies, and delivery times from 1 to 25 days. Some products share GTINs across sources to exercise deduping. |
+| All 11 connectors | Mock mode when any of their env keys is empty. Uses 103 fictional products across all 20 top-level categories and all 11 sources: phones and accessories, gallery images (`*.example` URLs), specs and variants, and partner-provided translations for common items (e.g. Swahili "Simu janja"). Data spans 12 ship-from countries, 7 currencies, and delivery times from 1 to 25 days. Some products share GTINs across sources to exercise deduping. |
 | Dropship orders | Mock order ids look like `CJ-MOCK-<hash>`. Cost is `(cost + shipping) × qty`. Tracking comes from each fixture's `tracking` block. |
 | FX / reference data | `fixtures/reference.json` holds static approximate rates. Real rates come from `fx_rates`. |
 | AI | `MockEnricher`. |

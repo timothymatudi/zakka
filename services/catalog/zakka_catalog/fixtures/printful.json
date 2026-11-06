@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'printful'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'printful'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "printful",
   "currency": "USD",
   "tracking": {
@@ -32,6 +32,35 @@
       "attributes": {
         "size": "M",
         "color": "Black"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/4001.jpg",
+          "https://images.zakka.example/printful/4001-2.jpg",
+          "https://images.zakka.example/printful/4001-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S",
+              "color": "Black"
+            },
+            {
+              "size": "M",
+              "color": "Black"
+            },
+            {
+              "size": "L",
+              "color": "Black"
+            },
+            {
+              "size": "XL",
+              "color": "Black"
+            }
+          ]
+        },
+        "description": "Printed on demand, 100% cotton. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
       }
     },
     {
@@ -52,7 +81,17 @@
         "GB"
       ],
       "delivery_days_min": 3,
-      "delivery_days_max": 6
+      "delivery_days_max": 6,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/4002.jpg",
+          "https://images.zakka.example/printful/4002-2.jpg",
+          "https://images.zakka.example/printful/4002-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Printed on demand ceramic mug. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
     },
     {
       "external_id": "4003",
@@ -72,7 +111,146 @@
         "GB"
       ],
       "delivery_days_min": 5,
-      "delivery_days_max": 9
+      "delivery_days_max": 9,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/4003.jpg",
+          "https://images.zakka.example/printful/4003-2.jpg",
+          "https://images.zakka.example/printful/4003-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Low-profile cotton cap with embroidery. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-PF-HD1",
+      "title": "Unisex Hoodie - Savanna Sunset Print",
+      "description": "Unisex Hoodie - Savanna Sunset Print. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Men's Fashion > Jackets & Coats",
+      "image_urls": [
+        "https://images.zakka.example/printful/X-PF-HD1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 8,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/X-PF-HD1.jpg",
+          "https://images.zakka.example/printful/X-PF-HD1-2.jpg",
+          "https://images.zakka.example/printful/X-PF-HD1-3.jpg",
+          "https://images.zakka.example/printful/X-PF-HD1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S",
+              "color": "Charcoal"
+            },
+            {
+              "size": "M",
+              "color": "Charcoal"
+            },
+            {
+              "size": "L",
+              "color": "Charcoal"
+            },
+            {
+              "size": "XL",
+              "color": "Charcoal"
+            },
+            {
+              "size": "2XL",
+              "color": "Charcoal"
+            }
+          ]
+        }
+      },
+      "cost": "22.50",
+      "shipping": "6.50",
+      "stock": 200
+    },
+    {
+      "external_id": "X-PF-CN1",
+      "title": "Canvas Wall Art - Nairobi Skyline 40x60",
+      "description": "Canvas Wall Art - Nairobi Skyline 40x60. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Home Decor > Wall Art",
+      "image_urls": [
+        "https://images.zakka.example/printful/X-PF-CN1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {
+        "size_cm": "40x60"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/X-PF-CN1.jpg",
+          "https://images.zakka.example/printful/X-PF-CN1-2.jpg",
+          "https://images.zakka.example/printful/X-PF-CN1-3.jpg",
+          "https://images.zakka.example/printful/X-PF-CN1-4.jpg"
+        ],
+        "attributes": {
+          "size_cm": "40x60"
+        }
+      },
+      "cost": "19.00",
+      "shipping": "7.50",
+      "stock": 200
+    },
+    {
+      "external_id": "X-PF-TB1",
+      "title": "All-over Print Tote Bag - Kitenge Pattern",
+      "description": "All-over Print Tote Bag - Kitenge Pattern. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Bags & Luggage > Handbags",
+      "image_urls": [
+        "https://images.zakka.example/printful/X-PF-TB1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 8,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/printful/X-PF-TB1.jpg",
+          "https://images.zakka.example/printful/X-PF-TB1-2.jpg",
+          "https://images.zakka.example/printful/X-PF-TB1-3.jpg",
+          "https://images.zakka.example/printful/X-PF-TB1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "cost": "12.40",
+      "shipping": "4.90",
+      "stock": 200
     }
   ]
 }

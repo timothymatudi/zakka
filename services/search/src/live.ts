@@ -33,6 +33,8 @@ export interface LiveOptions {
   cooldownMs?: number;
   fetchImpl?: typeof fetch;
   now?: () => number;
+  /** Bearer token for the catalog (CATALOG_API_TOKEN); /live spends partner quota. */
+  token?: string;
 }
 
 export class LiveAffiliates {
@@ -41,12 +43,14 @@ export class LiveAffiliates {
   private cooldownMs: number;
   private fetchImpl: typeof fetch;
   private now: () => number;
+  private token: string;
 
   constructor(private baseUrl: string, opts: LiveOptions = {}) {
     this.timeoutMs = opts.timeoutMs ?? 800;
     this.cooldownMs = opts.cooldownMs ?? 30_000;
     this.fetchImpl = opts.fetchImpl ?? fetch;
     this.now = opts.now ?? Date.now;
+    this.token = opts.token ?? process.env.CATALOG_API_TOKEN ?? '';
   }
 
   /** Live items for a query; [] on timeout, error, bad payload or during cooldown. */
@@ -54,7 +58,8 @@ export class LiveAffiliates {
     if (!q.trim() || this.now() < this.skipUntil) return [];
     const url = `${this.baseUrl.replace(/\/$/, '')}/live?${new URLSearchParams({ q, country, locale })}`;
     try {
-      const res = await this.fetchImpl(url, { signal: AbortSignal.timeout(this.timeoutMs) });
+      const headers: Record<string, string> = this.token ? { authorization: `Bearer ${this.token}` } : {};
+      const res = await this.fetchImpl(url, { headers, signal: AbortSignal.timeout(this.timeoutMs) });
       if (!res.ok) {
         // 404 = catalog without the endpoint yet; back off like any failure.
         throw new Error(`HTTP ${res.status}`);

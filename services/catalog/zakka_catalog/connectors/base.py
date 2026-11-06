@@ -16,6 +16,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
+from datetime import datetime
 from abc import ABC, abstractmethod
 from decimal import Decimal
 from pathlib import Path
@@ -25,6 +27,7 @@ import httpx
 
 from ..models import (
     ProductPage,
+    UpdatePage,
     SourceKind,
     SourceProduct,
     SupplierOrderRequest,
@@ -67,6 +70,14 @@ class Connector(ABC):
     env_keys: ClassVar[tuple[str, ...]]
     docs_url: ClassVar[str]
     page_size: int = 50
+    #: Max live requests per second (scheduler throttles to this). TODO(confirm) per partner docs.
+    rate_limit_per_sec: ClassVar[float] = 1.0
+    #: Daily API call budget, None = unknown/unlimited. TODO(confirm) per partner agreement.
+    daily_quota: ClassVar[int | None] = None
+    #: True when the source offers an "updated since"/delta listing (incremental sync).
+    supports_delta: ClassVar[bool] = False
+    #: Items per bulk offer lookup (fetch_offers).
+    bulk_size: ClassVar[int] = 50
 
     def __init__(
         self,
@@ -111,11 +122,59 @@ class Connector(ABC):
             return self._mock_products(page)
         return self._live_products(page)
 
+    def fetch_updates(self, cursor: str | None, since: datetime | None, limit: int) -> UpdatePage:
+        """Cursor-paginated listing. ``since`` asks for items changed after that time
+        (delta); connectors without a delta API ignore it and the caller must not pass it.
+        Default: page-number cursor over ``fetch_products``."""
+        if since is not None and not self.supports_delta:
+            raise NotSupportedError(f"{self.code} has no delta listing")
+        page_no = int(cursor or 1)
+        page = self.fetch_products(page_no)
+        return UpdatePage(items=page.items, next_cursor=str(page.next_page) if page.next_page else None)
+
+    def fetch_offers(self, external_ids: list[str]) -> list[SourceProduct]:
+        """Fresh price/stock for several items; items that no longer exist are omitted."""
+        out = []
+        for ext in external_ids:
+            p = self.fetch_offer(ext)
+            if p is not None:
+                out.append(p)
+        return out
+
+    def fetch_live(self, query: str, country: str | None, limit: int = 20) -> list[SourceProduct]:
+        """Affiliate partners: on-demand search (their APIs are query-based with quotas;
+        catalogues are never bulk-downloaded)."""
+        if self.kind != "affiliate":
+            raise NotSupportedError(f"{self.code} is a supplier; its catalogue is imported, not searched live")
+        if self.mock:
+            return self._mock_live(query, country, limit)
+        return self._live_search(query, country, limit)
+
+    def _live_search(self, query: str, country: str | None, limit: int) -> list[SourceProduct]:
+        raise NotConfirmedError(self.code, "live search", self.docs_url)
+
+    def _mock_live(self, query: str, country: str | None, limit: int) -> list[SourceProduct]:
+        terms = [t for t in re.split(r"\W+", query.lower()) if t]
+        out = []
+        for p in self._mock_all():
+            hay = " ".join([p.title, p.description or "", p.category_hint or "", p.brand or ""]).lower()
+            if terms and all(t in hay for t in terms) and (not country or country.upper() in p.ships_to):
+                out.append(p)
+        return out[:limit]
+
     def fetch_offer(self, external_id: str) -> SourceProduct | None:
         """Fresh price/stock for one item (used before forwarding an order)."""
         if self.mock:
             return next((p for p in self._mock_all() if p.external_id == external_id), None)
         return self._live_offer(external_id)
+
+    def fetch_detail(self, external_id: str) -> SourceProduct | None:
+        """Full product detail: every image (main + gallery, in order), full description,
+        bullet points, attributes/specs/variants, brand, GTIN, rating and review count.
+        Returns None when the source has no richer detail than its listing."""
+        if self.mock:
+            return self._mock_detail(external_id)
+        return self._live_detail(external_id)
 
     def place_order(self, request: SupplierOrderRequest) -> SupplierOrderResult:
         if self.kind != "dropship":
@@ -140,6 +199,13 @@ class Connector(ABC):
     def _live_offer(self, external_id: str) -> SourceProduct | None:
         raise NotConfirmedError(self.code, "single-offer lookup", self.docs_url)
 
+    def _live_detail(self, external_id: str) -> SourceProduct | None:
+        """Default: the single-item lookup, if the connector has one; otherwise no detail."""
+        try:
+            return self._live_offer(external_id)
+        except NotConfirmedError:
+            return None
+
     def _live_place_order(self, request: SupplierOrderRequest) -> SupplierOrderResult:
         raise NotConfirmedError(self.code, "order placement", self.docs_url)
 
@@ -160,6 +226,20 @@ class Connector(ABC):
             data = {"currency": default_currency, **raw}
             out.append(SourceProduct.model_validate(data))
         return out
+
+    def _mock_detail(self, external_id: str) -> SourceProduct | None:
+        default_currency = self.fixture.get("currency", "USD")
+        raw = next((r for r in self.fixture["products"] if r["external_id"] == external_id), None)
+        if raw is None:
+            return None
+        detail = raw.get("detail") or {}
+        data = {"currency": default_currency, **raw}
+        data["image_urls"] = list(raw.get("image_urls", [])) + list(detail.get("gallery", []))
+        data["attributes"] = {**raw.get("attributes", {}), **detail.get("attributes", {})}
+        for key in ("description", "bullet_points", "brand", "gtin", "rating", "review_count"):
+            if detail.get(key):
+                data[key] = detail[key]
+        return SourceProduct.model_validate(data)
 
     def _mock_products(self, page: int) -> ProductPage:
         if page < 1:

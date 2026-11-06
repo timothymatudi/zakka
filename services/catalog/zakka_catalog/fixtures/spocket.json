@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'spocket'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'spocket'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "spocket",
   "currency": "USD",
   "tracking": {
@@ -28,7 +28,17 @@
         "US"
       ],
       "delivery_days_min": 2,
-      "delivery_days_max": 5
+      "delivery_days_max": 5,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/SPK-US-101.jpg",
+          "https://images.zakka.example/spocket/SPK-US-101-2.jpg",
+          "https://images.zakka.example/spocket/SPK-US-101-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Heavyweight organic cotton tote with inner pocket. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
     },
     {
       "external_id": "SPK-EU-102",
@@ -51,7 +61,17 @@
         "GB"
       ],
       "delivery_days_min": 3,
-      "delivery_days_max": 7
+      "delivery_days_max": 7,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/SPK-EU-102.jpg",
+          "https://images.zakka.example/spocket/SPK-EU-102-2.jpg",
+          "https://images.zakka.example/spocket/SPK-EU-102-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Wheel-thrown stoneware mug, dishwasher safe. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
     },
     {
       "external_id": "SPK-GB-103",
@@ -73,7 +93,218 @@
         "FR"
       ],
       "delivery_days_min": 2,
-      "delivery_days_max": 4
+      "delivery_days_max": 4,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/SPK-GB-103.jpg",
+          "https://images.zakka.example/spocket/SPK-GB-103-2.jpg",
+          "https://images.zakka.example/spocket/SPK-GB-103-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Hand-poured soy wax candle, 40h burn time. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-SP-RG1",
+      "title": "Hand-woven Cotton Area Rug 120x180",
+      "description": "Hand-woven Cotton Area Rug 120x180. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Home Decor > Rugs & Carpets",
+      "image_urls": [
+        "https://images.zakka.example/spocket/X-SP-RG1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {
+        "size_cm": "120x180",
+        "material": "cotton"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/X-SP-RG1.jpg",
+          "https://images.zakka.example/spocket/X-SP-RG1-2.jpg",
+          "https://images.zakka.example/spocket/X-SP-RG1-3.jpg",
+          "https://images.zakka.example/spocket/X-SP-RG1-4.jpg"
+        ],
+        "attributes": {
+          "size_cm": "120x180",
+          "material": "cotton"
+        }
+      },
+      "cost": "38.00",
+      "shipping": "9.00",
+      "stock": 200
+    },
+    {
+      "external_id": "X-SP-CF1",
+      "title": "Mid-century Accent Chair",
+      "description": "Mid-century Accent Chair. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Furniture > Living Room",
+      "image_urls": [
+        "https://images.zakka.example/spocket/X-SP-CF1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 5,
+      "delivery_days_max": 9,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/X-SP-CF1.jpg",
+          "https://images.zakka.example/spocket/X-SP-CF1-2.jpg",
+          "https://images.zakka.example/spocket/X-SP-CF1-3.jpg",
+          "https://images.zakka.example/spocket/X-SP-CF1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "color": "Olive"
+            },
+            {
+              "color": "Mustard"
+            },
+            {
+              "color": "Grey"
+            }
+          ]
+        }
+      },
+      "cost": "89.00",
+      "shipping": "35.00",
+      "stock": 200
+    },
+    {
+      "external_id": "X-SP-DO1",
+      "title": "Organic Bamboo Toothbrushes (4 pack)",
+      "description": "Organic Bamboo Toothbrushes (4 pack). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Health & Personal Care > Oral Care",
+      "image_urls": [
+        "https://images.zakka.example/spocket/X-SP-DO1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/X-SP-DO1.jpg",
+          "https://images.zakka.example/spocket/X-SP-DO1-2.jpg",
+          "https://images.zakka.example/spocket/X-SP-DO1-3.jpg",
+          "https://images.zakka.example/spocket/X-SP-DO1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "cost": "3.20",
+      "shipping": "2.50",
+      "stock": 200
+    },
+    {
+      "external_id": "X-SP-KC1",
+      "title": "Kids' Organic Cotton Pyjama Set",
+      "description": "Kids' Organic Cotton Pyjama Set. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Baby & Kids > Kids' Clothing",
+      "image_urls": [
+        "https://images.zakka.example/spocket/X-SP-KC1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "FR",
+        "ES",
+        "GB"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/X-SP-KC1.jpg",
+          "https://images.zakka.example/spocket/X-SP-KC1-2.jpg",
+          "https://images.zakka.example/spocket/X-SP-KC1-3.jpg",
+          "https://images.zakka.example/spocket/X-SP-KC1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "age": "2-3y"
+            },
+            {
+              "age": "4-5y"
+            },
+            {
+              "age": "6-7y"
+            }
+          ]
+        }
+      },
+      "cost": "11.00",
+      "shipping": "4.00",
+      "stock": 200
+    },
+    {
+      "external_id": "X-SP-NB1",
+      "title": "Linen Hardcover Notebook A5",
+      "description": "Linen Hardcover Notebook A5. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Office & School > Notebooks & Paper",
+      "image_urls": [
+        "https://images.zakka.example/spocket/X-SP-NB1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/spocket/X-SP-NB1.jpg",
+          "https://images.zakka.example/spocket/X-SP-NB1-2.jpg",
+          "https://images.zakka.example/spocket/X-SP-NB1-3.jpg",
+          "https://images.zakka.example/spocket/X-SP-NB1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "cost": "4.50",
+      "shipping": "2.20",
+      "stock": 200
     }
   ]
 }

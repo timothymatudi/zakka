@@ -24,6 +24,7 @@ class PrintfulConnector(Connector):
     kind = "dropship"
     env_keys = ("PRINTFUL_API_TOKEN",)
     docs_url = "https://developers.printful.com/docs/"
+    rate_limit_per_sec = 2.0  # TODO(confirm): Printful documents a per-minute request limit
 
     def _headers(self) -> dict[str, str]:
         # TODO(confirm): account-level tokens also need X-PF-Store-Id for store endpoints.
@@ -66,6 +67,11 @@ class PrintfulConnector(Connector):
         total = int((body.get("paging") or {}).get("total") or 0)
         return ProductPage(items=items, page=page,
                            next_page=page + 1 if offset + self.page_size < total else None)
+
+    def _live_detail(self, external_id: str) -> SourceProduct | None:
+        # The listing already reads each sync product's full detail (variants, files);
+        # TODO(confirm): catalog product description/images via GET /products/{id}.
+        return None
 
     def _live_place_order(self, request: SupplierOrderRequest) -> SupplierOrderResult:
         a = request.address

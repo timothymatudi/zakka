@@ -121,3 +121,18 @@ def test_poll_in_mock_mode_records_without_http(synced, connectors):
     n = ConciergeNotifier({})
     poll_tracking(synced, connectors, n)
     assert [o for o, _ in n.sent] == [str(oid)]
+
+
+def test_poll_can_enqueue_durable_notify_jobs(synced, connectors):
+    from zakka_catalog.scale.jobqueue import SqliteJobQueue, Worker
+    from zakka_catalog.scale.pipeline import ScaleContext, make_handlers
+
+    oid = make_order(synced, [("cj", "CJ-EAR-001", 1, None)])
+    forward_order(synced, oid, connectors)
+    q = SqliteJobQueue(":memory:")
+    ups = poll_tracking(synced, connectors, ConciergeNotifier({}), queue=q)
+    assert ups[0].notified is True and q.counts() == {"queued": 1}
+    n = ConciergeNotifier({})
+    ctx = ScaleContext(make_bulk=lambda: None, queue=q, connectors={}, enricher=None, notifier=n)
+    Worker(q, make_handlers(ctx)).drain()
+    assert [o for o, _ in n.sent] == [str(oid)] and q.counts() == {"done": 1}

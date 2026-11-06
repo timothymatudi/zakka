@@ -52,7 +52,7 @@ class ProductWrite:
     rating: Decimal | None
     review_count: int
     category_id: UUID | None = None
-    origin_key: str = ""  # "<source>:<external_id>" - only used for deterministic ids in MemoryStore
+    origin_key: str = ""  # "<source>:<external_id>": deterministic product id uuid5(gtin or origin_key)
 
 
 @dataclass
@@ -161,6 +161,14 @@ class Store(Protocol):
     def find_product_for_offer(self, source_id: UUID, external_id: str) -> UUID | None: ...
     def find_product_by_gtin(self, gtin: str) -> UUID | None: ...
     def get_product_category(self, product_id: UUID) -> UUID | None: ...
+    def get_product(self, product_id: UUID) -> dict | None:
+        """{category_id, brand, gtin, image_urls, attributes, rating, review_count} or None."""
+    def get_offer_by_external(self, source_id: UUID, external_id: str) -> OfferView | None: ...
+    def deactivate_offer(self, offer_id: UUID) -> None: ...
+    def record_engagement(self, offer_ids: list[UUID]) -> None:
+        """View/click/order: drives the hot refresh tier."""
+    def record_impressions(self, product_ids: list[UUID]) -> None:
+        """Shown in search results: drives the warm refresh tier."""
     def insert_product(self, p: ProductWrite) -> UUID: ...
     def update_product(self, product_id: UUID, p: ProductWrite) -> None: ...
     def get_translation(self, product_id: UUID, locale: str) -> Translation | None: ...
@@ -197,6 +205,23 @@ def load_reference() -> dict[str, Any]:
     return load_fixture("reference")
 
 
+def category_id(slug: str) -> UUID:
+    """Deterministic dev/mock category id (the DB uses random ids; we map by slug)."""
+    return uuid.uuid5(MOCK_NS, f"category:{slug}")
+
+
+def load_categories() -> list[CategoryRef]:
+    """Starter tree from fixtures/categories.json (generated from Agent 1's seed)."""
+    from .connectors.base import load_fixture
+
+    out = []
+    for c in load_fixture("categories")["categories"]:
+        out.append(CategoryRef(id=category_id(c["slug"]), slug=c["slug"],
+                               parent_id=category_id(c["parent"]) if c.get("parent") else None,
+                               name=c["names"].get("en"), names=dict(c["names"])))
+    return out
+
+
 def _rule_from_row(r: dict) -> MarkupRule:
     return MarkupRule(id=r["id"], scope=r["scope"], scope_id=r.get("scope_id"),
                       percent=Decimal(str(r.get("percent", 0))), fixed_usd=Decimal(str(r.get("fixed_usd", 0))),
@@ -223,10 +248,13 @@ class MemoryStore:
         self.fx = {f["quote"]: Decimal(str(f["rate"])) for f in ref.get("fx_rates", [])}
         self.countries = {c["code"]: Country(c["code"], c["currency"], c["default_locale"])
                           for c in ref.get("countries", [])}
-        self.categories = {UUID(c["id"]): CategoryRef(id=UUID(c["id"]), slug=c["slug"],
-                                                      parent_id=UUID(c["parent_id"]) if c.get("parent_id") else None,
-                                                      name=c.get("name"))
-                           for c in ref.get("categories", [])}
+        if "categories" in ref:
+            cats = [CategoryRef(id=UUID(c["id"]), slug=c["slug"], name=c.get("name"),
+                                parent_id=UUID(c["parent_id"]) if c.get("parent_id") else None)
+                    for c in ref["categories"]]
+        else:
+            cats = load_categories()
+        self.categories = {c.id: c for c in cats}
         self.sources = {s["code"]: SourceRef(UUID(s["id"]), s["code"], s["kind"], s["name"])
                         for s in ref.get("sources", [])}
         self.rules = [_rule_from_row(r) for r in ref.get("markup_rules", [])]
@@ -238,6 +266,8 @@ class MemoryStore:
         self.order_items: dict[UUID, list[dict]] = {}
         self.supplier_orders: dict[UUID, dict] = {}
         self.shipments: dict[UUID, dict] = {}
+        self.engaged_at: dict[UUID, datetime] = {}
+        self.impression_at: dict[UUID, datetime] = {}
 
     def _log(self, msg: str) -> None:
         if self.echo:
@@ -295,6 +325,31 @@ class MemoryStore:
     def get_product_category(self, product_id):
         p = self.products.get(product_id)
         return p.get("category_id") if p else None
+
+    def get_product(self, product_id):
+        p = self.products.get(product_id)
+        if not p:
+            return None
+        return {k: p.get(k) for k in ("category_id", "brand", "gtin", "image_urls", "attributes", "rating",
+                                      "review_count")}
+
+    def get_offer_by_external(self, source_id, external_id):
+        return self.get_offer(uuid.uuid5(MOCK_NS, f"offer:{source_id}:{external_id}"))
+
+    def deactivate_offer(self, offer_id):
+        if offer_id in self.offers:
+            self.offers[offer_id]["is_active"] = False
+            self._log(f"UPDATE offer {offer_id} is_active=false")
+
+    def record_engagement(self, offer_ids):
+        now = utcnow()
+        for oid in offer_ids:
+            self.engaged_at[oid] = now
+
+    def record_impressions(self, product_ids):
+        now = utcnow()
+        for pid in product_ids:
+            self.impression_at[pid] = now
 
     def insert_product(self, p):
         # Deterministic ids keep mock offer/product ids stable across restarts.
@@ -473,6 +528,8 @@ class PostgresStore:
         # display_price_usd is not in 0001_core.sql (contract request); write it only if Agent 1 adds it.
         self.supports_display_price = self._has_column("offers", "display_price_usd")
         self._has_shipping_address = self._has_column("orders", "shipping_address")
+        self._has_engaged = self._has_column("offers", "last_engaged_at")
+        self._has_impression = self._has_column("products", "last_impression_at")
         self._has_list_local = all(self._has_column("offers", c)
                                    for c in ("list_price_local", "list_currency", "shipping_local"))
 
@@ -564,13 +621,36 @@ class PostgresStore:
         r = self._one("select category_id from products where id = %s", (product_id,))
         return r["category_id"] if r else None
 
+    def get_product(self, product_id):
+        return self._one("select category_id, brand, gtin, image_urls, attributes, rating, review_count "
+                         "from products where id = %s", (product_id,))
+
+    def get_offer_by_external(self, source_id, external_id):
+        r = self._one(self._OFFER_SQL + "where o.source_id = %s and o.external_id = %s", (source_id, external_id))
+        return self._offer_view(r) if r else None
+
+    def deactivate_offer(self, offer_id):
+        self._exec("update offers set is_active = false where id = %s", (offer_id,))
+
+    def record_engagement(self, offer_ids):
+        # Requested column offers.last_engaged_at; until it exists, clicks/orders already
+        # land in affiliate_clicks/order_items, which tiering falls back to.
+        if offer_ids and self._has_engaged:
+            self._exec("update offers set last_engaged_at = now() where id = any(%s)", (list(offer_ids),))
+
+    def record_impressions(self, product_ids):
+        if product_ids and self._has_impression:
+            self._exec("update products set last_impression_at = now() where id = any(%s)", (list(product_ids),))
+
     def insert_product(self, p):
         from psycopg.types.json import Jsonb
 
+        pid = uuid.uuid5(MOCK_NS, f"product:{p.gtin or p.origin_key}") if (p.gtin or p.origin_key) else uuid.uuid4()
         r = self._one(
-            "insert into products (category_id, brand, gtin, image_urls, attributes, rating, review_count) "
-            "values (%s, %s, %s, %s, %s, %s, %s) returning id",
-            (p.category_id, p.brand, p.gtin, p.image_urls, Jsonb(_jsonable(p.attributes)), p.rating, p.review_count))
+            "insert into products (id, category_id, brand, gtin, image_urls, attributes, rating, review_count) "
+            "values (%s, %s, %s, %s, %s, %s, %s, %s) on conflict (id) do update set updated_at = now() returning id",
+            (pid, p.category_id, p.brand, p.gtin, p.image_urls, Jsonb(_jsonable(p.attributes)), p.rating,
+             p.review_count))
         return r["id"]
 
     def update_product(self, product_id, p):
@@ -602,18 +682,18 @@ class PostgresStore:
 
     def upsert_offer(self, o):
         r = self._one(
-            "insert into offers (product_id, source_id, external_id, url, cost_usd, list_price_usd, shipping_usd,"
+            "insert into offers (id, product_id, source_id, external_id, url, cost_usd, list_price_usd, shipping_usd,"
             " stock, ships_from, ships_to, delivery_days_min, delivery_days_max, commission_rate,"
-            " last_synced_at, is_active) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+            " last_synced_at, is_active) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
             "on conflict (source_id, external_id) do update set url = excluded.url, cost_usd = excluded.cost_usd,"
             " list_price_usd = excluded.list_price_usd, shipping_usd = excluded.shipping_usd,"
             " stock = excluded.stock, ships_from = excluded.ships_from, ships_to = excluded.ships_to,"
             " delivery_days_min = excluded.delivery_days_min, delivery_days_max = excluded.delivery_days_max,"
             " commission_rate = excluded.commission_rate, last_synced_at = excluded.last_synced_at,"
             " is_active = excluded.is_active returning id",
-            (o.product_id, o.source_id, o.external_id, o.url, o.cost_usd, o.list_price_usd, o.shipping_usd,
-             o.stock, o.ships_from, o.ships_to, o.delivery_days_min, o.delivery_days_max, o.commission_rate,
-             o.last_synced_at, o.is_active))
+            (uuid.uuid5(MOCK_NS, f"offer:{o.source_id}:{o.external_id}"), o.product_id, o.source_id, o.external_id,
+             o.url, o.cost_usd, o.list_price_usd, o.shipping_usd, o.stock, o.ships_from, o.ships_to,
+             o.delivery_days_min, o.delivery_days_max, o.commission_rate, o.last_synced_at, o.is_active))
         if self._has_list_local:  # migration 0006
             self._exec("update offers set list_price_local = %s, list_currency = %s, shipping_local = %s "
                        "where id = %s", (o.list_price_local, o.list_currency, o.shipping_local, r["id"]))

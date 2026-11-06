@@ -7,10 +7,8 @@ import uuid
 from typing import Callable
 
 from .config import database_url
-from .connectors import all_connectors, load_fixture
-from .enrich import MockEnricher
+from .connectors import load_fixture
 from .store import MemoryStore, PostgresStore, Store
-from .sync import sync_many
 
 log = logging.getLogger(__name__)
 
@@ -27,8 +25,10 @@ def try_postgres(dsn: str | None = None) -> tuple[PostgresStore | None, str]:
 
 def demo_store(echo: Callable[[str], None] | None = None) -> MemoryStore:
     """MemoryStore with every source synced from fixtures and the demo order loaded."""
-    store = MemoryStore()
-    sync_many(store, all_connectors(force_mock=True).values(), MockEnricher())
+    from .devdata import build_dev_store, check_against_dev_catalog
+
+    store = build_dev_store()  # same deterministic ids as packages/fixtures/dev-catalog.json
+    check_against_dev_catalog(store)
     for o in load_fixture("orders")["orders"]:
         items = []
         for it in o["items"]:

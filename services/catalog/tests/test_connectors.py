@@ -59,10 +59,15 @@ def test_fixtures_are_varied():
 
 
 def test_mock_pagination():
-    c = get_connector("cj", env={}, page_size=2)
-    p1, p2, p3 = c.fetch_products(1), c.fetch_products(2), c.fetch_products(3)
-    assert (p1.next_page, p2.next_page, p3.next_page) == (2, 3, None)
-    assert len(p1.items) + len(p2.items) + len(p3.items) == 5
+    c = get_connector("cj", env={}, page_size=5)
+    total = len(c.fixture["products"])
+    pages, page = [], 1
+    while page:
+        result = c.fetch_products(page)
+        pages.append(result)
+        page = result.next_page
+    assert len(pages) == -(-total // 5) and all(len(p.items) == 5 for p in pages[:-1])
+    assert sum(len(p.items) for p in pages) == total
 
 
 def test_keys_switch_mode():

@@ -107,6 +107,110 @@ def cmd_serve(args) -> int:  # pragma: no cover
     return 0
 
 
+def cmd_export_dev(args) -> int:
+    from pathlib import Path
+
+    from .devdata import export_dev_catalog
+
+    out = Path(args.out).resolve()
+    data = export_dev_catalog(out)
+    print(f"wrote {out} ({out.stat().st_size:,} bytes): {len(data['categories'])} categories, "
+          f"{len(data['sources'])} sources, {len(data['products'])} products, {len(data['offers'])} offers, "
+          f"{len(data['fx_rates'])} fx rates")
+    return 0
+
+
+def _scale_backends(args):
+    """Postgres (DATABASE_URL) for production; local SQLite files otherwise."""
+    from pathlib import Path
+
+    from .config import database_url
+    from .scale.bulkstore import PostgresBulkStore, SqliteBulkStore
+    from .scale.jobqueue import PostgresJobQueue, SqliteJobQueue
+
+    dsn = None if args.local else database_url()
+    if dsn:
+        try:
+            PostgresBulkStore(dsn).conn.close()
+            return (lambda: PostgresBulkStore(dsn)), PostgresJobQueue(dsn), "postgres"
+        except Exception as exc:
+            print(f"note: database unreachable ({type(exc).__name__}); using local SQLite in {args.cache_dir}")
+    cache = Path(args.cache_dir)
+    cache.mkdir(parents=True, exist_ok=True)
+    db = cache / "catalog.sqlite"
+    return (lambda: SqliteBulkStore(db)), SqliteJobQueue(cache / "jobs.sqlite"), f"sqlite ({db})"
+
+
+def _scale_deps(args):
+    from .connectors import all_connectors
+    from .enrich import get_enricher
+    from .images import get_image_store
+    from .notify import ConciergeNotifier
+    from .scheduler import Reindexer
+
+    return dict(connectors=all_connectors(), enricher=get_enricher(), images=get_image_store(cache_dir=args.cache_dir),
+                reindexer=Reindexer(cache_dir=args.cache_dir), notifier=ConciergeNotifier())
+
+
+def cmd_scheduler(args) -> int:
+    from .scheduler import interval_minutes, run_forever, run_once
+
+    make_bulk, queue, desc = _scale_backends(args)
+    deps = _scale_deps(args)
+    interval = args.interval or interval_minutes()
+    print(f"scheduler: store={desc}, workers={args.workers}, every {interval:g} min{' (once)' if args.once else ''}")
+
+    def one():
+        summary = run_once(make_bulk, queue, deps["connectors"], deps["enricher"], images=deps["images"],
+                           reindexer=deps["reindexer"], notifier=deps["notifier"], workers=args.workers,
+                           cache_dir=args.cache_dir)
+        print(summary.line(), flush=True)
+        return summary
+
+    run_forever(one, interval_min=interval, once=args.once)
+    return 0
+
+
+def cmd_worker(args) -> int:  # pragma: no cover - long-running
+    import threading
+
+    from .scale.jobqueue import Worker
+    from .scale.pipeline import ScaleContext, make_handlers
+    from .scheduler import RetryPolicy
+
+    make_bulk, queue, desc = _scale_backends(args)
+    deps = _scale_deps(args)
+    retry = RetryPolicy()
+    ctx = ScaleContext(make_bulk=make_bulk, queue=queue, connectors=deps["connectors"], enricher=deps["enricher"],
+                       images=deps["images"], reindexer=deps["reindexer"], notifier=deps["notifier"],
+                       call_for=lambda c: retry.for_connector(c, {}))
+    handlers = make_handlers(ctx)
+    print(f"worker: store={desc}, threads={args.workers}; Ctrl+C to stop")
+    stop = threading.Event()
+    threads = [threading.Thread(target=Worker(queue, handlers, name=f"w{i}").run_forever,
+                                kwargs={"stop": stop}, daemon=True) for i in range(args.workers)]
+    for t in threads:
+        t.start()
+    try:
+        while any(t.is_alive() for t in threads):
+            stop.wait(1)
+    except KeyboardInterrupt:
+        stop.set()
+    return 0
+
+
+def cmd_bench(args) -> int:
+    from pathlib import Path
+
+    from .scale.bench import run_bench
+
+    print(f"bench: {args.products:,} synthetic products, batch {args.batch:,}, {args.changed_pct}% changed in run 2")
+    report = run_bench(args.products, db=Path(args.db), batch_size=args.batch, changed_pct=args.changed_pct,
+                       keep=args.keep, dsn=args.dsn, lite=not args.full_rows)
+    print(json.dumps(report, indent=2, default=str))
+    return 0
+
+
 def cmd_sources(args) -> int:
     from .connectors import all_connectors
 
@@ -145,6 +249,33 @@ def build_parser() -> argparse.ArgumentParser:
     sv = sub.add_parser("serve", help="run the HTTP API")
     sv.add_argument("--port", type=int, default=None)
     sv.set_defaults(func=cmd_serve)
+
+    ex = sub.add_parser("export-dev", help="write the shared dev catalog JSON (mock sync of all sources)")
+    from .devdata import DEFAULT_DEV_CATALOG
+    ex.add_argument("--out", default=str(DEFAULT_DEV_CATALOG))
+    ex.set_defaults(func=cmd_export_dev)
+
+    for name, func, helptext in (("scheduler", cmd_scheduler, "tiered refresh loop: plan jobs and drain the queue"),
+                                 ("worker", cmd_worker, "run queue workers continuously")):
+        w = sub.add_parser(name, help=helptext)
+        w.add_argument("--workers", type=int, default=2)
+        w.add_argument("--cache-dir", default=".cache")
+        w.add_argument("--local", action="store_true", help="use local SQLite even if DATABASE_URL is set")
+        if name == "scheduler":
+            w.add_argument("--once", action="store_true")
+            w.add_argument("--interval", type=float, default=None, help="minutes (default SYNC_INTERVAL_MINUTES or 60)")
+        w.set_defaults(func=func)
+
+    b = sub.add_parser("bench", help="ingest N synthetic products through the scale pipeline")
+    b.add_argument("--products", type=int, default=100_000)
+    b.add_argument("--batch", type=int, default=1000)
+    b.add_argument("--changed-pct", type=float, default=1.0)
+    b.add_argument("--db", default=".cache/bench.sqlite")
+    b.add_argument("--dsn", default=None, help="benchmark against Postgres instead of SQLite")
+    b.add_argument("--keep", action="store_true", help="keep the bench database files")
+    b.add_argument("--full-rows", action="store_true",
+                   help="store full product/offer/translation rows (needs ~1.4 GB per 1M products)")
+    b.set_defaults(func=cmd_bench)
 
     sc = sub.add_parser("sources", help="list connectors and mock/live mode")
     sc.set_defaults(func=cmd_sources)

@@ -153,7 +153,9 @@ _TRACK_TO_SO = {"in_transit": "shipped", "delivered": "delivered", "cancelled": 
 
 
 def poll_tracking(store: Store, connectors: Mapping[str, Connector],
-                  notifier: ConciergeNotifier | None = None) -> list[TrackingUpdate]:
+                  notifier: ConciergeNotifier | None = None, queue=None) -> list[TrackingUpdate]:
+    """With a job ``queue``, concierge notifications are enqueued as ``notify`` jobs
+    (durable, retried) instead of being sent inline."""
     notifier = notifier if notifier is not None else ConciergeNotifier()
     updates: list[TrackingUpdate] = []
     touched_orders: set[UUID] = set()
@@ -170,7 +172,12 @@ def poll_tracking(store: Store, connectors: Mapping[str, Connector],
         store.commit()
         notified = None
         if previous != info.status:
-            notified = notifier.notify(so.order_id, info)  # never raises; failures are logged
+            if queue is not None:
+                notified = bool(queue.enqueue("notify", {"order_id": str(so.order_id),
+                                                         "tracking": info.model_dump()},
+                                              dedupe_key=f"notify:{so.id}:{info.status}"))
+            else:
+                notified = notifier.notify(so.order_id, info)  # never raises; failures are logged
         new_status = _TRACK_TO_SO.get(info.status, so.status)
         if new_status != so.status:
             store.update_supplier_order(so.id, status=new_status)

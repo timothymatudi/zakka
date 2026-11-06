@@ -44,25 +44,44 @@ def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text).strip("-")
 
 
-# Keyword fallbacks when the source's category path doesn't match our slugs.
+# Keyword fallbacks (slugs from supabase/seed/categories_starter.sql). Order matters:
+# more specific entries first. Matched as whole words against title + source category.
 KEYWORDS: dict[str, tuple[str, ...]] = {
-    "headphones": ("earbud", "earphone", "headphone", "headset"),
-    "phone-accessories": ("phone", "power bank", "charger", "car mount"),
-    "wearables": ("smart watch", "smartwatch", "wearable"),
-    "computers": ("keyboard", "mouse", "laptop", "computer"),
-    "lighting": ("lamp", "light", "led"),
-    "kitchen": ("mug", "kitchen", "cooker", "bottle", "utensil", "food bag", "dallah", "blender"),
-    "appliances": ("fryer", "fan", "appliance", "gas cooker"),
-    "home-decor": ("candle", "decor", "prayer mat"),
-    "womens-clothing": ("women", "dress", "kurta", "cardigan"),
-    "mens-clothing": ("men's", "mens", "shirt", "tee"),
-    "shoes": ("shoe", "sneaker", "sandal"),
-    "bags": ("bag", "tote"),
-    "accessories": ("hat", "cap"),
-    "sports-outdoors": ("yoga", "fitness", "sport"),
-    "toys-games": ("toy", "building blocks", "game"),
-    "beauty": ("beauty", "skincare", "makeup"),
+    "audio-headphones": ("earbuds", "earbud", "earphones", "headphones", "headset"),
+    "car-interior-accessories": ("car mount", "car phone holder"),
+    "watches": ("smart watch", "smartwatch", "watch"),
+    "computers-laptops": ("keyboard", "mouse", "laptop"),
+    "mobile-phones": ("power bank", "phone charger", "phone case", "phone"),
+    "kids-shoes": ("kids sneakers", "kids light-up sneakers", "kids shoes"),
+    "sandals-slippers": ("sandals", "sandal", "slippers"),
+    "sneakers": ("sneakers", "sneaker"),
+    "mens-shoes": ("men's running shoes", "running shoes"),
+    "dresses": ("dress",),
+    "modest-wear": ("kurta", "abaya", "hijab"),
+    "womens-tops": ("cardigan", "blouse"),
+    "mens-tshirts-polos": ("tee", "t-shirt", "polo"),
+    "mens-shirts": ("men's linen", "men's shirt", "shirt"),
+    "mens-fashion": ("hat", "cap"),
+    "handbags": ("tote", "handbag"),
+    "coffee-tea": ("dallah", "coffee", "teapot"),
+    "kitchen-appliances": ("air fryer", "blender", "gas cooker", "kettle"),
+    "fans-air-conditioners": ("fan",),
+    "cookware": ("pressure cooker", "utensil", "pan", "pot"),
+    "food-storage": ("food bags", "food bag", "bottle", "container"),
+    "tableware": ("mug", "plate", "cup"),
+    "candles-home-fragrance": ("candle",),
+    "rugs-carpets": ("prayer mat", "rug", "carpet"),
+    "lighting": ("lamp", "led strip", "strip lights", "lights"),
+    "fitness-equipment": ("yoga", "fitness", "dumbbell"),
+    "building-toys": ("building blocks", "building block"),
+    "toys-games": ("toy", "game"),
+    "skincare": ("skincare", "serum"),
+    "makeup": ("makeup", "lipstick"),
 }
+
+
+def _has_phrase(haystack: str, phrase: str) -> bool:
+    return re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", haystack) is not None
 
 
 class MockEnricher(Enricher):
@@ -74,23 +93,30 @@ class MockEnricher(Enricher):
             by_key[c.slug] = c.slug
             if c.name:
                 by_key[_slug(c.name)] = c.slug
-        # 1) deepest segment of the source category path that matches our tree
-        if product.category_hint:
-            for seg in reversed([s.strip() for s in product.category_hint.split(">")]):
-                if _slug(seg) in by_key:
-                    return by_key[_slug(seg)]
-        # 2) keyword match on hint + title; prefer earlier (more specific) entries
-        haystack = f"{product.category_hint or ''} {product.title}".lower()
+        segments = [s.strip() for s in (product.category_hint or "").split(">") if s.strip()]
+        # 1) the source's most specific category maps straight onto ours
+        if segments and _slug(segments[-1]) in by_key:
+            return by_key[_slug(segments[-1])]
+        # 2) keywords (specific first) on title + source category path
+        haystack = f"{product.title} {product.category_hint or ''}".lower()
         known = {c.slug for c in categories}
         for slug, words in KEYWORDS.items():
-            if slug in known and any(w in haystack for w in words):
+            if slug in known and any(_has_phrase(haystack, w) for w in words):
                 return slug
+        # 3) a broader segment of the source path
+        for seg in reversed(segments[:-1]):
+            if _slug(seg) in by_key:
+                return by_key[_slug(seg)]
         return None
 
     def enrich(self, product, categories, locales):
         out: dict[str, Translation] = {}
         for loc in locales:
-            if loc == product.locale:
+            if loc in product.translations:  # partner-provided copy
+                t = product.translations[loc]
+                out[loc] = Translation(title=t.title, description=t.description or product.description,
+                                       bullet_points=t.bullet_points or list(product.bullet_points))
+            elif loc == product.locale:
                 out[loc] = Translation(title=product.title, description=product.description,
                                        bullet_points=list(product.bullet_points))
             else:
@@ -148,6 +174,8 @@ class AnthropicEnricher(Enricher):
                  "cache_control": {"type": "ephemeral"}}]
 
     def enrich(self, product, categories, locales):
+        provided = {loc: product.translations[loc] for loc in locales if loc in product.translations}
+        locales = [loc for loc in locales if loc not in provided]  # never pay to translate what the partner gave us
         # One request per product covers categorisation and all requested locales.
         fields = {"locale", "title", "description", "bullet_points", "category_hint", "brand"}
         user = (f"Requested locales: {', '.join(locales) or '(none - categorise only)'}\n\n"
@@ -172,6 +200,7 @@ class AnthropicEnricher(Enricher):
         for loc in locales:
             translations.setdefault(loc, Translation(title=product.title, description=product.description,
                                                      bullet_points=list(product.bullet_points)))
+        translations.update(provided)
         return EnrichmentResult(category_slug=slug, translations=translations)
 
 

@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'noon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'noon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "noon",
   "currency": "AED",
   "products": [
@@ -23,7 +23,16 @@
       ],
       "delivery_days_min": 1,
       "delivery_days_max": 2,
-      "commission_rate": "0.05"
+      "commission_rate": "0.05",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/NN-AE-901.jpg",
+          "https://images.zakka.example/noon/NN-AE-901-2.jpg",
+          "https://images.zakka.example/noon/NN-AE-901-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "NN-SA-902",
@@ -44,7 +53,16 @@
       ],
       "delivery_days_min": 1,
       "delivery_days_max": 3,
-      "commission_rate": "0.05"
+      "commission_rate": "0.05",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/NN-SA-902.jpg",
+          "https://images.zakka.example/noon/NN-SA-902-2.jpg",
+          "https://images.zakka.example/noon/NN-SA-902-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "NN-AE-903",
@@ -67,7 +85,290 @@
       ],
       "delivery_days_min": 1,
       "delivery_days_max": 3,
+      "commission_rate": "0.05",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/NN-AE-903.jpg",
+          "https://images.zakka.example/noon/NN-AE-903-2.jpg",
+          "https://images.zakka.example/noon/NN-AE-903-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-NN-PH1",
+      "title": "Nova X5 Smartphone",
+      "description": "Nova X5 Smartphone. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": "Nova",
+      "gtin": "2000000001005",
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-PH1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "AE",
+      "ships_to": [
+        "AE",
+        "SA",
+        "KW"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "attributes": {},
+      "currency": "AED",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-PH1.jpg",
+          "https://images.zakka.example/noon/X-NN-PH1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-PH1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-PH1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "translations": {
+        "es": {
+          "title": "Teléfono inteligente Nova X5"
+        },
+        "fr": {
+          "title": "Smartphone Nova X5"
+        },
+        "pt": {
+          "title": "Smartphone Nova X5"
+        },
+        "ar": {
+          "title": "هاتف ذكي Nova X5"
+        },
+        "zh": {
+          "title": "Nova X5 智能手机"
+        },
+        "hi": {
+          "title": "Nova X5 स्मार्टफ़ोन"
+        },
+        "sw": {
+          "title": "Simu janja Nova X5"
+        },
+        "de": {
+          "title": "Nova X5 Smartphone"
+        },
+        "id": {
+          "title": "Ponsel pintar Nova X5"
+        }
+      },
+      "list_price": "599",
+      "shipping": "0",
+      "url": "https://www.noon.com/uae-en/mock-X-NN-PH1/p/",
+      "commission_rate": "0.04"
+    },
+    {
+      "external_id": "X-NN-OD1",
+      "title": "Oud Perfume 100ml",
+      "description": "Oud Perfume 100ml. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Beauty > Fragrances",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-OD1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "AE",
+      "ships_to": [
+        "AE",
+        "SA",
+        "KW"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "attributes": {},
+      "currency": "AED",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-OD1.jpg",
+          "https://images.zakka.example/noon/X-NN-OD1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-OD1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-OD1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "189",
+      "shipping": "0",
+      "url": "https://www.noon.com/uae-en/mock-X-NN-OD1/p/",
+      "commission_rate": "0.06"
+    },
+    {
+      "external_id": "X-NN-AP1",
+      "title": "HEPA Air Purifier for Large Rooms",
+      "description": "HEPA Air Purifier for Large Rooms. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Home Appliances > Air Purifiers & Humidifiers",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-AP1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "SA",
+      "ships_to": [
+        "SA"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "attributes": {},
+      "currency": "SAR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-AP1.jpg",
+          "https://images.zakka.example/noon/X-NN-AP1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-AP1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-AP1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "449",
+      "shipping": "0",
+      "url": "https://www.noon.com/saudi-en/mock-X-NN-AP1/p/",
+      "commission_rate": "0.04"
+    },
+    {
+      "external_id": "X-NN-BQ1",
+      "title": "Charcoal BBQ Grill with Cover",
+      "description": "Charcoal BBQ Grill with Cover. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Garden & Outdoor > BBQ & Grilling",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-BQ1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "EG",
+      "ships_to": [
+        "EG"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "EGP",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-BQ1.jpg",
+          "https://images.zakka.example/noon/X-NN-BQ1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-BQ1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-BQ1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "1899",
+      "shipping": "0",
+      "url": "https://www.noon.com/egypt-en/mock-X-NN-BQ1/p/",
       "commission_rate": "0.05"
+    },
+    {
+      "external_id": "X-NN-DF1",
+      "title": "Adult Dog Dry Food 3kg",
+      "description": "Adult Dog Dry Food 3kg. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Pet Supplies > Pet Food & Treats",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-DF1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "AE",
+      "ships_to": [
+        "AE"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "attributes": {},
+      "currency": "AED",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-DF1.jpg",
+          "https://images.zakka.example/noon/X-NN-DF1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-DF1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-DF1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "translations": {
+        "es": {
+          "title": "Pienso para perros adultos 3 kg"
+        },
+        "fr": {
+          "title": "Croquettes chien adulte 3 kg"
+        },
+        "pt": {
+          "title": "Ração para cães adultos 3 kg"
+        },
+        "ar": {
+          "title": "طعام كلاب بالغة 3 كغ"
+        },
+        "zh": {
+          "title": "成犬粮 3公斤"
+        },
+        "hi": {
+          "title": "वयस्क कुत्तों का भोजन 3 किलो"
+        },
+        "sw": {
+          "title": "Chakula cha mbwa wakubwa kilo 3"
+        },
+        "de": {
+          "title": "Trockenfutter für Hunde 3 kg"
+        },
+        "id": {
+          "title": "Makanan anjing dewasa 3 kg"
+        }
+      },
+      "list_price": "79",
+      "shipping": "0",
+      "url": "https://www.noon.com/uae-en/mock-X-NN-DF1/p/",
+      "commission_rate": "0.05"
+    },
+    {
+      "external_id": "X-NN-OC1",
+      "title": "Ergonomic Office Chair with Lumbar Support",
+      "description": "Ergonomic Office Chair with Lumbar Support. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Furniture > Office Furniture",
+      "image_urls": [
+        "https://images.zakka.example/noon/X-NN-OC1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "SA",
+      "ships_to": [
+        "AE",
+        "SA",
+        "KW"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "attributes": {},
+      "currency": "SAR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/noon/X-NN-OC1.jpg",
+          "https://images.zakka.example/noon/X-NN-OC1-2.jpg",
+          "https://images.zakka.example/noon/X-NN-OC1-3.jpg",
+          "https://images.zakka.example/noon/X-NN-OC1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "599",
+      "shipping": "0",
+      "url": "https://www.noon.com/saudi-en/mock-X-NN-OC1/p/",
+      "commission_rate": "0.04"
     }
   ]
 }

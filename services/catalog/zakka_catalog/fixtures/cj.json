@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'cj'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'cj'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "cj",
   "currency": "USD",
   "tracking": {
@@ -52,7 +52,20 @@
         "KW"
       ],
       "delivery_days_min": 8,
-      "delivery_days_max": 15
+      "delivery_days_max": 15,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/CJ-EAR-001.jpg",
+          "https://images.zakka.example/cj/CJ-EAR-001-2.jpg",
+          "https://images.zakka.example/cj/CJ-EAR-001-3.jpg"
+        ],
+        "attributes": {
+          "bluetooth": "5.3",
+          "battery_hours": 24,
+          "water_resistance": "IPX4"
+        },
+        "description": "Bluetooth 5.3 earbuds with touch controls, 24h total battery and USB-C charging case. Full specifications and care instructions are on the product page."
+      }
     },
     {
       "external_id": "CJ-LMP-002",
@@ -73,7 +86,23 @@
         "US"
       ],
       "delivery_days_min": 3,
-      "delivery_days_max": 6
+      "delivery_days_max": 6,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/CJ-LMP-002.jpg",
+          "https://images.zakka.example/cj/CJ-LMP-002-2.jpg",
+          "https://images.zakka.example/cj/CJ-LMP-002-3.jpg"
+        ],
+        "attributes": {
+          "power": "USB 5V",
+          "colours": 16
+        },
+        "description": "Rotating sunset projector lamp with 16 colours and remote. Full specifications and care instructions are on the product page.",
+        "bullet_points": [
+          "Power: USB 5V",
+          "Colours: 16"
+        ]
+      }
     },
     {
       "external_id": "CJ-YGM-003",
@@ -110,7 +139,17 @@
         "KW"
       ],
       "delivery_days_min": 10,
-      "delivery_days_max": 18
+      "delivery_days_max": 18,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/CJ-YGM-003.jpg",
+          "https://images.zakka.example/cj/CJ-YGM-003-2.jpg",
+          "https://images.zakka.example/cj/CJ-YGM-003-3.jpg"
+        ],
+        "attributes": {},
+        "description": "TPE yoga mat with alignment lines and carry strap. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
     },
     {
       "external_id": "CJ-PHN-004",
@@ -147,7 +186,17 @@
         "KW"
       ],
       "delivery_days_min": 7,
-      "delivery_days_max": 14
+      "delivery_days_max": 14,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/CJ-PHN-004.jpg",
+          "https://images.zakka.example/cj/CJ-PHN-004-2.jpg",
+          "https://images.zakka.example/cj/CJ-PHN-004-3.jpg"
+        ],
+        "attributes": {},
+        "description": "Dashboard magnetic mount compatible with MagSafe cases. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
     },
     {
       "external_id": "CJ-BLD-005",
@@ -184,7 +233,552 @@
         "KW"
       ],
       "delivery_days_min": 9,
-      "delivery_days_max": 16
+      "delivery_days_max": 16,
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/CJ-BLD-005.jpg",
+          "https://images.zakka.example/cj/CJ-BLD-005-2.jpg",
+          "https://images.zakka.example/cj/CJ-BLD-005-3.jpg"
+        ],
+        "attributes": {},
+        "description": "USB rechargeable personal blender. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-CJ-PH1",
+      "title": "Nova X5 Smartphone 128GB, 6.6\" Display, Dual SIM",
+      "description": "Nova X5 Smartphone 128GB, 6.6\" Display, Dual SIM. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": "Nova",
+      "gtin": "2000000001005",
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-PH1.jpg"
+      ],
+      "rating": "4.4",
+      "review_count": 1830,
+      "ships_from": "CN",
+      "ships_to": [
+        "KE",
+        "NG",
+        "TZ",
+        "UG",
+        "ZA",
+        "EG"
+      ],
+      "delivery_days_min": 9,
+      "delivery_days_max": 16,
+      "attributes": {
+        "storage_gb": 128,
+        "ram_gb": 4,
+        "screen_in": 6.6,
+        "battery_mah": 5000,
+        "dual_sim": true
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-PH1.jpg",
+          "https://images.zakka.example/cj/X-CJ-PH1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-PH1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-PH1-4.jpg"
+        ],
+        "attributes": {
+          "storage_gb": 128,
+          "ram_gb": 4,
+          "screen_in": 6.6,
+          "battery_mah": 5000,
+          "dual_sim": true,
+          "variants": [
+            {
+              "color": "Midnight Black"
+            },
+            {
+              "color": "Ocean Blue"
+            }
+          ]
+        }
+      },
+      "translations": {
+        "es": {
+          "title": "Teléfono inteligente Nova X5"
+        },
+        "fr": {
+          "title": "Smartphone Nova X5"
+        },
+        "pt": {
+          "title": "Smartphone Nova X5"
+        },
+        "ar": {
+          "title": "هاتف ذكي Nova X5"
+        },
+        "zh": {
+          "title": "Nova X5 智能手机"
+        },
+        "hi": {
+          "title": "Nova X5 स्मार्टफ़ोन"
+        },
+        "sw": {
+          "title": "Simu janja Nova X5"
+        },
+        "de": {
+          "title": "Nova X5 Smartphone"
+        },
+        "id": {
+          "title": "Ponsel pintar Nova X5"
+        }
+      },
+      "cost": "79.00",
+      "shipping": "9.50",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-CH1",
+      "title": "25W USB-C Fast Phone Charger",
+      "description": "25W USB-C Fast Phone Charger. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-CH1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 4200,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {
+        "output_w": 25,
+        "port": "USB-C"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-CH1.jpg",
+          "https://images.zakka.example/cj/X-CJ-CH1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-CH1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-CH1-4.jpg"
+        ],
+        "attributes": {
+          "output_w": 25,
+          "port": "USB-C"
+        }
+      },
+      "translations": {
+        "es": {
+          "title": "Cargador rápido USB-C de 25 W"
+        },
+        "fr": {
+          "title": "Chargeur rapide USB-C 25 W"
+        },
+        "pt": {
+          "title": "Carregador rápido USB-C 25 W"
+        },
+        "ar": {
+          "title": "شاحن سريع USB-C بقوة 25 واط"
+        },
+        "zh": {
+          "title": "25W USB-C 快速充电器"
+        },
+        "hi": {
+          "title": "25W USB-C फ़ास्ट चार्जर"
+        },
+        "sw": {
+          "title": "Chaja ya simu ya haraka USB-C 25W"
+        },
+        "de": {
+          "title": "25-W-USB-C-Schnellladegerät"
+        },
+        "id": {
+          "title": "Pengisi daya cepat USB-C 25W"
+        }
+      },
+      "cost": "3.40",
+      "shipping": "1.60",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-CS1",
+      "title": "Shockproof Clear Phone Case",
+      "description": "Shockproof Clear Phone Case. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-CS1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 2600,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-CS1.jpg",
+          "https://images.zakka.example/cj/X-CJ-CS1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-CS1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-CS1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "model": "Nova X5"
+            },
+            {
+              "model": "Nova A2"
+            },
+            {
+              "model": "Universal 6.5\""
+            }
+          ]
+        }
+      },
+      "translations": {
+        "es": {
+          "title": "Funda protectora para teléfono"
+        },
+        "fr": {
+          "title": "Coque de protection pour téléphone"
+        },
+        "pt": {
+          "title": "Capa protetora para celular"
+        },
+        "ar": {
+          "title": "غطاء حماية للهاتف"
+        },
+        "zh": {
+          "title": "手机保护壳"
+        },
+        "hi": {
+          "title": "फ़ोन सुरक्षा कवर"
+        },
+        "sw": {
+          "title": "Kava ya kulinda simu"
+        },
+        "de": {
+          "title": "Schutzhülle fürs Handy"
+        },
+        "id": {
+          "title": "Casing pelindung ponsel"
+        }
+      },
+      "cost": "1.20",
+      "shipping": "1.10",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-RN1",
+      "title": "Stainless Steel Pendant Necklace",
+      "description": "Stainless Steel Pendant Necklace. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Jewelry & Watches > Necklaces",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-RN1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {
+        "material": "316L stainless steel",
+        "length_cm": 45
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-RN1.jpg",
+          "https://images.zakka.example/cj/X-CJ-RN1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-RN1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-RN1-4.jpg"
+        ],
+        "attributes": {
+          "material": "316L stainless steel",
+          "length_cm": 45
+        }
+      },
+      "cost": "2.90",
+      "shipping": "1.30",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-SR1",
+      "title": "Hyaluronic Acid Face Serum 30ml",
+      "description": "Hyaluronic Acid Face Serum 30ml. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Beauty > Skincare",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-SR1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 950,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {
+        "volume_ml": 30
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-SR1.jpg",
+          "https://images.zakka.example/cj/X-CJ-SR1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-SR1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-SR1-4.jpg"
+        ],
+        "attributes": {
+          "volume_ml": 30
+        }
+      },
+      "cost": "3.10",
+      "shipping": "1.90",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-DG1",
+      "title": "Reflective Dog Leash and Harness Set",
+      "description": "Reflective Dog Leash and Harness Set. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Pet Supplies > Dogs",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-DG1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-DG1.jpg",
+          "https://images.zakka.example/cj/X-CJ-DG1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-DG1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-DG1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S"
+            },
+            {
+              "size": "M"
+            },
+            {
+              "size": "L"
+            },
+            {
+              "size": "XL"
+            }
+          ]
+        }
+      },
+      "cost": "4.60",
+      "shipping": "2.40",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-DR1",
+      "title": "Cordless Drill Driver 20V with 2 Batteries",
+      "description": "Cordless Drill Driver 20V with 2 Batteries. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Tools & Home Improvement > Power Tools",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-DR1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {
+        "voltage_v": 20,
+        "batteries": 2,
+        "torque_nm": 45
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-DR1.jpg",
+          "https://images.zakka.example/cj/X-CJ-DR1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-DR1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-DR1-4.jpg"
+        ],
+        "attributes": {
+          "voltage_v": 20,
+          "batteries": 2,
+          "torque_nm": 45
+        }
+      },
+      "cost": "24.00",
+      "shipping": "8.00",
+      "stock": 200
+    },
+    {
+      "external_id": "X-CJ-SL1",
+      "title": "Solar LED Garden Path Lights (8 pack)",
+      "description": "Solar LED Garden Path Lights (8 pack). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Garden & Outdoor > Outdoor Lighting",
+      "image_urls": [
+        "https://images.zakka.example/cj/X-CJ-SL1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {
+        "pieces": 8,
+        "runtime_h": 10
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj/X-CJ-SL1.jpg",
+          "https://images.zakka.example/cj/X-CJ-SL1-2.jpg",
+          "https://images.zakka.example/cj/X-CJ-SL1-3.jpg",
+          "https://images.zakka.example/cj/X-CJ-SL1-4.jpg"
+        ],
+        "attributes": {
+          "pieces": 8,
+          "runtime_h": 10
+        }
+      },
+      "cost": "9.80",
+      "shipping": "4.20",
+      "stock": 200
     }
   ]
 }

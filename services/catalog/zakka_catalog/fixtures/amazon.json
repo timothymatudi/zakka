@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'amazon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'amazon'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "amazon",
   "currency": "USD",
   "products": [
@@ -27,6 +27,16 @@
       "commission_rate": "0.03",
       "attributes": {
         "marketplace": "US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/B0MOCKUS01.jpg",
+          "https://images.zakka.example/amazon/B0MOCKUS01-2.jpg",
+          "https://images.zakka.example/amazon/B0MOCKUS01-3.jpg"
+        ],
+        "attributes": {},
+        "description": "True wireless earbuds with a compact charging case and 30h total playtime. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
       }
     },
     {
@@ -52,6 +62,22 @@
       "commission_rate": "0.04",
       "attributes": {
         "marketplace": "AE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/B0MOCKAE01.jpg",
+          "https://images.zakka.example/amazon/B0MOCKAE01-2.jpg",
+          "https://images.zakka.example/amazon/B0MOCKAE01-3.jpg"
+        ],
+        "attributes": {
+          "capacity_l": 4,
+          "power_w": 1500
+        },
+        "description": "4-litre digital air fryer with 8 presets and a dishwasher-safe basket. Full specifications and care instructions are on the product page.",
+        "bullet_points": [
+          "Capacity l: 4",
+          "Power w: 1500"
+        ]
       }
     },
     {
@@ -77,6 +103,39 @@
       "commission_rate": "0.06",
       "attributes": {
         "marketplace": "IN"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/B0MOCKIN01.jpg",
+          "https://images.zakka.example/amazon/B0MOCKIN01-2.jpg",
+          "https://images.zakka.example/amazon/B0MOCKIN01-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S",
+              "color": "Indigo"
+            },
+            {
+              "size": "M",
+              "color": "Indigo"
+            },
+            {
+              "size": "L",
+              "color": "Indigo"
+            },
+            {
+              "size": "XL",
+              "color": "Indigo"
+            },
+            {
+              "size": "XXL",
+              "color": "Indigo"
+            }
+          ]
+        },
+        "description": "Three-piece cotton kurta set with dupatta, regular fit. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
       }
     },
     {
@@ -101,7 +160,271 @@
       "commission_rate": "0.03",
       "attributes": {
         "marketplace": "US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/B0MOCKUS02.jpg",
+          "https://images.zakka.example/amazon/B0MOCKUS02-2.jpg",
+          "https://images.zakka.example/amazon/B0MOCKUS02-3.jpg"
+        ],
+        "attributes": {},
+        "description": "500-piece classic building block set in 12 colours, ages 4+. Full specifications and care instructions are on the product page.",
+        "bullet_points": []
       }
+    },
+    {
+      "external_id": "X-AMZ-PH1",
+      "title": "Nova X5 Smartphone",
+      "description": "Nova X5 Smartphone. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": "Nova",
+      "gtin": "2000000001005",
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-PH1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 5400,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "attributes": {
+        "storage_gb": 128,
+        "marketplace": "US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-PH1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PH1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PH1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PH1-4.jpg"
+        ],
+        "attributes": {
+          "storage_gb": 128
+        }
+      },
+      "translations": {
+        "es": {
+          "title": "Teléfono inteligente Nova X5"
+        },
+        "fr": {
+          "title": "Smartphone Nova X5"
+        },
+        "pt": {
+          "title": "Smartphone Nova X5"
+        },
+        "ar": {
+          "title": "هاتف ذكي Nova X5"
+        },
+        "zh": {
+          "title": "Nova X5 智能手机"
+        },
+        "hi": {
+          "title": "Nova X5 स्मार्टफ़ोन"
+        },
+        "sw": {
+          "title": "Simu janja Nova X5"
+        },
+        "de": {
+          "title": "Nova X5 Smartphone"
+        },
+        "id": {
+          "title": "Ponsel pintar Nova X5"
+        }
+      },
+      "list_price": "149.00",
+      "shipping": "0",
+      "url": "https://www.amazon.com/dp/X-AMZ-PH1",
+      "commission_rate": "0.03"
+    },
+    {
+      "external_id": "X-AMZ-VC1",
+      "title": "Cordless Stick Vacuum Cleaner",
+      "description": "Cordless Stick Vacuum Cleaner. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Home Appliances > Vacuum Cleaners",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-VC1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "attributes": {
+        "runtime_min": 40,
+        "marketplace": "US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-VC1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VC1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VC1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VC1-4.jpg"
+        ],
+        "attributes": {
+          "runtime_min": 40
+        }
+      },
+      "list_price": "129.99",
+      "shipping": "0",
+      "url": "https://www.amazon.com/dp/X-AMZ-VC1",
+      "commission_rate": "0.03"
+    },
+    {
+      "external_id": "X-AMZ-VT1",
+      "title": "Vitamin D3 + K2 Softgels (120)",
+      "description": "Vitamin D3 + K2 Softgels (120). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Health & Personal Care > Vitamins & Supplements",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-VT1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "attributes": {
+        "marketplace": "US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-VT1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VT1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VT1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-VT1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "18.99",
+      "shipping": "0",
+      "url": "https://www.amazon.com/dp/X-AMZ-VT1",
+      "commission_rate": "0.04"
+    },
+    {
+      "external_id": "X-AMZ-ST1",
+      "title": "Convertible Baby Car Seat",
+      "description": "Convertible Baby Car Seat. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Baby & Kids > Strollers & Car Seats",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-ST1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "AE",
+      "ships_to": [
+        "AE"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "attributes": {
+        "marketplace": "AE"
+      },
+      "currency": "AED",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-ST1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-ST1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-ST1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-ST1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "699.00",
+      "shipping": "0",
+      "url": "https://www.amazon.ae/dp/X-AMZ-ST1",
+      "commission_rate": "0.03"
+    },
+    {
+      "external_id": "X-AMZ-PR1",
+      "title": "Wireless Inkjet Printer",
+      "description": "Wireless Inkjet Printer. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Office & School > Printers & Ink",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-PR1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "attributes": {
+        "marketplace": "IN"
+      },
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-PR1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PR1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PR1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PR1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "4999",
+      "shipping": "0",
+      "url": "https://www.amazon.in/dp/X-AMZ-PR1",
+      "commission_rate": "0.02"
+    },
+    {
+      "external_id": "X-AMZ-PM1",
+      "title": "Car Pressure Washer 1600W",
+      "description": "Car Pressure Washer 1600W. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Automotive > Car Care",
+      "image_urls": [
+        "https://images.zakka.example/amazon/X-AMZ-PM1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "SA",
+      "ships_to": [
+        "SA"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "attributes": {
+        "marketplace": "SA"
+      },
+      "currency": "SAR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/amazon/X-AMZ-PM1.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PM1-2.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PM1-3.jpg",
+          "https://images.zakka.example/amazon/X-AMZ-PM1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "349.00",
+      "shipping": "0",
+      "url": "https://www.amazon.sa/dp/X-AMZ-PM1",
+      "commission_rate": "0.03"
     }
   ]
 }

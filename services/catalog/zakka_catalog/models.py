@@ -43,6 +43,8 @@ class SourceProduct(BaseModel):
     delivery_days_min: int | None = None
     delivery_days_max: int | None = None
     commission_rate: Decimal | None = None
+    #: Partner/supplier-provided copy in other locales (used instead of AI translation).
+    translations: dict[str, "Translation"] = Field(default_factory=dict)
 
     @field_validator("ships_from")
     @classmethod
@@ -73,6 +75,11 @@ class ProductPage(BaseModel):
     items: list[SourceProduct]
     page: int
     next_page: int | None = None
+
+
+class UpdatePage(BaseModel):
+    items: list[SourceProduct]
+    next_cursor: str | None = None  # None = listing complete
 
 
 class Address(BaseModel):
@@ -130,3 +137,7 @@ class CategoryRef(BaseModel):
     slug: str
     parent_id: UUID | None = None
     name: str | None = None  # English name when known
+    names: dict[str, str] = Field(default_factory=dict)  # locale -> name
+
+
+SourceProduct.model_rebuild()

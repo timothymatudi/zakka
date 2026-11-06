@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'shein'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'shein'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "shein",
   "currency": "USD",
   "products": [
@@ -38,7 +38,51 @@
       ],
       "delivery_days_min": 8,
       "delivery_days_max": 14,
-      "commission_rate": "0.12"
+      "commission_rate": "0.12",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/SH-701.jpg",
+          "https://images.zakka.example/shein/SH-701-2.jpg",
+          "https://images.zakka.example/shein/SH-701-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "XS",
+              "color": "Navy floral"
+            },
+            {
+              "size": "S",
+              "color": "Navy floral"
+            },
+            {
+              "size": "M",
+              "color": "Navy floral"
+            },
+            {
+              "size": "L",
+              "color": "Navy floral"
+            },
+            {
+              "size": "XS",
+              "color": "Red floral"
+            },
+            {
+              "size": "S",
+              "color": "Red floral"
+            },
+            {
+              "size": "M",
+              "color": "Red floral"
+            },
+            {
+              "size": "L",
+              "color": "Red floral"
+            }
+          ]
+        },
+        "bullet_points": []
+      }
     },
     {
       "external_id": "SH-702",
@@ -75,7 +119,43 @@
       ],
       "delivery_days_min": 8,
       "delivery_days_max": 14,
-      "commission_rate": "0.12"
+      "commission_rate": "0.12",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/SH-702.jpg",
+          "https://images.zakka.example/shein/SH-702-2.jpg",
+          "https://images.zakka.example/shein/SH-702-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "M",
+              "color": "White"
+            },
+            {
+              "size": "L",
+              "color": "White"
+            },
+            {
+              "size": "XL",
+              "color": "White"
+            },
+            {
+              "size": "M",
+              "color": "Sand"
+            },
+            {
+              "size": "L",
+              "color": "Sand"
+            },
+            {
+              "size": "XL",
+              "color": "Sand"
+            }
+          ]
+        },
+        "bullet_points": []
+      }
     },
     {
       "external_id": "SH-703",
@@ -112,6 +192,276 @@
       ],
       "delivery_days_min": 9,
       "delivery_days_max": 15,
+      "commission_rate": "0.12",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/SH-703.jpg",
+          "https://images.zakka.example/shein/SH-703-2.jpg",
+          "https://images.zakka.example/shein/SH-703-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "28"
+            },
+            {
+              "size": "30"
+            },
+            {
+              "size": "32"
+            },
+            {
+              "size": "34"
+            }
+          ]
+        },
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-SH-AB1",
+      "title": "Modest Maxi Abaya with Belt",
+      "description": "Modest Maxi Abaya with Belt. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Women's Fashion > Modest Wear",
+      "image_urls": [
+        "https://images.zakka.example/shein/X-SH-AB1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/X-SH-AB1.jpg",
+          "https://images.zakka.example/shein/X-SH-AB1-2.jpg",
+          "https://images.zakka.example/shein/X-SH-AB1-3.jpg",
+          "https://images.zakka.example/shein/X-SH-AB1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S"
+            },
+            {
+              "size": "M"
+            },
+            {
+              "size": "L"
+            },
+            {
+              "size": "XL"
+            }
+          ]
+        }
+      },
+      "list_price": "24.99",
+      "shipping": "3.99",
+      "url": "https://www.shein.com/mock-p-X-SH-AB1.html",
+      "commission_rate": "0.12"
+    },
+    {
+      "external_id": "X-SH-JN1",
+      "title": "Men's Slim-fit Stretch Jeans",
+      "description": "Men's Slim-fit Stretch Jeans. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Men's Fashion > Pants & Jeans",
+      "image_urls": [
+        "https://images.zakka.example/shein/X-SH-JN1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/X-SH-JN1.jpg",
+          "https://images.zakka.example/shein/X-SH-JN1-2.jpg",
+          "https://images.zakka.example/shein/X-SH-JN1-3.jpg",
+          "https://images.zakka.example/shein/X-SH-JN1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "waist": "30"
+            },
+            {
+              "waist": "32"
+            },
+            {
+              "waist": "34"
+            },
+            {
+              "waist": "36"
+            }
+          ]
+        }
+      },
+      "list_price": "21.50",
+      "shipping": "3.99",
+      "url": "https://www.shein.com/mock-p-X-SH-JN1.html",
+      "commission_rate": "0.12"
+    },
+    {
+      "external_id": "X-SH-BC1",
+      "title": "Baby Cotton Bodysuits (5 pack)",
+      "description": "Baby Cotton Bodysuits (5 pack). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Baby & Kids > Baby Clothing",
+      "image_urls": [
+        "https://images.zakka.example/shein/X-SH-BC1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/X-SH-BC1.jpg",
+          "https://images.zakka.example/shein/X-SH-BC1-2.jpg",
+          "https://images.zakka.example/shein/X-SH-BC1-3.jpg",
+          "https://images.zakka.example/shein/X-SH-BC1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "age": "0-3m"
+            },
+            {
+              "age": "3-6m"
+            },
+            {
+              "age": "6-12m"
+            }
+          ]
+        }
+      },
+      "list_price": "13.99",
+      "shipping": "0",
+      "url": "https://www.shein.com/mock-p-X-SH-BC1.html",
+      "commission_rate": "0.12"
+    },
+    {
+      "external_id": "X-SH-NP1",
+      "title": "Gel Nail Polish Set (12 colours)",
+      "description": "Gel Nail Polish Set (12 colours). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Beauty > Nail Care",
+      "image_urls": [
+        "https://images.zakka.example/shein/X-SH-NP1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shein/X-SH-NP1.jpg",
+          "https://images.zakka.example/shein/X-SH-NP1-2.jpg",
+          "https://images.zakka.example/shein/X-SH-NP1-3.jpg",
+          "https://images.zakka.example/shein/X-SH-NP1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "9.80",
+      "shipping": "0",
+      "url": "https://www.shein.com/mock-p-X-SH-NP1.html",
       "commission_rate": "0.12"
     }
   ]

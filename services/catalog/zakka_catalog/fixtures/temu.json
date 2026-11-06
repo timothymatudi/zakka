@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'temu'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'temu'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "temu",
   "currency": "USD",
   "products": [
@@ -38,7 +38,16 @@
       ],
       "delivery_days_min": 7,
       "delivery_days_max": 15,
-      "commission_rate": "0.10"
+      "commission_rate": "0.10",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/TM-601.jpg",
+          "https://images.zakka.example/temu/TM-601-2.jpg",
+          "https://images.zakka.example/temu/TM-601-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "TM-602",
@@ -75,7 +84,43 @@
       ],
       "delivery_days_min": 7,
       "delivery_days_max": 15,
-      "commission_rate": "0.10"
+      "commission_rate": "0.10",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/TM-602.jpg",
+          "https://images.zakka.example/temu/TM-602-2.jpg",
+          "https://images.zakka.example/temu/TM-602-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S",
+              "color": "Cream"
+            },
+            {
+              "size": "M",
+              "color": "Cream"
+            },
+            {
+              "size": "L",
+              "color": "Cream"
+            },
+            {
+              "size": "S",
+              "color": "Sage"
+            },
+            {
+              "size": "M",
+              "color": "Sage"
+            },
+            {
+              "size": "L",
+              "color": "Sage"
+            }
+          ]
+        },
+        "bullet_points": []
+      }
     },
     {
       "external_id": "TM-603",
@@ -112,6 +157,299 @@
       ],
       "delivery_days_min": 8,
       "delivery_days_max": 16,
+      "commission_rate": "0.10",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/TM-603.jpg",
+          "https://images.zakka.example/temu/TM-603-2.jpg",
+          "https://images.zakka.example/temu/TM-603-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-TM-ER1",
+      "title": "Gold-tone Hoop Earrings (6 pairs)",
+      "description": "Gold-tone Hoop Earrings (6 pairs). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Jewelry & Watches > Earrings",
+      "image_urls": [
+        "https://images.zakka.example/temu/X-TM-ER1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/X-TM-ER1.jpg",
+          "https://images.zakka.example/temu/X-TM-ER1-2.jpg",
+          "https://images.zakka.example/temu/X-TM-ER1-3.jpg",
+          "https://images.zakka.example/temu/X-TM-ER1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "5.98",
+      "shipping": "0",
+      "url": "https://www.temu.com/mock-goods-X-TM-ER1.html",
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "X-TM-ST1",
+      "title": "Under-bed Storage Bags (3 pack)",
+      "description": "Under-bed Storage Bags (3 pack). Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Furniture > Storage & Organization",
+      "image_urls": [
+        "https://images.zakka.example/temu/X-TM-ST1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/X-TM-ST1.jpg",
+          "https://images.zakka.example/temu/X-TM-ST1-2.jpg",
+          "https://images.zakka.example/temu/X-TM-ST1-3.jpg",
+          "https://images.zakka.example/temu/X-TM-ST1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "11.49",
+      "shipping": "0",
+      "url": "https://www.temu.com/mock-goods-X-TM-ST1.html",
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "X-TM-HT1",
+      "title": "Hand Tool Set 46 Pieces",
+      "description": "Hand Tool Set 46 Pieces. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Tools & Home Improvement > Hand Tools",
+      "image_urls": [
+        "https://images.zakka.example/temu/X-TM-HT1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/X-TM-HT1.jpg",
+          "https://images.zakka.example/temu/X-TM-HT1-2.jpg",
+          "https://images.zakka.example/temu/X-TM-HT1-3.jpg",
+          "https://images.zakka.example/temu/X-TM-HT1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "16.90",
+      "shipping": "0",
+      "url": "https://www.temu.com/mock-goods-X-TM-HT1.html",
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "X-TM-PL1",
+      "title": "Kids' Inflatable Paddling Pool",
+      "description": "Kids' Inflatable Paddling Pool. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Garden & Outdoor > Pools & Water Play",
+      "image_urls": [
+        "https://images.zakka.example/temu/X-TM-PL1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/X-TM-PL1.jpg",
+          "https://images.zakka.example/temu/X-TM-PL1-2.jpg",
+          "https://images.zakka.example/temu/X-TM-PL1-3.jpg",
+          "https://images.zakka.example/temu/X-TM-PL1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "14.20",
+      "shipping": "0",
+      "url": "https://www.temu.com/mock-goods-X-TM-PL1.html",
+      "commission_rate": "0.10"
+    },
+    {
+      "external_id": "X-TM-CS2",
+      "title": "Silicone Phone Case with Lanyard",
+      "description": "Silicone Phone Case with Lanyard. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/temu/X-TM-CS2.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/temu/X-TM-CS2.jpg",
+          "https://images.zakka.example/temu/X-TM-CS2-2.jpg",
+          "https://images.zakka.example/temu/X-TM-CS2-3.jpg",
+          "https://images.zakka.example/temu/X-TM-CS2-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "translations": {
+        "es": {
+          "title": "Funda protectora para teléfono"
+        },
+        "fr": {
+          "title": "Coque de protection pour téléphone"
+        },
+        "pt": {
+          "title": "Capa protetora para celular"
+        },
+        "ar": {
+          "title": "غطاء حماية للهاتف"
+        },
+        "zh": {
+          "title": "手机保护壳"
+        },
+        "hi": {
+          "title": "फ़ोन सुरक्षा कवर"
+        },
+        "sw": {
+          "title": "Kava ya kulinda simu"
+        },
+        "de": {
+          "title": "Schutzhülle fürs Handy"
+        },
+        "id": {
+          "title": "Casing pelindung ponsel"
+        }
+      },
+      "list_price": "3.99",
+      "shipping": "0",
+      "url": "https://www.temu.com/mock-goods-X-TM-CS2.html",
       "commission_rate": "0.10"
     }
   ]

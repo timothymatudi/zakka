@@ -1,0 +1,2201 @@
+{
+ "_note": "Generated from categories_starter.sql by scripts/import_seed_categories.py. Do not edit by hand.",
+ "categories": [
+  {
+   "slug": "electronics",
+   "parent": null,
+   "sort": 10,
+   "icon": "cpu",
+   "names": {
+    "en": "Electronics",
+    "es": "Electrónica",
+    "fr": "Électronique",
+    "pt": "Eletrônicos",
+    "ar": "الإلكترونيات",
+    "zh": "电子产品",
+    "hi": "इलेक्ट्रॉनिक्स",
+    "sw": "Vifaa vya Kielektroniki",
+    "de": "Elektronik",
+    "id": "Elektronik"
+   }
+  },
+  {
+   "slug": "mobile-phones",
+   "parent": "electronics",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Mobile Phones",
+    "es": "Teléfonos móviles",
+    "fr": "Téléphones mobiles",
+    "pt": "Celulares",
+    "ar": "الهواتف المحمولة",
+    "zh": "手机",
+    "hi": "मोबाइल फ़ोन",
+    "sw": "Simu za Mkononi",
+    "de": "Handys",
+    "id": "Ponsel"
+   }
+  },
+  {
+   "slug": "computers-laptops",
+   "parent": "electronics",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Computers & Laptops",
+    "es": "Computadoras y portátiles",
+    "fr": "Ordinateurs et portables",
+    "pt": "Computadores e notebooks",
+    "ar": "أجهزة الكمبيوتر واللابتوب",
+    "zh": "电脑与笔记本",
+    "hi": "कंप्यूटर और लैपटॉप",
+    "sw": "Kompyuta na Laptopu",
+    "de": "Computer & Laptops",
+    "id": "Komputer & Laptop"
+   }
+  },
+  {
+   "slug": "audio-headphones",
+   "parent": "electronics",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Audio & Headphones",
+    "es": "Audio y auriculares",
+    "fr": "Audio et casques",
+    "pt": "Áudio e fones de ouvido",
+    "ar": "الصوتيات وسماعات الرأس",
+    "zh": "音频与耳机",
+    "hi": "ऑडियो और हेडफ़ोन",
+    "sw": "Sauti na Vipokea Sauti",
+    "de": "Audio & Kopfhörer",
+    "id": "Audio & Headphone"
+   }
+  },
+  {
+   "slug": "tv-video",
+   "parent": "electronics",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "TV & Video",
+    "es": "Televisores y video",
+    "fr": "TV et vidéo",
+    "pt": "TV e vídeo",
+    "ar": "التلفزيون والفيديو",
+    "zh": "电视与影音",
+    "hi": "टीवी और वीडियो",
+    "sw": "TV na Video",
+    "de": "TV & Video",
+    "id": "TV & Video"
+   }
+  },
+  {
+   "slug": "video-games-consoles",
+   "parent": "electronics",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Video Games & Consoles",
+    "es": "Videojuegos y consolas",
+    "fr": "Jeux vidéo et consoles",
+    "pt": "Videogames e consoles",
+    "ar": "ألعاب الفيديو وأجهزة الألعاب",
+    "zh": "电子游戏与游戏机",
+    "hi": "वीडियो गेम और कंसोल",
+    "sw": "Michezo ya Video na Konsoli",
+    "de": "Videospiele & Konsolen",
+    "id": "Video Game & Konsol"
+   }
+  },
+  {
+   "slug": "cameras-photo",
+   "parent": "electronics",
+   "sort": 6,
+   "icon": null,
+   "names": {
+    "en": "Cameras & Photo",
+    "es": "Cámaras y fotografía",
+    "fr": "Appareils photo",
+    "pt": "Câmeras e fotografia",
+    "ar": "الكاميرات والتصوير",
+    "zh": "相机与摄影",
+    "hi": "कैमरा और फ़ोटोग्राफ़ी",
+    "sw": "Kamera na Upigaji Picha",
+    "de": "Kameras & Foto",
+    "id": "Kamera & Fotografi"
+   }
+  },
+  {
+   "slug": "womens-fashion",
+   "parent": null,
+   "sort": 20,
+   "icon": "shirt",
+   "names": {
+    "en": "Women's Fashion",
+    "es": "Moda de mujer",
+    "fr": "Mode femme",
+    "pt": "Moda feminina",
+    "ar": "أزياء نسائية",
+    "zh": "女装",
+    "hi": "महिलाओं का फ़ैशन",
+    "sw": "Mitindo ya Wanawake",
+    "de": "Damenmode",
+    "id": "Fashion Wanita"
+   }
+  },
+  {
+   "slug": "dresses",
+   "parent": "womens-fashion",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Dresses",
+    "es": "Vestidos",
+    "fr": "Robes",
+    "pt": "Vestidos",
+    "ar": "فساتين",
+    "zh": "连衣裙",
+    "hi": "ड्रेस",
+    "sw": "Magauni",
+    "de": "Kleider",
+    "id": "Gaun"
+   }
+  },
+  {
+   "slug": "womens-tops",
+   "parent": "womens-fashion",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Tops & Blouses",
+    "es": "Tops y blusas",
+    "fr": "Hauts et chemisiers",
+    "pt": "Blusas e camisetas",
+    "ar": "بلوزات وقمصان",
+    "zh": "上衣与衬衫",
+    "hi": "टॉप और ब्लाउज़",
+    "sw": "Blauzi na Fulana",
+    "de": "Oberteile & Blusen",
+    "id": "Atasan & Blus"
+   }
+  },
+  {
+   "slug": "womens-bottoms",
+   "parent": "womens-fashion",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Pants & Skirts",
+    "es": "Pantalones y faldas",
+    "fr": "Pantalons et jupes",
+    "pt": "Calças e saias",
+    "ar": "سراويل وتنانير",
+    "zh": "裤装与半身裙",
+    "hi": "पैंट और स्कर्ट",
+    "sw": "Suruali na Sketi",
+    "de": "Hosen & Röcke",
+    "id": "Celana & Rok"
+   }
+  },
+  {
+   "slug": "womens-outerwear",
+   "parent": "womens-fashion",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Coats & Jackets",
+    "es": "Abrigos y chaquetas",
+    "fr": "Manteaux et vestes",
+    "pt": "Casacos e jaquetas",
+    "ar": "معاطف وجاكيتات",
+    "zh": "外套与夹克",
+    "hi": "कोट और जैकेट",
+    "sw": "Makoti na Jaketi",
+    "de": "Mäntel & Jacken",
+    "id": "Mantel & Jaket"
+   }
+  },
+  {
+   "slug": "lingerie-sleepwear",
+   "parent": "womens-fashion",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Lingerie & Sleepwear",
+    "es": "Lencería y ropa de dormir",
+    "fr": "Lingerie et vêtements de nuit",
+    "pt": "Lingerie e pijamas",
+    "ar": "ملابس داخلية وملابس نوم",
+    "zh": "内衣与睡衣",
+    "hi": "लॉन्जरी और नाइटवियर",
+    "sw": "Nguo za Ndani na za Kulalia",
+    "de": "Dessous & Nachtwäsche",
+    "id": "Pakaian Dalam & Baju Tidur"
+   }
+  },
+  {
+   "slug": "modest-wear",
+   "parent": "womens-fashion",
+   "sort": 6,
+   "icon": null,
+   "names": {
+    "en": "Modest Wear",
+    "es": "Moda modesta",
+    "fr": "Mode modeste",
+    "pt": "Moda modesta",
+    "ar": "أزياء محتشمة",
+    "zh": "端庄服饰",
+    "hi": "मॉडेस्ट वियर",
+    "sw": "Mavazi ya Staha",
+    "de": "Modest Fashion",
+    "id": "Busana Muslim"
+   }
+  },
+  {
+   "slug": "mens-fashion",
+   "parent": null,
+   "sort": 30,
+   "icon": "shirt",
+   "names": {
+    "en": "Men's Fashion",
+    "es": "Moda de hombre",
+    "fr": "Mode homme",
+    "pt": "Moda masculina",
+    "ar": "أزياء رجالية",
+    "zh": "男装",
+    "hi": "पुरुषों का फ़ैशन",
+    "sw": "Mitindo ya Wanaume",
+    "de": "Herrenmode",
+    "id": "Fashion Pria"
+   }
+  },
+  {
+   "slug": "mens-tshirts-polos",
+   "parent": "mens-fashion",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "T-Shirts & Polos",
+    "es": "Camisetas y polos",
+    "fr": "T-shirts et polos",
+    "pt": "Camisetas e polos",
+    "ar": "تيشيرتات وبولو",
+    "zh": "T恤与Polo衫",
+    "hi": "टी-शर्ट और पोलो",
+    "sw": "Fulana na Polo",
+    "de": "T-Shirts & Poloshirts",
+    "id": "Kaos & Polo"
+   }
+  },
+  {
+   "slug": "mens-shirts",
+   "parent": "mens-fashion",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Shirts",
+    "es": "Camisas",
+    "fr": "Chemises",
+    "pt": "Camisas",
+    "ar": "قمصان",
+    "zh": "衬衫",
+    "hi": "शर्ट",
+    "sw": "Mashati",
+    "de": "Hemden",
+    "id": "Kemeja"
+   }
+  },
+  {
+   "slug": "mens-pants-jeans",
+   "parent": "mens-fashion",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Pants & Jeans",
+    "es": "Pantalones y jeans",
+    "fr": "Pantalons et jeans",
+    "pt": "Calças e jeans",
+    "ar": "سراويل وجينز",
+    "zh": "裤子与牛仔裤",
+    "hi": "पैंट और जींस",
+    "sw": "Suruali na Jinzi",
+    "de": "Hosen & Jeans",
+    "id": "Celana & Jeans"
+   }
+  },
+  {
+   "slug": "mens-outerwear",
+   "parent": "mens-fashion",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Jackets & Coats",
+    "es": "Chaquetas y abrigos",
+    "fr": "Vestes et manteaux",
+    "pt": "Jaquetas e casacos",
+    "ar": "جاكيتات ومعاطف",
+    "zh": "夹克与外套",
+    "hi": "जैकेट और कोट",
+    "sw": "Jaketi na Makoti",
+    "de": "Jacken & Mäntel",
+    "id": "Jaket & Mantel"
+   }
+  },
+  {
+   "slug": "mens-underwear-socks",
+   "parent": "mens-fashion",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Underwear & Socks",
+    "es": "Ropa interior y calcetines",
+    "fr": "Sous-vêtements et chaussettes",
+    "pt": "Cuecas e meias",
+    "ar": "ملابس داخلية وجوارب",
+    "zh": "内衣与袜子",
+    "hi": "अंडरवियर और मोज़े",
+    "sw": "Nguo za Ndani na Soksi",
+    "de": "Unterwäsche & Socken",
+    "id": "Pakaian Dalam & Kaus Kaki"
+   }
+  },
+  {
+   "slug": "shoes",
+   "parent": null,
+   "sort": 40,
+   "icon": "footprints",
+   "names": {
+    "en": "Shoes",
+    "es": "Zapatos",
+    "fr": "Chaussures",
+    "pt": "Calçados",
+    "ar": "أحذية",
+    "zh": "鞋靴",
+    "hi": "जूते",
+    "sw": "Viatu",
+    "de": "Schuhe",
+    "id": "Sepatu"
+   }
+  },
+  {
+   "slug": "womens-shoes",
+   "parent": "shoes",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Women's Shoes",
+    "es": "Zapatos de mujer",
+    "fr": "Chaussures femme",
+    "pt": "Calçados femininos",
+    "ar": "أحذية نسائية",
+    "zh": "女鞋",
+    "hi": "महिलाओं के जूते",
+    "sw": "Viatu vya Wanawake",
+    "de": "Damenschuhe",
+    "id": "Sepatu Wanita"
+   }
+  },
+  {
+   "slug": "mens-shoes",
+   "parent": "shoes",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Men's Shoes",
+    "es": "Zapatos de hombre",
+    "fr": "Chaussures homme",
+    "pt": "Calçados masculinos",
+    "ar": "أحذية رجالية",
+    "zh": "男鞋",
+    "hi": "पुरुषों के जूते",
+    "sw": "Viatu vya Wanaume",
+    "de": "Herrenschuhe",
+    "id": "Sepatu Pria"
+   }
+  },
+  {
+   "slug": "kids-shoes",
+   "parent": "shoes",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Kids' Shoes",
+    "es": "Zapatos infantiles",
+    "fr": "Chaussures enfant",
+    "pt": "Calçados infantis",
+    "ar": "أحذية أطفال",
+    "zh": "童鞋",
+    "hi": "बच्चों के जूते",
+    "sw": "Viatu vya Watoto",
+    "de": "Kinderschuhe",
+    "id": "Sepatu Anak"
+   }
+  },
+  {
+   "slug": "sneakers",
+   "parent": "shoes",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Sneakers",
+    "es": "Zapatillas",
+    "fr": "Baskets",
+    "pt": "Tênis",
+    "ar": "أحذية رياضية",
+    "zh": "运动鞋",
+    "hi": "स्नीकर्स",
+    "sw": "Raba",
+    "de": "Sneaker",
+    "id": "Sneakers"
+   }
+  },
+  {
+   "slug": "sandals-slippers",
+   "parent": "shoes",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Sandals & Slippers",
+    "es": "Sandalias y pantuflas",
+    "fr": "Sandales et chaussons",
+    "pt": "Sandálias e chinelos",
+    "ar": "صنادل وشباشب",
+    "zh": "凉鞋与拖鞋",
+    "hi": "सैंडल और चप्पल",
+    "sw": "Sandali na Malapa",
+    "de": "Sandalen & Hausschuhe",
+    "id": "Sandal & Selop"
+   }
+  },
+  {
+   "slug": "jewelry-watches",
+   "parent": null,
+   "sort": 50,
+   "icon": "gem",
+   "names": {
+    "en": "Jewelry & Watches",
+    "es": "Joyería y relojes",
+    "fr": "Bijoux et montres",
+    "pt": "Joias e relógios",
+    "ar": "المجوهرات والساعات",
+    "zh": "珠宝与手表",
+    "hi": "आभूषण और घड़ियाँ",
+    "sw": "Vito na Saa",
+    "de": "Schmuck & Uhren",
+    "id": "Perhiasan & Jam Tangan"
+   }
+  },
+  {
+   "slug": "necklaces",
+   "parent": "jewelry-watches",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Necklaces",
+    "es": "Collares",
+    "fr": "Colliers",
+    "pt": "Colares",
+    "ar": "قلادات",
+    "zh": "项链",
+    "hi": "हार",
+    "sw": "Mikufu",
+    "de": "Halsketten",
+    "id": "Kalung"
+   }
+  },
+  {
+   "slug": "rings",
+   "parent": "jewelry-watches",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Rings",
+    "es": "Anillos",
+    "fr": "Bagues",
+    "pt": "Anéis",
+    "ar": "خواتم",
+    "zh": "戒指",
+    "hi": "अंगूठियाँ",
+    "sw": "Pete",
+    "de": "Ringe",
+    "id": "Cincin"
+   }
+  },
+  {
+   "slug": "earrings",
+   "parent": "jewelry-watches",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Earrings",
+    "es": "Aretes",
+    "fr": "Boucles d'oreilles",
+    "pt": "Brincos",
+    "ar": "أقراط",
+    "zh": "耳环",
+    "hi": "झुमके और बालियाँ",
+    "sw": "Hereni",
+    "de": "Ohrringe",
+    "id": "Anting"
+   }
+  },
+  {
+   "slug": "bracelets",
+   "parent": "jewelry-watches",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Bracelets",
+    "es": "Pulseras",
+    "fr": "Bracelets",
+    "pt": "Pulseiras",
+    "ar": "أساور",
+    "zh": "手链",
+    "hi": "कंगन और ब्रेसलेट",
+    "sw": "Bangili",
+    "de": "Armbänder",
+    "id": "Gelang"
+   }
+  },
+  {
+   "slug": "watches",
+   "parent": "jewelry-watches",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Watches",
+    "es": "Relojes",
+    "fr": "Montres",
+    "pt": "Relógios",
+    "ar": "ساعات",
+    "zh": "手表",
+    "hi": "घड़ियाँ",
+    "sw": "Saa za Mkononi",
+    "de": "Uhren",
+    "id": "Jam Tangan"
+   }
+  },
+  {
+   "slug": "bags-luggage",
+   "parent": null,
+   "sort": 60,
+   "icon": "luggage",
+   "names": {
+    "en": "Bags & Luggage",
+    "es": "Bolsos y equipaje",
+    "fr": "Sacs et bagages",
+    "pt": "Bolsas e malas",
+    "ar": "الحقائب والأمتعة",
+    "zh": "箱包",
+    "hi": "बैग और सामान",
+    "sw": "Mikoba na Mizigo",
+    "de": "Taschen & Gepäck",
+    "id": "Tas & Koper"
+   }
+  },
+  {
+   "slug": "handbags",
+   "parent": "bags-luggage",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Handbags",
+    "es": "Bolsos de mano",
+    "fr": "Sacs à main",
+    "pt": "Bolsas femininas",
+    "ar": "حقائب يد",
+    "zh": "手提包",
+    "hi": "हैंडबैग",
+    "sw": "Mikoba ya Mkono",
+    "de": "Handtaschen",
+    "id": "Tas Tangan"
+   }
+  },
+  {
+   "slug": "backpacks",
+   "parent": "bags-luggage",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Backpacks",
+    "es": "Mochilas",
+    "fr": "Sacs à dos",
+    "pt": "Mochilas",
+    "ar": "حقائب ظهر",
+    "zh": "双肩包",
+    "hi": "बैकपैक",
+    "sw": "Mabegi ya Mgongoni",
+    "de": "Rucksäcke",
+    "id": "Ransel"
+   }
+  },
+  {
+   "slug": "suitcases",
+   "parent": "bags-luggage",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Suitcases",
+    "es": "Maletas",
+    "fr": "Valises",
+    "pt": "Malas de viagem",
+    "ar": "حقائب سفر",
+    "zh": "行李箱",
+    "hi": "सूटकेस",
+    "sw": "Masanduku ya Safari",
+    "de": "Koffer",
+    "id": "Koper"
+   }
+  },
+  {
+   "slug": "wallets",
+   "parent": "bags-luggage",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Wallets",
+    "es": "Carteras",
+    "fr": "Portefeuilles",
+    "pt": "Carteiras",
+    "ar": "محافظ",
+    "zh": "钱包",
+    "hi": "बटुए",
+    "sw": "Pochi",
+    "de": "Geldbörsen",
+    "id": "Dompet"
+   }
+  },
+  {
+   "slug": "travel-accessories",
+   "parent": "bags-luggage",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Travel Accessories",
+    "es": "Accesorios de viaje",
+    "fr": "Accessoires de voyage",
+    "pt": "Acessórios de viagem",
+    "ar": "إكسسوارات السفر",
+    "zh": "旅行配件",
+    "hi": "यात्रा सहायक सामान",
+    "sw": "Vifaa vya Safari",
+    "de": "Reisezubehör",
+    "id": "Aksesori Perjalanan"
+   }
+  },
+  {
+   "slug": "beauty",
+   "parent": null,
+   "sort": 70,
+   "icon": "sparkles",
+   "names": {
+    "en": "Beauty",
+    "es": "Belleza",
+    "fr": "Beauté",
+    "pt": "Beleza",
+    "ar": "التجميل",
+    "zh": "美妆",
+    "hi": "सौंदर्य",
+    "sw": "Urembo",
+    "de": "Beauty & Kosmetik",
+    "id": "Kecantikan"
+   }
+  },
+  {
+   "slug": "makeup",
+   "parent": "beauty",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Makeup",
+    "es": "Maquillaje",
+    "fr": "Maquillage",
+    "pt": "Maquiagem",
+    "ar": "مكياج",
+    "zh": "彩妆",
+    "hi": "मेकअप",
+    "sw": "Vipodozi",
+    "de": "Make-up",
+    "id": "Makeup"
+   }
+  },
+  {
+   "slug": "skincare",
+   "parent": "beauty",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Skincare",
+    "es": "Cuidado de la piel",
+    "fr": "Soins de la peau",
+    "pt": "Cuidados com a pele",
+    "ar": "العناية بالبشرة",
+    "zh": "护肤",
+    "hi": "त्वचा की देखभाल",
+    "sw": "Utunzaji wa Ngozi",
+    "de": "Hautpflege",
+    "id": "Perawatan Kulit"
+   }
+  },
+  {
+   "slug": "haircare",
+   "parent": "beauty",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Hair Care",
+    "es": "Cuidado del cabello",
+    "fr": "Soins des cheveux",
+    "pt": "Cuidados com o cabelo",
+    "ar": "العناية بالشعر",
+    "zh": "护发",
+    "hi": "बालों की देखभाल",
+    "sw": "Utunzaji wa Nywele",
+    "de": "Haarpflege",
+    "id": "Perawatan Rambut"
+   }
+  },
+  {
+   "slug": "fragrances",
+   "parent": "beauty",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Fragrances",
+    "es": "Fragancias",
+    "fr": "Parfums",
+    "pt": "Perfumes",
+    "ar": "العطور",
+    "zh": "香水",
+    "hi": "सुगंध और परफ़्यूम",
+    "sw": "Manukato",
+    "de": "Düfte",
+    "id": "Parfum"
+   }
+  },
+  {
+   "slug": "nail-care",
+   "parent": "beauty",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Nail Care",
+    "es": "Cuidado de uñas",
+    "fr": "Soins des ongles",
+    "pt": "Cuidados com as unhas",
+    "ar": "العناية بالأظافر",
+    "zh": "美甲",
+    "hi": "नाखूनों की देखभाल",
+    "sw": "Utunzaji wa Kucha",
+    "de": "Nagelpflege",
+    "id": "Perawatan Kuku"
+   }
+  },
+  {
+   "slug": "health-personal-care",
+   "parent": null,
+   "sort": 80,
+   "icon": "heart-pulse",
+   "names": {
+    "en": "Health & Personal Care",
+    "es": "Salud y cuidado personal",
+    "fr": "Santé et soins personnels",
+    "pt": "Saúde e cuidados pessoais",
+    "ar": "الصحة والعناية الشخصية",
+    "zh": "健康与个人护理",
+    "hi": "स्वास्थ्य और व्यक्तिगत देखभाल",
+    "sw": "Afya na Usafi Binafsi",
+    "de": "Gesundheit & Körperpflege",
+    "id": "Kesehatan & Perawatan Diri"
+   }
+  },
+  {
+   "slug": "vitamins-supplements",
+   "parent": "health-personal-care",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Vitamins & Supplements",
+    "es": "Vitaminas y suplementos",
+    "fr": "Vitamines et compléments",
+    "pt": "Vitaminas e suplementos",
+    "ar": "فيتامينات ومكملات غذائية",
+    "zh": "维生素与膳食补充剂",
+    "hi": "विटामिन और सप्लीमेंट",
+    "sw": "Vitamini na Virutubisho",
+    "de": "Vitamine & Nahrungsergänzung",
+    "id": "Vitamin & Suplemen"
+   }
+  },
+  {
+   "slug": "oral-care",
+   "parent": "health-personal-care",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Oral Care",
+    "es": "Cuidado bucal",
+    "fr": "Hygiène bucco-dentaire",
+    "pt": "Higiene bucal",
+    "ar": "العناية بالفم والأسنان",
+    "zh": "口腔护理",
+    "hi": "मुँह की देखभाल",
+    "sw": "Utunzaji wa Kinywa",
+    "de": "Mundpflege",
+    "id": "Perawatan Mulut"
+   }
+  },
+  {
+   "slug": "shaving-grooming",
+   "parent": "health-personal-care",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Shaving & Grooming",
+    "es": "Afeitado y aseo",
+    "fr": "Rasage et soins",
+    "pt": "Barbear e depilação",
+    "ar": "الحلاقة والعناية",
+    "zh": "剃须与理容",
+    "hi": "शेविंग और ग्रूमिंग",
+    "sw": "Kunyoa na Kujipamba",
+    "de": "Rasur & Pflege",
+    "id": "Cukur & Perawatan"
+   }
+  },
+  {
+   "slug": "first-aid",
+   "parent": "health-personal-care",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "First Aid",
+    "es": "Primeros auxilios",
+    "fr": "Premiers secours",
+    "pt": "Primeiros socorros",
+    "ar": "الإسعافات الأولية",
+    "zh": "急救用品",
+    "hi": "प्राथमिक चिकित्सा",
+    "sw": "Huduma ya Kwanza",
+    "de": "Erste Hilfe",
+    "id": "Pertolongan Pertama"
+   }
+  },
+  {
+   "slug": "massage-relaxation",
+   "parent": "health-personal-care",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Massage & Relaxation",
+    "es": "Masajes y relajación",
+    "fr": "Massage et relaxation",
+    "pt": "Massagem e relaxamento",
+    "ar": "التدليك والاسترخاء",
+    "zh": "按摩与放松",
+    "hi": "मसाज और आराम",
+    "sw": "Masaji na Mapumziko",
+    "de": "Massage & Entspannung",
+    "id": "Pijat & Relaksasi"
+   }
+  },
+  {
+   "slug": "home-kitchen",
+   "parent": null,
+   "sort": 90,
+   "icon": "cooking-pot",
+   "names": {
+    "en": "Home & Kitchen",
+    "es": "Hogar y cocina",
+    "fr": "Maison et cuisine",
+    "pt": "Casa e cozinha",
+    "ar": "المنزل والمطبخ",
+    "zh": "家居与厨房",
+    "hi": "घर और रसोई",
+    "sw": "Nyumbani na Jikoni",
+    "de": "Haus & Küche",
+    "id": "Rumah & Dapur"
+   }
+  },
+  {
+   "slug": "cookware",
+   "parent": "home-kitchen",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Cookware",
+    "es": "Ollas y sartenes",
+    "fr": "Ustensiles de cuisson",
+    "pt": "Panelas e frigideiras",
+    "ar": "أواني الطهي",
+    "zh": "锅具",
+    "hi": "खाना पकाने के बर्तन",
+    "sw": "Vyombo vya Kupikia",
+    "de": "Kochgeschirr",
+    "id": "Peralatan Masak"
+   }
+  },
+  {
+   "slug": "kitchen-appliances",
+   "parent": "home-kitchen",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Kitchen Appliances",
+    "es": "Electrodomésticos de cocina",
+    "fr": "Appareils de cuisine",
+    "pt": "Eletrodomésticos de cozinha",
+    "ar": "أجهزة المطبخ",
+    "zh": "厨房电器",
+    "hi": "रसोई उपकरण",
+    "sw": "Vifaa vya Umeme vya Jikoni",
+    "de": "Küchengeräte",
+    "id": "Alat Elektronik Dapur"
+   }
+  },
+  {
+   "slug": "tableware",
+   "parent": "home-kitchen",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Tableware",
+    "es": "Vajilla",
+    "fr": "Arts de la table",
+    "pt": "Utensílios de mesa",
+    "ar": "أدوات المائدة",
+    "zh": "餐具",
+    "hi": "टेबलवेयर",
+    "sw": "Vyombo vya Mezani",
+    "de": "Geschirr & Besteck",
+    "id": "Peralatan Makan"
+   }
+  },
+  {
+   "slug": "food-storage",
+   "parent": "home-kitchen",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Food Storage",
+    "es": "Almacenamiento de alimentos",
+    "fr": "Conservation des aliments",
+    "pt": "Armazenamento de alimentos",
+    "ar": "حفظ الطعام",
+    "zh": "食品收纳",
+    "hi": "खाद्य भंडारण",
+    "sw": "Hifadhi ya Chakula",
+    "de": "Lebensmittelaufbewahrung",
+    "id": "Wadah Penyimpanan Makanan"
+   }
+  },
+  {
+   "slug": "coffee-tea",
+   "parent": "home-kitchen",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Coffee & Tea",
+    "es": "Café y té",
+    "fr": "Café et thé",
+    "pt": "Café e chá",
+    "ar": "القهوة والشاي",
+    "zh": "咖啡与茶具",
+    "hi": "कॉफ़ी और चाय",
+    "sw": "Kahawa na Chai",
+    "de": "Kaffee & Tee",
+    "id": "Kopi & Teh"
+   }
+  },
+  {
+   "slug": "home-decor",
+   "parent": null,
+   "sort": 100,
+   "icon": "lamp",
+   "names": {
+    "en": "Home Decor",
+    "es": "Decoración del hogar",
+    "fr": "Décoration intérieure",
+    "pt": "Decoração",
+    "ar": "ديكور المنزل",
+    "zh": "家居装饰",
+    "hi": "घर की सजावट",
+    "sw": "Mapambo ya Nyumbani",
+    "de": "Wohndeko",
+    "id": "Dekorasi Rumah"
+   }
+  },
+  {
+   "slug": "wall-art",
+   "parent": "home-decor",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Wall Art",
+    "es": "Cuadros y arte mural",
+    "fr": "Décoration murale",
+    "pt": "Quadros e arte de parede",
+    "ar": "لوحات جدارية",
+    "zh": "墙面装饰",
+    "hi": "दीवार सजावट",
+    "sw": "Mapambo ya Ukutani",
+    "de": "Wandbilder",
+    "id": "Hiasan Dinding"
+   }
+  },
+  {
+   "slug": "lighting",
+   "parent": "home-decor",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Lighting",
+    "es": "Iluminación",
+    "fr": "Luminaires",
+    "pt": "Iluminação",
+    "ar": "الإضاءة",
+    "zh": "灯具照明",
+    "hi": "लाइटिंग",
+    "sw": "Taa",
+    "de": "Beleuchtung",
+    "id": "Lampu & Pencahayaan"
+   }
+  },
+  {
+   "slug": "rugs-carpets",
+   "parent": "home-decor",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Rugs & Carpets",
+    "es": "Alfombras",
+    "fr": "Tapis",
+    "pt": "Tapetes",
+    "ar": "سجاد وموكيت",
+    "zh": "地毯",
+    "hi": "दरी और कालीन",
+    "sw": "Mazulia",
+    "de": "Teppiche",
+    "id": "Karpet"
+   }
+  },
+  {
+   "slug": "curtains-blinds",
+   "parent": "home-decor",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Curtains & Blinds",
+    "es": "Cortinas y persianas",
+    "fr": "Rideaux et stores",
+    "pt": "Cortinas e persianas",
+    "ar": "ستائر",
+    "zh": "窗帘与百叶窗",
+    "hi": "पर्दे और ब्लाइंड्स",
+    "sw": "Mapazia",
+    "de": "Vorhänge & Jalousien",
+    "id": "Gorden & Kerai"
+   }
+  },
+  {
+   "slug": "candles-home-fragrance",
+   "parent": "home-decor",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Candles & Home Fragrance",
+    "es": "Velas y aromas para el hogar",
+    "fr": "Bougies et parfums d'intérieur",
+    "pt": "Velas e aromatizadores",
+    "ar": "شموع ومعطرات منزلية",
+    "zh": "蜡烛与家居香氛",
+    "hi": "मोमबत्तियाँ और होम फ़्रेगरेंस",
+    "sw": "Mishumaa na Manukato ya Nyumbani",
+    "de": "Kerzen & Raumdüfte",
+    "id": "Lilin & Pengharum Ruangan"
+   }
+  },
+  {
+   "slug": "furniture",
+   "parent": null,
+   "sort": 110,
+   "icon": "sofa",
+   "names": {
+    "en": "Furniture",
+    "es": "Muebles",
+    "fr": "Meubles",
+    "pt": "Móveis",
+    "ar": "الأثاث",
+    "zh": "家具",
+    "hi": "फ़र्नीचर",
+    "sw": "Samani",
+    "de": "Möbel",
+    "id": "Furnitur"
+   }
+  },
+  {
+   "slug": "living-room-furniture",
+   "parent": "furniture",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Living Room",
+    "es": "Sala de estar",
+    "fr": "Salon",
+    "pt": "Sala de estar",
+    "ar": "غرفة المعيشة",
+    "zh": "客厅家具",
+    "hi": "लिविंग रूम",
+    "sw": "Sebule",
+    "de": "Wohnzimmer",
+    "id": "Ruang Tamu"
+   }
+  },
+  {
+   "slug": "bedroom-furniture",
+   "parent": "furniture",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Bedroom",
+    "es": "Dormitorio",
+    "fr": "Chambre",
+    "pt": "Quarto",
+    "ar": "غرفة النوم",
+    "zh": "卧室家具",
+    "hi": "बेडरूम",
+    "sw": "Chumba cha Kulala",
+    "de": "Schlafzimmer",
+    "id": "Kamar Tidur"
+   }
+  },
+  {
+   "slug": "office-furniture",
+   "parent": "furniture",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Office Furniture",
+    "es": "Muebles de oficina",
+    "fr": "Mobilier de bureau",
+    "pt": "Móveis de escritório",
+    "ar": "أثاث مكتبي",
+    "zh": "办公家具",
+    "hi": "ऑफ़िस फ़र्नीचर",
+    "sw": "Samani za Ofisi",
+    "de": "Büromöbel",
+    "id": "Furnitur Kantor"
+   }
+  },
+  {
+   "slug": "outdoor-furniture",
+   "parent": "furniture",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Outdoor Furniture",
+    "es": "Muebles de exterior",
+    "fr": "Mobilier d'extérieur",
+    "pt": "Móveis para área externa",
+    "ar": "أثاث خارجي",
+    "zh": "户外家具",
+    "hi": "आउटडोर फ़र्नीचर",
+    "sw": "Samani za Nje",
+    "de": "Gartenmöbel",
+    "id": "Furnitur Luar Ruangan"
+   }
+  },
+  {
+   "slug": "storage-organization",
+   "parent": "furniture",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Storage & Organization",
+    "es": "Almacenaje y organización",
+    "fr": "Rangement et organisation",
+    "pt": "Organização e armazenamento",
+    "ar": "التخزين والتنظيم",
+    "zh": "收纳整理",
+    "hi": "भंडारण और व्यवस्था",
+    "sw": "Uhifadhi na Mpangilio",
+    "de": "Aufbewahrung & Ordnung",
+    "id": "Penyimpanan & Organizer"
+   }
+  },
+  {
+   "slug": "home-appliances",
+   "parent": null,
+   "sort": 120,
+   "icon": "washing-machine",
+   "names": {
+    "en": "Home Appliances",
+    "es": "Electrodomésticos",
+    "fr": "Électroménager",
+    "pt": "Eletrodomésticos",
+    "ar": "الأجهزة المنزلية",
+    "zh": "家用电器",
+    "hi": "घरेलू उपकरण",
+    "sw": "Vifaa vya Nyumbani",
+    "de": "Haushaltsgeräte",
+    "id": "Peralatan Rumah Tangga"
+   }
+  },
+  {
+   "slug": "vacuum-cleaners",
+   "parent": "home-appliances",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Vacuum Cleaners",
+    "es": "Aspiradoras",
+    "fr": "Aspirateurs",
+    "pt": "Aspiradores de pó",
+    "ar": "مكانس كهربائية",
+    "zh": "吸尘器",
+    "hi": "वैक्यूम क्लीनर",
+    "sw": "Visafishaji vya Vumbi",
+    "de": "Staubsauger",
+    "id": "Penyedot Debu"
+   }
+  },
+  {
+   "slug": "fans-air-conditioners",
+   "parent": "home-appliances",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Fans & Air Conditioners",
+    "es": "Ventiladores y aires acondicionados",
+    "fr": "Ventilateurs et climatiseurs",
+    "pt": "Ventiladores e ar-condicionado",
+    "ar": "مراوح ومكيفات",
+    "zh": "风扇与空调",
+    "hi": "पंखे और एयर कंडीशनर",
+    "sw": "Feni na Viyoyozi",
+    "de": "Ventilatoren & Klimageräte",
+    "id": "Kipas Angin & AC"
+   }
+  },
+  {
+   "slug": "air-purifiers-humidifiers",
+   "parent": "home-appliances",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Air Purifiers & Humidifiers",
+    "es": "Purificadores y humidificadores",
+    "fr": "Purificateurs et humidificateurs",
+    "pt": "Purificadores e umidificadores",
+    "ar": "منقيات الهواء وأجهزة الترطيب",
+    "zh": "空气净化器与加湿器",
+    "hi": "एयर प्यूरीफ़ायर और ह्यूमिडिफ़ायर",
+    "sw": "Visafisha Hewa na Vinyevushaji",
+    "de": "Luftreiniger & Luftbefeuchter",
+    "id": "Pemurni Udara & Humidifier"
+   }
+  },
+  {
+   "slug": "laundry-appliances",
+   "parent": "home-appliances",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Washing & Drying",
+    "es": "Lavado y secado",
+    "fr": "Lavage et séchage",
+    "pt": "Lavar e secar",
+    "ar": "أجهزة الغسيل والتجفيف",
+    "zh": "洗衣设备",
+    "hi": "कपड़े धोने के उपकरण",
+    "sw": "Vifaa vya Kufulia",
+    "de": "Waschen & Trocknen",
+    "id": "Mesin Cuci & Pengering"
+   }
+  },
+  {
+   "slug": "irons-steamers",
+   "parent": "home-appliances",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Irons & Steamers",
+    "es": "Planchas y vaporizadores",
+    "fr": "Fers et défroisseurs",
+    "pt": "Ferros e vaporizadores",
+    "ar": "مكاوي وأجهزة البخار",
+    "zh": "熨斗与挂烫机",
+    "hi": "इस्त्री और स्टीमर",
+    "sw": "Pasi za Nguo",
+    "de": "Bügeleisen & Dampfglätter",
+    "id": "Setrika & Steamer"
+   }
+  },
+  {
+   "slug": "baby-kids",
+   "parent": null,
+   "sort": 130,
+   "icon": "baby",
+   "names": {
+    "en": "Baby & Kids",
+    "es": "Bebés y niños",
+    "fr": "Bébé et enfant",
+    "pt": "Bebês e crianças",
+    "ar": "الرضع والأطفال",
+    "zh": "母婴用品",
+    "hi": "शिशु और बच्चे",
+    "sw": "Watoto Wachanga na Watoto",
+    "de": "Baby & Kind",
+    "id": "Bayi & Anak"
+   }
+  },
+  {
+   "slug": "baby-clothing",
+   "parent": "baby-kids",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Baby Clothing",
+    "es": "Ropa de bebé",
+    "fr": "Vêtements bébé",
+    "pt": "Roupas de bebê",
+    "ar": "ملابس الرضع",
+    "zh": "婴儿服装",
+    "hi": "शिशु के कपड़े",
+    "sw": "Nguo za Watoto Wachanga",
+    "de": "Babykleidung",
+    "id": "Pakaian Bayi"
+   }
+  },
+  {
+   "slug": "kids-clothing",
+   "parent": "baby-kids",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Kids' Clothing",
+    "es": "Ropa infantil",
+    "fr": "Vêtements enfant",
+    "pt": "Roupas infantis",
+    "ar": "ملابس الأطفال",
+    "zh": "童装",
+    "hi": "बच्चों के कपड़े",
+    "sw": "Nguo za Watoto",
+    "de": "Kinderkleidung",
+    "id": "Pakaian Anak"
+   }
+  },
+  {
+   "slug": "diapering",
+   "parent": "baby-kids",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Diapers & Changing",
+    "es": "Pañales y cambiadores",
+    "fr": "Couches et change",
+    "pt": "Fraldas e trocadores",
+    "ar": "الحفاضات ومستلزمات التغيير",
+    "zh": "尿布与护理",
+    "hi": "डायपर",
+    "sw": "Nepi",
+    "de": "Windeln & Wickeln",
+    "id": "Popok & Perlengkapan Ganti"
+   }
+  },
+  {
+   "slug": "baby-feeding",
+   "parent": "baby-kids",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Feeding",
+    "es": "Alimentación",
+    "fr": "Repas et allaitement",
+    "pt": "Alimentação",
+    "ar": "التغذية والرضاعة",
+    "zh": "喂养用品",
+    "hi": "दूध पिलाना और आहार",
+    "sw": "Ulishaji",
+    "de": "Füttern & Stillen",
+    "id": "Perlengkapan Makan Bayi"
+   }
+  },
+  {
+   "slug": "strollers-car-seats",
+   "parent": "baby-kids",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Strollers & Car Seats",
+    "es": "Cochecitos y sillas de auto",
+    "fr": "Poussettes et sièges auto",
+    "pt": "Carrinhos e cadeirinhas",
+    "ar": "عربات الأطفال ومقاعد السيارة",
+    "zh": "婴儿车与安全座椅",
+    "hi": "स्ट्रॉलर और कार सीट",
+    "sw": "Vigari vya Watoto na Viti vya Gari",
+    "de": "Kinderwagen & Autositze",
+    "id": "Stroller & Kursi Mobil"
+   }
+  },
+  {
+   "slug": "toys-games",
+   "parent": null,
+   "sort": 140,
+   "icon": "puzzle",
+   "names": {
+    "en": "Toys & Games",
+    "es": "Juguetes y juegos",
+    "fr": "Jouets et jeux",
+    "pt": "Brinquedos e jogos",
+    "ar": "الألعاب",
+    "zh": "玩具与游戏",
+    "hi": "खिलौने और खेल",
+    "sw": "Vitu vya Kuchezea na Michezo",
+    "de": "Spielzeug & Spiele",
+    "id": "Mainan & Permainan"
+   }
+  },
+  {
+   "slug": "building-toys",
+   "parent": "toys-games",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Building Toys",
+    "es": "Juguetes de construcción",
+    "fr": "Jeux de construction",
+    "pt": "Brinquedos de montar",
+    "ar": "ألعاب التركيب والبناء",
+    "zh": "积木拼搭",
+    "hi": "बिल्डिंग खिलौने",
+    "sw": "Michezo ya Kujenga",
+    "de": "Bauspielzeug",
+    "id": "Mainan Konstruksi"
+   }
+  },
+  {
+   "slug": "dolls-action-figures",
+   "parent": "toys-games",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Dolls & Action Figures",
+    "es": "Muñecas y figuras de acción",
+    "fr": "Poupées et figurines",
+    "pt": "Bonecas e bonecos de ação",
+    "ar": "دمى وشخصيات حركية",
+    "zh": "娃娃与人偶",
+    "hi": "गुड़िया और एक्शन फ़िगर",
+    "sw": "Wanasesere na Vinyago",
+    "de": "Puppen & Actionfiguren",
+    "id": "Boneka & Figur Aksi"
+   }
+  },
+  {
+   "slug": "board-games-puzzles",
+   "parent": "toys-games",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Board Games & Puzzles",
+    "es": "Juegos de mesa y rompecabezas",
+    "fr": "Jeux de société et puzzles",
+    "pt": "Jogos de tabuleiro e quebra-cabeças",
+    "ar": "ألعاب الطاولة والألغاز",
+    "zh": "桌游与拼图",
+    "hi": "बोर्ड गेम और पहेलियाँ",
+    "sw": "Michezo ya Bao na Mafumbo",
+    "de": "Brettspiele & Puzzles",
+    "id": "Board Game & Puzzle"
+   }
+  },
+  {
+   "slug": "outdoor-play",
+   "parent": "toys-games",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Outdoor Play",
+    "es": "Juegos al aire libre",
+    "fr": "Jeux d'extérieur",
+    "pt": "Brinquedos ao ar livre",
+    "ar": "ألعاب خارجية",
+    "zh": "户外玩具",
+    "hi": "आउटडोर खेल",
+    "sw": "Michezo ya Nje",
+    "de": "Spielzeug für draußen",
+    "id": "Mainan Luar Ruangan"
+   }
+  },
+  {
+   "slug": "educational-toys",
+   "parent": "toys-games",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Educational Toys",
+    "es": "Juguetes educativos",
+    "fr": "Jouets éducatifs",
+    "pt": "Brinquedos educativos",
+    "ar": "ألعاب تعليمية",
+    "zh": "益智玩具",
+    "hi": "शैक्षिक खिलौने",
+    "sw": "Vitu vya Kuchezea vya Kielimu",
+    "de": "Lernspielzeug",
+    "id": "Mainan Edukasi"
+   }
+  },
+  {
+   "slug": "sports-outdoors",
+   "parent": null,
+   "sort": 150,
+   "icon": "dumbbell",
+   "names": {
+    "en": "Sports & Outdoors",
+    "es": "Deportes y aire libre",
+    "fr": "Sports et plein air",
+    "pt": "Esportes e atividades ao ar livre",
+    "ar": "الرياضة والأنشطة الخارجية",
+    "zh": "运动户外",
+    "hi": "खेल और आउटडोर",
+    "sw": "Michezo na Shughuli za Nje",
+    "de": "Sport & Outdoor",
+    "id": "Olahraga & Outdoor"
+   }
+  },
+  {
+   "slug": "fitness-equipment",
+   "parent": "sports-outdoors",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Fitness Equipment",
+    "es": "Equipos de fitness",
+    "fr": "Équipement de fitness",
+    "pt": "Equipamentos fitness",
+    "ar": "معدات اللياقة البدنية",
+    "zh": "健身器材",
+    "hi": "फ़िटनेस उपकरण",
+    "sw": "Vifaa vya Mazoezi",
+    "de": "Fitnessgeräte",
+    "id": "Alat Kebugaran"
+   }
+  },
+  {
+   "slug": "cycling",
+   "parent": "sports-outdoors",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Cycling",
+    "es": "Ciclismo",
+    "fr": "Cyclisme",
+    "pt": "Ciclismo",
+    "ar": "ركوب الدراجات",
+    "zh": "骑行",
+    "hi": "साइकिलिंग",
+    "sw": "Baiskeli",
+    "de": "Radsport",
+    "id": "Bersepeda"
+   }
+  },
+  {
+   "slug": "camping-hiking",
+   "parent": "sports-outdoors",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Camping & Hiking",
+    "es": "Camping y senderismo",
+    "fr": "Camping et randonnée",
+    "pt": "Camping e trilhas",
+    "ar": "التخييم والرحلات",
+    "zh": "露营与徒步",
+    "hi": "कैंपिंग और हाइकिंग",
+    "sw": "Kambi na Matembezi",
+    "de": "Camping & Wandern",
+    "id": "Berkemah & Mendaki"
+   }
+  },
+  {
+   "slug": "team-sports",
+   "parent": "sports-outdoors",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Team Sports",
+    "es": "Deportes de equipo",
+    "fr": "Sports collectifs",
+    "pt": "Esportes coletivos",
+    "ar": "الرياضات الجماعية",
+    "zh": "团队运动",
+    "hi": "टीम खेल",
+    "sw": "Michezo ya Timu",
+    "de": "Mannschaftssport",
+    "id": "Olahraga Tim"
+   }
+  },
+  {
+   "slug": "sportswear",
+   "parent": "sports-outdoors",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Sportswear",
+    "es": "Ropa deportiva",
+    "fr": "Vêtements de sport",
+    "pt": "Roupas esportivas",
+    "ar": "ملابس رياضية",
+    "zh": "运动服饰",
+    "hi": "स्पोर्ट्सवियर",
+    "sw": "Mavazi ya Michezo",
+    "de": "Sportbekleidung",
+    "id": "Pakaian Olahraga"
+   }
+  },
+  {
+   "slug": "automotive",
+   "parent": null,
+   "sort": 160,
+   "icon": "car",
+   "names": {
+    "en": "Automotive",
+    "es": "Automotriz",
+    "fr": "Auto et moto",
+    "pt": "Automotivo",
+    "ar": "السيارات",
+    "zh": "汽车用品",
+    "hi": "ऑटोमोटिव",
+    "sw": "Magari",
+    "de": "Auto & Motorrad",
+    "id": "Otomotif"
+   }
+  },
+  {
+   "slug": "car-electronics",
+   "parent": "automotive",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Car Electronics",
+    "es": "Electrónica para auto",
+    "fr": "Électronique auto",
+    "pt": "Eletrônicos automotivos",
+    "ar": "إلكترونيات السيارات",
+    "zh": "车载电子",
+    "hi": "कार इलेक्ट्रॉनिक्स",
+    "sw": "Vifaa vya Kielektroniki vya Gari",
+    "de": "Autoelektronik",
+    "id": "Elektronik Mobil"
+   }
+  },
+  {
+   "slug": "car-care",
+   "parent": "automotive",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Car Care",
+    "es": "Cuidado del auto",
+    "fr": "Entretien auto",
+    "pt": "Cuidados automotivos",
+    "ar": "العناية بالسيارة",
+    "zh": "汽车护理",
+    "hi": "कार की देखभाल",
+    "sw": "Utunzaji wa Gari",
+    "de": "Autopflege",
+    "id": "Perawatan Mobil"
+   }
+  },
+  {
+   "slug": "car-interior-accessories",
+   "parent": "automotive",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Interior Accessories",
+    "es": "Accesorios interiores",
+    "fr": "Accessoires intérieur",
+    "pt": "Acessórios internos",
+    "ar": "إكسسوارات داخلية للسيارة",
+    "zh": "汽车内饰",
+    "hi": "इंटीरियर एक्सेसरीज़",
+    "sw": "Vifaa vya Ndani ya Gari",
+    "de": "Innenraumzubehör",
+    "id": "Aksesori Interior"
+   }
+  },
+  {
+   "slug": "car-tools-equipment",
+   "parent": "automotive",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Tools & Equipment",
+    "es": "Herramientas y equipos",
+    "fr": "Outils et équipement",
+    "pt": "Ferramentas e equipamentos",
+    "ar": "أدوات ومعدات",
+    "zh": "汽车工具与设备",
+    "hi": "औज़ार और उपकरण",
+    "sw": "Zana na Vifaa",
+    "de": "Werkzeug & Ausrüstung",
+    "id": "Peralatan & Perkakas"
+   }
+  },
+  {
+   "slug": "motorcycle-accessories",
+   "parent": "automotive",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Motorcycle Accessories",
+    "es": "Accesorios para moto",
+    "fr": "Accessoires moto",
+    "pt": "Acessórios para moto",
+    "ar": "إكسسوارات الدراجات النارية",
+    "zh": "摩托车配件",
+    "hi": "मोटरसाइकिल एक्सेसरीज़",
+    "sw": "Vifaa vya Pikipiki",
+    "de": "Motorradzubehör",
+    "id": "Aksesori Motor"
+   }
+  },
+  {
+   "slug": "tools-home-improvement",
+   "parent": null,
+   "sort": 170,
+   "icon": "wrench",
+   "names": {
+    "en": "Tools & Home Improvement",
+    "es": "Herramientas y bricolaje",
+    "fr": "Bricolage et outillage",
+    "pt": "Ferramentas e construção",
+    "ar": "الأدوات وتحسين المنزل",
+    "zh": "工具与家装",
+    "hi": "औज़ार और घर सुधार",
+    "sw": "Zana na Ukarabati wa Nyumba",
+    "de": "Werkzeug & Heimwerken",
+    "id": "Perkakas & Renovasi Rumah"
+   }
+  },
+  {
+   "slug": "power-tools",
+   "parent": "tools-home-improvement",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Power Tools",
+    "es": "Herramientas eléctricas",
+    "fr": "Outils électriques",
+    "pt": "Ferramentas elétricas",
+    "ar": "أدوات كهربائية",
+    "zh": "电动工具",
+    "hi": "पावर टूल्स",
+    "sw": "Zana za Umeme",
+    "de": "Elektrowerkzeuge",
+    "id": "Perkakas Listrik"
+   }
+  },
+  {
+   "slug": "hand-tools",
+   "parent": "tools-home-improvement",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Hand Tools",
+    "es": "Herramientas manuales",
+    "fr": "Outils à main",
+    "pt": "Ferramentas manuais",
+    "ar": "أدوات يدوية",
+    "zh": "手动工具",
+    "hi": "हाथ के औज़ार",
+    "sw": "Zana za Mkono",
+    "de": "Handwerkzeuge",
+    "id": "Perkakas Tangan"
+   }
+  },
+  {
+   "slug": "electrical",
+   "parent": "tools-home-improvement",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Electrical",
+    "es": "Material eléctrico",
+    "fr": "Électricité",
+    "pt": "Material elétrico",
+    "ar": "مستلزمات كهربائية",
+    "zh": "电工电料",
+    "hi": "बिजली का सामान",
+    "sw": "Vifaa vya Umeme",
+    "de": "Elektroinstallation",
+    "id": "Kelistrikan"
+   }
+  },
+  {
+   "slug": "plumbing",
+   "parent": "tools-home-improvement",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Plumbing",
+    "es": "Plomería",
+    "fr": "Plomberie",
+    "pt": "Material hidráulico",
+    "ar": "السباكة",
+    "zh": "水暖管件",
+    "hi": "प्लंबिंग",
+    "sw": "Mabomba",
+    "de": "Sanitär",
+    "id": "Perpipaan"
+   }
+  },
+  {
+   "slug": "smart-home-security",
+   "parent": "tools-home-improvement",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Smart Home & Security",
+    "es": "Hogar inteligente y seguridad",
+    "fr": "Maison connectée et sécurité",
+    "pt": "Casa inteligente e segurança",
+    "ar": "المنزل الذكي والأمان",
+    "zh": "智能家居与安防",
+    "hi": "स्मार्ट होम और सुरक्षा",
+    "sw": "Nyumba Janja na Usalama",
+    "de": "Smart Home & Sicherheit",
+    "id": "Rumah Pintar & Keamanan"
+   }
+  },
+  {
+   "slug": "garden-outdoor",
+   "parent": null,
+   "sort": 180,
+   "icon": "sprout",
+   "names": {
+    "en": "Garden & Outdoor",
+    "es": "Jardín y exterior",
+    "fr": "Jardin et extérieur",
+    "pt": "Jardim e área externa",
+    "ar": "الحديقة والمساحات الخارجية",
+    "zh": "园艺与户外",
+    "hi": "बगीचा और आउटडोर",
+    "sw": "Bustani na Nje",
+    "de": "Garten & Outdoor",
+    "id": "Taman & Luar Ruangan"
+   }
+  },
+  {
+   "slug": "gardening-tools",
+   "parent": "garden-outdoor",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Gardening Tools",
+    "es": "Herramientas de jardinería",
+    "fr": "Outils de jardinage",
+    "pt": "Ferramentas de jardinagem",
+    "ar": "أدوات البستنة",
+    "zh": "园艺工具",
+    "hi": "बागवानी औज़ार",
+    "sw": "Zana za Bustani",
+    "de": "Gartenwerkzeuge",
+    "id": "Alat Berkebun"
+   }
+  },
+  {
+   "slug": "plants-seeds",
+   "parent": "garden-outdoor",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Plants & Seeds",
+    "es": "Plantas y semillas",
+    "fr": "Plantes et graines",
+    "pt": "Plantas e sementes",
+    "ar": "نباتات وبذور",
+    "zh": "植物与种子",
+    "hi": "पौधे और बीज",
+    "sw": "Mimea na Mbegu",
+    "de": "Pflanzen & Samen",
+    "id": "Tanaman & Benih"
+   }
+  },
+  {
+   "slug": "outdoor-lighting",
+   "parent": "garden-outdoor",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Outdoor Lighting",
+    "es": "Iluminación exterior",
+    "fr": "Éclairage extérieur",
+    "pt": "Iluminação externa",
+    "ar": "إضاءة خارجية",
+    "zh": "户外照明",
+    "hi": "आउटडोर लाइटिंग",
+    "sw": "Taa za Nje",
+    "de": "Außenbeleuchtung",
+    "id": "Lampu Luar Ruangan"
+   }
+  },
+  {
+   "slug": "bbq-grilling",
+   "parent": "garden-outdoor",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "BBQ & Grilling",
+    "es": "Barbacoa y parrillas",
+    "fr": "Barbecue et grillades",
+    "pt": "Churrasco e grelhados",
+    "ar": "الشواء",
+    "zh": "烧烤",
+    "hi": "बारबेक्यू और ग्रिलिंग",
+    "sw": "Vifaa vya Kuchoma Nyama",
+    "de": "Grillen",
+    "id": "BBQ & Panggangan"
+   }
+  },
+  {
+   "slug": "pools-water-play",
+   "parent": "garden-outdoor",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Pools & Water Play",
+    "es": "Piscinas y juegos de agua",
+    "fr": "Piscines et jeux d'eau",
+    "pt": "Piscinas e diversão aquática",
+    "ar": "المسابح وألعاب الماء",
+    "zh": "泳池与戏水",
+    "hi": "पूल और पानी के खेल",
+    "sw": "Mabwawa na Michezo ya Maji",
+    "de": "Pools & Wasserspaß",
+    "id": "Kolam & Mainan Air"
+   }
+  },
+  {
+   "slug": "pet-supplies",
+   "parent": null,
+   "sort": 190,
+   "icon": "paw-print",
+   "names": {
+    "en": "Pet Supplies",
+    "es": "Mascotas",
+    "fr": "Animalerie",
+    "pt": "Produtos para pets",
+    "ar": "مستلزمات الحيوانات الأليفة",
+    "zh": "宠物用品",
+    "hi": "पालतू जानवरों का सामान",
+    "sw": "Mahitaji ya Wanyama Vipenzi",
+    "de": "Heimtierbedarf",
+    "id": "Perlengkapan Hewan Peliharaan"
+   }
+  },
+  {
+   "slug": "dog-supplies",
+   "parent": "pet-supplies",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Dogs",
+    "es": "Perros",
+    "fr": "Chiens",
+    "pt": "Cães",
+    "ar": "الكلاب",
+    "zh": "狗狗用品",
+    "hi": "कुत्ते",
+    "sw": "Mbwa",
+    "de": "Hunde",
+    "id": "Anjing"
+   }
+  },
+  {
+   "slug": "cat-supplies",
+   "parent": "pet-supplies",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Cats",
+    "es": "Gatos",
+    "fr": "Chats",
+    "pt": "Gatos",
+    "ar": "القطط",
+    "zh": "猫咪用品",
+    "hi": "बिल्लियाँ",
+    "sw": "Paka",
+    "de": "Katzen",
+    "id": "Kucing"
+   }
+  },
+  {
+   "slug": "pet-food-treats",
+   "parent": "pet-supplies",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Pet Food & Treats",
+    "es": "Comida y premios para mascotas",
+    "fr": "Nourriture et friandises",
+    "pt": "Ração e petiscos",
+    "ar": "طعام ومكافآت الحيوانات الأليفة",
+    "zh": "宠物食品与零食",
+    "hi": "पालतू भोजन और ट्रीट",
+    "sw": "Chakula cha Wanyama Vipenzi",
+    "de": "Tierfutter & Leckerlis",
+    "id": "Makanan & Camilan Hewan"
+   }
+  },
+  {
+   "slug": "aquarium-fish",
+   "parent": "pet-supplies",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Fish & Aquariums",
+    "es": "Peces y acuarios",
+    "fr": "Poissons et aquariums",
+    "pt": "Peixes e aquários",
+    "ar": "الأسماك وأحواض السمك",
+    "zh": "水族用品",
+    "hi": "मछली और एक्वेरियम",
+    "sw": "Samaki na Akwaria",
+    "de": "Aquaristik",
+    "id": "Ikan & Akuarium"
+   }
+  },
+  {
+   "slug": "birds-small-animals",
+   "parent": "pet-supplies",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Birds & Small Animals",
+    "es": "Aves y pequeños animales",
+    "fr": "Oiseaux et petits animaux",
+    "pt": "Aves e pequenos animais",
+    "ar": "الطيور والحيوانات الصغيرة",
+    "zh": "鸟类与小宠",
+    "hi": "पक्षी और छोटे जानवर",
+    "sw": "Ndege na Wanyama Wadogo",
+    "de": "Vögel & Kleintiere",
+    "id": "Burung & Hewan Kecil"
+   }
+  },
+  {
+   "slug": "office-school",
+   "parent": null,
+   "sort": 200,
+   "icon": "pencil",
+   "names": {
+    "en": "Office & School",
+    "es": "Oficina y papelería",
+    "fr": "Bureau et école",
+    "pt": "Escritório e papelaria",
+    "ar": "المكتب والمدرسة",
+    "zh": "办公与学习用品",
+    "hi": "ऑफ़िस और स्कूल",
+    "sw": "Ofisi na Shule",
+    "de": "Büro & Schule",
+    "id": "Kantor & Sekolah"
+   }
+  },
+  {
+   "slug": "pens-writing",
+   "parent": "office-school",
+   "sort": 1,
+   "icon": null,
+   "names": {
+    "en": "Pens & Writing",
+    "es": "Bolígrafos y escritura",
+    "fr": "Stylos et écriture",
+    "pt": "Canetas e escrita",
+    "ar": "أقلام وأدوات كتابة",
+    "zh": "笔与书写工具",
+    "hi": "पेन और लेखन सामग्री",
+    "sw": "Kalamu na Vifaa vya Kuandikia",
+    "de": "Stifte & Schreibwaren",
+    "id": "Pulpen & Alat Tulis"
+   }
+  },
+  {
+   "slug": "notebooks-paper",
+   "parent": "office-school",
+   "sort": 2,
+   "icon": null,
+   "names": {
+    "en": "Notebooks & Paper",
+    "es": "Cuadernos y papel",
+    "fr": "Cahiers et papier",
+    "pt": "Cadernos e papel",
+    "ar": "دفاتر وورق",
+    "zh": "笔记本与纸张",
+    "hi": "नोटबुक और कागज़",
+    "sw": "Madaftari na Karatasi",
+    "de": "Hefte & Papier",
+    "id": "Buku Tulis & Kertas"
+   }
+  },
+  {
+   "slug": "desk-accessories",
+   "parent": "office-school",
+   "sort": 3,
+   "icon": null,
+   "names": {
+    "en": "Desk Accessories",
+    "es": "Accesorios de escritorio",
+    "fr": "Accessoires de bureau",
+    "pt": "Acessórios de mesa",
+    "ar": "إكسسوارات المكتب",
+    "zh": "桌面用品",
+    "hi": "डेस्क एक्सेसरीज़",
+    "sw": "Vifaa vya Mezani",
+    "de": "Schreibtischzubehör",
+    "id": "Aksesori Meja"
+   }
+  },
+  {
+   "slug": "art-craft-supplies",
+   "parent": "office-school",
+   "sort": 4,
+   "icon": null,
+   "names": {
+    "en": "Art & Craft Supplies",
+    "es": "Materiales de arte y manualidades",
+    "fr": "Beaux-arts et loisirs créatifs",
+    "pt": "Arte e artesanato",
+    "ar": "مستلزمات الفنون والحِرف",
+    "zh": "美术与手工用品",
+    "hi": "कला और शिल्प सामग्री",
+    "sw": "Vifaa vya Sanaa na Ufundi",
+    "de": "Künstler- & Bastelbedarf",
+    "id": "Perlengkapan Seni & Kerajinan"
+   }
+  },
+  {
+   "slug": "printers-ink",
+   "parent": "office-school",
+   "sort": 5,
+   "icon": null,
+   "names": {
+    "en": "Printers & Ink",
+    "es": "Impresoras y tinta",
+    "fr": "Imprimantes et encre",
+    "pt": "Impressoras e tinta",
+    "ar": "طابعات وأحبار",
+    "zh": "打印机与墨盒",
+    "hi": "प्रिंटर और स्याही",
+    "sw": "Printa na Wino",
+    "de": "Drucker & Tinte",
+    "id": "Printer & Tinta"
+   }
+  }
+ ]
+}

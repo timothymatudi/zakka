@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'aliexpress_aff'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'aliexpress_aff'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "aliexpress_aff",
   "currency": "USD",
   "products": [
@@ -40,7 +40,16 @@
       ],
       "delivery_days_min": 10,
       "delivery_days_max": 20,
-      "commission_rate": "0.07"
+      "commission_rate": "0.07",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/1005002001.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002001-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "1005002002",
@@ -77,7 +86,16 @@
       ],
       "delivery_days_min": 10,
       "delivery_days_max": 22,
-      "commission_rate": "0.08"
+      "commission_rate": "0.08",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/1005002002.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002002-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002002-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "1005002003",
@@ -116,7 +134,306 @@
       ],
       "delivery_days_min": 10,
       "delivery_days_max": 20,
+      "commission_rate": "0.09",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/1005002003.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002003-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/1005002003-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "X-AA-SW1",
+      "title": "Smart Fitness Watch with Blood Oxygen",
+      "description": "Smart Fitness Watch with Blood Oxygen. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Jewelry & Watches > Watches",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/X-AA-SW1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 12000,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {
+        "battery_days": 10,
+        "water_resistance": "IP68"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/X-AA-SW1.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-SW1-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-SW1-3.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-SW1-4.jpg"
+        ],
+        "attributes": {
+          "battery_days": 10,
+          "water_resistance": "IP68"
+        }
+      },
+      "list_price": "19.90",
+      "shipping": "0",
+      "url": "https://s.click.aliexpress.com/e/_mockX-AA-SW1",
+      "commission_rate": "0.08"
+    },
+    {
+      "external_id": "X-AA-CM1",
+      "title": "Mini Action Camera 4K",
+      "description": "Mini Action Camera 4K. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Cameras & Photo",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/X-AA-CM1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/X-AA-CM1.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-CM1-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-CM1-3.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-CM1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "39.50",
+      "shipping": "0",
+      "url": "https://s.click.aliexpress.com/e/_mockX-AA-CM1",
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "X-AA-GM1",
+      "title": "Retro Handheld Game Console",
+      "description": "Retro Handheld Game Console. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Video Games & Consoles",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/X-AA-GM1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/X-AA-GM1.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-GM1-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-GM1-3.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-GM1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "26.80",
+      "shipping": "0",
+      "url": "https://s.click.aliexpress.com/e/_mockX-AA-GM1",
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "X-AA-EB2",
+      "title": "TWS Earbuds with Noise Cancelling",
+      "description": "TWS Earbuds with Noise Cancelling. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Electronics > Audio & Headphones",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/X-AA-EB2.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 21000,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/X-AA-EB2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-EB2-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-EB2-3.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-EB2-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "translations": {
+        "es": {
+          "title": "Auriculares inalámbricos"
+        },
+        "fr": {
+          "title": "Écouteurs sans fil"
+        },
+        "pt": {
+          "title": "Fones de ouvido sem fio"
+        },
+        "ar": {
+          "title": "سماعات أذن لاسلكية"
+        },
+        "zh": {
+          "title": "无线耳机"
+        },
+        "hi": {
+          "title": "वायरलेस ईयरबड्स"
+        },
+        "sw": {
+          "title": "Vipokea sauti visivyo na waya"
+        },
+        "de": {
+          "title": "Kabellose Ohrhörer"
+        },
+        "id": {
+          "title": "Earbud nirkabel"
+        }
+      },
+      "list_price": "16.30",
+      "shipping": "0",
+      "url": "https://s.click.aliexpress.com/e/_mockX-AA-EB2",
       "commission_rate": "0.09"
+    },
+    {
+      "external_id": "X-AA-BK1",
+      "title": "Bicycle LED Light Set USB Rechargeable",
+      "description": "Bicycle LED Light Set USB Rechargeable. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Sports & Outdoors > Cycling",
+      "image_urls": [
+        "https://images.zakka.example/aliexpress_aff/X-AA-BK1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "CN",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "AE",
+        "SA",
+        "EG",
+        "KE",
+        "NG",
+        "IN",
+        "BR",
+        "MX",
+        "ID",
+        "ZA",
+        "PK",
+        "TZ",
+        "UG"
+      ],
+      "delivery_days_min": 7,
+      "delivery_days_max": 15,
+      "attributes": {},
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/aliexpress_aff/X-AA-BK1.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-BK1-2.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-BK1-3.jpg",
+          "https://images.zakka.example/aliexpress_aff/X-AA-BK1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "7.90",
+      "shipping": "0",
+      "url": "https://s.click.aliexpress.com/e/_mockX-AA-BK1",
+      "commission_rate": "0.08"
     }
   ]
 }

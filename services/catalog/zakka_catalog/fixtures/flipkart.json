@@ -1,5 +1,5 @@
 {
-  "_note": "MOCK fixture for source 'flipkart'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it.",
+  "_note": "MOCK fixture for source 'flipkart'. Fictional products, brands, ids and URLs (*.example / mock ids). Amounts are in 'currency' unless an item overrides it. 'detail' = what the full product-detail call returns (gallery, specs, variants).",
   "source": "flipkart",
   "currency": "INR",
   "products": [
@@ -21,7 +21,16 @@
       ],
       "delivery_days_min": 2,
       "delivery_days_max": 6,
-      "commission_rate": "0.05"
+      "commission_rate": "0.05",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/FK-1001.jpg",
+          "https://images.zakka.example/flipkart/FK-1001-2.jpg",
+          "https://images.zakka.example/flipkart/FK-1001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
     },
     {
       "external_id": "FK-1002",
@@ -41,7 +50,31 @@
       ],
       "delivery_days_min": 3,
       "delivery_days_max": 7,
-      "commission_rate": "0.06"
+      "commission_rate": "0.06",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/FK-1002.jpg",
+          "https://images.zakka.example/flipkart/FK-1002-2.jpg",
+          "https://images.zakka.example/flipkart/FK-1002-3.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "7"
+            },
+            {
+              "size": "8"
+            },
+            {
+              "size": "9"
+            },
+            {
+              "size": "10"
+            }
+          ]
+        },
+        "bullet_points": []
+      }
     },
     {
       "external_id": "FK-1003",
@@ -63,7 +96,390 @@
       ],
       "delivery_days_min": 2,
       "delivery_days_max": 5,
+      "commission_rate": "0.04",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/FK-1003.jpg",
+          "https://images.zakka.example/flipkart/FK-1003-2.jpg",
+          "https://images.zakka.example/flipkart/FK-1003-3.jpg"
+        ],
+        "attributes": {
+          "capacity_mah": 20000,
+          "output_w": 22.5
+        },
+        "bullet_points": [
+          "Capacity mah: 20000",
+          "Output w: 22.5"
+        ]
+      }
+    },
+    {
+      "external_id": "X-FK-PH1",
+      "title": "Tecla A2 Smartphone 64GB",
+      "description": "Tecla A2 Smartphone 64GB. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": "Tecla",
+      "gtin": "2000000001012",
+      "category_hint": "Electronics > Mobile Phones",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-PH1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-PH1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PH1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PH1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PH1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "translations": {
+        "es": {
+          "title": "Teléfono inteligente Tecla A2"
+        },
+        "fr": {
+          "title": "Smartphone Tecla A2"
+        },
+        "pt": {
+          "title": "Smartphone Tecla A2"
+        },
+        "ar": {
+          "title": "هاتف ذكي Tecla A2"
+        },
+        "zh": {
+          "title": "Tecla A2 智能手机"
+        },
+        "hi": {
+          "title": "Tecla A2 स्मार्टफ़ोन"
+        },
+        "sw": {
+          "title": "Simu janja Tecla A2"
+        },
+        "de": {
+          "title": "Tecla A2 Smartphone"
+        },
+        "id": {
+          "title": "Ponsel pintar Tecla A2"
+        }
+      },
+      "list_price": "8999",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-PH1/p/itmX-FK-PH1",
+      "commission_rate": "0.03"
+    },
+    {
+      "external_id": "X-FK-TM1",
+      "title": "Electric Trimmer for Men",
+      "description": "Electric Trimmer for Men. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Health & Personal Care > Shaving & Grooming",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-TM1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-TM1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-TM1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-TM1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-TM1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "1199",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-TM1/p/itmX-FK-TM1",
+      "commission_rate": "0.05"
+    },
+    {
+      "external_id": "X-FK-CB1",
+      "title": "Cricket Bat English Willow",
+      "description": "Cricket Bat English Willow. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Sports & Outdoors > Team Sports",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-CB1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-CB1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-CB1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-CB1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-CB1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "2499",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-CB1/p/itmX-FK-CB1",
+      "commission_rate": "0.06"
+    },
+    {
+      "external_id": "X-FK-SN1",
+      "title": "Women's Running Sneakers",
+      "description": "Women's Running Sneakers. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Shoes > Women's Shoes",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-SN1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-SN1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-SN1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-SN1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-SN1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "4"
+            },
+            {
+              "size": "5"
+            },
+            {
+              "size": "6"
+            },
+            {
+              "size": "7"
+            }
+          ]
+        }
+      },
+      "translations": {
+        "es": {
+          "title": "Zapatillas deportivas"
+        },
+        "fr": {
+          "title": "Baskets de sport"
+        },
+        "pt": {
+          "title": "Tênis esportivo"
+        },
+        "ar": {
+          "title": "حذاء رياضي"
+        },
+        "zh": {
+          "title": "运动鞋"
+        },
+        "hi": {
+          "title": "स्पोर्ट्स स्नीकर्स"
+        },
+        "sw": {
+          "title": "Viatu vya michezo"
+        },
+        "de": {
+          "title": "Sportschuhe"
+        },
+        "id": {
+          "title": "Sepatu olahraga"
+        }
+      },
+      "list_price": "1499",
+      "shipping": "40",
+      "url": "https://www.flipkart.com/mock-X-FK-SN1/p/itmX-FK-SN1",
+      "commission_rate": "0.07"
+    },
+    {
+      "external_id": "X-FK-KS1",
+      "title": "Cotton Kurta for Men",
+      "description": "Cotton Kurta for Men. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Men's Fashion > Shirts",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-KS1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-KS1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-KS1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-KS1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-KS1-4.jpg"
+        ],
+        "attributes": {
+          "variants": [
+            {
+              "size": "S"
+            },
+            {
+              "size": "M"
+            },
+            {
+              "size": "L"
+            },
+            {
+              "size": "XL"
+            }
+          ]
+        }
+      },
+      "list_price": "699",
+      "shipping": "40",
+      "url": "https://www.flipkart.com/mock-X-FK-KS1/p/itmX-FK-KS1",
+      "commission_rate": "0.08"
+    },
+    {
+      "external_id": "X-FK-PJ1",
+      "title": "Wooden Jigsaw Puzzle 1000 Pieces",
+      "description": "Wooden Jigsaw Puzzle 1000 Pieces. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Toys & Games > Board Games & Puzzles",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-PJ1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-PJ1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PJ1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PJ1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-PJ1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "549",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-PJ1/p/itmX-FK-PJ1",
+      "commission_rate": "0.06"
+    },
+    {
+      "external_id": "X-FK-IR1",
+      "title": "Steam Iron 1600W",
+      "description": "Steam Iron 1600W. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Home Appliances > Irons & Steamers",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-IR1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-IR1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-IR1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-IR1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-IR1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "1299",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-IR1/p/itmX-FK-IR1",
       "commission_rate": "0.04"
+    },
+    {
+      "external_id": "X-FK-LT1",
+      "title": "Laptop Stand Adjustable Aluminium",
+      "description": "Laptop Stand Adjustable Aluminium. Quality checked before dispatch.",
+      "bullet_points": [],
+      "brand": null,
+      "gtin": null,
+      "category_hint": "Office & School > Desk Accessories",
+      "image_urls": [
+        "https://images.zakka.example/flipkart/X-FK-LT1.jpg"
+      ],
+      "rating": "4.3",
+      "review_count": 500,
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "attributes": {},
+      "currency": "INR",
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/flipkart/X-FK-LT1.jpg",
+          "https://images.zakka.example/flipkart/X-FK-LT1-2.jpg",
+          "https://images.zakka.example/flipkart/X-FK-LT1-3.jpg",
+          "https://images.zakka.example/flipkart/X-FK-LT1-4.jpg"
+        ],
+        "attributes": {}
+      },
+      "list_price": "899",
+      "shipping": "0",
+      "url": "https://www.flipkart.com/mock-X-FK-LT1/p/itmX-FK-LT1",
+      "commission_rate": "0.05"
     }
   ]
 }

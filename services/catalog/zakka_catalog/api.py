@@ -8,6 +8,10 @@ Additions (non-breaking):
   GET  /health
   POST /prices            batch pricing, for search indexing / carts (read-only, open)
   POST /tracking/poll     poll supplier tracking into shipments
+  POST /offers/{id}/refresh   just-in-time re-price + stock check (checkout, product page)
+  POST /signals               engagement (hot tier), search impressions (warm tier), locale views
+  GET  /live/search           live affiliate search (cached 1h, per-partner daily quotas)
+  POST /live/{source}/{external_id}/materialize   store an affiliate item a customer saw/clicked
 
 Auth: state-changing routes (forward, tracking/poll) require
 ``Authorization: Bearer $CATALOG_API_TOKEN`` (constant-time compare). If
@@ -76,6 +80,17 @@ class SnapshotItem(BaseModel):
     unit_price: Decimal = Field(ge=0)
 
 
+class ViewedIn(BaseModel):
+    product_id: UUID
+    locale: str = Field(min_length=2, max_length=5)
+
+
+class SignalsIn(BaseModel):
+    engaged_offer_ids: list[UUID] = Field(default_factory=list, max_length=1000)
+    impression_product_ids: list[UUID] = Field(default_factory=list, max_length=5000)
+    viewed: list[ViewedIn] = Field(default_factory=list, max_length=200)
+
+
 class ForwardIn(BaseModel):
     shipping_address: Address | None = None
     order: SnapshotOrder | None = None  # used only when the store has no shared DB (memory mode)
@@ -139,7 +154,8 @@ def bearer_matches(authorization: str | None, expected: str) -> bool:
 
 def create_app(store: Store | None = None, connectors: Mapping[str, Connector] | None = None,
                store_name: str | None = None, api_token: str | None = None,
-               notifier: ConciergeNotifier | None = None) -> FastAPI:
+               notifier: ConciergeNotifier | None = None, enricher=None, queue=None,
+               live=None) -> FastAPI:
     """``api_token`` defaults to CATALOG_API_TOKEN; pass "" to force the no-token behaviour."""
     from .config import catalog_api_token
 
@@ -158,6 +174,15 @@ def create_app(store: Store | None = None, connectors: Mapping[str, Connector] |
             log.warning("CATALOG_API_TOKEN is empty: state-changing routes are open (mock mode only)")
     app = FastAPI(title="Zakka Catalog", version="0.1.0")
     app.state.store = store
+    if enricher is None:
+        from .enrich import get_enricher
+
+        enricher = get_enricher()
+    if live is None:
+        from .scale.live import LiveAffiliateSearch
+
+        live = LiveAffiliateSearch(connectors)
+    app.state.live = live
 
     def require_write_auth(authorization: str | None = Header(default=None)) -> None:
         if token:
@@ -203,6 +228,80 @@ def create_app(store: Store | None = None, connectors: Mapping[str, Connector] |
         except OrderNotForwardable as exc:
             raise HTTPException(409, str(exc)) from None
         return res.as_dict()
+
+    @app.post("/offers/{offer_id}/refresh", dependencies=write_auth)
+    def refresh(offer_id: UUID, country: str | None = Query(None, min_length=2, max_length=2), force: bool = False,
+                max_age_minutes: int = Query(60, ge=0, le=24 * 60)):
+        from datetime import timedelta
+
+        from .jit import refresh_offer
+
+        try:
+            result = refresh_offer(store, connectors, offer_id, enricher, force=force,
+                                   max_age=timedelta(minutes=max_age_minutes))
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from None
+        if country and result.get("is_active"):
+            result["price"] = price_offer(store, offer_id, country.upper()).model_dump()
+        return result
+
+    @app.post("/signals", dependencies=write_auth)
+    def signals(body: SignalsIn):
+        from .jit import record_signals
+
+        return record_signals(store, enricher, engaged_offer_ids=body.engaged_offer_ids,
+                              impression_product_ids=body.impression_product_ids,
+                              viewed=[v.model_dump() for v in body.viewed], queue=queue)
+
+    @app.get("/live", dependencies=write_auth)
+    def live_hits(q: str = Query(..., min_length=1, max_length=200),
+                  country: str | None = Query(None, min_length=2, max_length=2),
+                  locale: str = Query("en", min_length=2, max_length=5), limit: int = Query(20, ge=1, le=50)):
+        source_ids = {code: str(src.id) for code in live.connectors if (src := store.get_source(code))}
+        out = live.hits(q, country, fx_rate=store.get_fx_rate, source_ids=source_ids, limit=limit)
+        out["locale"] = locale  # live items carry the partner's language; translated once materialized
+        return out
+
+    @app.post("/admin/reprice", dependencies=write_auth)
+    def admin_reprice():
+        """Recompute stored display_price_usd after markup rule / FX edits (the scheduler also
+        detects such changes and reprices in streaming jobs)."""
+        from .pricing import display_price_usd as dp
+
+        rules, changed = store.list_markup_rules(), 0
+        for o in store.list_offers(active_only=False):
+            try:
+                price = dp(o.pricing_input(), rules=rules, category_lineage=store.category_lineage(o.category_id))
+            except PricingError:
+                continue
+            store.set_display_price(o.id, price)
+            changed += 1
+        store.commit()
+        return {"repriced": changed}
+
+    @app.get("/live/search", dependencies=write_auth)
+    def live_search(q: str = Query(..., min_length=1, max_length=200),
+                    country: str | None = Query(None, min_length=2, max_length=2),
+                    limit: int = Query(20, ge=1, le=50), sources: str | None = None):
+        return live.search(q, country, limit=limit, sources=sources.split(",") if sources else None)
+
+    @app.post("/live/{source}/{external_id}/materialize", dependencies=write_auth)
+    def materialize(source: str, external_id: str):
+        from .sync import ingest_items
+
+        conn = connectors.get(source)
+        if conn is None or conn.kind != "affiliate":
+            raise HTTPException(404, "unknown affiliate source")
+        item = live.cached_item(source, external_id) or conn.fetch_offer(external_id)
+        if item is None:
+            raise HTTPException(404, "item not found at source")
+        rep = ingest_items(store, conn, [item], enricher)
+        if not rep.offers:
+            raise HTTPException(422, "; ".join(rep.skipped) or "item rejected")
+        offer_id = UUID(rep.offers[0].offer_id)
+        store.record_engagement([offer_id])
+        store.commit()
+        return {"offer_id": str(offer_id), "product_id": rep.offers[0].product_id}
 
     @app.post("/tracking/poll", dependencies=write_auth)
     def tracking_poll():

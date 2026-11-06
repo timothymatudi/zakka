@@ -44,6 +44,7 @@ def sign_params(params: Mapping[str, str], app_secret: str, api_path: str | None
 
 class _AliExpressBase(Connector):
     docs_url = DOCS
+    rate_limit_per_sec = 5.0  # TODO(confirm) app-level QPS limit in the open platform console
 
     def _call(self, method: str, app_key: str, app_secret: str, session: str | None = None,
               **biz: str) -> dict:

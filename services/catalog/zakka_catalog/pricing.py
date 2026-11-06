@@ -271,6 +271,18 @@ def quote(
                       base_price_usd=base, fx_rate=rate, rule_id=rule_id)
 
 
+def display_price_usd_for_rule(offer: OfferPricingInput, rule: MarkupRule | None) -> Decimal:
+    """USD display price when the markup rule is already known (bulk pipelines cache
+    the rule per source/category). Same result as ``display_price_usd``."""
+    shipping = D(offer.shipping_usd or 0)
+    if offer.kind == "affiliate":
+        if offer.list_price_usd is None:
+            raise PricingError("affiliate offer has no list_price_usd")
+        return round_half_up(D(offer.list_price_usd) + shipping, 2)
+    rule = rule or FALLBACK_RULE
+    return round_up(markup_price_usd(offer.cost_usd, shipping, rule), rule.round_to, 2)
+
+
 def display_price_usd(
     offer: OfferPricingInput,
     *,

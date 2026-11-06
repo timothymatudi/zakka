@@ -10,7 +10,8 @@
     "index": "tsx src/cli/index.ts",
     "schema": "tsx src/cli/schema.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "bench": "tsx src/cli/bench.ts"
   },
   "engines": {
     "node": ">=22"

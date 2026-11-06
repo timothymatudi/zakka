@@ -1,22 +1,12 @@
 import { afterAll, describe, expect, it } from 'vitest';
-import { buildApp } from '../src/app';
-import { memoryEngineFromFixtures } from '../src/bootstrap';
-import { SearchService } from '../src/search';
+import { makeApp } from './helpers';
 import { buildSearchParams } from '../src/engines/typesense';
-import { categoryKeyFacet } from '../src/engines/memory';
-import { currencyDecimals, fromUsd } from '../src/money';
+import { currencyDecimals, fromUsd, setCurrencyDecimals } from '../src/money';
 import { fixtureProductId } from '../src/sources/fixtures';
 import type { SearchHit } from '../src/types';
 
-const memory = memoryEngineFromFixtures();
-const service = new SearchService(memory, null, { apiKey: '', model: 'test' });
-const app = buildApp(service, { engine: () => 'memory', documents: () => ({}), aiMode: 'rules' });
+const { app, memory, get } = makeApp();
 afterAll(() => app.close());
-
-const get = async (url: string) => {
-  const res = await app.inject({ method: 'GET', url });
-  return { status: res.statusCode, body: res.json() };
-};
 
 describe('GET /products/{id}', () => {
   const tecno = fixtureProductId(1); // ships to KE, NG and (via AliExpress) most countries, not CN
@@ -77,10 +67,10 @@ describe('/search additions', () => {
   });
 
   it('typesense params include the new filters and facet', () => {
-    const p = buildSearchParams({ q: '*', locale: 'en', country: 'KE', sort: 'relevance', page: 1, per_page: 20, min_rating: 4, ships_from: ['KE', 'NG'] });
+    const p = buildSearchParams({ q: '*', locale: 'en', country: 'KE', sort: 'relevance', page: 1, per_page: 20, min_rating: 4, ships_from: ['KE', 'NG'] }, new Set(['KE']));
     expect(p.filter_by).toContain('rating_sort:>=4');
     expect(p.filter_by).toContain('offer_ships_from:=[KE,NG]');
-    expect(p.facet_by).toContain('category_keys');
+    expect(p.facet_by).toContain('category_slugs');
   });
 });
 
@@ -93,7 +83,15 @@ describe('local currency helpers', () => {
     expect(fromUsd(1, 'XXX')).toBeNull();
   });
 
-  it('categoryKeyFacet splits slug and label', () => {
-    expect(categoryKeyFacet({ value: 'phones|Simu', count: 3 })).toEqual({ value: 'phones', label: 'Simu', count: 3 });
+  it('rounds the contract zero-decimal currencies to whole units; DB decimals win', () => {
+    for (const c of ['KES', 'IDR', 'TZS', 'UGX', 'NGN', 'JPY', 'KRW', 'VND', 'CLP', 'PKR']) expect(currencyDecimals(c)).toBe(0);
+    expect(fromUsd(12.49, 'KES')).toBe(1611); // 12.49 * 129 = 1611.21
+    expect(currencyDecimals('EUR')).toBe(2);
+    setCurrencyDecimals({ KES: 2 });
+    try {
+      expect(fromUsd(12.49, 'KES')).toBe(1611.21);
+    } finally {
+      setCurrencyDecimals({});
+    }
   });
 });

@@ -1,77 +1,71 @@
-// npm run index -- --locale en | --all [--from-fixtures] [--recreate] [--out <dir>]
+// npm run index -- [--from-fixtures] [--products <id,id,...>] [--recreate] [--batch 5000] [--out <file>]
 //
-// Loads products from Postgres (DATABASE_URL) or the fixtures file, builds
-// search documents and upserts them into Typesense `products_<locale>`.
-// If Typesense is not configured/reachable, documents are written as JSONL to
-// --out (default ./data) so the run is still useful offline.
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+// Streams products from Postgres (DATABASE_URL) or, with --from-fixtures / no
+// database, the offline dataset (packages/fixtures/dev-catalog.json, else
+// ./fixtures), and upserts them into the single Typesense `products`
+// collection as JSONL batches. Without a reachable Typesense the batches are
+// written to --out (default data/products.jsonl). `--locale`/`--all` are
+// accepted for compatibility; every run covers all locales.
+import { join } from 'node:path';
 import { loadConfig } from '../config';
-import { LOCALES, type Locale, type RawProduct } from '../types';
-import { buildDocuments } from '../documents';
-import { fixtureRawProducts } from '../sources/fixtures';
-import { loadRawProductsFromDb } from '../sources/postgres';
-import { catalogPriceClient } from '../sources/catalog-prices';
-import { indexIntoTypesense, typesenseClient, typesenseHealthy } from '../engines/typesense';
-import { collectionName } from '../schema';
+import { ensureCollection, deleteFromTypesense, typesenseClient, typesenseHealthy, typesenseImporter } from '../engines/typesense';
+import { fileSink } from '../indexer';
+import { runIndex } from '../reindex';
+import { resolveActiveCountries } from '../bootstrap';
+import { loadDataset } from '../sources/dataset';
 
 function parseArgs(argv: string[]) {
-  const args = { locales: [] as Locale[], fromFixtures: false, recreate: false, out: 'data' };
+  const args = { fromFixtures: false, recreate: false, products: undefined as string[] | undefined, batch: 5000, out: '' };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a === '--all') args.locales = [...LOCALES];
-    else if (a === '--locale') args.locales.push(argv[++i] as Locale);
-    else if (a.startsWith('--locale=')) args.locales.push(a.split('=')[1] as Locale);
-    else if (a === '--from-fixtures') args.fromFixtures = true;
+    if (a === '--from-fixtures') args.fromFixtures = true;
     else if (a === '--recreate') args.recreate = true;
+    else if (a === '--products') args.products = argv[++i].split(',').map((s) => s.trim()).filter(Boolean);
+    else if (a === '--batch') args.batch = Number(argv[++i]);
     else if (a === '--out') args.out = argv[++i];
+    else if (a === '--all') continue;
+    else if (a === '--locale') i++;
+    else if (a.startsWith('--locale=')) continue;
     else throw new Error(`unknown argument ${a}`);
   }
-  if (!args.locales.length) throw new Error('pass --locale <code> or --all');
-  for (const l of args.locales) if (!LOCALES.includes(l)) throw new Error(`unsupported locale ${l}`);
+  if (!(args.batch > 0)) throw new Error('--batch must be a positive number');
   return args;
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const cfg = loadConfig();
-  const prices = catalogPriceClient(cfg.catalogApiUrl);
+  if (args.fromFixtures) cfg.databaseUrl = '';
+  if (!cfg.databaseUrl) console.warn('[indexer] no database; using the offline dataset');
+  const active = await resolveActiveCountries(cfg);
+  const dataset = cfg.databaseUrl ? undefined : loadDataset(cfg.devCatalogPath);
+  if (dataset) console.warn(`[indexer] dataset: ${dataset.name}${dataset.path ? ` (${dataset.path})` : ''}`);
 
-  let useFixtures = args.fromFixtures;
-  if (!useFixtures && !cfg.databaseUrl) {
-    console.warn('[indexer] DATABASE_URL empty; using fixtures');
-    useFixtures = true;
-  }
-
-  const client = cfg.typesense.apiKey ? typesenseClient(cfg.typesense) : null;
+  const client = cfg.typesense.apiKey ? typesenseClient(cfg.typesense, 60) : null;
   const tsOk = client ? await typesenseHealthy(client) : false;
-  if (!tsOk) console.warn(`[indexer] Typesense ${client ? 'unreachable' : 'not configured (TYPESENSE_API_KEY empty)'}; writing JSONL to ${resolve(args.out)}`);
-
-  for (const locale of args.locales) {
-    let raws: RawProduct[];
-    if (useFixtures) {
-      raws = fixtureRawProducts(locale);
-    } else {
-      try {
-        raws = await loadRawProductsFromDb(cfg.databaseUrl, locale, prices);
-      } catch (err) {
-        console.warn(`[indexer] database unavailable (${(err as Error).message}); falling back to fixtures`);
-        useFixtures = true;
-        raws = fixtureRawProducts(locale);
-      }
-    }
-    const docs = buildDocuments(raws);
-    const skipped = raws.length - docs.length;
-    if (tsOk && client) {
-      const r = await indexIntoTypesense(client, locale, docs, { recreate: args.recreate });
-      console.log(`[indexer] ${collectionName(locale)}: ${r.imported} imported, ${r.failed} failed, ${skipped} skipped (no priced offers) [${useFixtures ? 'fixtures' : 'postgres'}]`);
-    } else {
-      mkdirSync(args.out, { recursive: true });
-      const file = join(args.out, `${collectionName(locale)}.jsonl`);
-      writeFileSync(file, docs.map((d) => JSON.stringify(d)).join('\n') + '\n');
-      console.log(`[indexer] ${collectionName(locale)}: ${docs.length} documents written to ${file}, ${skipped} skipped [${useFixtures ? 'fixtures' : 'postgres'}]`);
-    }
+  let importFn;
+  let target: string;
+  if (tsOk && client) {
+    await ensureCollection(client, { recreate: args.recreate });
+    importFn = typesenseImporter(client);
+    target = 'typesense collection products';
+  } else {
+    const out = args.out || join(cfg.dataDir, 'products.jsonl');
+    console.warn(`[indexer] Typesense ${client ? 'unreachable' : 'not configured'}; writing JSONL to ${out}`);
+    importFn = fileSink(out);
+    target = out;
   }
+
+  const stats = await runIndex({ cfg, active, importFn, dataset, productIds: args.products, batchSize: args.batch });
+  if (tsOk && client && args.products) {
+    const gone = args.products.filter((id) => !stats.seenIds.has(id));
+    if (gone.length) console.log(`[indexer] removed ${await deleteFromTypesense(client, gone)} documents no longer indexable`);
+  }
+  const rate = stats.ms ? Math.round((stats.indexed / stats.ms) * 1000) : stats.indexed;
+  console.log(
+    `[indexer] ${target}: ${stats.indexed} indexed, ${stats.failed} failed, ${stats.skipped} skipped, ` +
+      `${stats.batches} batches, ${stats.retries} retries, ${stats.ms} ms (${rate} docs/s), ${active.size} active countries`,
+  );
 }
 
 main().catch((err) => {

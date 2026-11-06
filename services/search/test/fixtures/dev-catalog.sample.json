@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-11-05T12:00:00Z",
+  "categories": [
+    { "id": "cat-el", "slug": "electronics", "parent_id": null, "names": { "en": "Electronics", "sw": "Elektroniki" } },
+    { "id": "cat-ph", "slug": "phones", "parent_id": "cat-el", "names": { "en": "Phones", "sw": "Simu" } },
+    { "id": "cat-au", "slug": "audio", "parent_id": "cat-el", "names": { "en": "Audio" } }
+  ],
+  "sources": [
+    { "id": "src-cj", "code": "cj", "kind": "dropship" },
+    { "id": "src-ju", "code": "jumia", "kind": "affiliate" }
+  ],
+  "products": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111", "category_id": "cat-ph", "brand": "Tecno", "gtin": null,
+      "image_urls": ["https://example.com/p1.jpg"], "rating": 4.3, "review_count": 120, "popularity": 0.8,
+      "translations": {
+        "en": { "title": "Tecno Spark 20 Smartphone", "description": "128GB Android phone", "bullet_points": ["5000mAh battery"] },
+        "sw": { "title": "Simu janja Tecno Spark 20", "description": "Simu ya Android 128GB", "bullet_points": [] }
+      }
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222", "category_id": "cat-au", "brand": "Oraimo", "gtin": null,
+      "image_urls": [], "rating": null, "review_count": 0, "popularity": 0.2,
+      "translations": { "en": { "title": "Oraimo FreePods Wireless Earbuds", "description": null } }
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333", "category_id": "cat-au", "brand": null, "gtin": null,
+      "image_urls": [], "rating": 4.0, "review_count": 5, "popularity": 0.1,
+      "translations": { "en": { "title": "Inactive-only Speaker" } }
+    }
+  ],
+  "offers": [
+    {
+      "id": "off-1-ju", "product_id": "11111111-1111-4111-8111-111111111111", "source_code": "jumia", "kind": "affiliate",
+      "external_id": "JU-1", "url": "https://example.com/aff/jumia/1", "display_price_usd": 129.0,
+      "list_price_local": 16499, "list_currency": "KES", "shipping_usd": 0, "shipping_local": 150,
+      "ships_from": "KE", "ships_to": ["KE"], "delivery_days_min": 1, "delivery_days_max": 3, "is_active": true
+    },
+    {
+      "id": "off-1-cj", "product_id": "11111111-1111-4111-8111-111111111111", "source_code": "cj",
+      "external_id": "CJ-1", "url": null, "display_price_usd": 119.99, "list_price_local": null, "list_currency": null,
+      "shipping_usd": 4.5, "shipping_local": null, "ships_from": "CN", "ships_to": ["KE", "NG", "US"],
+      "delivery_days_min": 8, "delivery_days_max": 15, "is_active": true
+    },
+    {
+      "id": "off-2-cj", "product_id": "22222222-2222-4222-8222-222222222222", "source_code": "cj", "kind": "dropship",
+      "external_id": "CJ-2", "url": null, "display_price_usd": 16.99, "ships_from": "CN", "ships_to": ["ke", "us"],
+      "delivery_days_min": 8, "delivery_days_max": 14, "is_active": true
+    },
+    {
+      "id": "off-3-cj", "product_id": "33333333-3333-4333-8333-333333333333", "source_code": "cj", "kind": "dropship",
+      "external_id": "CJ-3", "url": null, "display_price_usd": 20, "ships_from": "CN", "ships_to": ["KE"],
+      "delivery_days_min": 8, "delivery_days_max": 14, "is_active": false
+    }
+  ],
+  "fx_rates": { "KES": 130, "NGN": 1600 },
+  "currencies": { "KES": 0, "NGN": 0, "USD": 2 }
+}

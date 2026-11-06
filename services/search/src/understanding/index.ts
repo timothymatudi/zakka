@@ -6,7 +6,9 @@ import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 import { z } from 'zod';
 import type { Locale, QueryUnderstanding } from '../types';
 import { parseQueryRules } from './rules';
-import { FIXTURE_CATEGORY_SLUGS } from '../sources/fixtures';
+import { FIXTURE_CATEGORIES } from '../sources/fixtures';
+
+const FIXTURE_CATEGORY_SLUGS = FIXTURE_CATEGORIES.map((c) => c.slug);
 
 /** Small, fast model is enough for parsing; ANTHROPIC_MODEL overrides it. */
 export const DEFAULT_UNDERSTANDING_MODEL = 'claude-haiku-5-5';

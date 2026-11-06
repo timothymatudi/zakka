@@ -1,28 +1,47 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildSearchParams } from '../src/engines/typesense';
-import { collectionSchema } from '../src/schema';
+import { buildSearchParams, countryFieldNames } from '../src/engines/typesense';
+import { collectionSchema, COLLECTION } from '../src/schema';
 import { catalogPriceClient } from '../src/sources/catalog-prices';
 import { popularityFrom } from '../src/sources/postgres';
+import type { EngineQuery } from '../src/types';
+
+const ACTIVE = new Set(['KE', 'US']);
+const q = (over: Partial<EngineQuery>): EngineQuery => ({ q: 'earbuds', locale: 'en', country: 'KE', sort: 'relevance', page: 1, per_page: 20, ...over });
 
 describe('typesense schema and params (no server needed)', () => {
-  it('schema per locale with facets and locale-aware text fields', () => {
-    const zh = collectionSchema('zh');
-    expect(zh.name).toBe('products_zh');
-    expect(zh.fields.find((f) => f.name === 'title')).toMatchObject({ locale: 'zh' });
-    const en = collectionSchema('en');
-    expect(en.fields.find((f) => f.name === 'title')?.locale).toBeUndefined();
-    const facets = en.fields.filter((f) => f.facet).map((f) => f.name);
-    for (const f of ['category_path', 'source_kinds', 'offer_ships_from', 'cpbucket_.*', 'rating_bucket']) expect(facets).toContain(f);
+  it('one products collection with per-locale optional text fields and locale settings', () => {
+    const s = collectionSchema();
+    expect(s.name).toBe(COLLECTION);
+    expect(s.fields.find((f) => f.name === 'title')).toMatchObject({ stem: true });
+    expect(s.fields.find((f) => f.name === 'title_zh')).toMatchObject({ locale: 'zh', optional: true });
+    expect(s.fields.find((f) => f.name === 'title_en')).toBeUndefined();
+    expect(s.fields.filter((f) => /^(title|description)_/.test(f.name))).toHaveLength(18);
+    const facets = s.fields.filter((f) => f.facet).map((f) => f.name);
+    for (const f of ['category_slugs', 'source_kinds', 'offer_ships_from', 'rating_bucket', 'cprice_.*', 'min_price_usd']) expect(facets).toContain(f);
+    // compact per-country fields: price, delivery, sell score only
+    expect(s.fields.filter((f) => f.name.endsWith('_.*')).map((f) => f.name)).toEqual(['cprice_.*', 'cdmax_.*', 'csell_.*']);
   });
 
-  it('always filters on the shopper country and sorts relevance then sell score', () => {
-    const p = buildSearchParams({ q: 'earbuds', locale: 'en', country: 'ke', sort: 'relevance', page: 1, per_page: 20, max_price: 50, max_days: 5, category: 'headphones' });
-    expect(p.filter_by).toContain('cprice_KE:>0');
-    expect(p.filter_by).toContain('cprice_KE:<=50');
-    expect(p.filter_by).toContain('cdmax_KE:<=5');
-    expect(p.filter_by).toContain('category_slugs:=`headphones`');
+  it('active country: per-country fields for filter, sort and price facet', () => {
+    const p = buildSearchParams(q({ max_price: 50, max_days: 5, category: 'headphones' }), ACTIVE);
+    expect(p.filter_by).toBe('cprice_KE:>0 && category_slugs:=`headphones` && cprice_KE:<=50 && cdmax_KE:<=5');
     expect(p.sort_by).toBe('_text_match(buckets: 5):desc,csell_KE:desc');
-    expect(p.facet_by).toContain('cpbucket_KE');
+    expect(p.facet_by).toContain('cprice_KE(p0:[0,10],p1:[10,25],p2:[25,50],p3:[50,100],p4:[100,250],p5:[250,])');
+    expect(p.query_by).toBe('title,brand,category_terms,bullets,description');
+  });
+
+  it('non-active country: ships_to filter and global fields', () => {
+    const p = buildSearchParams(q({ country: 'sn', max_price: 50, sort: 'fastest' }), ACTIVE);
+    expect(p.filter_by).toBe('ships_to:=[SN] && min_price_usd:<=50');
+    expect(p.sort_by).toBe('best_dmax:asc,sell_global:desc');
+    expect(countryFieldNames('SN', ACTIVE)).toMatchObject({ isActive: false, price: 'min_price_usd' });
+  });
+
+  it('locale queries the locale fields first, falls back to base text, and excludes other locales', () => {
+    const p = buildSearchParams(q({ locale: 'sw' }), ACTIVE);
+    expect(p.query_by).toBe('title_sw,title,brand,category_terms,description_sw,description,bullets');
+    expect(String(p.exclude_fields)).toContain('title_zh');
+    expect(String(p.exclude_fields)).not.toContain('title_sw');
   });
 });
 

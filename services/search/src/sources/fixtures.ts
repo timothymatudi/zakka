@@ -1,49 +1,53 @@
-import { CATEGORIES, PRODUCTS, type FixtureCategory } from '../../fixtures/catalog';
-import type { Locale, RawProduct, SourceCode, SourceKind } from '../types';
+import { CATEGORIES, PRODUCTS } from '../../fixtures/catalog';
+import type { Locale, RawCategory, RawProduct, SourceCode, SourceKind, Translation } from '../types';
 
 const DROPSHIP: SourceCode[] = ['cj', 'aliexpress_ds', 'spocket', 'printful'];
 export const sourceKind = (code: SourceCode): SourceKind => (DROPSHIP.includes(code) ? 'dropship' : 'affiliate');
 
 const uuid = (group: string, n: number) => `00000000-0000-4000-${group}-${String(n).padStart(12, '0')}`;
 export const fixtureProductId = (n: number) => uuid('a000', n);
-const categoryId = (slug: string) => uuid('c000', CATEGORIES.findIndex((c) => c.slug === slug) + 1);
 
-const bySlug = new Map<string, FixtureCategory>(CATEGORIES.map((c) => [c.slug, c]));
+export const FIXTURE_CATEGORIES: RawCategory[] = CATEGORIES.map((c, i) => ({
+  id: uuid('c000', i + 1),
+  slug: c.slug,
+  parent_id: c.parent ? uuid('c000', CATEGORIES.findIndex((p) => p.slug === c.parent) + 1) : null,
+  names: c.names,
+}));
+const bySlug = new Map(FIXTURE_CATEGORIES.map((c) => [c.slug, c]));
+const byId = new Map(FIXTURE_CATEGORIES.map((c) => [c.id, c]));
 
-function chain(slug: string): FixtureCategory[] {
-  const out: FixtureCategory[] = [];
+function chain(slug: string): RawCategory[] {
+  const out: RawCategory[] = [];
   let c = bySlug.get(slug);
   while (c) {
     out.unshift(c);
-    c = c.parent ? bySlug.get(c.parent) : undefined;
+    c = c.parent_id ? byId.get(c.parent_id) : undefined;
   }
   return out;
 }
 
-/** Fixture products for a locale. Missing translations fall back to English. */
-export function fixtureRawProducts(locale: Locale): RawProduct[] {
+/** This service's own sample products (all translations per product). */
+export function fixtureRawProducts(): RawProduct[] {
   return PRODUCTS.map((p) => {
-    const [title, description, bullets] = p.t[locale] ?? p.t.en!;
-    const cats = chain(p.cat);
+    const translations: Partial<Record<Locale, Translation>> = {};
+    for (const [loc, t] of Object.entries(p.t)) {
+      if (!t) continue;
+      translations[loc as Locale] = { title: t[0], description: t[1], bullet_points: t[2] ?? (loc === 'en' ? [] : p.t.en?.[2] ?? []) };
+    }
     return {
       id: fixtureProductId(p.n),
-      locale,
-      title,
-      description,
-      bullet_points: bullets ?? p.t.en![2] ?? [],
+      translations,
       brand: p.brand,
-      category_path: cats.map((c) => c.names[locale] ?? c.names.en ?? c.slug),
-      category_ids: cats.map((c) => categoryId(c.slug)),
-      category_slugs: cats.map((c) => c.slug),
+      gtin: `20000000${String(p.n).padStart(5, '0')}`,
+      categories: chain(p.cat),
       image: `https://picsum.photos/seed/zakka-${p.n}/600/600`,
       rating: p.rating,
       review_count: p.reviews,
       popularity: p.pop,
       offers: p.offers.map((o, i) => {
         const kind = sourceKind(o.source);
-        const id = uuid('b000', p.n * 100 + i + 1);
         return {
-          offer_id: id,
+          offer_id: uuid('b000', p.n * 100 + i + 1),
           source_code: o.source,
           kind,
           display_price_usd: o.price,
@@ -58,5 +62,3 @@ export function fixtureRawProducts(locale: Locale): RawProduct[] {
     };
   });
 }
-
-export const FIXTURE_CATEGORY_SLUGS = CATEGORIES.map((c) => c.slug);

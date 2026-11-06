@@ -1,22 +1,22 @@
-// In-memory search engine over documents (fixtures by default). Used when
-// Typesense is unreachable or TYPESENSE_API_KEY is empty, so other agents can
-// run offline. It mirrors the Typesense engine's filters, sorts and facets.
+// In-memory search engine for development and tests (the offline dataset is
+// small). Production uses Typesense. Mirrors the Typesense engine's filters,
+// sorts and facets; per-country values come from countryFields().
+import type { EngineQuery, EngineResult, IndexedDocument, Locale, SearchEngine } from '../types';
+import { tokenize, hasCjk } from '../text';
+import { countryFields, type CountryFields } from '../documents';
 
-import type { EngineQuery, EngineResult, FacetValue, IndexedDocument, Locale, SearchEngine } from '../types';
-import { normalize, tokenize, hasCjk } from '../text';
-
-// Relevance is grouped in tiers of 0.1; full matches are kept when partial ones are added below this count.
+// Relevance is grouped in tiers of 0.1; partial matches are added when fewer than this many full matches exist.
 const RELEVANCE_TIERS = 10;
 export const DROP_TOKENS_THRESHOLD = 10;
 
-const FIELD_WEIGHTS = { title: 3, brand: 2, category: 2, bullets: 1, description: 1 } as const;
-type Field = keyof typeof FIELD_WEIGHTS;
-const MAX_WEIGHT = FIELD_WEIGHTS.title;
+const W = { localTitle: 4, title: 3, brand: 2, category: 2, localDescription: 1, bullets: 1, description: 1 } as const;
+type Field = keyof typeof W;
+const MAX_WEIGHT = W.localTitle;
 
 interface Entry {
   doc: IndexedDocument;
-  fields: Record<Field, Set<string>>;
-  categoryKeys: Set<string>;
+  base: Record<'title' | 'brand' | 'category' | 'bullets' | 'description', Set<string>>;
+  perLocale: Map<Locale, { title: Set<string>; description: Set<string> }>;
 }
 
 function stem(t: string): string {
@@ -38,7 +38,7 @@ function editDistanceAtMostOne(a: string, b: string): boolean {
   return edits + (a.length - i) + (b.length - j) <= 1;
 }
 
-/** Score of a query token against a field's token set: 1 exact, 0.85 stem/prefix, 0.6 typo. */
+/** 1 exact, 0.85 stem/prefix, 0.6 one typo. */
 function tokenMatch(qt: string, set: Set<string>): number {
   if (set.has(qt)) return 1;
   const qs = stem(qt);
@@ -51,129 +51,142 @@ function tokenMatch(qt: string, set: Set<string>): number {
   return best;
 }
 
+const EMPTY = new Set<string>();
+
 function entryFor(doc: IndexedDocument): Entry {
   return {
     doc,
-    fields: {
+    base: {
       title: new Set(tokenize(doc.title)),
       brand: new Set(tokenize(doc.brand ?? '')),
-      category: new Set(tokenize(doc.category_path.join(' '))),
+      category: new Set(tokenize(doc.category_terms.join(' '))),
       bullets: new Set(tokenize(doc.bullets ?? '')),
       description: new Set(tokenize(doc.description)),
     },
-    categoryKeys: new Set([
-      ...doc.category_slugs.map((s) => s.toLowerCase()),
-      ...doc.category_ids.map((s) => s.toLowerCase()),
-      ...doc.category_path.map((s) => normalize(s)),
-    ]),
+    perLocale: new Map(),
   };
 }
 
-/** Relevance in 0..1, or -1 when the doc does not match enough tokens. */
-function relevance(e: Entry, tokens: string[], minMatched: number): number {
+function localSets(e: Entry, locale: Locale) {
+  let s = e.perLocale.get(locale);
+  if (!s) {
+    s = {
+      title: new Set(tokenize((e.doc[`title_${locale}`] as string | undefined) ?? '')),
+      description: new Set(tokenize((e.doc[`description_${locale}`] as string | undefined) ?? '')),
+    };
+    e.perLocale.set(locale, s);
+  }
+  return s;
+}
+
+/** Relevance in 0..1, or -1 when the doc matches fewer than minMatched tokens. */
+function relevance(e: Entry, locale: Locale, tokens: string[], minMatched: number): number {
+  const loc = locale === e.doc.base_locale ? { title: EMPTY, description: EMPTY } : localSets(e, locale);
+  const sets: Record<Field, Set<string>> = {
+    localTitle: loc.title,
+    title: e.base.title,
+    brand: e.base.brand,
+    category: e.base.category,
+    localDescription: loc.description,
+    bullets: e.base.bullets,
+    description: e.base.description,
+  };
   let total = 0;
   let matched = 0;
   for (const qt of tokens) {
     let best = 0;
-    for (const f of Object.keys(FIELD_WEIGHTS) as Field[]) {
-      const m = tokenMatch(qt, e.fields[f]);
-      if (m) best = Math.max(best, m * FIELD_WEIGHTS[f]);
+    for (const f of Object.keys(W) as Field[]) {
+      const m = tokenMatch(qt, sets[f]);
+      if (m) best = Math.max(best, m * W[f]);
     }
     if (best > 0) matched++;
     total += best;
   }
   if (matched < minMatched) return -1;
-  return total / (MAX_WEIGHT * tokens.length);
+  return Math.min(1, total / (W.title * tokens.length));
 }
 
 export class MemoryEngine implements SearchEngine {
   readonly name = 'memory' as const;
-  private byLocale = new Map<Locale, Entry[]>();
+  private entries: Entry[] = [];
+  private byId = new Map<string, Entry>();
 
-  constructor(docsByLocale: Partial<Record<Locale, IndexedDocument[]>>) {
-    for (const [loc, docs] of Object.entries(docsByLocale)) {
-      this.byLocale.set(loc as Locale, (docs ?? []).map(entryFor));
-    }
+  constructor(docs: IndexedDocument[]) {
+    this.replaceAll(docs);
   }
 
-  async getById(locale: Locale, id: string): Promise<IndexedDocument | null> {
-    return (this.byLocale.get(locale) ?? []).find((e) => e.doc.id === id)?.doc ?? null;
+  /** Swap in a freshly built dataset (used by POST /admin/reindex). */
+  replaceAll(docs: IndexedDocument[]): void {
+    this.entries = docs.map(entryFor);
+    this.byId = new Map(this.entries.map((e) => [e.doc.id, e]));
   }
 
-  count(locale: Locale): number {
-    return this.byLocale.get(locale)?.length ?? 0;
+  async getById(id: string): Promise<IndexedDocument | null> {
+    return this.byId.get(id)?.doc ?? null;
+  }
+
+  count(): number {
+    return this.entries.length;
   }
 
   async search(q: EngineQuery): Promise<EngineResult> {
     const cc = q.country.toUpperCase();
-    const entries = this.byLocale.get(q.locale) ?? this.byLocale.get('en') ?? [];
-    const cat = q.category?.toLowerCase();
-    const catNorm = q.category ? normalize(q.category) : undefined;
-
     // Filters (always: ships to the shopper's country).
-    const pool = entries.filter(({ doc, categoryKeys }) => {
-      const price = doc[`cprice_${cc}`] as number | undefined;
-      if (price == null) return false;
-      if (cat && !categoryKeys.has(cat) && !categoryKeys.has(catNorm!)) return false;
-      if (q.min_price != null && price < q.min_price) return false;
-      if (q.max_price != null && price > q.max_price) return false;
-      if (q.max_days != null && (doc[`cdmax_${cc}`] as number) > q.max_days) return false;
-      if (q.min_rating != null && doc.rating_sort < q.min_rating) return false;
-      if (q.ships_from?.length && !doc.offer_ships_from.some((c) => q.ships_from!.includes(c))) return false;
-      return true;
-    });
+    const pool: { e: Entry; cf: CountryFields }[] = [];
+    for (const e of this.entries) {
+      const d = e.doc;
+      const cf = countryFields(d, cc);
+      if (!cf) continue;
+      if (q.category && !d.category_slugs.includes(q.category)) continue;
+      if (q.min_price != null && cf.price < q.min_price) continue;
+      if (q.max_price != null && cf.price > q.max_price) continue;
+      if (q.max_days != null && cf.dmax > q.max_days) continue;
+      if (q.min_rating != null && d.rating_sort < q.min_rating) continue;
+      if (q.ships_from?.length && !d.offer_ships_from.some((c) => q.ships_from!.includes(c))) continue;
+      pool.push({ e, cf });
+    }
 
-    // Text match. Like Typesense's drop_tokens_threshold: when fewer than
-    // DROP_TOKENS_THRESHOLD docs match every token, also accept docs matching
-    // at least half of them. Relevance is still computed over all tokens, so
-    // full matches stay in a higher tier.
+    // Text match, like Typesense's drop_tokens_threshold: with fewer than
+    // DROP_TOKENS_THRESHOLD full matches, docs matching half the tokens are added
+    // (relevance is still computed over all tokens, so full matches rank higher).
     const text = q.q.trim();
-    let scored: { e: Entry; rel: number }[];
+    let scored: { e: Entry; cf: CountryFields; rel: number }[];
     if (!text || text === '*') {
-      scored = pool.map((e) => ({ e, rel: 1 }));
+      scored = pool.map((p) => ({ ...p, rel: 1 }));
     } else {
       const tokens = [...new Set(tokenize(text))];
       const strict = hasCjk(text) ? Math.max(1, Math.ceil(tokens.length * 0.6)) : tokens.length;
-      const score = (need: number) => pool.map((e) => ({ e, rel: relevance(e, tokens, need) })).filter((x) => x.rel > 0);
+      const score = (need: number) => pool.map((p) => ({ ...p, rel: relevance(p.e, q.locale, tokens, need) })).filter((x) => x.rel > 0);
       scored = score(strict);
       const loose = Math.max(1, Math.ceil(tokens.length / 2));
       if (scored.length < DROP_TOKENS_THRESHOLD && loose < strict) scored = score(loose);
     }
 
-    const sell = (d: IndexedDocument) => (d[`csell_${cc}`] as number) ?? 0;
-    const price = (d: IndexedDocument) => d[`cprice_${cc}`] as number;
-    const days = (d: IndexedDocument) => d[`cdays_${cc}`] as number;
-    // Relevance tiers of 0.1: near-equal text matches tie, and the sell score decides
-    // inside a tier (Typesense does the same with _text_match(buckets: N)).
-    const bucket = (rel: number) => Math.round(rel * RELEVANCE_TIERS);
-
+    const tier = (rel: number) => Math.round(rel * RELEVANCE_TIERS);
     scored.sort((a, b) => {
-      const da = a.e.doc, db = b.e.doc;
       switch (q.sort) {
         case 'price_asc':
-          return price(da) - price(db) || b.rel - a.rel;
+          return a.cf.price - b.cf.price || b.rel - a.rel;
         case 'fastest':
-          return days(da) - days(db) || sell(db) - sell(da);
+          return a.cf.dmax - b.cf.dmax || b.cf.sell - a.cf.sell;
         case 'rating':
-          return db.rating_sort - da.rating_sort || db.review_count - da.review_count;
+          return b.e.doc.rating_sort - a.e.doc.rating_sort || b.e.doc.review_count - a.e.doc.review_count;
         default:
-          return bucket(b.rel) - bucket(a.rel) || sell(db) - sell(da) || b.rel - a.rel;
+          return tier(b.rel) - tier(a.rel) || b.cf.sell - a.cf.sell || b.rel - a.rel;
       }
     });
 
-    const docs = scored.map((s) => s.e.doc);
     const start = (q.page - 1) * q.per_page;
     return {
-      docs: docs.slice(start, start + q.per_page),
-      found: docs.length,
-      facets: facetsFor(docs, cc),
+      docs: scored.slice(start, start + q.per_page).map((s) => s.e.doc),
+      found: scored.length,
+      facets: facetsFor(scored),
     };
   }
 }
 
-export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['facets'] {
+function facetsFor(items: { e: Entry; cf: CountryFields }[]): EngineResult['facets'] {
   const counters: Record<string, Map<string, number>> = {
-    category_path: new Map(),
     category_slug: new Map(),
     source_kind: new Map(),
     ships_from: new Map(),
@@ -181,13 +194,12 @@ export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['fa
     rating: new Map(),
   };
   const bump = (k: string, v: string) => counters[k].set(v, (counters[k].get(v) ?? 0) + 1);
-  for (const d of docs) {
-    d.category_path.forEach((v) => bump('category_path', v));
-    d.category_keys.forEach((v) => bump('category_slug', v));
-    d.source_kinds.forEach((v) => bump('source_kind', v));
-    d.offer_ships_from.forEach((v) => bump('ships_from', v));
-    bump('price_bucket', d[`cpbucket_${cc}`] as string);
-    bump('rating', d.rating_bucket);
+  for (const { e, cf } of items) {
+    e.doc.category_slugs.forEach((v) => bump('category_slug', v));
+    e.doc.source_kinds.forEach((v) => bump('source_kind', v));
+    e.doc.offer_ships_from.forEach((v) => bump('ships_from', v));
+    bump('price_bucket', cf.bucket);
+    bump('rating', e.doc.rating_bucket);
   }
   const out: EngineResult['facets'] = {};
   for (const [k, m] of Object.entries(counters)) {
@@ -196,12 +208,5 @@ export function facetsFor(docs: IndexedDocument[], cc: string): EngineResult['fa
       .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value))
       .slice(0, 20);
   }
-  out.category_slug = out.category_slug.map(categoryKeyFacet);
   return out;
-}
-
-/** "phones|Simu" facet value -> { value: "phones", label: "Simu", count }. */
-export function categoryKeyFacet(f: FacetValue): FacetValue {
-  const i = f.value.indexOf('|');
-  return i < 0 ? f : { value: f.value.slice(0, i), label: f.value.slice(i + 1), count: f.count };
 }

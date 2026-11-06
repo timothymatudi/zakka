@@ -17,14 +17,19 @@ export function setFxRates(rates: Record<string, number>): void {
 }
 
 // Display decimals per currency: currencies.decimals from the DB when loaded,
-// otherwise the ISO 4217 minor units that Intl knows.
-let decimalsOverride: Record<string, number> = {};
+// then the contract's offline table, then the ISO 4217 minor units Intl knows.
+// Offline display decimals per the contract (whole units for these currencies).
+const OFFLINE_DECIMALS: Record<string, number> = {
+  KES: 0, IDR: 0, TZS: 0, UGX: 0, NGN: 0, JPY: 0, KRW: 0, VND: 0, CLP: 0, PKR: 0,
+};
+let dbDecimals: Record<string, number> = {};
 export function setCurrencyDecimals(d: Record<string, number>): void {
-  decimalsOverride = { ...d };
+  dbDecimals = { ...d };
 }
 export function currencyDecimals(currency: string): number {
   const code = currency.toUpperCase();
-  if (decimalsOverride[code] != null) return decimalsOverride[code];
+  if (dbDecimals[code] != null) return dbDecimals[code];
+  if (OFFLINE_DECIMALS[code] != null) return OFFLINE_DECIMALS[code];
   try {
     return new Intl.NumberFormat('en', { style: 'currency', currency: code }).resolvedOptions().maximumFractionDigits ?? 2;
   } catch {

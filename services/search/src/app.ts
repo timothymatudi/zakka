@@ -1,6 +1,8 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import { LOCALES, type Locale, type SearchSort } from './types';
+import { timingSafeEqual } from 'node:crypto';
 import type { SearchParams, SearchService } from './search';
+import type { Reindexer } from './reindex';
 
 export const MAX_QUERY_LENGTH = 200;
 const SORTS: SearchSort[] = ['relevance', 'price_asc', 'fastest', 'rating'];
@@ -58,11 +60,31 @@ function parseCountryList(v: string | undefined, name: string): string[] | undef
 
 export interface AppMeta {
   engine: () => string;
-  documents: () => Record<string, number>;
+  /** Document count in the memory engine; null when Typesense serves. */
+  documents: () => number | null;
   aiMode: 'ai' | 'rules';
+  dataset?: () => string;
+  activeCountries?: () => number;
 }
 
-export function buildApp(service: SearchService, meta: AppMeta, opts: { logger?: boolean } = {}): FastifyInstance {
+export interface AppOptions {
+  logger?: boolean;
+  reindexer?: Reindexer;
+  /** SEARCH_ADMIN_TOKEN; empty means /admin/* only accepts loopback callers. */
+  adminToken?: string;
+}
+
+const LOOPBACK = new Set(['127.0.0.1', '::1', '::ffff:127.0.0.1']);
+
+function tokenMatches(header: string | undefined, token: string): boolean {
+  const m = /^Bearer\s+(.+)$/i.exec(header ?? '');
+  if (!m) return false;
+  const a = Buffer.from(m[1].trim());
+  const b = Buffer.from(token);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+export function buildApp(service: SearchService, meta: AppMeta, opts: AppOptions = {}): FastifyInstance {
   const app = Fastify({ logger: opts.logger ?? false });
 
   // Browser callers (apps/web) may hit this API directly in development.
@@ -76,6 +98,8 @@ export function buildApp(service: SearchService, meta: AppMeta, opts: { logger?:
     engine: meta.engine(),
     query_understanding: meta.aiMode,
     documents: meta.documents(),
+    ...(meta.dataset ? { dataset: meta.dataset() } : {}),
+    ...(meta.activeCountries ? { active_countries: meta.activeCountries() } : {}),
   }));
 
   app.get('/search', async (req, reply) => {
@@ -104,6 +128,22 @@ export function buildApp(service: SearchService, meta: AppMeta, opts: { logger?:
     const hit = await service.product(id, lc.locale, lc.country);
     if (!hit) return reply.code(404).send({ error: 'product not found or not shippable to this country' });
     return hit;
+  });
+
+  app.post('/admin/reindex', async (req, reply) => {
+    const token = opts.adminToken ?? '';
+    const allowed = token ? tokenMatches(req.headers.authorization, token) : LOOPBACK.has(req.ip);
+    if (!allowed) return reply.code(token ? 401 : 403).send({ error: token ? 'invalid or missing bearer token' : 'admin endpoints are local-only when SEARCH_ADMIN_TOKEN is unset' });
+    if (!opts.reindexer) return reply.code(503).send({ error: 'reindex not available' });
+    const body = (req.body ?? {}) as { product_ids?: unknown };
+    let ids: string[] | undefined;
+    if (body.product_ids != null) {
+      if (!Array.isArray(body.product_ids) || body.product_ids.some((x) => typeof x !== 'string' || !x || x.length > 100)) {
+        return reply.code(400).send({ error: 'product_ids must be an array of id strings' });
+      }
+      ids = [...new Set(body.product_ids as string[])];
+    }
+    return opts.reindexer.reindex(ids);
   });
 
   return app;

@@ -78,6 +78,10 @@ class Connector(ABC):
     supports_delta: ClassVar[bool] = False
     #: Items per bulk offer lookup (fetch_offers).
     bulk_size: ClassVar[int] = 50
+    #: False for feed-only sources (affiliate networks that publish product files but no search API).
+    supports_live_search: ClassVar[bool] = True
+    #: False when the source cannot look up one item; JIT refresh then leaves the offer to the next feed import.
+    supports_single_lookup: ClassVar[bool] = True
 
     def __init__(
         self,

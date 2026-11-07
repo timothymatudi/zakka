@@ -1,0 +1,280 @@
+{
+  "_note": "MOCK fixture for source 'awin'. Fictional products, brands, ids and URLs (*.example). attributes.merchant is the retailer inside the network (internal only).",
+  "source": "awin",
+  "currency": "GBP",
+  "products": [
+    {
+      "external_id": "101:A1",
+      "title": "Linen Duvet Cover Double",
+      "brand": "Calmhaus",
+      "category_hint": "Home > home-decor",
+      "image_urls": [
+        "https://images.zakka.example/awin/101-A1.jpg"
+      ],
+      "list_price": "45.00",
+      "shipping": "0",
+      "currency": "GBP",
+      "ships_from": "GB",
+      "ships_to": [
+        "GB"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "url": "https://www.awin1.example/pclick.php?p=101-A1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Retailer GB"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/101-A1-2.jpg",
+          "https://images.zakka.example/awin/101-A1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "101:A2",
+      "title": "Ceramic Plant Pot Set",
+      "brand": null,
+      "category_hint": "Home & Garden > Planters",
+      "image_urls": [
+        "https://images.zakka.example/awin/101-A2.jpg"
+      ],
+      "list_price": "22.00",
+      "shipping": "3.95",
+      "currency": "GBP",
+      "ships_from": "GB",
+      "ships_to": [
+        "GB",
+        "IE"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.awin1.example/pclick.php?p=101-A2&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Retailer GB"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/101-A2-2.jpg",
+          "https://images.zakka.example/awin/101-A2-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "202:B1",
+      "title": "Damen Sneaker Weiß",
+      "brand": "Stadtlauf",
+      "category_hint": "Schuhe > Sneaker",
+      "image_urls": [
+        "https://images.zakka.example/awin/202-B1.jpg"
+      ],
+      "list_price": "69.95",
+      "shipping": "0",
+      "currency": "EUR",
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "AT"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://www.awin1.example/pclick.php?p=202-B1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Händler DE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/202-B1-2.jpg",
+          "https://images.zakka.example/awin/202-B1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "202:B2",
+      "title": "Espressomaschine Siebträger",
+      "brand": "Kaffeewerk",
+      "category_hint": "Küche > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/awin/202-B2.jpg"
+      ],
+      "list_price": "189.00",
+      "shipping": "0",
+      "currency": "EUR",
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "url": "https://www.awin1.example/pclick.php?p=202-B2&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Händler DE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/202-B2-2.jpg",
+          "https://images.zakka.example/awin/202-B2-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "303:C1",
+      "title": "Robe d'été en coton",
+      "brand": "Lune",
+      "category_hint": "Mode > dresses",
+      "image_urls": [
+        "https://images.zakka.example/awin/303-C1.jpg"
+      ],
+      "list_price": "39.90",
+      "shipping": "4.90",
+      "currency": "EUR",
+      "ships_from": "FR",
+      "ships_to": [
+        "FR",
+        "BE"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.awin1.example/pclick.php?p=303-C1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Boutique FR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/303-C1-2.jpg",
+          "https://images.zakka.example/awin/303-C1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "404:D1",
+      "title": "Fietsverlichting Set LED",
+      "brand": "Trapper",
+      "category_hint": "Sport > cycling",
+      "image_urls": [
+        "https://images.zakka.example/awin/404-D1.jpg"
+      ],
+      "list_price": "24.95",
+      "shipping": "0",
+      "currency": "EUR",
+      "ships_from": "NL",
+      "ships_to": [
+        "NL",
+        "BE"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "url": "https://www.awin1.example/pclick.php?p=404-D1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Winkel NL"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/404-D1-2.jpg",
+          "https://images.zakka.example/awin/404-D1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "505:E1",
+      "title": "Vinterjacka Herr",
+      "brand": "Fjällvik",
+      "category_hint": "Kläder > mens-outerwear",
+      "image_urls": [
+        "https://images.zakka.example/awin/505-E1.jpg"
+      ],
+      "list_price": "1299",
+      "shipping": "0",
+      "currency": "SEK",
+      "ships_from": "SE",
+      "ships_to": [
+        "SE",
+        "NO",
+        "DK",
+        "FI"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.awin1.example/pclick.php?p=505-E1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Butik SE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/505-E1-2.jpg",
+          "https://images.zakka.example/awin/505-E1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "606:F1",
+      "title": "Zestaw garnków 5 szt.",
+      "brand": "Kuchnia+",
+      "category_hint": "Dom > cookware",
+      "image_urls": [
+        "https://images.zakka.example/awin/606-F1.jpg"
+      ],
+      "list_price": "349.00",
+      "shipping": "15.00",
+      "currency": "PLN",
+      "ships_from": "PL",
+      "ships_to": [
+        "PL"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "url": "https://www.awin1.example/pclick.php?p=606-F1&a=mock",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Sklep PL"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/awin/606-F1-2.jpg",
+          "https://images.zakka.example/awin/606-F1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

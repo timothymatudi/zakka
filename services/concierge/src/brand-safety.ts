@@ -6,6 +6,8 @@
 export const PARTNER_NAMES = [
   'CJ Dropshipping', 'CJdropshipping', 'CJ', 'AliExpress', 'Ali Express', 'Spocket', 'Printful',
   'Amazon', 'Temu', 'Shein', 'Jumia', 'Noon', 'Flipkart',
+  // Worldwide sources ("Impact" alone is an ordinary word, so only its domain is matched)
+  'eBay', 'Awin', 'Rakuten', 'Admitad', 'impact.com',
 ];
 
 /** Whole-word, case-insensitive match of any partner name (so "noon" in "afternoon" is not flagged). */

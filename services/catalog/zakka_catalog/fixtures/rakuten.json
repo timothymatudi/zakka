@@ -1,0 +1,213 @@
+{
+  "_note": "MOCK fixture for source 'rakuten'. Fictional products, brands, ids and URLs (*.example). attributes.merchant is the retailer inside the network (internal only).",
+  "source": "rakuten",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "38605:R1",
+      "title": "Cashmere Scarf Grey",
+      "brand": "Highland",
+      "category_hint": "Accessories > womens-fashion",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/38605-R1.jpg"
+      ],
+      "list_price": "79.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=38605-R1",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/38605-R1-2.jpg",
+          "https://images.zakka.example/rakuten/38605-R1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "38605:R2",
+      "title": "Ceramic Knife Set",
+      "brand": "Edge",
+      "category_hint": "Kitchen > cookware",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/38605-R2.jpg"
+      ],
+      "list_price": "59.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=38605-R2",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/38605-R2-2.jpg",
+          "https://images.zakka.example/rakuten/38605-R2-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "41200:R3",
+      "title": "Noise Cancelling Headphones",
+      "brand": "Quieta",
+      "category_hint": "Electronics > Headphones",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/41200-R3.jpg"
+      ],
+      "list_price": "199.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA",
+        "GB"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=41200-R3",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/41200-R3-2.jpg",
+          "https://images.zakka.example/rakuten/41200-R3-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "50100:R4",
+      "title": "Matcha Tea Set",
+      "brand": "Kyoen",
+      "category_hint": "Food > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/50100-R4.jpg"
+      ],
+      "list_price": "4800",
+      "shipping": "800",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP",
+        "US",
+        "SG",
+        "HK"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 12,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=50100-R4",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store JP"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/50100-R4-2.jpg",
+          "https://images.zakka.example/rakuten/50100-R4-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "50100:R5",
+      "title": "Rice Cooker 5.5 Cup",
+      "brand": "Hanami",
+      "category_hint": "Kitchen > Appliances",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/50100-R5.jpg"
+      ],
+      "list_price": "15800",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=50100-R5",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store JP"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/50100-R5-2.jpg",
+          "https://images.zakka.example/rakuten/50100-R5-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "60300:R6",
+      "title": "Silk Pillowcase",
+      "brand": "Lustre",
+      "category_hint": "Home > home-decor",
+      "image_urls": [
+        "https://images.zakka.example/rakuten/60300-R6.jpg"
+      ],
+      "list_price": "45.00",
+      "shipping": "5.00",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "AU",
+        "GB"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 10,
+      "url": "https://click.linksynergy.example/link?id=mock&offerid=60300-R6",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten/60300-R6-2.jpg",
+          "https://images.zakka.example/rakuten/60300-R6-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

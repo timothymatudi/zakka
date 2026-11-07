@@ -1,0 +1,212 @@
+{
+  "_note": "MOCK fixture for source 'impact'. Fictional products, brands, ids and URLs (*.example). attributes.merchant is the retailer inside the network (internal only).",
+  "source": "impact",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "IM-1",
+      "title": "Yoga Mat Non-Slip 6mm",
+      "brand": "Asana Co",
+      "category_hint": "Sports > Yoga",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-1.jpg"
+      ],
+      "list_price": "29.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://goto.impact.example/c/mock/IM-1",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-1-2.jpg",
+          "https://images.zakka.example/impact/IM-1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "IM-2",
+      "title": "Smart LED Bulb 4-Pack",
+      "brand": "Lumos",
+      "category_hint": "Home > lighting",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-2.jpg"
+      ],
+      "list_price": "39.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://goto.impact.example/c/mock/IM-2",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-2-2.jpg",
+          "https://images.zakka.example/impact/IM-2-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "IM-3",
+      "title": "Protein Powder Vanilla 2lb",
+      "brand": "FitFuel",
+      "category_hint": "Health > vitamins-supplements",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-3.jpg"
+      ],
+      "list_price": "44.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 5,
+      "url": "https://goto.impact.example/c/mock/IM-3",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-3-2.jpg",
+          "https://images.zakka.example/impact/IM-3-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "IM-4",
+      "title": "Kids Rain Boots",
+      "brand": "Puddle",
+      "category_hint": "Shoes > Kids",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-4.jpg"
+      ],
+      "list_price": "32.00",
+      "shipping": "6.95",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7,
+      "url": "https://goto.impact.example/c/mock/IM-4",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-4-2.jpg",
+          "https://images.zakka.example/impact/IM-4-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "IM-5",
+      "title": "Hiking Backpack 30L",
+      "brand": "Trailmark",
+      "category_hint": "Outdoors > Backpacks",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-5.jpg"
+      ],
+      "list_price": "89.00",
+      "shipping": "0",
+      "currency": "CAD",
+      "ships_from": "CA",
+      "ships_to": [
+        "CA",
+        "US"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 8,
+      "url": "https://goto.impact.example/c/mock/IM-5",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand CA"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-5-2.jpg",
+          "https://images.zakka.example/impact/IM-5-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "IM-6",
+      "title": "Travel Adapter Universal",
+      "brand": "Voyager",
+      "category_hint": "Electronics > Travel",
+      "image_urls": [
+        "https://images.zakka.example/impact/IM-6.jpg"
+      ],
+      "list_price": "24.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "GB",
+        "AU",
+        "AE",
+        "IN"
+      ],
+      "delivery_days_min": 5,
+      "delivery_days_max": 12,
+      "url": "https://goto.impact.example/c/mock/IM-6",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Brand US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/impact/IM-6-2.jpg",
+          "https://images.zakka.example/impact/IM-6-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

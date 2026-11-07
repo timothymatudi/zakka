@@ -36,6 +36,10 @@ def refresh_offer(store: Store, connectors: Mapping[str, Connector], offer_id: U
     connector = connectors.get(offer.source_code)
     if connector is None:
         raise LookupError(f"no connector for {offer.source_code}")
+    if not connector.mock and not getattr(connector, "supports_single_lookup", True):
+        store.commit()
+        return {"refreshed": False, "reason": "source has no single-item lookup; refreshed by its feed import",
+                "is_active": offer.is_active}
     item = connector.fetch_offer(offer.external_id)
     if item is None:
         store.deactivate_offer(offer.id)

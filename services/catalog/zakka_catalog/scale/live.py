@@ -138,6 +138,8 @@ class LiveAffiliateSearch:
         for code, conn in self.connectors.items():
             if sources and code not in sources:
                 continue
+            if not getattr(conn, "supports_live_search", True):
+                continue  # feed-only network: its products come from the feed import
             key = (code, q, (country or "").upper())
             found = self._get(key)
             if found is not None:

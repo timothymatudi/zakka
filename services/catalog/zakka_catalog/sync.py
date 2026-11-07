@@ -101,7 +101,7 @@ def to_usd(amount: Decimal | None, currency: str, store: Store) -> Decimal | Non
 # (titles, descriptions, bullets, brand) is customer-facing, so partner names are removed.
 # "noon" is only matched as a domain (it is an ordinary English word).
 _PARTNER = (r"(?:cj\s*dropshipping|aliexpress|spocket|printful|amazon(?:\.[a-z.]+)?|temu|shein"
-            r"|jumia(?:\.[a-z.]+)?|flipkart|noon\.com|cj)")
+            r"|jumia(?:\.[a-z.]+)?|flipkart|noon\.com|ebay(?:\.[a-z.]+)?|awin|rakuten|admitad|impact\.com|cj)")
 _PARTNER_RE = re.compile(rf"(?i)\b{_PARTNER}\b")
 # A partner mention plus the words that only exist to introduce it ("Sold on X", "ships from X").
 _MENTION_RE = re.compile(

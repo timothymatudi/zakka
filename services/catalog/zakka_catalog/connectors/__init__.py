@@ -16,6 +16,7 @@ from .partners import (
     SpocketConnector,
     TemuConnector,
 )
+from .networks import NETWORK_CONNECTORS
 from .printful import PrintfulConnector
 
 CONNECTORS: dict[str, type[Connector]] = {
@@ -24,6 +25,7 @@ CONNECTORS: dict[str, type[Connector]] = {
         CJConnector, AliExpressDropshipConnector, SpocketConnector, PrintfulConnector,
         AmazonCreatorsConnector, TemuConnector, SheinConnector, AliExpressAffiliateConnector,
         JumiaConnector, NoonConnector, FlipkartConnector,
+        *NETWORK_CONNECTORS,  # worldwide: ebay, awin, impact, rakuten, admitad
     )
 }
 

@@ -122,6 +122,71 @@
       "code": "CLP",
       "symbol": "CLP$",
       "decimals": 0
+    },
+    {
+      "code": "AUD",
+      "symbol": "A$",
+      "decimals": 2
+    },
+    {
+      "code": "CAD",
+      "symbol": "CA$",
+      "decimals": 2
+    },
+    {
+      "code": "SEK",
+      "symbol": "kr",
+      "decimals": 2
+    },
+    {
+      "code": "PLN",
+      "symbol": "zł",
+      "decimals": 2
+    },
+    {
+      "code": "TRY",
+      "symbol": "₺",
+      "decimals": 2
+    },
+    {
+      "code": "CHF",
+      "symbol": "CHF",
+      "decimals": 2
+    },
+    {
+      "code": "NOK",
+      "symbol": "kr",
+      "decimals": 2
+    },
+    {
+      "code": "DKK",
+      "symbol": "kr.",
+      "decimals": 2
+    },
+    {
+      "code": "NZD",
+      "symbol": "NZ$",
+      "decimals": 2
+    },
+    {
+      "code": "SGD",
+      "symbol": "S$",
+      "decimals": 2
+    },
+    {
+      "code": "HKD",
+      "symbol": "HK$",
+      "decimals": 2
+    },
+    {
+      "code": "MYR",
+      "symbol": "RM",
+      "decimals": 2
+    },
+    {
+      "code": "PHP",
+      "symbol": "₱",
+      "decimals": 2
     }
   ],
   "fx_rates": [
@@ -234,6 +299,71 @@
       "base": "USD",
       "quote": "CLP",
       "rate": "950.00"
+    },
+    {
+      "base": "USD",
+      "quote": "AUD",
+      "rate": "1.5"
+    },
+    {
+      "base": "USD",
+      "quote": "CAD",
+      "rate": "1.38"
+    },
+    {
+      "base": "USD",
+      "quote": "SEK",
+      "rate": "10.6"
+    },
+    {
+      "base": "USD",
+      "quote": "PLN",
+      "rate": "4.0"
+    },
+    {
+      "base": "USD",
+      "quote": "TRY",
+      "rate": "34"
+    },
+    {
+      "base": "USD",
+      "quote": "CHF",
+      "rate": "0.87"
+    },
+    {
+      "base": "USD",
+      "quote": "NOK",
+      "rate": "10.9"
+    },
+    {
+      "base": "USD",
+      "quote": "DKK",
+      "rate": "6.85"
+    },
+    {
+      "base": "USD",
+      "quote": "NZD",
+      "rate": "1.65"
+    },
+    {
+      "base": "USD",
+      "quote": "SGD",
+      "rate": "1.33"
+    },
+    {
+      "base": "USD",
+      "quote": "HKD",
+      "rate": "7.78"
+    },
+    {
+      "base": "USD",
+      "quote": "MYR",
+      "rate": "4.4"
+    },
+    {
+      "base": "USD",
+      "quote": "PHP",
+      "rate": "57"
     }
   ],
   "countries": [
@@ -448,6 +578,36 @@
       "code": "flipkart",
       "kind": "affiliate",
       "name": "Flipkart"
+    },
+    {
+      "id": "e0b1c2d3-0001-5a00-8000-00000000eb01",
+      "code": "ebay",
+      "kind": "affiliate",
+      "name": "eBay"
+    },
+    {
+      "id": "e0b1c2d3-0002-5a00-8000-00000000a201",
+      "code": "awin",
+      "kind": "affiliate",
+      "name": "Awin"
+    },
+    {
+      "id": "e0b1c2d3-0003-5a00-8000-00000000c301",
+      "code": "impact",
+      "kind": "affiliate",
+      "name": "Impact"
+    },
+    {
+      "id": "e0b1c2d3-0004-5a00-8000-00000000d401",
+      "code": "rakuten",
+      "kind": "affiliate",
+      "name": "Rakuten Advertising"
+    },
+    {
+      "id": "e0b1c2d3-0005-5a00-8000-00000000ad01",
+      "code": "admitad",
+      "kind": "affiliate",
+      "name": "Admitad"
     }
   ],
   "markup_rules": [

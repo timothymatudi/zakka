@@ -7,7 +7,9 @@ export const RTL_LOCALES: Locale[] = ['ar'];
 export type SourceKind = 'dropship' | 'affiliate';
 export type SourceCode =
   | 'cj' | 'aliexpress_ds' | 'spocket' | 'printful'
-  | 'amazon' | 'temu' | 'shein' | 'aliexpress_aff' | 'jumia' | 'noon' | 'flipkart';
+  | 'amazon' | 'temu' | 'shein' | 'aliexpress_aff' | 'jumia' | 'noon' | 'flipkart'
+  // Worldwide: one marketplace and four affiliate networks (each covers thousands of retailers)
+  | 'ebay' | 'awin' | 'impact' | 'rakuten' | 'admitad';
 
 export interface SearchOffer {
   offer_id: string;

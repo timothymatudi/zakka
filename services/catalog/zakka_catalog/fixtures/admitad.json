@@ -1,0 +1,282 @@
+{
+  "_note": "MOCK fixture for source 'admitad'. Fictional products, brands, ids and URLs (*.example). attributes.merchant is the retailer inside the network (internal only).",
+  "source": "admitad",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "101:AD1",
+      "title": "Tênis de Corrida Masculino",
+      "brand": "Veloz",
+      "category_hint": "Calçados > sneakers",
+      "image_urls": [
+        "https://images.zakka.example/admitad/101-AD1.jpg"
+      ],
+      "list_price": "249.90",
+      "shipping": "0",
+      "currency": "BRL",
+      "ships_from": "BR",
+      "ships_to": [
+        "BR"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 9,
+      "url": "https://ad.admitad.example/g/mock/?ulp=101-AD1",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Loja BR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/101-AD1-2.jpg",
+          "https://images.zakka.example/admitad/101-AD1-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "101:AD2",
+      "title": "Fone Bluetooth Esportivo",
+      "brand": "Ritmo",
+      "category_hint": "Eletrônicos > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/admitad/101-AD2.jpg"
+      ],
+      "list_price": "129.90",
+      "shipping": "12.00",
+      "currency": "BRL",
+      "ships_from": "BR",
+      "ships_to": [
+        "BR"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 10,
+      "url": "https://ad.admitad.example/g/mock/?ulp=101-AD2",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Loja BR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/101-AD2-2.jpg",
+          "https://images.zakka.example/admitad/101-AD2-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "202:AD3",
+      "title": "Licuadora 1.5L 600W",
+      "brand": "Cocina Pro",
+      "category_hint": "Hogar > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/admitad/202-AD3.jpg"
+      ],
+      "list_price": "899.00",
+      "shipping": "0",
+      "currency": "MXN",
+      "ships_from": "MX",
+      "ships_to": [
+        "MX"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://ad.admitad.example/g/mock/?ulp=202-AD3",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Tienda MX"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/202-AD3-2.jpg",
+          "https://images.zakka.example/admitad/202-AD3-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "303:AD4",
+      "title": "Kurta Set for Women",
+      "brand": "Rangoli",
+      "category_hint": "Fashion > Ethnic Wear",
+      "image_urls": [
+        "https://images.zakka.example/admitad/303-AD4.jpg"
+      ],
+      "list_price": "1299",
+      "shipping": "0",
+      "currency": "INR",
+      "ships_from": "IN",
+      "ships_to": [
+        "IN"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7,
+      "url": "https://ad.admitad.example/g/mock/?ulp=303-AD4",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store IN"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/303-AD4-2.jpg",
+          "https://images.zakka.example/admitad/303-AD4-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "404:AD5",
+      "title": "Hijab Instan Premium",
+      "brand": "Nura",
+      "category_hint": "Fashion > Muslim Wear",
+      "image_urls": [
+        "https://images.zakka.example/admitad/404-AD5.jpg"
+      ],
+      "list_price": "89000",
+      "shipping": "15000",
+      "currency": "IDR",
+      "ships_from": "ID",
+      "ships_to": [
+        "ID",
+        "MY"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://ad.admitad.example/g/mock/?ulp=404-AD5",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Toko ID"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/404-AD5-2.jpg",
+          "https://images.zakka.example/admitad/404-AD5-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "505:AD6",
+      "title": "Türk Kahvesi Makinesi",
+      "brand": "Ocak",
+      "category_hint": "Mutfak > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/admitad/505-AD6.jpg"
+      ],
+      "list_price": "1899",
+      "shipping": "0",
+      "currency": "TRY",
+      "ships_from": "TR",
+      "ships_to": [
+        "TR"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://ad.admitad.example/g/mock/?ulp=505-AD6",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Mağaza TR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/505-AD6-2.jpg",
+          "https://images.zakka.example/admitad/505-AD6-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "606:AD7",
+      "title": "Plecak szkolny",
+      "brand": "Szkoła+",
+      "category_hint": "Szkoła > backpacks",
+      "image_urls": [
+        "https://images.zakka.example/admitad/606-AD7.jpg"
+      ],
+      "list_price": "149.00",
+      "shipping": "12.99",
+      "currency": "PLN",
+      "ships_from": "PL",
+      "ships_to": [
+        "PL",
+        "CZ"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://ad.admitad.example/g/mock/?ulp=606-AD7",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Sklep PL"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/606-AD7-2.jpg",
+          "https://images.zakka.example/admitad/606-AD7-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "707:AD8",
+      "title": "Smartwatch Fitness Tracker",
+      "brand": "Pulso",
+      "category_hint": "Electronics > Wearables",
+      "image_urls": [
+        "https://images.zakka.example/admitad/707-AD8.jpg"
+      ],
+      "list_price": "45.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "CN",
+      "ships_to": [
+        "BR",
+        "MX",
+        "IN",
+        "ID",
+        "TR",
+        "PL",
+        "VN",
+        "PH",
+        "CO",
+        "PE"
+      ],
+      "delivery_days_min": 8,
+      "delivery_days_max": 22,
+      "url": "https://ad.admitad.example/g/mock/?ulp=707-AD8",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Store Global"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/admitad/707-AD8-2.jpg",
+          "https://images.zakka.example/admitad/707-AD8-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

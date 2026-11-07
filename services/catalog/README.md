@@ -244,6 +244,25 @@ python -m pytest            # about 225 tests (about 1 min), no network (sockets
 
 Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport`.
 
+**Worldwide sources** (`connectors/networks.py`). Each one is an affiliate source that reaches many retailers in many countries. The retailer's name is kept in `attributes.merchant`, which is internal only.
+
+| Code | What it is | Import | Live search | Keys |
+| --- | --- | --- | --- | --- |
+| `ebay` | eBay Browse API + eBay Partner Network. About 18 local eBay sites; other countries search eBay US filtered to items that ship there | Pages over `EBAY_MARKETPLACES` x seed queries | Yes | `EBAY_CLIENT_ID`, `EBAY_CLIENT_SECRET`, `EBAY_CAMPAIGN_ID` |
+| `awin` | Awin network (strong in Europe) | One page per joined advertiser feed | No (feeds only) | `AWIN_PUBLISHER_ID`, `AWIN_FEED_KEY` |
+| `impact` | Impact network (strong in North America) | One page per catalog | Yes (ItemSearch) | `IMPACT_ACCOUNT_SID`, `IMPACT_AUTH_TOKEN` |
+| `rakuten` | Rakuten Advertising network | Seed queries | Yes | `RAKUTEN_ADV_TOKEN` |
+| `admitad` | Admitad network (Latin America, Asia, Eastern Europe, Turkey) | One page per joined program feed | No (feeds only) | `ADMITAD_CLIENT_ID`, `ADMITAD_CLIENT_SECRET`, `ADMITAD_WEBSITE_ID` |
+
+* Feed-only sources are skipped by live search, and JIT refresh leaves their offers to the next feed import (they have no single-item lookup).
+* Commission rates differ per retailer; `DEFAULT_COMMISSION` (4%) is an estimate until real rates are loaded.
+* Still to confirm with real accounts: Rakuten's XML element names and token renewal, Admitad's token call and feed columns, and your eBay daily call limit.
+
+**CJ and Printful were checked against their official docs (2026-11).**
+
+* CJ: sign-in is `CJ_API_KEY` only (the old email/password body is deprecated). The token is cached because CJ allows one token request per 5 minutes. Orders go through `createOrderV3` with the cheapest `freightCalculate` option, then `payBalanceV2` from the CJ balance. A retry finds the existing order by our order number instead of creating a second one. Products with several variants need the variant on the order line. Set `CJ_SANDBOX=1` to test real calls without being charged. `CJ_FROM_COUNTRY` (default `CN`) is the ship-from warehouse.
+* Printful: set `PRINTFUL_STORE_ID` only for account-level tokens. Order `external_id` is our order id without dashes (Printful allows 32 characters). A retry reads the order back by that id instead of submitting it twice. Printful has no delivery confirmation, so shipped orders stay `in_transit`.
+
 ## What is mocked
 
 | Area | Mock behaviour |

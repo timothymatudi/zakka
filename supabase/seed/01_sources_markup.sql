@@ -1,4 +1,4 @@
--- Seed: the 11 contract sources and the global markup rule.
+-- Seed: the 16 contract sources and the global markup rule.
 -- Idempotent: safe to re-run.
 --
 -- config holds PLACEHOLDERS only: no secrets, ever. Credentials come from the
@@ -9,7 +9,7 @@
 insert into sources (kind, code, name, is_active, config) values
   -- Dropship suppliers (markup applies)
   ('dropship',  'cj',             'CJ Dropshipping',          true,
-     '{"placeholder": true, "mode": "mock", "env": ["CJ_API_EMAIL", "CJ_API_KEY"]}'),
+     '{"placeholder": true, "mode": "mock", "env": ["CJ_API_KEY"]}'),
   ('dropship',  'aliexpress_ds',  'AliExpress Dropshipping',  true,
      '{"placeholder": true, "mode": "mock", "env": ["ALIEXPRESS_DS_APP_KEY", "ALIEXPRESS_DS_APP_SECRET"]}'),
   ('dropship',  'spocket',        'Spocket',                  true,
@@ -30,7 +30,18 @@ insert into sources (kind, code, name, is_active, config) values
   ('affiliate', 'noon',           'noon',                     true,
      '{"placeholder": true, "mode": "mock", "env": ["NOON_AFFILIATE_ID"], "countries": ["AE", "SA", "EG"]}'),
   ('affiliate', 'flipkart',       'Flipkart',                 true,
-     '{"placeholder": true, "mode": "mock", "env": ["FLIPKART_AFFILIATE_ID"], "countries": ["IN"]}')
+     '{"placeholder": true, "mode": "mock", "env": ["FLIPKART_AFFILIATE_ID"], "countries": ["IN"]}'),
+  -- Worldwide: eBay (Browse API + eBay Partner Network) and affiliate networks
+  ('affiliate', 'ebay',           'eBay',                     true,
+     '{"placeholder": true, "mode": "mock", "api": "browse", "env": ["EBAY_CLIENT_ID", "EBAY_CLIENT_SECRET", "EBAY_CAMPAIGN_ID"]}'),
+  ('affiliate', 'awin',           'Awin',                     true,
+     '{"placeholder": true, "mode": "mock", "network": true, "feeds": true, "env": ["AWIN_PUBLISHER_ID", "AWIN_FEED_KEY"]}'),
+  ('affiliate', 'impact',         'Impact',                   true,
+     '{"placeholder": true, "mode": "mock", "network": true, "env": ["IMPACT_ACCOUNT_SID", "IMPACT_AUTH_TOKEN"]}'),
+  ('affiliate', 'rakuten',        'Rakuten Advertising',      true,
+     '{"placeholder": true, "mode": "mock", "network": true, "env": ["RAKUTEN_ADV_TOKEN"]}'),
+  ('affiliate', 'admitad',        'Admitad',                  true,
+     '{"placeholder": true, "mode": "mock", "network": true, "feeds": true, "env": ["ADMITAD_CLIENT_ID", "ADMITAD_CLIENT_SECRET", "ADMITAD_WEBSITE_ID"]}')
 on conflict (code) do update
   set kind = excluded.kind, name = excluded.name;
 

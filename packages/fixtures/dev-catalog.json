@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-06T03:10:10+00:00",
+ "generated_at": "2026-11-07T23:13:51+00:00",
  "categories": [
   {
    "id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
@@ -2130,6 +2130,31 @@
   {
    "id": "95755c0c-b64e-56f3-a90c-ae9424f6fde9",
    "code": "flipkart",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0001-5a00-8000-00000000eb01",
+   "code": "ebay",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0002-5a00-8000-00000000a201",
+   "code": "awin",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0003-5a00-8000-00000000c301",
+   "code": "impact",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0004-5a00-8000-00000000d401",
+   "code": "rakuten",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0005-5a00-8000-00000000ad01",
+   "code": "admitad",
    "kind": "affiliate"
   }
  ],
@@ -8484,6 +8509,2418 @@
      "bullet_points": []
     }
    }
+  },
+  {
+   "id": "19c7c577-acb7-5017-911b-f35da99dd671",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": "Sonora",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-1001.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller US"
+   },
+   "translations": {
+    "en": {
+     "title": "Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Wireless Earbuds with Charging Case",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "a8ecdd08-f47e-59af-9296-c344db4675b2",
+   "category_id": "1c7bb378-8d90-5095-a487-05ea0fd8c00f",
+   "brand": "Klix",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-1002.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller US"
+   },
+   "translations": {
+    "en": {
+     "title": "Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Mechanical Keyboard 87 Keys",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "11f59460-04a2-5938-98ae-ea194d1e453e",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": "Hearth",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-2001.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller UK"
+   },
+   "translations": {
+    "en": {
+     "title": "Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Stainless Steel Kettle 1.7L",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "501834ee-f35d-5bc7-897d-45aea087bd16",
+   "category_id": "bb2346bd-c561-5a63-a3e4-5832c032c6f9",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-2002.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller UK"
+   },
+   "translations": {
+    "en": {
+     "title": "Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Leather Wallet Slim",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "3ea7f99e-9007-518a-ab3c-d014330bcde7",
+   "category_id": "3ec2ac6d-e6a8-5679-aba9-fb9688f25db9",
+   "brand": "Werkhaus",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-3001.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller DE"
+   },
+   "translations": {
+    "en": {
+     "title": "Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Cordless Drill 18V Kit",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "4ce799dd-18a9-5c60-b078-736c970e82ce",
+   "category_id": "32b93ff5-2bd3-5d6a-a0da-0a02da30c758",
+   "brand": "Nordlauf",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-3002.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller DE"
+   },
+   "translations": {
+    "en": {
+     "title": "Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Running Jacket Waterproof",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "648ec344-3eef-573c-9ab8-1faa688f95f2",
+   "category_id": "36ba62ba-3c31-52bc-a1f2-4a2446fd2430",
+   "brand": "Reefline",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-4001.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller AU"
+   },
+   "translations": {
+    "en": {
+     "title": "Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Surf Wax Pack of 5",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "d737f6f9-830c-52b2-85b1-6dac1a92ed70",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/ebay/v1-5001.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Seller CA"
+   },
+   "translations": {
+    "en": {
+     "title": "Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Maple Syrup Gift Set",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "719b7743-f31d-5822-80b2-06df14f9bb90",
+   "category_id": "f69017c0-b63b-5c32-a6e6-aa0881355489",
+   "brand": "Calmhaus",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/101-A1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Retailer GB"
+   },
+   "translations": {
+    "en": {
+     "title": "Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Linen Duvet Cover Double",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "19aa074e-b83e-532f-9430-a473348a6e8d",
+   "category_id": "0032c393-ad41-52ef-bb4e-dd02345ecdfb",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/101-A2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Retailer GB"
+   },
+   "translations": {
+    "en": {
+     "title": "Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Ceramic Plant Pot Set",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "873b1ae9-c752-5c79-a111-90a8191c17cd",
+   "category_id": "ff5aeb3d-b921-54ad-bf5c-f5d33994741a",
+   "brand": "Stadtlauf",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/202-B1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Händler DE"
+   },
+   "translations": {
+    "en": {
+     "title": "Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Damen Sneaker Weiß",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "e33b1ee4-8a1a-5e6b-ae9e-c060ac67bb5b",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": "Kaffeewerk",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/202-B2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Händler DE"
+   },
+   "translations": {
+    "en": {
+     "title": "Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Espressomaschine Siebträger",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "9059d4e6-ec07-5f49-8dcc-3efded9d5262",
+   "category_id": "7e2fd7c7-fa94-5df8-b1a5-5c2e52f2eb3d",
+   "brand": "Lune",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/303-C1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Boutique FR"
+   },
+   "translations": {
+    "en": {
+     "title": "Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Robe d'été en coton",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "2bd08b88-5e81-5b47-8676-ac578daba98e",
+   "category_id": "bf2fdd0f-73fb-565f-b1cf-084c63b6f618",
+   "brand": "Trapper",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/404-D1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Winkel NL"
+   },
+   "translations": {
+    "en": {
+     "title": "Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Fietsverlichting Set LED",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "f1699979-5222-5503-bbd1-4a6555239452",
+   "category_id": "25232922-c840-5316-baec-51935e8a4786",
+   "brand": "Fjällvik",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/505-E1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Butik SE"
+   },
+   "translations": {
+    "en": {
+     "title": "Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Vinterjacka Herr",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "ee59caf5-2ff4-57dc-8a55-5e7b9be92aa8",
+   "category_id": "0032c393-ad41-52ef-bb4e-dd02345ecdfb",
+   "brand": "Kuchnia+",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/awin/606-F1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Sklep PL"
+   },
+   "translations": {
+    "en": {
+     "title": "Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Zestaw garnków 5 szt.",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "c934cf0c-07e6-50ca-aa52-b7e4917b00ad",
+   "category_id": "77800128-b120-5f12-937b-203a709aac75",
+   "brand": "Asana Co",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand US"
+   },
+   "translations": {
+    "en": {
+     "title": "Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Yoga Mat Non-Slip 6mm",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "e20324d3-80c7-5896-b904-d501ed295a98",
+   "category_id": "c6c12c0b-c4e5-5cac-8d5c-ed4b1a223a2f",
+   "brand": "Lumos",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand US"
+   },
+   "translations": {
+    "en": {
+     "title": "Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Smart LED Bulb 4-Pack",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "1096043d-348e-5fd5-a6ce-941846a5d8ac",
+   "category_id": "d4ea460a-72f6-575f-9c7d-67c50899cec9",
+   "brand": "FitFuel",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-3.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand US"
+   },
+   "translations": {
+    "en": {
+     "title": "Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Protein Powder Vanilla 2lb",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "ac5e571a-9cb8-5252-a5e0-25ca0fefc5c9",
+   "category_id": "218e88bd-0e34-5d0d-b2de-f6785a2151f6",
+   "brand": "Puddle",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-4.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand US"
+   },
+   "translations": {
+    "en": {
+     "title": "Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Kids Rain Boots",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "79069f41-9d28-5d1c-95f2-0dfbc06a0f5f",
+   "category_id": "7f3341da-30b0-5201-8b51-983c589e0381",
+   "brand": "Trailmark",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-5.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand CA"
+   },
+   "translations": {
+    "en": {
+     "title": "Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Hiking Backpack 30L",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "9bd39f81-44dd-559b-afb1-ac312f191d8d",
+   "category_id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
+   "brand": "Voyager",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/impact/IM-6.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Brand US"
+   },
+   "translations": {
+    "en": {
+     "title": "Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Travel Adapter Universal",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "a6b3e2f3-f0f3-54f0-9054-5ee8f90cadbc",
+   "category_id": "ceb3eed9-1809-5502-b574-0411dc281da4",
+   "brand": "Highland",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/38605-R1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store US"
+   },
+   "translations": {
+    "en": {
+     "title": "Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Cashmere Scarf Grey",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "a3a20582-7a37-5db5-a119-25f40ac45bdc",
+   "category_id": "0032c393-ad41-52ef-bb4e-dd02345ecdfb",
+   "brand": "Edge",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/38605-R2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store US"
+   },
+   "translations": {
+    "en": {
+     "title": "Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Ceramic Knife Set",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "efae4925-d3e8-5ed8-9fdf-b0c46e8ba406",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": "Quieta",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/41200-R3.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store US"
+   },
+   "translations": {
+    "en": {
+     "title": "Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Noise Cancelling Headphones",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "0b421f68-bd92-55fb-8cc9-a4bd4476c4ff",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": "Kyoen",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/50100-R4.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store JP"
+   },
+   "translations": {
+    "en": {
+     "title": "Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Matcha Tea Set",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "0c06a3ba-c8a9-5592-b1ef-01e05988b763",
+   "category_id": "72c0b880-2e85-5222-bce9-64b13a99e60f",
+   "brand": "Hanami",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/50100-R5.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store JP"
+   },
+   "translations": {
+    "en": {
+     "title": "Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Rice Cooker 5.5 Cup",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "db8abd71-146c-534e-994d-5d443b658fe7",
+   "category_id": "f69017c0-b63b-5c32-a6e6-aa0881355489",
+   "brand": "Lustre",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten/60300-R6.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store US"
+   },
+   "translations": {
+    "en": {
+     "title": "Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Silk Pillowcase",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "9a33c8e8-cf6b-5191-b60c-468a6637718e",
+   "category_id": "ff5aeb3d-b921-54ad-bf5c-f5d33994741a",
+   "brand": "Veloz",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/101-AD1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Loja BR"
+   },
+   "translations": {
+    "en": {
+     "title": "Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Tênis de Corrida Masculino",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "c39151fb-b410-5e0a-bd72-fc40446f85e0",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": "Ritmo",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/101-AD2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Loja BR"
+   },
+   "translations": {
+    "en": {
+     "title": "Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Fone Bluetooth Esportivo",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "de03e2f4-e337-51ca-a092-6bc5bd84b23c",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": "Cocina Pro",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/202-AD3.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Tienda MX"
+   },
+   "translations": {
+    "en": {
+     "title": "Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Licuadora 1.5L 600W",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "e0dccb69-a44d-5f83-b49a-151b7a01e584",
+   "category_id": "b6cb05af-3826-5a79-a8b2-57fbfb70053f",
+   "brand": "Rangoli",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/303-AD4.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store IN"
+   },
+   "translations": {
+    "en": {
+     "title": "Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Kurta Set for Women",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "77ca9dba-a317-5c5c-a75b-3df689ca3070",
+   "category_id": "b6cb05af-3826-5a79-a8b2-57fbfb70053f",
+   "brand": "Nura",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/404-AD5.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Toko ID"
+   },
+   "translations": {
+    "en": {
+     "title": "Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Hijab Instan Premium",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "fdf1427f-5501-5471-9902-b6849d63231c",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": "Ocak",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/505-AD6.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Mağaza TR"
+   },
+   "translations": {
+    "en": {
+     "title": "Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Türk Kahvesi Makinesi",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "1a1ad4e1-180e-560a-82a7-95581e621ef9",
+   "category_id": "7f3341da-30b0-5201-8b51-983c589e0381",
+   "brand": "Szkoła+",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/606-AD7.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Sklep PL"
+   },
+   "translations": {
+    "en": {
+     "title": "Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Plecak szkolny",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "773cde97-76b4-5658-8be0-7fc387e42171",
+   "category_id": "7afb9d0f-10b2-507d-9323-897e367dd02a",
+   "brand": "Pulso",
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/admitad/707-AD8.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 120,
+   "popularity": 0.3666,
+   "attributes": {
+    "merchant": "Store Global"
+   },
+   "translations": {
+    "en": {
+     "title": "Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Smartwatch Fitness Tracker",
+     "description": null,
+     "bullet_points": []
+    }
+   }
   }
  ],
  "offers": [
@@ -11309,16 +13746,794 @@
    "delivery_days_min": 2,
    "delivery_days_max": 5,
    "is_active": true
+  },
+  {
+   "id": "a1ab67dd-b9d2-54cd-a356-3eb715accc3b",
+   "product_id": "19c7c577-acb7-5017-911b-f35da99dd671",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|1001",
+   "url": "https://www.ebay.example/itm/v1-1001?campid=mock",
+   "display_price_usd": 24.99,
+   "list_price_local": 24.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "MX",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "e8fb6706-2ba9-5af9-aa5e-4127bd5764a2",
+   "product_id": "a8ecdd08-f47e-59af-9296-c344db4675b2",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|1002",
+   "url": "https://www.ebay.example/itm/v1-1002?campid=mock",
+   "display_price_usd": 54.99,
+   "list_price_local": 49,
+   "list_currency": "USD",
+   "shipping_usd": 5.99,
+   "shipping_local": 5.99,
+   "ships_from": "US",
+   "ships_to": [
+    "AU",
+    "DE",
+    "GB",
+    "US"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 12,
+   "is_active": true
+  },
+  {
+   "id": "e9489a0d-8306-5b31-8da8-1b5c7ca4c9c9",
+   "product_id": "11f59460-04a2-5938-98ae-ea194d1e453e",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|2001",
+   "url": "https://www.ebay.example/itm/v1-2001?campid=mock",
+   "display_price_usd": 31.66,
+   "list_price_local": 21.5,
+   "list_currency": "GBP",
+   "shipping_usd": 4.1,
+   "shipping_local": 3.2,
+   "ships_from": "GB",
+   "ships_to": [
+    "FR",
+    "GB",
+    "IE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "672eff7f-999e-5ac2-b087-fdef5c0a9072",
+   "product_id": "501834ee-f35d-5bc7-897d-45aea087bd16",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|2002",
+   "url": "https://www.ebay.example/itm/v1-2002?campid=mock",
+   "display_price_usd": 19.23,
+   "list_price_local": 15,
+   "list_currency": "GBP",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "GB",
+   "ships_to": [
+    "GB",
+    "KE",
+    "NG",
+    "ZA"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 14,
+   "is_active": true
+  },
+  {
+   "id": "2867208b-7a47-5244-871f-4205917c2f3e",
+   "product_id": "3ea7f99e-9007-518a-ab3c-d014330bcde7",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|3001",
+   "url": "https://www.ebay.example/itm/v1-3001?campid=mock",
+   "display_price_usd": 86.85,
+   "list_price_local": 79.9,
+   "list_currency": "EUR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "DE",
+   "ships_to": [
+    "AT",
+    "CH",
+    "DE",
+    "PL"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "946bcabc-edda-5b06-a8da-375bc9858014",
+   "product_id": "4ce799dd-18a9-5c60-b078-736c970e82ce",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|3002",
+   "url": "https://www.ebay.example/itm/v1-3002?campid=mock",
+   "display_price_usd": 69.46,
+   "list_price_local": 59,
+   "list_currency": "EUR",
+   "shipping_usd": 5.33,
+   "shipping_local": 4.9,
+   "ships_from": "DE",
+   "ships_to": [
+    "BE",
+    "DE",
+    "FR",
+    "NL"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 7,
+   "is_active": true
+  },
+  {
+   "id": "fda5ae79-9237-5de1-bd8c-293040dc6988",
+   "product_id": "648ec344-3eef-573c-9ab8-1faa688f95f2",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|4001",
+   "url": "https://www.ebay.example/itm/v1-4001?campid=mock",
+   "display_price_usd": 16,
+   "list_price_local": 18,
+   "list_currency": "AUD",
+   "shipping_usd": 4,
+   "shipping_local": 6,
+   "ships_from": "AU",
+   "ships_to": [
+    "AU",
+    "NZ"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 8,
+   "is_active": true
+  },
+  {
+   "id": "4c41184e-41db-582c-bc4d-f82de02defbf",
+   "product_id": "d737f6f9-830c-52b2-85b1-6dac1a92ed70",
+   "source_code": "ebay",
+   "kind": "affiliate",
+   "external_id": "v1|5001",
+   "url": "https://www.ebay.example/itm/v1-5001?campid=mock",
+   "display_price_usd": 30.44,
+   "list_price_local": 34,
+   "list_currency": "CAD",
+   "shipping_usd": 5.8,
+   "shipping_local": 8,
+   "ships_from": "CA",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 9,
+   "is_active": true
+  },
+  {
+   "id": "55fded8b-1112-5c9b-a07d-0aff0f7a04b3",
+   "product_id": "719b7743-f31d-5822-80b2-06df14f9bb90",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "101:A1",
+   "url": "https://www.awin1.example/pclick.php?p=101-A1&a=mock",
+   "display_price_usd": 57.69,
+   "list_price_local": 45,
+   "list_currency": "GBP",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "GB",
+   "ships_to": [
+    "GB"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 4,
+   "is_active": true
+  },
+  {
+   "id": "820b908d-ef07-598a-bd13-33d2319baa35",
+   "product_id": "19aa074e-b83e-532f-9430-a473348a6e8d",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "101:A2",
+   "url": "https://www.awin1.example/pclick.php?p=101-A2&a=mock",
+   "display_price_usd": 33.27,
+   "list_price_local": 22,
+   "list_currency": "GBP",
+   "shipping_usd": 5.06,
+   "shipping_local": 3.95,
+   "ships_from": "GB",
+   "ships_to": [
+    "GB",
+    "IE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "ac3d5593-2c72-5a26-91a0-3fc375e953fb",
+   "product_id": "873b1ae9-c752-5c79-a111-90a8191c17cd",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "202:B1",
+   "url": "https://www.awin1.example/pclick.php?p=202-B1&a=mock",
+   "display_price_usd": 76.03,
+   "list_price_local": 69.95,
+   "list_currency": "EUR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "DE",
+   "ships_to": [
+    "AT",
+    "DE"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "79717a0f-6ee3-52ee-a47e-e11cfedf2298",
+   "product_id": "e33b1ee4-8a1a-5e6b-ae9e-c060ac67bb5b",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "202:B2",
+   "url": "https://www.awin1.example/pclick.php?p=202-B2&a=mock",
+   "display_price_usd": 205.43,
+   "list_price_local": 189,
+   "list_currency": "EUR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "DE",
+   "ships_to": [
+    "AT",
+    "CH",
+    "DE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 4,
+   "is_active": true
+  },
+  {
+   "id": "1cb32bee-38c5-59ef-bf1d-593075f987e6",
+   "product_id": "9059d4e6-ec07-5f49-8dcc-3efded9d5262",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "303:C1",
+   "url": "https://www.awin1.example/pclick.php?p=303-C1&a=mock",
+   "display_price_usd": 48.7,
+   "list_price_local": 39.9,
+   "list_currency": "EUR",
+   "shipping_usd": 5.33,
+   "shipping_local": 4.9,
+   "ships_from": "FR",
+   "ships_to": [
+    "BE",
+    "FR"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "b538bf9e-834c-5d99-b51f-08044155bd88",
+   "product_id": "2bd08b88-5e81-5b47-8676-ac578daba98e",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "404:D1",
+   "url": "https://www.awin1.example/pclick.php?p=404-D1&a=mock",
+   "display_price_usd": 27.12,
+   "list_price_local": 24.95,
+   "list_currency": "EUR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "NL",
+   "ships_to": [
+    "BE",
+    "NL"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 2,
+   "is_active": true
+  },
+  {
+   "id": "77f9976b-3e04-504b-aade-0da4d3c22684",
+   "product_id": "f1699979-5222-5503-bbd1-4a6555239452",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "505:E1",
+   "url": "https://www.awin1.example/pclick.php?p=505-E1&a=mock",
+   "display_price_usd": 122.55,
+   "list_price_local": 1299,
+   "list_currency": "SEK",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "SE",
+   "ships_to": [
+    "DK",
+    "FI",
+    "NO",
+    "SE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "b2e8fbb0-90cf-587d-9bf5-efc3b3e0c91c",
+   "product_id": "ee59caf5-2ff4-57dc-8a55-5e7b9be92aa8",
+   "source_code": "awin",
+   "kind": "affiliate",
+   "external_id": "606:F1",
+   "url": "https://www.awin1.example/pclick.php?p=606-F1&a=mock",
+   "display_price_usd": 91,
+   "list_price_local": 349,
+   "list_currency": "PLN",
+   "shipping_usd": 3.75,
+   "shipping_local": 15,
+   "ships_from": "PL",
+   "ships_to": [
+    "PL"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 4,
+   "is_active": true
+  },
+  {
+   "id": "1106d598-5e72-5d09-898c-575a8193ae3a",
+   "product_id": "c934cf0c-07e6-50ca-aa52-b7e4917b00ad",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-1",
+   "url": "https://goto.impact.example/c/mock/IM-1",
+   "display_price_usd": 29.99,
+   "list_price_local": 29.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "9e4710ec-b01f-5806-b69b-e88953adc962",
+   "product_id": "e20324d3-80c7-5896-b904-d501ed295a98",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-2",
+   "url": "https://goto.impact.example/c/mock/IM-2",
+   "display_price_usd": 39.99,
+   "list_price_local": 39.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "b9a0a4a4-ab53-5dd2-b9cf-62026d9ef6ef",
+   "product_id": "1096043d-348e-5fd5-a6ce-941846a5d8ac",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-3",
+   "url": "https://goto.impact.example/c/mock/IM-3",
+   "display_price_usd": 44,
+   "list_price_local": 44,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "9d794029-c740-57db-838f-01b7f1e2bd47",
+   "product_id": "ac5e571a-9cb8-5252-a5e0-25ca0fefc5c9",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-4",
+   "url": "https://goto.impact.example/c/mock/IM-4",
+   "display_price_usd": 38.95,
+   "list_price_local": 32,
+   "list_currency": "USD",
+   "shipping_usd": 6.95,
+   "shipping_local": 6.95,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 7,
+   "is_active": true
+  },
+  {
+   "id": "4ec98e70-4e63-555f-8335-b75dc279b28b",
+   "product_id": "79069f41-9d28-5d1c-95f2-0dfbc06a0f5f",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-5",
+   "url": "https://goto.impact.example/c/mock/IM-5",
+   "display_price_usd": 64.49,
+   "list_price_local": 89,
+   "list_currency": "CAD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "CA",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 8,
+   "is_active": true
+  },
+  {
+   "id": "9f1d0ae1-d6ba-5c1b-9c22-2e9071b1ce6e",
+   "product_id": "9bd39f81-44dd-559b-afb1-ac312f191d8d",
+   "source_code": "impact",
+   "kind": "affiliate",
+   "external_id": "IM-6",
+   "url": "https://goto.impact.example/c/mock/IM-6",
+   "display_price_usd": 24,
+   "list_price_local": 24,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "AE",
+    "AU",
+    "GB",
+    "IN",
+    "US"
+   ],
+   "delivery_days_min": 5,
+   "delivery_days_max": 12,
+   "is_active": true
+  },
+  {
+   "id": "3c389169-1f99-5647-bffc-1fb5baf40976",
+   "product_id": "a6b3e2f3-f0f3-54f0-9054-5ee8f90cadbc",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "38605:R1",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=38605-R1",
+   "display_price_usd": 79,
+   "list_price_local": 79,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "f8bbfa87-af17-5464-b1e0-c6443f8a8ff8",
+   "product_id": "a3a20582-7a37-5db5-a119-25f40ac45bdc",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "38605:R2",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=38605-R2",
+   "display_price_usd": 59,
+   "list_price_local": 59,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "236472f3-dba3-587f-98ec-c1e419456830",
+   "product_id": "efae4925-d3e8-5ed8-9fdf-b0c46e8ba406",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "41200:R3",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=41200-R3",
+   "display_price_usd": 199,
+   "list_price_local": 199,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "GB",
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "f836ccdf-d586-5a64-9183-8d6b5cab14fd",
+   "product_id": "0b421f68-bd92-55fb-8cc9-a4bd4476c4ff",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "50100:R4",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=50100-R4",
+   "display_price_usd": 37.33,
+   "list_price_local": 4800,
+   "list_currency": "JPY",
+   "shipping_usd": 5.33,
+   "shipping_local": 800,
+   "ships_from": "JP",
+   "ships_to": [
+    "HK",
+    "JP",
+    "SG",
+    "US"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 12,
+   "is_active": true
+  },
+  {
+   "id": "7cc590b9-9864-564a-aede-24f39a925b1e",
+   "product_id": "0c06a3ba-c8a9-5592-b1ef-01e05988b763",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "50100:R5",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=50100-R5",
+   "display_price_usd": 105.33,
+   "list_price_local": 15800,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "6a8731b8-29e3-56d9-81a8-d62640596505",
+   "product_id": "db8abd71-146c-534e-994d-5d443b658fe7",
+   "source_code": "rakuten",
+   "kind": "affiliate",
+   "external_id": "60300:R6",
+   "url": "https://click.linksynergy.example/link?id=mock&offerid=60300-R6",
+   "display_price_usd": 50,
+   "list_price_local": 45,
+   "list_currency": "USD",
+   "shipping_usd": 5,
+   "shipping_local": 5,
+   "ships_from": "US",
+   "ships_to": [
+    "AU",
+    "GB",
+    "US"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 10,
+   "is_active": true
+  },
+  {
+   "id": "b5b758c6-dab6-5b68-a11f-161c97fffaaa",
+   "product_id": "9a33c8e8-cf6b-5191-b60c-468a6637718e",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "101:AD1",
+   "url": "https://ad.admitad.example/g/mock/?ulp=101-AD1",
+   "display_price_usd": 44.63,
+   "list_price_local": 249.9,
+   "list_currency": "BRL",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "BR",
+   "ships_to": [
+    "BR"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 9,
+   "is_active": true
+  },
+  {
+   "id": "35b09cc4-a00d-537a-a297-5ed4221c185e",
+   "product_id": "c39151fb-b410-5e0a-bd72-fc40446f85e0",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "101:AD2",
+   "url": "https://ad.admitad.example/g/mock/?ulp=101-AD2",
+   "display_price_usd": 25.34,
+   "list_price_local": 129.9,
+   "list_currency": "BRL",
+   "shipping_usd": 2.14,
+   "shipping_local": 12,
+   "ships_from": "BR",
+   "ships_to": [
+    "BR"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 10,
+   "is_active": true
+  },
+  {
+   "id": "f6e806de-f872-5bbd-8fdc-5184a679bb13",
+   "product_id": "de03e2f4-e337-51ca-a092-6bc5bd84b23c",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "202:AD3",
+   "url": "https://ad.admitad.example/g/mock/?ulp=202-AD3",
+   "display_price_usd": 46.1,
+   "list_price_local": 899,
+   "list_currency": "MXN",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "MX",
+   "ships_to": [
+    "MX"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "1e610c8b-e8ce-5138-801b-6eb2f440cd60",
+   "product_id": "e0dccb69-a44d-5f83-b49a-151b7a01e584",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "303:AD4",
+   "url": "https://ad.admitad.example/g/mock/?ulp=303-AD4",
+   "display_price_usd": 15.46,
+   "list_price_local": 1299,
+   "list_currency": "INR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "IN",
+   "ships_to": [
+    "IN"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 7,
+   "is_active": true
+  },
+  {
+   "id": "e088553f-1f8f-5dcf-b00c-0522906342db",
+   "product_id": "77ca9dba-a317-5c5c-a75b-3df689ca3070",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "404:AD5",
+   "url": "https://ad.admitad.example/g/mock/?ulp=404-AD5",
+   "display_price_usd": 6.58,
+   "list_price_local": 89000,
+   "list_currency": "IDR",
+   "shipping_usd": 0.95,
+   "shipping_local": 15000,
+   "ships_from": "ID",
+   "ships_to": [
+    "ID",
+    "MY"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "25042eb4-1ecb-5703-b5dc-b8e5450649d1",
+   "product_id": "fdf1427f-5501-5471-9902-b6849d63231c",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "505:AD6",
+   "url": "https://ad.admitad.example/g/mock/?ulp=505-AD6",
+   "display_price_usd": 55.85,
+   "list_price_local": 1899,
+   "list_currency": "TRY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "TR",
+   "ships_to": [
+    "TR"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "539facb1-8be1-5b3c-aaac-554946492e79",
+   "product_id": "1a1ad4e1-180e-560a-82a7-95581e621ef9",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "606:AD7",
+   "url": "https://ad.admitad.example/g/mock/?ulp=606-AD7",
+   "display_price_usd": 40.5,
+   "list_price_local": 149,
+   "list_currency": "PLN",
+   "shipping_usd": 3.25,
+   "shipping_local": 12.99,
+   "ships_from": "PL",
+   "ships_to": [
+    "CZ",
+    "PL"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "143d1f98-a955-53bf-9f38-96668e4b38d1",
+   "product_id": "773cde97-76b4-5658-8be0-7fc387e42171",
+   "source_code": "admitad",
+   "kind": "affiliate",
+   "external_id": "707:AD8",
+   "url": "https://ad.admitad.example/g/mock/?ulp=707-AD8",
+   "display_price_usd": 45,
+   "list_price_local": 45,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "CN",
+   "ships_to": [
+    "BR",
+    "CO",
+    "ID",
+    "IN",
+    "MX",
+    "PE",
+    "PH",
+    "PL",
+    "TR",
+    "VN"
+   ],
+   "delivery_days_min": 8,
+   "delivery_days_max": 22,
+   "is_active": true
   }
  ],
  "fx_rates": {
   "AED": 3.6725,
+  "AUD": 1.5,
   "BRL": 5.6,
+  "CAD": 1.38,
+  "CHF": 0.87,
   "CLP": 950,
   "CNY": 7.2,
+  "DKK": 6.85,
   "EGP": 48.5,
   "EUR": 0.92,
   "GBP": 0.78,
+  "HKD": 7.78,
   "IDR": 15800,
   "INR": 84,
   "JPY": 150,
@@ -11326,9 +14541,17 @@
   "KRW": 1380,
   "KWD": 0.307,
   "MXN": 19.5,
+  "MYR": 4.4,
   "NGN": 1550,
+  "NOK": 10.9,
+  "NZD": 1.65,
+  "PHP": 57,
   "PKR": 278,
+  "PLN": 4,
   "SAR": 3.75,
+  "SEK": 10.6,
+  "SGD": 1.33,
+  "TRY": 34,
   "TZS": 2700,
   "UGX": 3700,
   "USD": 1,
@@ -11337,12 +14560,17 @@
  },
  "currencies": {
   "AED": 2,
+  "AUD": 2,
   "BRL": 2,
+  "CAD": 2,
+  "CHF": 2,
   "CLP": 0,
   "CNY": 2,
+  "DKK": 2,
   "EGP": 2,
   "EUR": 2,
   "GBP": 2,
+  "HKD": 2,
   "IDR": 0,
   "INR": 2,
   "JPY": 0,
@@ -11350,9 +14578,17 @@
   "KRW": 0,
   "KWD": 3,
   "MXN": 2,
+  "MYR": 2,
   "NGN": 0,
+  "NOK": 2,
+  "NZD": 2,
+  "PHP": 2,
   "PKR": 0,
+  "PLN": 2,
   "SAR": 2,
+  "SEK": 2,
+  "SGD": 2,
+  "TRY": 2,
   "TZS": 0,
   "UGX": 0,
   "USD": 2,

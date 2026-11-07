@@ -1,0 +1,289 @@
+{
+  "_note": "MOCK fixture for source 'ebay'. Fictional products, brands, ids and URLs (*.example). attributes.merchant is the retailer inside the network (internal only).",
+  "source": "ebay",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "v1|1001",
+      "title": "Wireless Earbuds with Charging Case",
+      "brand": "Sonora",
+      "category_hint": "Electronics > Headphones",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-1001.jpg"
+      ],
+      "list_price": "24.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA",
+        "MX"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "url": "https://www.ebay.example/itm/v1-1001?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-1001-2.jpg",
+          "https://images.zakka.example/ebay/v1-1001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|1002",
+      "title": "Mechanical Keyboard 87 Keys",
+      "brand": "Klix",
+      "category_hint": "Computers > Keyboards",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-1002.jpg"
+      ],
+      "list_price": "49.00",
+      "shipping": "5.99",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "GB",
+        "DE",
+        "AU"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 12,
+      "url": "https://www.ebay.example/itm/v1-1002?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-1002-2.jpg",
+          "https://images.zakka.example/ebay/v1-1002-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|2001",
+      "title": "Stainless Steel Kettle 1.7L",
+      "brand": "Hearth",
+      "category_hint": "Home & Kitchen > Kettles",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-2001.jpg"
+      ],
+      "list_price": "21.50",
+      "shipping": "3.20",
+      "currency": "GBP",
+      "ships_from": "GB",
+      "ships_to": [
+        "GB",
+        "IE",
+        "FR"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.ebay.example/itm/v1-2001?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller UK"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-2001-2.jpg",
+          "https://images.zakka.example/ebay/v1-2001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|2002",
+      "title": "Leather Wallet Slim",
+      "brand": null,
+      "category_hint": "Fashion > Wallets",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-2002.jpg"
+      ],
+      "list_price": "15.00",
+      "shipping": "0",
+      "currency": "GBP",
+      "ships_from": "GB",
+      "ships_to": [
+        "GB",
+        "NG",
+        "KE",
+        "ZA"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 14,
+      "url": "https://www.ebay.example/itm/v1-2002?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller UK"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-2002-2.jpg",
+          "https://images.zakka.example/ebay/v1-2002-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|3001",
+      "title": "Cordless Drill 18V Kit",
+      "brand": "Werkhaus",
+      "category_hint": "Tools > Power Tools",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-3001.jpg"
+      ],
+      "list_price": "79.90",
+      "shipping": "0",
+      "currency": "EUR",
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "AT",
+        "CH",
+        "PL"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://www.ebay.example/itm/v1-3001?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller DE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-3001-2.jpg",
+          "https://images.zakka.example/ebay/v1-3001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|3002",
+      "title": "Running Jacket Waterproof",
+      "brand": "Nordlauf",
+      "category_hint": "Sports > sportswear",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-3002.jpg"
+      ],
+      "list_price": "59.00",
+      "shipping": "4.90",
+      "currency": "EUR",
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "NL",
+        "BE",
+        "FR"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7,
+      "url": "https://www.ebay.example/itm/v1-3002?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller DE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-3002-2.jpg",
+          "https://images.zakka.example/ebay/v1-3002-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|4001",
+      "title": "Surf Wax Pack of 5",
+      "brand": "Reefline",
+      "category_hint": "Sports > sports-outdoors",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-4001.jpg"
+      ],
+      "list_price": "18.00",
+      "shipping": "6.00",
+      "currency": "AUD",
+      "ships_from": "AU",
+      "ships_to": [
+        "AU",
+        "NZ"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 8,
+      "url": "https://www.ebay.example/itm/v1-4001?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller AU"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-4001-2.jpg",
+          "https://images.zakka.example/ebay/v1-4001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "v1|5001",
+      "title": "Maple Syrup Gift Set",
+      "brand": null,
+      "category_hint": "Grocery > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/ebay/v1-5001.jpg"
+      ],
+      "list_price": "34.00",
+      "shipping": "8.00",
+      "currency": "CAD",
+      "ships_from": "CA",
+      "ships_to": [
+        "CA",
+        "US"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 9,
+      "url": "https://www.ebay.example/itm/v1-5001?campid=mock",
+      "commission_rate": "0.03",
+      "rating": "4.4",
+      "review_count": 120,
+      "attributes": {
+        "merchant": "Seller CA"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/ebay/v1-5001-2.jpg",
+          "https://images.zakka.example/ebay/v1-5001-3.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

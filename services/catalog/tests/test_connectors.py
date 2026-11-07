@@ -17,7 +17,7 @@ from zakka_catalog.connectors.amazon import parse_partner_tags, with_tag
 from zakka_catalog.models import Address, SupplierOrderLine, SupplierOrderRequest
 
 EXPECTED = {"cj", "aliexpress_ds", "spocket", "printful", "amazon", "temu", "shein", "aliexpress_aff",
-            "jumia", "noon", "flipkart"}
+            "jumia", "noon", "flipkart", "ebay", "awin", "impact", "rakuten", "admitad"}
 ADDR = Address(name="T", line1="1 St", city="Austin", country_code="US")
 
 
@@ -29,7 +29,7 @@ def test_registry_matches_contract_codes():
 
 def test_unknown_code():
     with pytest.raises(ValueError):
-        get_connector("ebay", env={})
+        get_connector("walmart", env={})
 
 
 @pytest.mark.parametrize("code", sorted(EXPECTED))
@@ -72,8 +72,9 @@ def test_mock_pagination():
 
 def test_keys_switch_mode():
     assert get_connector("printful", env={"PRINTFUL_API_TOKEN": "x"}).mock is False
-    assert get_connector("cj", env={"CJ_API_EMAIL": "a@b.c", "CJ_API_KEY": ""}).mock is True
-    assert get_connector("cj", env={"CJ_API_EMAIL": "  ", "CJ_API_KEY": "k"}).mock is True
+    assert get_connector("cj", env={"CJ_API_KEY": ""}).mock is True
+    assert get_connector("cj", env={"CJ_API_KEY": "  "}).mock is True
+    assert get_connector("cj", env={"CJ_API_KEY": "CJ1@api@k"}).mock is False  # apiKey is the only credential
 
 
 def test_mock_place_order_and_track_are_deterministic():
@@ -188,33 +189,100 @@ def test_mock_mode_never_builds_http_client():
 
 # --- live adapters exercised against httpx.MockTransport (no network) ----------
 
-def test_cj_live_products_and_order_with_mock_transport():
-    calls = []
+def _cj_ok(data):
+    return httpx.Response(200, json={"code": 200, "result": True, "success": True, "data": data})
+
+
+def _cj_handler(calls, sent):
+    """Responses shaped like CJ API 2.0 (developers.cjdropshipping.com, checked 2026-11)."""
 
     def handler(request: httpx.Request) -> httpx.Response:
-        calls.append((request.method, request.url.path))
-        if request.url.path.endswith("/authentication/getAccessToken"):
-            return httpx.Response(200, json={"code": 200, "result": True, "data": {"accessToken": "tok"}})
+        path = request.url.path.removeprefix("/api2.0/v1")
+        calls.append((request.method, path))
+        if path == "/authentication/getAccessToken":
+            sent["auth"] = json.loads(request.content)
+            return _cj_ok({"accessToken": "tok", "accessTokenExpiryDate": "2099-01-01T00:00:00+08:00",
+                           "refreshToken": "ref", "refreshTokenExpiryDate": "2099-06-01T00:00:00+08:00"})
         assert request.headers["CJ-Access-Token"] == "tok"
-        if request.url.path.endswith("/product/list"):
-            return httpx.Response(200, json={"code": 200, "result": True, "data": {"total": 1, "list": [
-                {"pid": "P1", "productNameEn": "Thing", "sellPrice": 3.5, "productImage": "https://img/1.jpg",
-                 "categoryName": "Home"}]}})
-        if request.url.path.endswith("/shopping/order/createOrderV2"):
-            body = json.loads(request.content)
-            assert body["orderNumber"] == "o-1" and body["products"] == [{"vid": "V1", "quantity": 2}]
-            return httpx.Response(200, json={"code": 200, "result": True,
-                                             "data": {"orderId": "CJ123", "orderAmount": 9.1}})
-        return httpx.Response(404)
+        if path == "/product/list":
+            return _cj_ok({"pageNum": 1, "pageSize": 200, "total": 1, "list": [
+                {"pid": "P1", "productNameEn": "Thing", "sellPrice": "3.50 -- 4.20", "productImage": "https://img/1.jpg",
+                 "categoryName": "Home", "productSku": "CJ-1"}]})
+        if path == "/product/query":
+            assert request.url.params["pid"] == "P1"
+            return _cj_ok({"pid": "P1", "productNameEn": "Thing", "bigImage": "https://img/1.jpg",
+                           "productImageSet": ["https://img/1.jpg", "https://img/2.jpg"], "description": "<p>Nice</p>",
+                           "variants": [{"vid": "V1", "variantSku": "CJ-1-A", "variantSellPrice": 3.5}]})
+        if path == "/shopping/order/getOrderDetail":
+            if request.url.params["orderId"] == "CJ123":
+                return _cj_ok({"orderId": "CJ123", "orderStatus": "SHIPPED", "trackNumber": "YT1",
+                               "logisticName": "YunExpress", "trackingUrl": "https://t/YT1"})
+            return httpx.Response(200, json={"code": 1600100, "result": False, "message": "not found", "data": None})
+        if path == "/logistic/freightCalculate":
+            sent["freight"] = json.loads(request.content)
+            return _cj_ok([{"logisticName": "CJPacket", "logisticPrice": 4.1, "logisticAging": "7-12"},
+                           {"logisticName": "YunExpress", "logisticPrice": "2.9", "logisticAging": "10-20"}])
+        if path == "/shopping/order/createOrderV3":
+            sent["order"] = json.loads(request.content)
+            return _cj_ok({"orderId": "CJ123", "shipmentOrderId": "S9", "orderAmount": 9.1, "orderStatus": "UNPAID"})
+        if path == "/shopping/pay/payBalanceV2":
+            sent["pay"] = json.loads(request.content)
+            return _cj_ok(None)
+        return httpx.Response(404, json={"code": 404, "result": False, "message": "no route"})
 
-    c = get_connector("cj", env={"CJ_API_EMAIL": "e", "CJ_API_KEY": "k"},
-                      http=httpx.Client(transport=httpx.MockTransport(handler)))
+    return handler
+
+
+def test_cj_live_products_order_and_track_with_mock_transport():
+    calls, sent = [], {}
+    c = get_connector("cj", env={"CJ_API_KEY": "CJ1@api@k", "CJ_SANDBOX": "1"},
+                      http=httpx.Client(transport=httpx.MockTransport(_cj_handler(calls, sent))))
+    assert sent == {}  # nothing happens until the first call
     page = c.fetch_products(1)
-    assert page.items[0].external_id == "P1" and page.items[0].cost == Decimal("3.5") and page.next_page is None
+    assert sent["auth"] == {"apiKey": "CJ1@api@k"}  # current auth body (email/password is deprecated)
+    p = page.items[0]
+    assert p.external_id == "P1" and p.cost == Decimal("3.50") and page.next_page is None  # range -> lowest
+
+    detail = c.fetch_detail("P1")
+    assert detail.image_urls == ["https://img/1.jpg", "https://img/2.jpg"] and detail.attributes["variants"][0]["vid"] == "V1"
+
     res = c.place_order(SupplierOrderRequest(reference="o-1", address=ADDR,
-                                             lines=[SupplierOrderLine(external_id="V1", qty=2)]))
+                                             lines=[SupplierOrderLine(external_id="P1", qty=2)]))
     assert res.external_order_id == "CJ123" and res.cost_usd == Decimal("9.1")
-    assert sum(1 for m, p in calls if p.endswith("getAccessToken")) == 1  # token cached
+    order = sent["order"]
+    assert order["products"] == [{"vid": "V1", "quantity": 2}]  # single-variant product resolved to its vid
+    assert order["logisticName"] == "YunExpress"  # cheapest freight option
+    assert order["fromCountryCode"] == "CN" and order["shippingCountryCode"] == ADDR.country_code
+    assert order["orderNumber"] == "o-1" and order["isSandbox"] == 1
+    assert sent["freight"]["startCountryCode"] == "CN" and sent["freight"]["products"] == [{"vid": "V1", "quantity": 2}]
+    assert sent["pay"] == {"shipmentOrderId": "S9"}
+
+    t = c.track("CJ123")
+    assert t.status == "in_transit" and t.tracking_number == "YT1" and t.tracking_url == "https://t/YT1"
+    assert sum(1 for _, path in calls if path.endswith("getAccessToken")) == 1  # token cached (CJ allows 1 per 5 min)
+
+
+def test_cj_retry_reuses_existing_order_instead_of_creating_a_second():
+    calls, sent = [], {}
+    c = get_connector("cj", env={"CJ_API_KEY": "k"}, http=httpx.Client(transport=httpx.MockTransport(_cj_handler(calls, sent))))
+    res = c.place_order(SupplierOrderRequest(reference="CJ123", address=ADDR,
+                                             lines=[SupplierOrderLine(external_id="P1", qty=1)]))
+    assert res.external_order_id == "CJ123" and res.raw["reused"] is True
+    assert "order" not in sent and "pay" not in sent  # shipped already: no new order, no payment
+
+
+def test_cj_multi_variant_product_needs_a_variant():
+    def handler(request):
+        path = request.url.path.removeprefix("/api2.0/v1")
+        if path == "/authentication/getAccessToken":
+            return _cj_ok({"accessToken": "tok"})
+        if path == "/product/query":
+            return _cj_ok({"pid": "P2", "variants": [{"vid": "A"}, {"vid": "B"}]})
+        return httpx.Response(200, json={"code": 1600100, "result": False, "message": "not found"})
+
+    c = get_connector("cj", env={"CJ_API_KEY": "k"}, http=httpx.Client(transport=httpx.MockTransport(handler)))
+    with pytest.raises(ConnectorError, match="2 variants"):
+        c.place_order(SupplierOrderRequest(reference="o-2", address=ADDR, lines=[SupplierOrderLine(external_id="P2", qty=1)]))
 
 
 def test_live_order_requires_address():
@@ -234,3 +302,35 @@ def test_printful_live_track_with_mock_transport():
                       http=httpx.Client(transport=httpx.MockTransport(handler)))
     t = c.track("55")
     assert t.status == "in_transit" and t.tracking_number == "9400"
+
+
+def test_printful_order_external_id_fits_printful_rules():
+    from zakka_catalog.connectors.printful import order_external_id
+    eid = order_external_id("d0000000-0000-4000-8000-000000000003")
+    assert len(eid) <= 32 and eid.isalnum()
+
+
+def test_printful_live_order_sends_store_id_and_is_retry_safe():
+    seen = {"posts": 0}
+
+    def handler(request):
+        assert request.headers["X-PF-Store-Id"] == "42"
+        if request.method == "GET" and request.url.path.startswith("/orders/@"):
+            if seen["posts"]:
+                return httpx.Response(200, json={"result": {"id": 77, "status": "pending", "costs": {"total": "12.40"}}})
+            return httpx.Response(404, json={"error": {"message": "Not found"}})
+        if request.method == "POST" and request.url.path == "/orders":
+            seen["posts"] += 1
+            body = json.loads(request.content)
+            assert request.url.params["confirm"] == "true" and len(body["external_id"]) <= 32
+            assert body["items"] == [{"sync_variant_id": 5, "quantity": 1}]
+            return httpx.Response(200, json={"result": {"id": 77, "status": "pending", "costs": {"total": "12.40"}}})
+        return httpx.Response(500)
+
+    c = get_connector("printful", env={"PRINTFUL_API_TOKEN": "t", "PRINTFUL_STORE_ID": "42"},
+                      http=httpx.Client(transport=httpx.MockTransport(handler)))
+    req = SupplierOrderRequest(reference="d0000000-0000-4000-8000-000000000003", address=ADDR,
+                               lines=[SupplierOrderLine(external_id="5", qty=1)])
+    first, again = c.place_order(req), c.place_order(req)
+    assert first.external_order_id == again.external_order_id == "77" and first.cost_usd == Decimal("12.40")
+    assert seen["posts"] == 1 and again.raw["reused"] is True  # the retry did not submit a second order

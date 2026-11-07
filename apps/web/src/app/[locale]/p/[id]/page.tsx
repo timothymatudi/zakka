@@ -4,21 +4,30 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale, SearchOffer } from '@shared/types';
 import { Link } from '@/i18n/navigation';
 import { getMarket } from '@/lib/market.server';
-import { getOfferPrice, getProduct } from '@/lib/products';
+import { getOfferPrice, getProduct, type ProductView } from '@/lib/products';
+import type { Market } from '@/lib/markets';
 import { formatMoney, offerLocal } from '@/lib/money';
 import { regionName, whatsappLink } from '@/lib/format';
 import { CATEGORIES } from '@/lib/mock/catalog';
 import { affiliateHref, ProductImage, productIcon } from '@/components/ProductCard';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { ChatIcon, ExternalIcon, StarIcon } from '@/components/icons';
+import { JsonLd } from '@/components/JsonLd';
+import { absUrl, customerBrand, deliverySplit, localeAlternates, scrubPartnerNames } from '@/lib/seo';
+import { productImagePaths } from '@/lib/images';
 
-type Props = { params: Promise<{ locale: Locale; id: string }> };
+type Props = {
+  params: Promise<{ locale: Locale; id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale, id } = await params;
-  const market = await getMarket(locale);
+  const market = await getMarket(locale, (await searchParams).country);
   const p = await getProduct(id, locale, market.country);
-  return p ? { title: p.title, description: p.description } : {};
+  if (!p) return {};
+  // Canonical drops ?country= (feed links add it so the landing price matches the feed).
+  return { title: p.title, description: p.description, alternates: localeAlternates(locale, `/p/${encodeURIComponent(p.id)}`) };
 }
 
 /** Best offer = lowest price, with each delivery day costing 2% (favours fast offers at a similar price). */
@@ -27,13 +36,14 @@ function bestOffer<T extends { offer: SearchOffer; priceUsd: number; dmax: numbe
   return offers.reduce((a, b) => (score(b) < score(a) ? b : a), offers[0]);
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params, searchParams }: Props) {
   const { locale, id } = await params;
+  const sp = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations('product');
   const tc = await getTranslations('categories');
   const tw = await getTranslations('whatsapp');
-  const market = await getMarket(locale);
+  const market = await getMarket(locale, sp.country);
   const product = await getProduct(id, locale, market.country);
   if (!product) notFound();
   const country = regionName(market.country, locale);
@@ -57,9 +67,11 @@ export default async function ProductPage({ params }: Props) {
   const rows = best ? [best, ...priced.filter((x) => x !== best)] : [];
   const cat = CATEGORIES.find((c) => product.category_ids.includes(c.id) || product.category_slug === c.slug);
   const icon = productIcon(product);
+  const structured = productJsonLd(product, rows, locale, market);
 
   return (
     <div className="pb-6">
+      <JsonLd data={structured} />
       {cat && (
         <nav className="mb-3 text-sm text-muted">
           <Link href={`/c/${cat.slug}`} className="font-semibold text-teal hover:underline">
@@ -219,4 +231,66 @@ export default async function ProductPage({ params }: Props) {
       )}
     </div>
   );
+}
+
+type PricedRow = { offer: SearchOffer; local: number; dmin: number | null; dmax: number | null };
+
+/**
+ * schema.org Product. Offers list only what Zakka sells (dropship); affiliate-only products keep the
+ * product facts but no offers, because they are sold elsewhere.
+ */
+function productJsonLd(product: ProductView, rows: PricedRow[], locale: Locale, market: Market) {
+  const dropship = rows.filter((r) => r.offer.kind === 'dropship');
+  const pagePath = `/${locale}/p/${encodeURIComponent(product.id)}`;
+  const brand = customerBrand(product.brand, dropship.length ? 'Zakka' : null);
+  const data: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': absUrl(pagePath),
+    url: absUrl(pagePath),
+    name: scrubPartnerNames(product.title),
+    sku: product.id,
+  };
+  const images = productImagePaths(product).map(absUrl);
+  if (images.length) data.image = images;
+  if (product.description) data.description = scrubPartnerNames(product.description);
+  if (product.gtin) data.gtin = product.gtin;
+  if (brand) data.brand = { '@type': 'Brand', name: brand };
+  if (product.rating != null && product.review_count > 0) {
+    data.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating,
+      reviewCount: product.review_count,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+  if (dropship.length) {
+    data.offers = dropship.map((r) => {
+      const split = deliverySplit(r.dmin, r.dmax);
+      return {
+        '@type': 'Offer',
+        url: absUrl(`${pagePath}?country=${market.country}`),
+        price: r.local.toFixed(market.decimals),
+        priceCurrency: market.currency,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: { '@type': 'Organization', name: 'Zakka' },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          // Prices already include delivery.
+          shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: market.currency },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: market.country },
+          ...(split && {
+            deliveryTime: {
+              '@type': 'ShippingDeliveryTime',
+              handlingTime: { '@type': 'QuantitativeValue', minValue: split.handling, maxValue: split.handling, unitCode: 'DAY' },
+              transitTime: { '@type': 'QuantitativeValue', minValue: split.transitMin, maxValue: split.transitMax, unitCode: 'DAY' },
+            },
+          }),
+        },
+      };
+    });
+  }
+  return data;
 }

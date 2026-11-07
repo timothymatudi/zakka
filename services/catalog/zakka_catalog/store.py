@@ -13,7 +13,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
-from typing import Any, Callable, Iterable, Protocol
+from typing import Any, Callable, Iterable, Iterator, Protocol
 from uuid import UUID
 
 from .config import PHASE1_LOCALES
@@ -143,6 +143,27 @@ class SupplierOrderView:
     cost_usd: Decimal | None
 
 
+@dataclass
+class FeedRow:
+    """One active dropship offer plus the product fields a merchant feed needs."""
+    offer: OfferView
+    brand: str | None
+    gtin: str | None
+    image_urls: list[str]
+    rating: Decimal | None
+    review_count: int
+    title: str | None
+    description: str | None
+    text_locale: str | None  # locale the title/description came from (requested locale, else "en")
+
+
+@dataclass(frozen=True)
+class FeedCategory:
+    parent_id: UUID | None
+    name: str
+    google_category_id: int | None
+
+
 class Store(Protocol):
     name: str
     supports_display_price: bool
@@ -179,6 +200,10 @@ class Store(Protocol):
     def set_display_price(self, offer_id: UUID, value: Decimal) -> None: ...
     def get_offer(self, offer_id: UUID) -> OfferView | None: ...
     def list_offers(self, source_id: UUID | None = None, active_only: bool = True) -> list[OfferView]: ...
+    # merchant feeds
+    def feed_categories(self, locale: str) -> dict[UUID, FeedCategory]: ...
+    def iter_feed_rows(self, country: str, locale: str, batch_size: int = 500) -> Iterator[FeedRow]:
+        """Active, priced dropship offers that ship to ``country``; streamed in batches."""
     # orders
     def get_order(self, order_id: UUID) -> OrderView | None: ...
     def get_order_items(self, order_id: UUID) -> list[OrderItemView]: ...
@@ -430,6 +455,31 @@ class MemoryStore:
             return None
         oid = uuid.uuid5(MOCK_NS, f"offer:{src.id}:{external_id}")
         return self.get_offer(oid)
+
+    # merchant feeds ----------------------------------------------------------
+    def feed_categories(self, locale):
+        return {c.id: FeedCategory(c.parent_id, c.names.get(locale) or c.names.get("en") or c.name or c.slug,
+                                   c.google_category_id) for c in self.categories.values()}
+
+    def iter_feed_rows(self, country, locale, batch_size=500):
+        country = country.upper()
+        kinds = {s.id: s for s in self.sources.values()}
+        for o in list(self.offers.values()):
+            src = kinds.get(o["source_id"])
+            if src is None or src.kind != "dropship" or not src.is_active:
+                continue
+            if not o["is_active"] or o["cost_usd"] is None or country not in (o["ships_to"] or []):
+                continue
+            p = self.products.get(o["product_id"])
+            if not p or not p.get("is_active", True):
+                continue
+            t, loc = self.translations.get((o["product_id"], locale)), locale
+            if t is None:
+                t, loc = self.translations.get((o["product_id"], "en")), "en"
+            yield FeedRow(offer=self._offer_view(o), brand=p.get("brand"), gtin=p.get("gtin"),
+                          image_urls=list(p.get("image_urls") or []), rating=p.get("rating"),
+                          review_count=int(p.get("review_count") or 0), title=t.title if t else None,
+                          description=t.description if t else None, text_locale=loc if t else None)
 
     # orders ------------------------------------------------------------------
     def add_order(self, order_id: UUID, status: str, currency: str, items: list[dict],
@@ -735,6 +785,43 @@ class PostgresStore:
         if active_only:
             sql += " and o.is_active"
         return [self._offer_view(r) for r in self._all(sql, tuple(params))]
+
+    # merchant feeds ----------------------------------------------------------
+    def feed_categories(self, locale):
+        rows = self._all(
+            "select c.id, c.parent_id, c.slug, c.google_category_id, coalesce(t.name, te.name, c.slug) as name "
+            "from categories c left join category_translations t on t.category_id = c.id and t.locale = %s "
+            "left join category_translations te on te.category_id = c.id and te.locale = 'en'", (locale,))
+        return {r["id"]: FeedCategory(r["parent_id"], r["name"], r["google_category_id"]) for r in rows}
+
+    _FEED_SQL = (
+        "select o.id, o.product_id, o.source_id, s.code as source_code, s.kind, o.external_id, o.url, o.cost_usd,"
+        " o.list_price_usd, o.shipping_usd, o.stock, o.ships_from, o.ships_to, o.delivery_days_min,"
+        " o.delivery_days_max, o.is_active, o.last_synced_at, p.category_id, p.brand, p.gtin, p.image_urls,"
+        " p.rating, p.review_count, coalesce(t.title, te.title) as title,"
+        " case when t.title is not null then t.description else te.description end as description,"
+        " case when t.title is not null then %s when te.title is not null then 'en' end as text_locale "
+        "from offers o join sources s on s.id = o.source_id and s.kind = 'dropship' and s.is_active "
+        "join products p on p.id = o.product_id and p.is_active "
+        "left join product_translations t on t.product_id = p.id and t.locale = %s "
+        "left join product_translations te on te.product_id = p.id and te.locale = 'en' "
+        "where o.is_active and o.cost_usd is not null and %s = any(o.ships_to) and o.id > %s "
+        "order by o.id limit %s")
+
+    def iter_feed_rows(self, country, locale, batch_size=500):
+        """Keyset pagination on offers.id: memory stays bounded at ``batch_size`` rows."""
+        after = UUID(int=0)
+        while True:
+            rows = self._all(self._FEED_SQL, (locale, locale, country.upper(), after, batch_size))
+            for r in rows:
+                yield FeedRow(offer=self._offer_view({**r, "list_price_local": None, "list_currency": None,
+                                                      "shipping_local": None}),
+                              brand=r["brand"], gtin=r["gtin"], image_urls=list(r["image_urls"] or []),
+                              rating=r["rating"], review_count=int(r["review_count"] or 0), title=r["title"],
+                              description=r["description"], text_locale=r["text_locale"])
+            if len(rows) < batch_size:
+                return
+            after = rows[-1]["id"]
 
     # orders ------------------------------------------------------------------
     def get_order(self, order_id):

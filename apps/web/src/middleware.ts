@@ -1,37 +1,54 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import { routing, isLocale } from './i18n/routing';
+import { ACCESS_COOKIE, REFRESH_COOKIE, authMode, fetchUser, isAdmin, isExpired, refreshSession, sessionCookies } from './lib/auth-core';
 
 const intl = createMiddleware(routing);
 
-/** /{locale}/admin/... and /api/admin/... */
-const isAdminPath = (path: string) => /^\/(?:[a-z]{2}\/)?admin(?:\/|$)/.test(path) || path.startsWith('/api/admin/');
+/** /{locale}/admin/... (the admin API is guarded in each route handler with requireAdmin). */
+const isAdminPage = (path: string) => /^\/(?:[a-z]{2}\/)?admin(?:\/|$)/.test(path);
 
-/**
- * Admin gate (HTTP Basic, password in ADMIN_PASSWORD) until Supabase admin roles land.
- * With no password set, admin is reachable only in development.
- */
-function adminGate(req: NextRequest): NextResponse | null {
-  const password = process.env.ADMIN_PASSWORD ?? '';
-  if (!password) {
-    return process.env.NODE_ENV === 'development' ? null : new NextResponse('Admin is disabled', { status: 404 });
+function decodePath(pathname: string): string {
+  try {
+    return decodeURIComponent(pathname).toLowerCase();
+  } catch {
+    return pathname.toLowerCase();
   }
-  const header = req.headers.get('authorization') ?? '';
-  const supplied = header.startsWith('Basic ') ? atob(header.slice(6)).split(':').slice(1).join(':') : '';
-  if (supplied.length === password.length && supplied === password) return null;
-  return new NextResponse('Authentication required', { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Zakka admin"' } });
 }
 
-export default function middleware(req: NextRequest) {
-  const path = decodeURIComponent(req.nextUrl.pathname).toLowerCase();
-  if (isAdminPath(path)) {
-    const blocked = adminGate(req);
-    if (blocked) return blocked;
+export default async function middleware(req: NextRequest) {
+  const path = decodePath(req.nextUrl.pathname);
+
+  // Refresh an expiring session before pages render (server components cannot save rotated tokens),
+  // then reload the same URL so the page sees the new cookies.
+  const accessToken = req.cookies.get(ACCESS_COOKIE)?.value ?? '';
+  const refreshToken = req.cookies.get(REFRESH_COOKIE)?.value ?? '';
+  if (req.method === 'GET' && refreshToken && (!accessToken || isExpired(accessToken))) {
+    const session = await refreshSession(refreshToken);
+    const res = NextResponse.redirect(req.nextUrl);
+    for (const c of sessionCookies(session)) res.cookies.set(c.name, c.value, c.options);
+    res.headers.set('Cache-Control', 'no-store');
+    return res;
   }
-  return path.startsWith('/api/') ? NextResponse.next() : intl(req);
+
+  // Admin pages: Supabase user with app_metadata.role = 'admin' (contract, lead decision).
+  if (isAdminPage(path)) {
+    if (authMode() === 'off') return new NextResponse('Not found', { status: 404 });
+    const user = await fetchUser(accessToken);
+    if (!user) {
+      const first = path.split('/')[1] ?? '';
+      const locale = isLocale(first) ? first : routing.defaultLocale;
+      const url = new URL(`/${locale}/signin`, req.url);
+      url.searchParams.set('next', req.nextUrl.pathname + req.nextUrl.search);
+      return NextResponse.redirect(url);
+    }
+    if (!isAdmin(user)) return new NextResponse('Not found', { status: 404 });
+  }
+
+  return intl(req);
 }
 
 export const config = {
-  // Pages (no API routes, Next internals or files), plus the admin API.
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)', '/api/admin/:path*'],
+  // Pages only (no API routes, Next internals, files, image redirects or feeds).
+  matcher: ['/((?!api|_next|_vercel|img/|feeds/|sitemaps/|.*\\..*).*)'],
 };

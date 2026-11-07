@@ -14,6 +14,7 @@ export const config = {
   conciergeToken: process.env.CONCIERGE_INTERNAL_TOKEN ?? '',
   supabaseUrl: trimSlash(process.env.SUPABASE_URL),
   supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
+  supabaseAnonKey: process.env.SUPABASE_ANON_KEY ?? '',
   webBaseUrl: trimSlash(process.env.WEB_BASE_URL) || 'http://localhost:3000',
 };
 

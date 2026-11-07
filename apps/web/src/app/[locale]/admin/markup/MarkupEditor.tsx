@@ -8,7 +8,7 @@ type Target = { id: string; label: string };
 type Targets = Record<'category' | 'source' | 'product', Target[]>;
 const SCOPES: MarkupRule['scope'][] = ['global', 'category', 'source', 'product'];
 
-export function MarkupEditor({ initial, targets }: { initial: MarkupRule[]; targets: Targets }) {
+export function MarkupEditor({ initial, targets, live }: { initial: MarkupRule[]; targets: Targets; live: boolean }) {
   const t = useTranslations('admin');
   const [rules, setRules] = useState<MarkupRule[]>(initial);
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
@@ -35,6 +35,9 @@ export function MarkupEditor({ initial, targets }: { initial: MarkupRule[]; targ
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rules }),
     }).catch(() => null);
+    const data = (await res?.json().catch(() => null)) as { rules?: MarkupRule[] } | null;
+    // New rules get their database ids back, so the next save updates instead of inserting again.
+    if (res?.ok && data?.rules) setRules(data.rules);
     setStatus(res?.ok ? 'saved' : 'error');
   }
 
@@ -114,8 +117,8 @@ export function MarkupEditor({ initial, targets }: { initial: MarkupRule[]; targ
         <button type="button" className="btn btn-primary" onClick={save} disabled={status === 'saving'}>
           {t('saveRules')}
         </button>
-        {status === 'saved' && <span className="text-sm font-bold text-teal">{t('saved')}</span>}
-        {status === 'error' && <span className="text-sm font-bold text-coral">Error</span>}
+        {status === 'saved' && <span className="text-sm font-bold text-teal">{live ? t('savedLive') : t('saved')}</span>}
+        {status === 'error' && <span className="text-sm font-bold text-coral">{t('saveError')}</span>}
       </div>
     </div>
   );

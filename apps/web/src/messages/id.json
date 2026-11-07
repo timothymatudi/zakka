@@ -180,7 +180,8 @@
     "marketingOptIn": "Kirimi saya promo sesekali lewat email",
     "save": "Simpan",
     "saved": "Tersimpan",
-    "signInTodo": "Fitur masuk akun segera hadir. Preferensi disimpan di perangkat ini."
+    "guestNote": "Preferensi disimpan di perangkat ini. Masuk untuk menyimpannya di akun Anda.",
+    "saveError": "Gagal menyimpan. Coba lagi."
   },
   "footer": {
     "tagline": "Zakka mencari di toko-toko tepercaya di seluruh dunia dan menampilkan harga total dengan jujur.",
@@ -201,5 +202,32 @@
     "amazon": "Sebagai Amazon Associate, Zakka memperoleh penghasilan dari pembelian yang memenuhi syarat.",
     "others": "Zakka juga mengikuti program afiliasi Temu, Shein, AliExpress, Jumia, noon, dan Flipkart, dan mungkin mendapat komisi dari pembelian yang memenuhi syarat melalui tautan di Zakka.",
     "ranking": "Komisi tidak pernah mengubah harga yang kamu lihat, dan penawaran afiliasi selalu diberi label “Toko mitra”."
+  },
+  "best": {
+    "title": "{category} terbaik dengan pengiriman ke {country}",
+    "intro": "Produk {category} dengan peringkat teratas yang dikirim ke {country}, dipilih berdasarkan rating, waktu pengiriman, dan harga total. Harga dalam {currency} dan sudah termasuk ongkos kirim.",
+    "empty": "Belum ada produk kategori ini yang dikirim ke {country}.",
+    "seeAll": "Lihat semua di {category}"
+  },
+  "auth": {
+    "title": "Masuk",
+    "intro": "Kami kirim kode sekali pakai lewat email. Tanpa kata sandi.",
+    "email": "Email",
+    "sendCode": "Kirim kode",
+    "codeSent": "Kode sudah dikirim ke {email}. Kode segera kedaluwarsa.",
+    "code": "Kode",
+    "verify": "Masuk",
+    "changeEmail": "Pakai email lain",
+    "resend": "Kirim kode baru",
+    "mockHint": "Mode uji: gunakan kode {code}.",
+    "invalidEmail": "Masukkan email yang valid.",
+    "invalidCode": "Kode salah atau sudah kedaluwarsa.",
+    "sendFailed": "Kode gagal dikirim. Coba lagi sebentar lagi.",
+    "rateLimited": "Terlalu banyak permintaan kode. Tunggu satu menit.",
+    "disabled": "Fitur masuk sedang tidak tersedia.",
+    "signedInAs": "Masuk sebagai",
+    "signOut": "Keluar",
+    "signIn": "Masuk",
+    "admin": "Admin"
   }
 }

@@ -180,7 +180,8 @@
     "marketingOptIn": "偶尔通过邮件接收优惠",
     "save": "保存",
     "saved": "已保存",
-    "signInTodo": "登录功能即将上线。偏好设置保存在此设备上。"
+    "guestNote": "偏好设置保存在此设备上。登录后可保存到你的账户。",
+    "saveError": "保存失败，请重试。"
   },
   "footer": {
     "tagline": "Zakka 搜索全球可信赖的商店，诚实展示总价。",
@@ -201,5 +202,32 @@
     "amazon": "作为亚马逊联盟成员，Zakka 从符合条件的购买中赚取收入。",
     "others": "Zakka 还参与 Temu、Shein、AliExpress、Jumia、noon 和 Flipkart 的联盟推广计划，通过 Zakka 链接完成的合格购买可能为 Zakka 带来佣金。",
     "ranking": "佣金绝不会改变你看到的价格，联盟推广报价始终标注为“合作商店”。"
+  },
+  "best": {
+    "title": "{category}精选：配送至{country}",
+    "intro": "可配送至{country}的{category}热门好物，按评分、配送时间和总价精选。价格以{currency}显示，已含运费。",
+    "empty": "该类别暂无可配送至{country}的商品。",
+    "seeAll": "查看全部{category}"
+  },
+  "auth": {
+    "title": "登录",
+    "intro": "我们会通过电子邮件发送一次性验证码，无需密码。",
+    "email": "电子邮箱",
+    "sendCode": "发送验证码",
+    "codeSent": "验证码已发送至 {email}，很快会过期。",
+    "code": "验证码",
+    "verify": "登录",
+    "changeEmail": "使用其他邮箱",
+    "resend": "重新发送验证码",
+    "mockHint": "测试模式：请使用验证码 {code}。",
+    "invalidEmail": "请输入有效的电子邮箱。",
+    "invalidCode": "验证码错误或已过期。",
+    "sendFailed": "验证码发送失败，请稍后重试。",
+    "rateLimited": "请求次数过多，请一分钟后再试。",
+    "disabled": "登录功能暂不可用。",
+    "signedInAs": "当前登录：",
+    "signOut": "退出登录",
+    "signIn": "登录",
+    "admin": "管理后台"
   }
 }

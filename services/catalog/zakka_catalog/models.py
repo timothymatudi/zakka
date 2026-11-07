@@ -138,6 +138,7 @@ class CategoryRef(BaseModel):
     parent_id: UUID | None = None
     name: str | None = None  # English name when known
     names: dict[str, str] = Field(default_factory=dict)  # locale -> name
+    google_category_id: int | None = None  # categories.google_category_id (Google product taxonomy)
 
 
 SourceProduct.model_rebuild()

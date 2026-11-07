@@ -50,3 +50,8 @@ def catalog_port() -> int:
 
     url = env("CATALOG_API_URL", "http://localhost:4020")
     return urlparse(url).port or 4020
+
+
+def web_base_url() -> str:
+    """Public storefront origin (WEB_BASE_URL), used for product links in merchant feeds."""
+    return env("WEB_BASE_URL", "http://localhost:3000").rstrip("/") or "http://localhost:3000"

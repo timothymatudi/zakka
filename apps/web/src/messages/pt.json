@@ -180,7 +180,8 @@
     "marketingOptIn": "Quero receber ofertas ocasionais por e-mail",
     "save": "Salvar",
     "saved": "Salvo",
-    "signInTodo": "O login chega em breve. As preferências ficam salvas neste dispositivo."
+    "guestNote": "As preferências ficam salvas neste dispositivo. Entre para mantê-las na sua conta.",
+    "saveError": "Não foi possível salvar. Tente novamente."
   },
   "footer": {
     "tagline": "A Zakka pesquisa lojas confiáveis do mundo todo e mostra o preço total honesto.",
@@ -201,5 +202,32 @@
     "amazon": "Como associada da Amazon, a Zakka recebe por compras qualificadas.",
     "others": "A Zakka também participa dos programas de afiliados da Temu, Shein, AliExpress, Jumia, noon e Flipkart e pode receber comissão por compras qualificadas feitas por links da Zakka.",
     "ranking": "As comissões nunca mudam o preço exibido, e ofertas de afiliados são sempre marcadas como “Loja parceira”."
+  },
+  "best": {
+    "title": "O melhor de {category} com entrega para {country}",
+    "intro": "Os produtos de {category} mais bem avaliados que entregam para {country}, escolhidos por avaliação, prazo de entrega e preço total. Preços em {currency}, com entrega incluída.",
+    "empty": "Ainda não há produtos desta categoria com entrega para {country}.",
+    "seeAll": "Ver tudo em {category}"
+  },
+  "auth": {
+    "title": "Entrar",
+    "intro": "Enviamos um código de uso único para o seu e-mail. Sem senha.",
+    "email": "E-mail",
+    "sendCode": "Enviar código",
+    "codeSent": "Enviamos um código para {email}. Ele expira em breve.",
+    "code": "Código",
+    "verify": "Entrar",
+    "changeEmail": "Usar outro e-mail",
+    "resend": "Enviar novo código",
+    "mockHint": "Modo de teste: use o código {code}.",
+    "invalidEmail": "Digite um e-mail válido.",
+    "invalidCode": "Código incorreto ou expirado.",
+    "sendFailed": "Não foi possível enviar o código. Tente novamente em instantes.",
+    "rateLimited": "Muitos códigos solicitados. Aguarde um minuto.",
+    "disabled": "O login não está disponível agora.",
+    "signedInAs": "Conectado como",
+    "signOut": "Sair",
+    "signIn": "Entrar",
+    "admin": "Admin"
   }
 }

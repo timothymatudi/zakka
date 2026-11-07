@@ -5,13 +5,15 @@ import type { Locale } from '@shared/types';
 import { getMarket } from '@/lib/market.server';
 import { CATEGORIES } from '@/lib/mock/catalog';
 import { SearchResults, type RawParams } from '@/components/SearchResults';
+import { localeAlternates } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale; slug: string }>; searchParams: Promise<RawParams> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'categories' });
-  return CATEGORIES.some((c) => c.slug === slug) ? { title: t(slug) } : {};
+  if (!CATEGORIES.some((c) => c.slug === slug)) return {};
+  return { title: t(slug), alternates: localeAlternates(locale, `/c/${slug}`) };
 }
 
 // TODO(live): load top-level categories + category_translations from Supabase instead of the mock list.

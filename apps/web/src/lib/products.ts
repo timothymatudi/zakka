@@ -8,7 +8,7 @@ import { marketFor } from './markets';
 import { usdToLocal } from './money';
 
 export type ProductView = SearchDocument &
-  Partial<Pick<MockProduct, 'icon' | 'bullet_points' | 'category_slug'>>;
+  Partial<Pick<MockProduct, 'icon' | 'bullet_points' | 'category_slug'>> & { gtin?: string | null };
 
 /**
  * Product by id, localised to a country (offers that do not ship there are dropped;

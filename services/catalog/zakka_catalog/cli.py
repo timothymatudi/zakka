@@ -5,6 +5,8 @@
   forward ORDER_ID [--dry-run]
   serve [--port 4020]
   sources                      list connectors and whether they run mock or live
+  feed --country KE --locale sw --format google-xml|google-tsv|jsonl --out PATH [--demo]
+                               merchant feed (dropship offers only), streamed from the store
 """
 
 from __future__ import annotations
@@ -221,6 +223,48 @@ def cmd_sources(args) -> int:
     return 0
 
 
+def cmd_feed(args) -> int:
+    import os
+    import tempfile
+    from pathlib import Path
+
+    from .config import web_base_url
+    from .feed import write_feed
+
+    if args.demo:
+        from .runtime import demo_store
+
+        store, desc = demo_store(), "memory (demo fixtures)"
+    else:
+        from .runtime import try_postgres
+
+        store, note = try_postgres()
+        if store is None:
+            print(f"error: {note}. Re-run with --demo to build a feed from the fixture catalog.", file=sys.stderr)
+            return 2
+        desc = "postgres"
+    base = args.web_base_url or web_base_url()
+    if args.out == "-":
+        stats = write_feed(store, sys.stdout, args.format, args.country, args.locale, web_base_url=base)
+    else:
+        out = Path(args.out).resolve()
+        out.parent.mkdir(parents=True, exist_ok=True)
+        # Write to a temp file and rename, so a feed URL never serves a half-written file.
+        fd, tmp = tempfile.mkstemp(prefix=out.name + ".", suffix=".tmp", dir=out.parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
+                stats = write_feed(store, fh, args.format, args.country, args.locale, web_base_url=base)
+            os.replace(tmp, out)
+        except BaseException:
+            Path(tmp).unlink(missing_ok=True)
+            raise
+    skipped = ", ".join(f"{k}={v}" for k, v in sorted(stats.skipped.items())) or "none"
+    print(f"feed: store={desc} country={args.country.upper()} locale={args.locale} format={args.format} "
+          f"items={stats.items} skipped: {skipped}" + ("" if args.out == "-" else f" -> {args.out}"),
+          file=sys.stderr)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     from .connectors import SOURCE_CODES
 
@@ -276,6 +320,17 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--full-rows", action="store_true",
                    help="store full product/offer/translation rows (needs ~1.4 GB per 1M products)")
     b.set_defaults(func=cmd_bench)
+
+    from .feed import FORMATS
+
+    fd = sub.add_parser("feed", help="export a merchant product feed (Google format) for one country + locale")
+    fd.add_argument("--country", required=True, type=lambda v: v.upper())
+    fd.add_argument("--locale", required=True)
+    fd.add_argument("--format", choices=FORMATS, default="google-xml")
+    fd.add_argument("--out", required=True, help="output path, or - for stdout")
+    fd.add_argument("--demo", action="store_true", help="use the offline fixture catalog instead of DATABASE_URL")
+    fd.add_argument("--web-base-url", default=None, help="storefront origin for links (default WEB_BASE_URL)")
+    fd.set_defaults(func=cmd_feed)
 
     sc = sub.add_parser("sources", help="list connectors and mock/live mode")
     sc.set_defaults(func=cmd_sources)

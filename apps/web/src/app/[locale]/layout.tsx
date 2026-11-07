@@ -13,11 +13,12 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import type { Locale } from '@shared/types';
+import { config } from '@/lib/config';
 
 // Every page depends on the visitor's country cookie (prices, delivery), so render per request.
 export const dynamic = 'force-dynamic';
 
-const CLIENT_NAMESPACES = ['nav', 'product', 'cart', 'checkout', 'account', 'admin'] as const;
+const CLIENT_NAMESPACES = ['nav', 'product', 'cart', 'checkout', 'account', 'auth', 'admin'] as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -25,7 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: { default: t('title'), template: '%s · Zakka' },
     description: t('description'),
-    alternates: { languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])) },
+    // Canonical and hreflang alternates are set per page (home, category, best-of and product pages).
+    metadataBase: new URL(config.webBaseUrl),
   };
 }
 

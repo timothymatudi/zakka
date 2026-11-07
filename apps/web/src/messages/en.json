@@ -184,7 +184,8 @@
     "marketingOptIn": "Email me occasional deals",
     "save": "Save",
     "saved": "Saved",
-    "signInTodo": "Sign-in is coming soon. Preferences are saved on this device."
+    "guestNote": "Preferences are saved on this device. Sign in to keep them on your account.",
+    "saveError": "Could not save. Try again."
   },
   "footer": {
     "tagline": "Zakka searches trusted shops worldwide and shows the honest total price.",
@@ -200,10 +201,10 @@
   },
   "admin": {
     "title": "Zakka admin",
-    "authTodo": "TODO: admin is not protected yet. Add Supabase auth + an admin role check before deploying.",
     "mock": "Mock data",
     "nav": {
       "dashboard": "Dashboard",
+      "coverage": "Worldwide coverage",
       "products": "Products",
       "markup": "Markup rules",
       "orders": "Orders",
@@ -215,7 +216,8 @@
       "clicks": "Affiliate clicks (this session)",
       "products": "Active products",
       "offers": "Active offers",
-      "sources": "Active sources"
+      "sources": "Active sources",
+      "clicksAll": "Affiliate clicks (all time)"
     },
     "cols": {
       "product": "Product",
@@ -240,11 +242,38 @@
       "roundTo": "Round to",
       "priority": "Priority"
     },
-    "markupHelp": "Rules are applied by the catalog service (product > source > category > global). Saving here only sends them to a mock endpoint for now.",
+    "markupHelp": "Rules are applied by the catalog service (product > source > category > global). Mock mode: saved rules live in memory until the server restarts.",
     "addRule": "Add rule",
     "saveRules": "Save rules",
     "saved": "Saved (mock)",
-    "delete": "Delete"
+    "delete": "Delete",
+    "signOut": "Sign out",
+    "markupHelpLive": "Rules are applied by the catalog service (product > source > category > global). Saving writes them to the database; prices update on the next catalog sync.",
+    "savedLive": "Saved",
+    "saveError": "Could not save. Check the values and try again.",
+    "coverage": {
+      "intro": "Where our products come from and where we can deliver. Counts include active offers only.",
+      "stores": "Stores",
+      "products": "Products",
+      "offers": "Offers",
+      "originCountries": "Ship-from countries",
+      "destinationCountries": "Countries we deliver to",
+      "storesTitle": "E-commerce stores",
+      "storesHelp": "Every dropship supplier and affiliate partner we get products from.",
+      "store": "Store",
+      "kind": "Kind",
+      "shipsFrom": "Ships from",
+      "reaches": "Delivers to",
+      "lastSync": "Last sync",
+      "countries": "{count, plural, one {# country} other {# countries}}",
+      "originsTitle": "Ships from",
+      "originsHelp": "Countries our offers are shipped from.",
+      "destinationsTitle": "Delivers to",
+      "destinationsHelp": "Countries customers can order from, by number of products available.",
+      "country": "Country",
+      "fastest": "Fastest",
+      "days": "{days, plural, one {# day} other {# days}}"
+    }
   },
   "legal": {
     "title": "Affiliate disclosures",
@@ -253,5 +282,32 @@
     "amazon": "As an Amazon Associate, Zakka earns from qualifying purchases.",
     "others": "Zakka also takes part in the affiliate programs of Temu, Shein, AliExpress, Jumia, noon and Flipkart, and may earn a commission on qualifying purchases made through links on Zakka.",
     "ranking": "Commissions never change the price shown to you, and affiliate offers are always labelled “Partner store”."
+  },
+  "best": {
+    "title": "Best {category} delivered to {country}",
+    "intro": "Top-ranked {category} picks that ship to {country}, chosen by rating, delivery time and total price. Prices are in {currency} and already include delivery.",
+    "empty": "Nothing in this category ships to {country} yet.",
+    "seeAll": "See all in {category}"
+  },
+  "auth": {
+    "title": "Sign in",
+    "intro": "We email you a one-time code. No password needed.",
+    "email": "Email",
+    "sendCode": "Email me a code",
+    "codeSent": "We sent a code to {email}. It expires soon.",
+    "code": "Code",
+    "verify": "Sign in",
+    "changeEmail": "Use another email",
+    "resend": "Send a new code",
+    "mockHint": "Test mode: use the code {code}. Emails starting with admin@ get admin access.",
+    "invalidEmail": "Enter a valid email address.",
+    "invalidCode": "That code is wrong or has expired.",
+    "sendFailed": "We could not send the code. Try again in a moment.",
+    "rateLimited": "Too many codes requested. Wait a minute and try again.",
+    "disabled": "Sign-in is not available right now.",
+    "signedInAs": "Signed in as",
+    "signOut": "Sign out",
+    "signIn": "Sign in",
+    "admin": "Admin"
   }
 }

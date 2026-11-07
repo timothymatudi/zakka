@@ -180,7 +180,8 @@
     "marketingOptIn": "Gelegentliche Angebote per E-Mail erhalten",
     "save": "Speichern",
     "saved": "Gespeichert",
-    "signInTodo": "Die Anmeldung kommt bald. Einstellungen werden auf diesem Gerät gespeichert."
+    "guestNote": "Einstellungen werden auf diesem Gerät gespeichert. Melde dich an, um sie in deinem Konto zu behalten.",
+    "saveError": "Speichern fehlgeschlagen. Versuche es erneut."
   },
   "footer": {
     "tagline": "Zakka durchsucht vertrauenswürdige Shops weltweit und zeigt den ehrlichen Gesamtpreis.",
@@ -201,5 +202,32 @@
     "amazon": "Als Amazon-Partner verdient Zakka an qualifizierten Verkäufen.",
     "others": "Zakka nimmt außerdem an den Partnerprogrammen von Temu, Shein, AliExpress, Jumia, noon und Flipkart teil und erhält ggf. eine Provision für qualifizierte Käufe über Links auf Zakka.",
     "ranking": "Provisionen ändern nie den angezeigten Preis, und Affiliate-Angebote sind immer als „Partnershop“ gekennzeichnet."
+  },
+  "best": {
+    "title": "Das Beste aus {category} – Lieferung nach {country}",
+    "intro": "Die bestbewerteten Produkte aus {category}, die nach {country} liefern – ausgewählt nach Bewertung, Lieferzeit und Gesamtpreis. Preise in {currency}, Lieferung inklusive.",
+    "empty": "Aus dieser Kategorie liefert noch nichts nach {country}.",
+    "seeAll": "Alles in {category} ansehen"
+  },
+  "auth": {
+    "title": "Anmelden",
+    "intro": "Wir senden dir einen Einmalcode per E-Mail. Kein Passwort nötig.",
+    "email": "E-Mail",
+    "sendCode": "Code senden",
+    "codeSent": "Wir haben einen Code an {email} gesendet. Er läuft bald ab.",
+    "code": "Code",
+    "verify": "Anmelden",
+    "changeEmail": "Andere E-Mail verwenden",
+    "resend": "Neuen Code senden",
+    "mockHint": "Testmodus: Verwende den Code {code}.",
+    "invalidEmail": "Gib eine gültige E-Mail-Adresse ein.",
+    "invalidCode": "Der Code ist falsch oder abgelaufen.",
+    "sendFailed": "Der Code konnte nicht gesendet werden. Versuche es gleich noch einmal.",
+    "rateLimited": "Zu viele Codes angefordert. Warte eine Minute.",
+    "disabled": "Die Anmeldung ist gerade nicht verfügbar.",
+    "signedInAs": "Angemeldet als",
+    "signOut": "Abmelden",
+    "signIn": "Anmelden",
+    "admin": "Admin"
   }
 }

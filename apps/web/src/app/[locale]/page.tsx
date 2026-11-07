@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@shared/types';
 import { Link } from '@/i18n/navigation';
@@ -8,11 +9,47 @@ import { regionName } from '@/lib/format';
 import { SearchBox } from '@/components/SearchBox';
 import { Rail } from '@/components/Rail';
 import { CheckIcon } from '@/components/icons';
+import { JsonLd } from '@/components/JsonLd';
+import { absUrl, localeAlternates } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: localeAlternates(locale, '') };
+}
+
+function homeJsonLd(locale: Locale, description: string) {
+  const org = absUrl('/#organization');
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': org,
+      name: 'Zakka',
+      url: absUrl(`/${locale}`),
+      description,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': absUrl(`/${locale}#website`),
+      name: 'Zakka',
+      url: absUrl(`/${locale}`),
+      inLanguage: locale,
+      publisher: { '@id': org },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: absUrl(`/${locale}/search?q={search_term_string}`) },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ];
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('home');
+  const tm = await getTranslations('meta');
   const tc = await getTranslations('categories');
   const market = await getMarket(locale);
   const country = regionName(market.country, locale);
@@ -28,6 +65,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
   return (
     <>
+      <JsonLd data={homeJsonLd(locale, tm('description'))} />
       <section className="relative overflow-hidden rounded-[1.75rem] bg-teal px-5 py-8 text-white md:px-12 md:py-14">
         <div className="relative max-w-2xl">
           <h1 className="text-[1.9rem] font-extrabold leading-tight md:text-5xl">{t('heroTitle')}</h1>

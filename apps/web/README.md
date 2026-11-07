@@ -42,9 +42,10 @@ A down service is remembered for 30 seconds (`lib/http.ts`), so each page pays a
 - `/orders` (lookup and a sample order) and `/orders/{id}`: status timeline and shipments.
 - `/account`: language, country/currency, WhatsApp opt-in (**unticked by default**, STOP hint) and email opt-in.
 - `/legal/affiliates`: affiliate program disclosures.
-- `/admin`: dashboard, products, markup rules editor, orders, sources. **Not protected yet. Add auth before deploying.**
+- `/signin`: email one-time code (Supabase Auth). `/account` shows who is signed in and saves preferences to the customer's own row.
+- `/admin`: dashboard, worldwide coverage (stores, ship-from countries, countries we deliver to), products, markup rules editor, orders, sources. Only for Supabase users with `app_metadata.role = 'admin'` (see "Auth" below).
 
-API routes: `POST /api/checkout`, `GET /api/out/{offerId}` (records an affiliate click, then 302s to the partner), `POST /api/account`, `POST /api/admin/markup-rules`, `GET /api/orders/lookup`.
+API routes: `POST /api/checkout`, `GET /api/out/{offerId}` (records an affiliate click, then 302s to the partner), `POST /api/account`, `POST /api/auth/otp`, `POST /api/auth/verify`, `POST /api/auth/signout`, `GET|POST /api/admin/markup-rules`, `GET /api/orders/lookup`.
 
 **Partner names:** customer pages never name suppliers or partners. Dropship offers say "Sold by Zakka". Affiliate offers say "Partner store" with a "Continue to partner store" button and an "Affiliate link — Zakka may earn a commission" note. Comparison rows read "Zakka" and "Partner store 1, 2…". Program-required wording (for example the Amazon Associates sentence) appears only in the footer and on `/legal/affiliates`. Admin pages keep real names. Client components receive only the message namespaces they use.
 
@@ -60,9 +61,19 @@ The web app never computes markup. Product pages use the catalog's `/offers/{id}
 - **Reference data** (`src/lib/markets.ts`): the countries, currencies and FX rates are mock values.
 - **Orders**: an in-memory store with 5 seeded demo orders, used when Supabase is not configured.
 - **Payments**: handled by the concierge. When it is not configured or unreachable, the order is paid at once (mock).
-- **Account**: saved in cookies only. TODO: sign-in, then update the customer's own row (allowed columns only).
-- **Admin**: shows mock data. Markup rules are validated and kept in memory. TODO: auth, and the `markup_rules` and `public_sources` reads and writes.
+- **Auth** (no `SUPABASE_URL`/`SUPABASE_ANON_KEY`, not production): any email signs in with the code `000000`; emails starting with `admin@` are admins. Guests and mock users keep preferences in cookies.
+- **Admin data**: without `SUPABASE_SERVICE_ROLE_KEY`, admin pages show the mock catalog and markup rules are kept in memory.
 
 ## Translations
 
 UI strings exist for all 10 locales in `src/messages/*.json`. Missing keys fall back to English; the admin section is English only. **Every non-English translation needs native-speaker review.** Mock product titles are English only.
+
+## Auth
+
+- Sign-in uses Supabase Auth's email OTP over its REST API (no SDK). Tokens live in httpOnly cookies `zk_at` / `zk_rt`; middleware refreshes them before pages render. The user and role are always read back from `GET /auth/v1/user`.
+- In the Supabase dashboard, set the "Magic Link" email template to include `{{ .Token }}` so customers get a code.
+- Make someone an admin (SQL editor): `update auth.users set raw_app_meta_data = raw_app_meta_data || '{"role":"admin"}' where email = 'you@example.com';` They must sign in again afterwards.
+- Admin pages are gated in middleware and in the admin layout; `/api/admin/*` routes call `requireAdmin` themselves. Admin reads and writes use the service role on the server only.
+- On first sign-in a `customers` row is created (or a guest row with the same email is linked). Preference saves use the customer's own JWT, so RLS and the column grants apply.
+- In production without Supabase, sign-in and admin are off (404).
+- `/admin/coverage` uses the SQL functions in `supabase/migrations/0009_admin_coverage.sql` (service role only).

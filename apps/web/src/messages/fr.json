@@ -180,7 +180,8 @@
     "marketingOptIn": "M’envoyer des offres par e-mail de temps en temps",
     "save": "Enregistrer",
     "saved": "Enregistré",
-    "signInTodo": "La connexion arrive bientôt. Vos préférences sont enregistrées sur cet appareil."
+    "guestNote": "Vos préférences sont enregistrées sur cet appareil. Connectez-vous pour les garder sur votre compte.",
+    "saveError": "Échec de l'enregistrement. Réessayez."
   },
   "footer": {
     "tagline": "Zakka cherche dans des boutiques fiables du monde entier et affiche le prix total, honnêtement.",
@@ -201,5 +202,32 @@
     "amazon": "En tant que Partenaire Amazon, Zakka réalise un bénéfice sur les achats remplissant les conditions requises.",
     "others": "Zakka participe aussi aux programmes d’affiliation de Temu, Shein, AliExpress, Jumia, noon et Flipkart, et peut percevoir une commission sur les achats éligibles effectués via ses liens.",
     "ranking": "Les commissions ne modifient jamais le prix affiché, et les offres affiliées sont toujours signalées « Boutique partenaire »."
+  },
+  "best": {
+    "title": "Le meilleur de {category} – livraison vers {country}",
+    "intro": "Les produits {category} les mieux classés livrés vers {country}, choisis selon les avis, le délai de livraison et le prix total. Prix en {currency}, livraison incluse.",
+    "empty": "Aucun produit de cette catégorie n’est encore livré vers {country}.",
+    "seeAll": "Tout voir dans {category}"
+  },
+  "auth": {
+    "title": "Se connecter",
+    "intro": "Nous vous envoyons un code à usage unique par e-mail. Aucun mot de passe.",
+    "email": "E-mail",
+    "sendCode": "Recevoir un code",
+    "codeSent": "Code envoyé à {email}. Il expire bientôt.",
+    "code": "Code",
+    "verify": "Se connecter",
+    "changeEmail": "Utiliser un autre e-mail",
+    "resend": "Renvoyer un code",
+    "mockHint": "Mode test : utilisez le code {code}.",
+    "invalidEmail": "Saisissez une adresse e-mail valide.",
+    "invalidCode": "Ce code est incorrect ou a expiré.",
+    "sendFailed": "Impossible d'envoyer le code. Réessayez dans un instant.",
+    "rateLimited": "Trop de codes demandés. Patientez une minute.",
+    "disabled": "La connexion n'est pas disponible pour le moment.",
+    "signedInAs": "Connecté en tant que",
+    "signOut": "Se déconnecter",
+    "signIn": "Se connecter",
+    "admin": "Admin"
   }
 }

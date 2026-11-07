@@ -180,7 +180,8 @@
     "marketingOptIn": "Nitumie ofa mara kwa mara kwa barua pepe",
     "save": "Hifadhi",
     "saved": "Imehifadhiwa",
-    "signInTodo": "Kuingia kwenye akaunti kunakuja hivi karibuni. Mapendeleo yanahifadhiwa kwenye kifaa hiki."
+    "guestNote": "Mapendeleo yanahifadhiwa kwenye kifaa hiki. Ingia ili yabaki kwenye akaunti yako.",
+    "saveError": "Imeshindwa kuhifadhi. Jaribu tena."
   },
   "footer": {
     "tagline": "Zakka hutafuta katika maduka ya kuaminika duniani kote na kuonyesha bei kamili kwa uaminifu.",
@@ -201,5 +202,32 @@
     "amazon": "Kama mshirika wa Amazon (Amazon Associate), Zakka hupata mapato kutokana na manunuzi yanayostahili.",
     "others": "Zakka pia inashiriki programu za ushirika za Temu, Shein, AliExpress, Jumia, noon na Flipkart, na inaweza kupata kamisheni kwa manunuzi yanayostahili kupitia viungo vya Zakka.",
     "ranking": "Kamisheni haibadilishi kamwe bei unayoona, na ofa za ushirika huwekewa alama “Duka mshirika” kila mara."
+  },
+  "best": {
+    "title": "Bora zaidi za {category} zinazofikishwa {country}",
+    "intro": "Bidhaa bora za {category} zinazosafirishwa hadi {country}, zimechaguliwa kwa ukadiriaji, muda wa kufikishwa na bei kamili. Bei ziko kwa {currency} na zinajumuisha usafirishaji.",
+    "empty": "Bado hakuna bidhaa za aina hii zinazosafirishwa hadi {country}.",
+    "seeAll": "Ona zote za {category}"
+  },
+  "auth": {
+    "title": "Ingia",
+    "intro": "Tunakutumia msimbo wa mara moja kwa barua pepe. Hakuna nenosiri.",
+    "email": "Barua pepe",
+    "sendCode": "Nitumie msimbo",
+    "codeSent": "Tumetuma msimbo kwa {email}. Utaisha muda hivi karibuni.",
+    "code": "Msimbo",
+    "verify": "Ingia",
+    "changeEmail": "Tumia barua pepe nyingine",
+    "resend": "Tuma msimbo mpya",
+    "mockHint": "Hali ya majaribio: tumia msimbo {code}.",
+    "invalidEmail": "Weka barua pepe sahihi.",
+    "invalidCode": "Msimbo si sahihi au umeisha muda.",
+    "sendFailed": "Hatukuweza kutuma msimbo. Jaribu tena baada ya muda mfupi.",
+    "rateLimited": "Umeomba misimbo mingi. Subiri dakika moja.",
+    "disabled": "Kuingia hakupatikani kwa sasa.",
+    "signedInAs": "Umeingia kama",
+    "signOut": "Toka",
+    "signIn": "Ingia",
+    "admin": "Usimamizi"
   }
 }

@@ -12,24 +12,34 @@ Additions (non-breaking):
   POST /signals               engagement (hot tier), search impressions (warm tier), locale views
   GET  /live/search           live affiliate search (cached 1h, per-partner daily quotas)
   POST /live/{source}/{external_id}/materialize   store an affiliate item a customer saw/clicked
+  GET  /feeds/{country}/{locale}.xml   Google-format merchant feed (dropship only), cached 1h, public
+       (also .tsv and .jsonl)
+  GET  /images/{product_id}/{n}        302 to a product's n-th stored image (feeds link images this way)
 
 Auth: state-changing routes (forward, tracking/poll) require
 ``Authorization: Bearer $CATALOG_API_TOKEN`` (constant-time compare). If
 CATALOG_API_TOKEN is empty they are open only in mock mode (no live dropship
 connector configured, so nothing real can be ordered) and every call logs a
 warning; with a live dropship connector and no token they return 503.
-Price routes are always open.
+Price, feed and image routes are always open (public product data).
 """
 
 from __future__ import annotations
 
 import hmac
 import logging
+import os
+import re
+import tempfile
+import threading
+import time
 from decimal import Decimal
+from pathlib import Path
 from typing import Literal, Mapping
 from uuid import UUID
 
 from fastapi import Body, Depends, FastAPI, Header, HTTPException, Query
+from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel, Field
 
 from .connectors import Connector, all_connectors
@@ -155,7 +165,8 @@ def bearer_matches(authorization: str | None, expected: str) -> bool:
 def create_app(store: Store | None = None, connectors: Mapping[str, Connector] | None = None,
                store_name: str | None = None, api_token: str | None = None,
                notifier: ConciergeNotifier | None = None, enricher=None, queue=None,
-               live=None) -> FastAPI:
+               live=None, feed_cache_dir: str | Path | None = None, feed_ttl_seconds: int = 3600,
+               web_base_url: str | None = None) -> FastAPI:
     """``api_token`` defaults to CATALOG_API_TOKEN; pass "" to force the no-token behaviour."""
     from .config import catalog_api_token
 
@@ -303,11 +314,73 @@ def create_app(store: Store | None = None, connectors: Mapping[str, Connector] |
         store.commit()
         return {"offer_id": str(offer_id), "product_id": rep.offers[0].product_id}
 
+    feeds = FeedCache(store, Path(feed_cache_dir) if feed_cache_dir else Path(".cache") / "feeds",
+                      ttl=feed_ttl_seconds, web_base_url=web_base_url)
+
+    @app.get("/feeds/{country}/{filename}")
+    def merchant_feed(country: str, filename: str):
+        """Public: the same product data the storefront shows. Rebuilt at most once per TTL."""
+        m = re.fullmatch(r"([a-z]{2,3}(?:-[A-Za-z]{2,4})?)\.(xml|tsv|jsonl)", filename)
+        if not re.fullmatch(r"[A-Za-z]{2}", country) or not m:
+            raise HTTPException(404, "feed not found")
+        from .feed import CONTENT_TYPES, SUFFIX_FORMATS
+
+        locale, fmt = m.group(1), SUFFIX_FORMATS[m.group(2)]
+        if locale not in store.active_locales():
+            raise HTTPException(404, "unknown locale")
+        try:
+            path = feeds.get(country.upper(), locale, fmt)
+        except ValueError as exc:
+            raise HTTPException(404, str(exc)) from None
+        return FileResponse(path, media_type=CONTENT_TYPES[fmt],
+                            headers={"Cache-Control": f"public, max-age={feed_ttl_seconds}"})
+
+    @app.get("/images/{product_id}/{n}")
+    def product_image(product_id: UUID, n: int):
+        p = store.get_product(product_id)
+        urls = [u for u in (p or {}).get("image_urls") or [] if isinstance(u, str) and u.startswith(("http://", "https://"))]
+        if not 0 <= n < len(urls):
+            raise HTTPException(404, "image not found")
+        return RedirectResponse(urls[n], status_code=302, headers={"Cache-Control": "public, max-age=86400"})
+
     @app.post("/tracking/poll", dependencies=write_auth)
     def tracking_poll():
         return {"updates": [u.__dict__ for u in poll_tracking(store, connectors, notifier)]}
 
     return app
+
+
+class FeedCache:
+    """Feed files on disk, rebuilt when older than ``ttl`` seconds. Generation streams to a
+    temp file and renames it, so readers never see a partial feed and memory stays bounded."""
+
+    def __init__(self, store: Store, directory: Path, ttl: int = 3600, web_base_url: str | None = None):
+        self.store, self.dir, self.ttl, self.base = store, directory, ttl, web_base_url
+        self._locks: dict[str, threading.Lock] = {}
+        self._guard = threading.Lock()
+
+    def get(self, country: str, locale: str, fmt: str) -> Path:
+        from .config import web_base_url
+        from .feed import write_feed
+
+        name = f"{country}-{locale}.{fmt}"
+        path = self.dir / name
+        with self._guard:
+            lock = self._locks.setdefault(name, threading.Lock())
+        with lock:
+            if path.exists() and time.time() - path.stat().st_mtime < self.ttl:
+                return path
+            self.dir.mkdir(parents=True, exist_ok=True)
+            fd, tmp = tempfile.mkstemp(prefix=name + ".", suffix=".tmp", dir=self.dir)
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
+                    stats = write_feed(self.store, fh, fmt, country, locale, web_base_url=self.base or web_base_url())
+                os.replace(tmp, path)
+            except BaseException:
+                Path(tmp).unlink(missing_ok=True)
+                raise
+            log.info("feed %s rebuilt: %d items, skipped %s", name, stats.items, stats.skipped)
+            return path
 
 
 def run(host: str = "0.0.0.0", port: int | None = None) -> None:  # pragma: no cover - manual entry point

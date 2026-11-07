@@ -180,7 +180,8 @@
     "marketingOptIn": "Envíame ofertas ocasionales por correo",
     "save": "Guardar",
     "saved": "Guardado",
-    "signInTodo": "El inicio de sesión llegará pronto. Las preferencias se guardan en este dispositivo."
+    "guestNote": "Las preferencias se guardan en este dispositivo. Inicia sesión para guardarlas en tu cuenta.",
+    "saveError": "No se pudo guardar. Inténtalo de nuevo."
   },
   "footer": {
     "tagline": "Zakka busca en tiendas de confianza de todo el mundo y muestra el precio total honesto.",
@@ -201,5 +202,32 @@
     "amazon": "Como Afiliado de Amazon, Zakka obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables.",
     "others": "Zakka también participa en los programas de afiliados de Temu, Shein, AliExpress, Jumia, noon y Flipkart, y puede recibir una comisión por las compras que cumplan los requisitos realizadas mediante enlaces de Zakka.",
     "ranking": "Las comisiones nunca cambian el precio que ves, y las ofertas de afiliados siempre se marcan como «Tienda asociada»."
+  },
+  "best": {
+    "title": "Lo mejor en {category} con entrega en {country}",
+    "intro": "Los productos de {category} mejor valorados que se envían a {country}, elegidos por valoración, tiempo de entrega y precio total. Los precios están en {currency} e incluyen el envío.",
+    "empty": "Todavía no hay productos de esta categoría con envío a {country}.",
+    "seeAll": "Ver todo en {category}"
+  },
+  "auth": {
+    "title": "Iniciar sesión",
+    "intro": "Te enviamos un código de un solo uso por correo. Sin contraseña.",
+    "email": "Correo electrónico",
+    "sendCode": "Enviarme un código",
+    "codeSent": "Enviamos un código a {email}. Caduca pronto.",
+    "code": "Código",
+    "verify": "Iniciar sesión",
+    "changeEmail": "Usar otro correo",
+    "resend": "Enviar un código nuevo",
+    "mockHint": "Modo de prueba: usa el código {code}.",
+    "invalidEmail": "Introduce un correo válido.",
+    "invalidCode": "El código es incorrecto o ha caducado.",
+    "sendFailed": "No pudimos enviar el código. Inténtalo de nuevo en un momento.",
+    "rateLimited": "Demasiados códigos solicitados. Espera un minuto.",
+    "disabled": "El inicio de sesión no está disponible ahora.",
+    "signedInAs": "Sesión iniciada como",
+    "signOut": "Cerrar sesión",
+    "signIn": "Iniciar sesión",
+    "admin": "Admin"
   }
 }

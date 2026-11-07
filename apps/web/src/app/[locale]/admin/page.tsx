@@ -1,8 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@shared/types';
-import { PRODUCTS, SOURCES } from '@/lib/mock/catalog';
 import { listOrders } from '@/lib/orders';
-import { mockClickCount } from '@/lib/clicks';
+import { getDashboardCounts } from '@/lib/admin-data';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +10,7 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('admin.stats');
-  const orders = await listOrders();
+  const [orders, counts] = await Promise.all([listOrders(1000), getDashboardCounts()]);
   const gmv = orders
     .filter((o) => !['pending_payment', 'cancelled', 'refunded'].includes(o.status))
     .reduce((s, o) => s + o.total_usd, 0);
@@ -21,10 +20,10 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
 
   const tiles: [string, string][] = [
     [t('orders'), compact.format(orders.length)],
-    [t('clicks'), compact.format(mockClickCount())],
-    [t('products'), compact.format(PRODUCTS.length)],
-    [t('offers'), compact.format(PRODUCTS.reduce((n, p) => n + p.offers.length, 0))],
-    [t('sources'), compact.format(SOURCES.filter((s) => s.is_active).length)],
+    [counts.clicksLabel === 'session' ? t('clicks') : t('clicksAll'), compact.format(counts.clicks)],
+    [t('products'), compact.format(counts.products)],
+    [t('offers'), compact.format(counts.offers)],
+    [t('sources'), compact.format(counts.sources)],
   ];
 
   return (

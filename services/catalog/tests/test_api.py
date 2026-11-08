@@ -18,7 +18,7 @@ def offer_id(store, src, ext):
 def test_health(client):
     body = client.get("/health").json()
     assert body["status"] == "ok" and body["store"] == "memory"
-    assert body["connectors"]["cj"] == "mock" and len(body["connectors"]) == 16
+    assert body["connectors"]["cj"] == "mock" and len(body["connectors"]) == 21
 
 
 def test_price_contract_shape_usd(client, synced):

@@ -1,0 +1,255 @@
+{
+  "_note": "MOCK fixture for source 'shopee'. Fictional products, ids and URLs (*.example). attributes.merchant is the shop inside the marketplace (internal only).",
+  "source": "shopee",
+  "currency": "MYR",
+  "products": [
+    {
+      "external_id": "MY:101",
+      "title": "Baju Kurung Moden",
+      "category_hint": "Fesyen > modest-wear",
+      "image_urls": [
+        "https://images.zakka.example/shopee/MY-101.jpg"
+      ],
+      "list_price": "89.00",
+      "shipping": "0",
+      "currency": "MYR",
+      "ships_from": "MY",
+      "ships_to": [
+        "MY"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://s.shopee.example/MY-101",
+      "commission_rate": "0.08",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Kedai MY"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/MY-101-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "SG:201",
+      "title": "Bubble Tea Kit",
+      "category_hint": "Food > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/shopee/SG-201.jpg"
+      ],
+      "list_price": "24.90",
+      "shipping": "0",
+      "currency": "SGD",
+      "ships_from": "SG",
+      "ships_to": [
+        "SG"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://s.shopee.example/SG-201",
+      "commission_rate": "0.07",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Shop SG"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/SG-201-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "TH:301",
+      "title": "Thai Silk Scarf",
+      "category_hint": "Fashion > womens-fashion",
+      "image_urls": [
+        "https://images.zakka.example/shopee/TH-301.jpg"
+      ],
+      "list_price": "450",
+      "shipping": "40",
+      "currency": "THB",
+      "ships_from": "TH",
+      "ships_to": [
+        "TH"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://s.shopee.example/TH-301",
+      "commission_rate": "0.07",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "ร้าน TH"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/TH-301-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "VN:401",
+      "title": "Phin Coffee Filter Set",
+      "category_hint": "Bếp > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/shopee/VN-401.jpg"
+      ],
+      "list_price": "120000",
+      "shipping": "15000",
+      "currency": "VND",
+      "ships_from": "VN",
+      "ships_to": [
+        "VN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://s.shopee.example/VN-401",
+      "commission_rate": "0.07",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Shop VN"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/VN-401-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "ID:501",
+      "title": "Sambal Dendeng Pack",
+      "category_hint": "Makanan > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/shopee/ID-501.jpg"
+      ],
+      "list_price": "45000",
+      "shipping": "9000",
+      "currency": "IDR",
+      "ships_from": "ID",
+      "ships_to": [
+        "ID"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://s.shopee.example/ID-501",
+      "commission_rate": "0.07",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Toko ID"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/ID-501-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "PH:601",
+      "title": "Electric Fan 16 inch",
+      "category_hint": "Appliances > fans-air-conditioners",
+      "image_urls": [
+        "https://images.zakka.example/shopee/PH-601.jpg"
+      ],
+      "list_price": "1299",
+      "shipping": "0",
+      "currency": "PHP",
+      "ships_from": "PH",
+      "ships_to": [
+        "PH"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 7,
+      "url": "https://s.shopee.example/PH-601",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Shop PH"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/PH-601-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "BR:701",
+      "title": "Kit Maquiagem Básico",
+      "category_hint": "Beleza > makeup",
+      "image_urls": [
+        "https://images.zakka.example/shopee/BR-701.jpg"
+      ],
+      "list_price": "79.90",
+      "shipping": "0",
+      "currency": "BRL",
+      "ships_from": "BR",
+      "ships_to": [
+        "BR"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 8,
+      "url": "https://s.shopee.example/BR-701",
+      "commission_rate": "0.08",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Loja BR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/BR-701-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "TW:801",
+      "title": "Bubble Tea Tumbler",
+      "category_hint": "Home > food-storage",
+      "image_urls": [
+        "https://images.zakka.example/shopee/TW-801.jpg"
+      ],
+      "list_price": "390",
+      "shipping": "60",
+      "currency": "TWD",
+      "ships_from": "TW",
+      "ships_to": [
+        "TW"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://s.shopee.example/TW-801",
+      "commission_rate": "0.07",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Shop TW"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/shopee/TW-801-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

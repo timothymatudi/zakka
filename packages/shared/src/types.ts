@@ -9,7 +9,9 @@ export type SourceCode =
   | 'cj' | 'aliexpress_ds' | 'spocket' | 'printful'
   | 'amazon' | 'temu' | 'shein' | 'aliexpress_aff' | 'jumia' | 'noon' | 'flipkart'
   // Worldwide: one marketplace and four affiliate networks (each covers thousands of retailers)
-  | 'ebay' | 'awin' | 'impact' | 'rakuten' | 'admitad';
+  | 'ebay' | 'awin' | 'impact' | 'rakuten' | 'admitad'
+  // Regional leaders: Latin America, Southeast Asia, Japan, Korea
+  | 'mercadolibre' | 'shopee' | 'lazada' | 'rakuten_ichiba' | 'coupang';
 
 export interface SearchOffer {
   offer_id: string;

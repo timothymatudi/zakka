@@ -52,6 +52,11 @@ const SOURCE_LIST: [SourceCode, SourceKind, string][] = [
   ['impact', 'affiliate', 'Impact'],
   ['rakuten', 'affiliate', 'Rakuten Advertising'],
   ['admitad', 'affiliate', 'Admitad'],
+  ['mercadolibre', 'affiliate', 'Mercado Libre'],
+  ['shopee', 'affiliate', 'Shopee'],
+  ['lazada', 'affiliate', 'Lazada'],
+  ['rakuten_ichiba', 'affiliate', 'Rakuten Ichiba'],
+  ['coupang', 'affiliate', 'Coupang'],
 ];
 
 export const SOURCES: MockSource[] = SOURCE_LIST.map(([code, kind, name], i) => ({

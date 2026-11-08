@@ -187,6 +187,31 @@
       "code": "PHP",
       "symbol": "₱",
       "decimals": 2
+    },
+    {
+      "code": "ARS",
+      "symbol": "AR$",
+      "decimals": 2
+    },
+    {
+      "code": "COP",
+      "symbol": "COL$",
+      "decimals": 2
+    },
+    {
+      "code": "PEN",
+      "symbol": "S/",
+      "decimals": 2
+    },
+    {
+      "code": "THB",
+      "symbol": "฿",
+      "decimals": 2
+    },
+    {
+      "code": "TWD",
+      "symbol": "NT$",
+      "decimals": 2
     }
   ],
   "fx_rates": [
@@ -364,6 +389,31 @@
       "base": "USD",
       "quote": "PHP",
       "rate": "57"
+    },
+    {
+      "base": "USD",
+      "quote": "ARS",
+      "rate": "1000"
+    },
+    {
+      "base": "USD",
+      "quote": "COP",
+      "rate": "4200"
+    },
+    {
+      "base": "USD",
+      "quote": "PEN",
+      "rate": "3.75"
+    },
+    {
+      "base": "USD",
+      "quote": "THB",
+      "rate": "34.5"
+    },
+    {
+      "base": "USD",
+      "quote": "TWD",
+      "rate": "32"
     }
   ],
   "countries": [
@@ -608,6 +658,36 @@
       "code": "admitad",
       "kind": "affiliate",
       "name": "Admitad"
+    },
+    {
+      "id": "e0b1c2d3-0006-5a00-8000-000000000006",
+      "code": "mercadolibre",
+      "kind": "affiliate",
+      "name": "Mercado Libre"
+    },
+    {
+      "id": "e0b1c2d3-0007-5a00-8000-000000000007",
+      "code": "shopee",
+      "kind": "affiliate",
+      "name": "Shopee"
+    },
+    {
+      "id": "e0b1c2d3-0008-5a00-8000-000000000008",
+      "code": "lazada",
+      "kind": "affiliate",
+      "name": "Lazada"
+    },
+    {
+      "id": "e0b1c2d3-0009-5a00-8000-000000000009",
+      "code": "rakuten_ichiba",
+      "kind": "affiliate",
+      "name": "Rakuten Ichiba"
+    },
+    {
+      "id": "e0b1c2d3-0009-5a00-8000-000000000010",
+      "code": "coupang",
+      "kind": "affiliate",
+      "name": "Coupang"
     }
   ],
   "markup_rules": [

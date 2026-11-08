@@ -1,0 +1,167 @@
+{
+  "_note": "MOCK fixture for source 'rakuten_ichiba'. Fictional products, ids and URLs (*.example). attributes.merchant is the shop inside the marketplace (internal only).",
+  "source": "rakuten_ichiba",
+  "currency": "JPY",
+  "products": [
+    {
+      "external_id": "shop-a:10001",
+      "title": "抹茶 宇治 100g",
+      "category_hint": "食品 > coffee-tea",
+      "image_urls": [
+        "https://images.zakka.example/rakuten_ichiba/shop-a-10001.jpg"
+      ],
+      "list_price": "2480",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://hb.afl.rakuten.example/ichiba/shop-a-10001",
+      "commission_rate": "0.04",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "宇治茶店"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten_ichiba/shop-a-10001-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ja"
+    },
+    {
+      "external_id": "shop-b:10002",
+      "title": "炊飯器 5.5合",
+      "category_hint": "家電 > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/rakuten_ichiba/shop-b-10002.jpg"
+      ],
+      "list_price": "19800",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://hb.afl.rakuten.example/ichiba/shop-b-10002",
+      "commission_rate": "0.02",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "家電ショップ"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten_ichiba/shop-b-10002-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ja"
+    },
+    {
+      "external_id": "shop-c:10003",
+      "title": "スニーカー レディース",
+      "category_hint": "靴 > womens-shoes",
+      "image_urls": [
+        "https://images.zakka.example/rakuten_ichiba/shop-c-10003.jpg"
+      ],
+      "list_price": "6980",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 4,
+      "url": "https://hb.afl.rakuten.example/ichiba/shop-c-10003",
+      "commission_rate": "0.04",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "靴の店"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten_ichiba/shop-c-10003-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ja"
+    },
+    {
+      "external_id": "shop-d:10004",
+      "title": "包丁 三徳 165mm",
+      "category_hint": "キッチン > cookware",
+      "image_urls": [
+        "https://images.zakka.example/rakuten_ichiba/shop-d-10004.jpg"
+      ],
+      "list_price": "8800",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://hb.afl.rakuten.example/ichiba/shop-d-10004",
+      "commission_rate": "0.04",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "刃物店"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten_ichiba/shop-d-10004-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ja"
+    },
+    {
+      "external_id": "shop-e:10005",
+      "title": "ワイヤレスイヤホン",
+      "category_hint": "家電 > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/rakuten_ichiba/shop-e-10005.jpg"
+      ],
+      "list_price": "3990",
+      "shipping": "0",
+      "currency": "JPY",
+      "ships_from": "JP",
+      "ships_to": [
+        "JP"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://hb.afl.rakuten.example/ichiba/shop-e-10005",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "デジタル店"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/rakuten_ichiba/shop-e-10005-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ja"
+    }
+  ]
+}

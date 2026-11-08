@@ -18,6 +18,7 @@ from .partners import (
 )
 from .networks import NETWORK_CONNECTORS
 from .printful import PrintfulConnector
+from .regional import REGIONAL_CONNECTORS
 
 CONNECTORS: dict[str, type[Connector]] = {
     c.code: c
@@ -26,6 +27,7 @@ CONNECTORS: dict[str, type[Connector]] = {
         AmazonCreatorsConnector, TemuConnector, SheinConnector, AliExpressAffiliateConnector,
         JumiaConnector, NoonConnector, FlipkartConnector,
         *NETWORK_CONNECTORS,  # worldwide: ebay, awin, impact, rakuten, admitad
+        *REGIONAL_CONNECTORS,  # regional leaders: mercadolibre, shopee, lazada, rakuten_ichiba, coupang
     )
 }
 

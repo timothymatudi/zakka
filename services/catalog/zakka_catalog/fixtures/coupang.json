@@ -1,0 +1,167 @@
+{
+  "_note": "MOCK fixture for source 'coupang'. Fictional products, ids and URLs (*.example). attributes.merchant is the shop inside the marketplace (internal only).",
+  "source": "coupang",
+  "currency": "KRW",
+  "products": [
+    {
+      "external_id": "CP-1",
+      "title": "무선 이어폰 노이즈캔슬링",
+      "category_hint": "가전 > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/coupang/CP-1.jpg"
+      ],
+      "list_price": "59000",
+      "shipping": "0",
+      "currency": "KRW",
+      "ships_from": "KR",
+      "ships_to": [
+        "KR"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 1,
+      "url": "https://link.coupang.example/a/CP-1",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Coupang"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/coupang/CP-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ko"
+    },
+    {
+      "external_id": "CP-2",
+      "title": "에어프라이어 5L",
+      "category_hint": "주방 > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/coupang/CP-2.jpg"
+      ],
+      "list_price": "89000",
+      "shipping": "0",
+      "currency": "KRW",
+      "ships_from": "KR",
+      "ships_to": [
+        "KR"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 1,
+      "url": "https://link.coupang.example/a/CP-2",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Coupang"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/coupang/CP-2-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ko"
+    },
+    {
+      "external_id": "CP-3",
+      "title": "러닝화 남성",
+      "category_hint": "신발 > mens-shoes",
+      "image_urls": [
+        "https://images.zakka.example/coupang/CP-3.jpg"
+      ],
+      "list_price": "69000",
+      "shipping": "3000",
+      "currency": "KRW",
+      "ships_from": "KR",
+      "ships_to": [
+        "KR"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://link.coupang.example/a/CP-3",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Coupang"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/coupang/CP-3-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ko"
+    },
+    {
+      "external_id": "CP-4",
+      "title": "스킨케어 세트",
+      "category_hint": "뷰티 > skincare",
+      "image_urls": [
+        "https://images.zakka.example/coupang/CP-4.jpg"
+      ],
+      "list_price": "32000",
+      "shipping": "0",
+      "currency": "KRW",
+      "ships_from": "KR",
+      "ships_to": [
+        "KR"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 1,
+      "url": "https://link.coupang.example/a/CP-4",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Coupang"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/coupang/CP-4-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ko"
+    },
+    {
+      "external_id": "CP-5",
+      "title": "백팩 노트북 15인치",
+      "category_hint": "가방 > backpacks",
+      "image_urls": [
+        "https://images.zakka.example/coupang/CP-5.jpg"
+      ],
+      "list_price": "45000",
+      "shipping": "0",
+      "currency": "KRW",
+      "ships_from": "KR",
+      "ships_to": [
+        "KR"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 2,
+      "url": "https://link.coupang.example/a/CP-5",
+      "commission_rate": "0.03",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Coupang"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/coupang/CP-5-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      },
+      "locale": "ko"
+    }
+  ]
+}

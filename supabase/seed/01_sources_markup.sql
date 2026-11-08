@@ -1,4 +1,4 @@
--- Seed: the 16 contract sources and the global markup rule.
+-- Seed: the 21 contract sources and the global markup rule.
 -- Idempotent: safe to re-run.
 --
 -- config holds PLACEHOLDERS only: no secrets, ever. Credentials come from the
@@ -41,7 +41,18 @@ insert into sources (kind, code, name, is_active, config) values
   ('affiliate', 'rakuten',        'Rakuten Advertising',      true,
      '{"placeholder": true, "mode": "mock", "network": true, "env": ["RAKUTEN_ADV_TOKEN"]}'),
   ('affiliate', 'admitad',        'Admitad',                  true,
-     '{"placeholder": true, "mode": "mock", "network": true, "feeds": true, "env": ["ADMITAD_CLIENT_ID", "ADMITAD_CLIENT_SECRET", "ADMITAD_WEBSITE_ID"]}')
+     '{"placeholder": true, "mode": "mock", "network": true, "feeds": true, "env": ["ADMITAD_CLIENT_ID", "ADMITAD_CLIENT_SECRET", "ADMITAD_WEBSITE_ID"]}'),
+  -- Regional leaders where no other source is local
+  ('affiliate', 'mercadolibre',   'Mercado Libre',            true,
+     '{"placeholder": true, "mode": "mock", "env": ["MERCADOLIBRE_AFFILIATE_ID"], "countries": ["AR", "BR", "MX", "CO", "CL", "PE", "UY", "EC"]}'),
+  ('affiliate', 'shopee',         'Shopee',                   true,
+     '{"placeholder": true, "mode": "mock", "env": ["SHOPEE_APP_ID", "SHOPEE_SECRET"], "countries": ["MY", "SG", "TH", "VN", "ID", "PH", "BR", "TW"]}'),
+  ('affiliate', 'lazada',         'Lazada',                   true,
+     '{"placeholder": true, "mode": "mock", "feeds": true, "env": ["LAZADA_FEED_URLS"], "countries": ["MY", "SG", "TH", "VN", "ID", "PH"]}'),
+  ('affiliate', 'rakuten_ichiba', 'Rakuten Ichiba',           true,
+     '{"placeholder": true, "mode": "mock", "env": ["RAKUTEN_APP_ID", "RAKUTEN_AFFILIATE_ID"], "countries": ["JP"]}'),
+  ('affiliate', 'coupang',        'Coupang',                  true,
+     '{"placeholder": true, "mode": "mock", "env": ["COUPANG_ACCESS_KEY", "COUPANG_SECRET_KEY"], "countries": ["KR"]}')
 on conflict (code) do update
   set kind = excluded.kind, name = excluded.name;
 

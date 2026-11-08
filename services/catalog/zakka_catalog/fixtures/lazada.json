@@ -1,0 +1,193 @@
+{
+  "_note": "MOCK fixture for source 'lazada'. Fictional products, ids and URLs (*.example). attributes.merchant is the shop inside the marketplace (internal only).",
+  "source": "lazada",
+  "currency": "MYR",
+  "products": [
+    {
+      "external_id": "MY:L1",
+      "title": "Rice Cooker 1.8L",
+      "category_hint": "Appliances > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/lazada/MY-L1.jpg"
+      ],
+      "list_price": "129.00",
+      "shipping": "0",
+      "currency": "MYR",
+      "ships_from": "MY",
+      "ships_to": [
+        "MY"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://c.lazada.example/t/MY-L1",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "LazMall MY"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/MY-L1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "PH:L2",
+      "title": "Running Shoes Men",
+      "category_hint": "Shoes > mens-shoes",
+      "image_urls": [
+        "https://images.zakka.example/lazada/PH-L2.jpg"
+      ],
+      "list_price": "1890",
+      "shipping": "0",
+      "currency": "PHP",
+      "ships_from": "PH",
+      "ships_to": [
+        "PH"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://c.lazada.example/t/PH-L2",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Store PH"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/PH-L2-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "TH:L3",
+      "title": "Bluetooth Speaker Mini",
+      "category_hint": "Electronics > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/lazada/TH-L3.jpg"
+      ],
+      "list_price": "590",
+      "shipping": "0",
+      "currency": "THB",
+      "ships_from": "TH",
+      "ships_to": [
+        "TH"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://c.lazada.example/t/TH-L3",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Store TH"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/TH-L3-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "ID:L4",
+      "title": "Tas Ransel Laptop",
+      "category_hint": "Tas > backpacks",
+      "image_urls": [
+        "https://images.zakka.example/lazada/ID-L4.jpg"
+      ],
+      "list_price": "199000",
+      "shipping": "0",
+      "currency": "IDR",
+      "ships_from": "ID",
+      "ships_to": [
+        "ID"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://c.lazada.example/t/ID-L4",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Toko ID"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/ID-L4-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "VN:L5",
+      "title": "Nồi Chiên Không Dầu",
+      "category_hint": "Bếp > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/lazada/VN-L5.jpg"
+      ],
+      "list_price": "1290000",
+      "shipping": "0",
+      "currency": "VND",
+      "ships_from": "VN",
+      "ships_to": [
+        "VN"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://c.lazada.example/t/VN-L5",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Shop VN"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/VN-L5-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "SG:L6",
+      "title": "Yoga Mat 8mm",
+      "category_hint": "Sports > fitness-equipment",
+      "image_urls": [
+        "https://images.zakka.example/lazada/SG-L6.jpg"
+      ],
+      "list_price": "39.90",
+      "shipping": "0",
+      "currency": "SGD",
+      "ships_from": "SG",
+      "ships_to": [
+        "SG"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 3,
+      "url": "https://c.lazada.example/t/SG-L6",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Store SG"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/lazada/SG-L6-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

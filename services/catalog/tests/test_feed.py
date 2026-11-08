@@ -22,7 +22,7 @@ from zakka_catalog.store import Country, FeedCategory, FeedRow, OfferView, Offer
 BASE = "https://zakka.example"
 G = "{http://base.google.com/ns/1.0}"
 # Every supplier / partner name from docs/CONTRACT.md, as whole words.
-PARTNER_WORDS = re.compile(r"(?i)\b(cj|aliexpress|spocket|printful|amazon|temu|shein|jumia|noon|flipkart|ebay|awin|rakuten|admitad)\b")
+PARTNER_WORDS = re.compile(r"(?i)\b(cj|aliexpress|spocket|printful|amazon|temu|shein|jumia|noon|flipkart|ebay|awin|rakuten|admitad|shopee|lazada|coupang|mercado\s*libre)\b")
 
 
 def items(store, country="KE", locale="sw"):

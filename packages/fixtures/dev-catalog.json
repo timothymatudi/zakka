@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T23:13:51+00:00",
+ "generated_at": "2026-11-08T00:04:39+00:00",
  "categories": [
   {
    "id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
@@ -2155,6 +2155,31 @@
   {
    "id": "e0b1c2d3-0005-5a00-8000-00000000ad01",
    "code": "admitad",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0006-5a00-8000-000000000006",
+   "code": "mercadolibre",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0007-5a00-8000-000000000007",
+   "code": "shopee",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0008-5a00-8000-000000000008",
+   "code": "lazada",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0009-5a00-8000-000000000009",
+   "code": "rakuten_ichiba",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0009-5a00-8000-000000000010",
+   "code": "coupang",
    "kind": "affiliate"
   }
  ],
@@ -10921,6 +10946,2016 @@
      "bullet_points": []
     }
    }
+  },
+  {
+   "id": "4e37fa14-4f2c-5ca7-8ef5-ca2c78132900",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MLA-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Tienda AR"
+   },
+   "translations": {
+    "en": {
+     "title": "Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Auriculares Bluetooth Deportivos",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "dcb7ce23-09f9-5aea-a04d-e4181418cb02",
+   "category_id": "96b44677-5de2-57a3-955d-f73477391d8b",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MLB-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Loja BR"
+   },
+   "translations": {
+    "en": {
+     "title": "Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Tênis Casual Feminino",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "a94a5c8b-0e14-5002-a044-f7340fee5b1a",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MLM-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Tienda MX"
+   },
+   "translations": {
+    "en": {
+     "title": "Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Freidora de Aire 5L",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "c0405e42-4ea1-541b-b568-1f71f5aac76d",
+   "category_id": "7f3341da-30b0-5201-8b51-983c589e0381",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MCO-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Tienda CO"
+   },
+   "translations": {
+    "en": {
+     "title": "Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Morral Escolar Impermeable",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "df700247-c5cd-529e-92d9-ec6fa4bb67aa",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MLC-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Tienda CL"
+   },
+   "translations": {
+    "en": {
+     "title": "Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Parlante Portátil 20W",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "eddf381c-d548-5343-af27-75d085b0073a",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/mercadolibre/MPE-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Tienda PE"
+   },
+   "translations": {
+    "en": {
+     "title": "Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Licuadora de Mano",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "e52547f8-0aa9-50da-8f7a-83a8c6084158",
+   "category_id": "b6cb05af-3826-5a79-a8b2-57fbfb70053f",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/MY-101.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Kedai MY"
+   },
+   "translations": {
+    "en": {
+     "title": "Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Baju Kurung Moden",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "8e8a576e-8fc1-5e1c-ad99-e02b4ba4890c",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/SG-201.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Shop SG"
+   },
+   "translations": {
+    "en": {
+     "title": "Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Bubble Tea Kit",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "bf9b7d3c-336d-5b52-b8fd-10ad0d0fad10",
+   "category_id": "ceb3eed9-1809-5502-b574-0411dc281da4",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/TH-301.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "ร้าน TH"
+   },
+   "translations": {
+    "en": {
+     "title": "Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Thai Silk Scarf",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "17587511-3cef-5255-b663-34423462a974",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/VN-401.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Shop VN"
+   },
+   "translations": {
+    "en": {
+     "title": "Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Phin Coffee Filter Set",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "ebd18665-6315-5ade-8ebe-ee121de69109",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/ID-501.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Toko ID"
+   },
+   "translations": {
+    "en": {
+     "title": "Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Sambal Dendeng Pack",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "ced40273-a1ef-53eb-b3da-c050e493f8b3",
+   "category_id": "9053b749-a27a-5fa7-8ab0-aa3651788622",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/PH-601.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Shop PH"
+   },
+   "translations": {
+    "en": {
+     "title": "Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Electric Fan 16 inch",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "5164125e-65ed-507d-bc2a-ef0e691fd6c5",
+   "category_id": "4f8d60de-bc0b-5963-91a7-464397da85b6",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/BR-701.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Loja BR"
+   },
+   "translations": {
+    "en": {
+     "title": "Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Kit Maquiagem Básico",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "0c8fe0fd-9379-5beb-bbdf-45138d5fcc11",
+   "category_id": "d8bdace2-1a96-599b-a3c2-213b807f2b8c",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/shopee/TW-801.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Shop TW"
+   },
+   "translations": {
+    "en": {
+     "title": "Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Bubble Tea Tumbler",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "675337fa-9005-58e4-b383-16fe385f4ae8",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/MY-L1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "LazMall MY"
+   },
+   "translations": {
+    "en": {
+     "title": "Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Rice Cooker 1.8L",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "b33a47ef-6018-5e7b-89a6-c20ef60c6715",
+   "category_id": "e025364f-078e-5df1-bae1-71b055b39e1a",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/PH-L2.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Store PH"
+   },
+   "translations": {
+    "en": {
+     "title": "Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Running Shoes Men",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "ba68908c-4bd8-5000-9675-29b336ffc587",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/TH-L3.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Store TH"
+   },
+   "translations": {
+    "en": {
+     "title": "Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Bluetooth Speaker Mini",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "fdc87f8f-56c9-5fae-9342-7b13d0014547",
+   "category_id": "7f3341da-30b0-5201-8b51-983c589e0381",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/ID-L4.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Toko ID"
+   },
+   "translations": {
+    "en": {
+     "title": "Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Tas Ransel Laptop",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "7c999c05-6dc5-5d8d-a414-48dfebc49beb",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/VN-L5.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Shop VN"
+   },
+   "translations": {
+    "en": {
+     "title": "Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Nồi Chiên Không Dầu",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "68dc76f4-b14b-5b23-aa7c-ed4152fc0e52",
+   "category_id": "77800128-b120-5f12-937b-203a709aac75",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/lazada/SG-L6.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Store SG"
+   },
+   "translations": {
+    "en": {
+     "title": "Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Yoga Mat 8mm",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "202bed23-60b2-577b-b6b6-23a89517d688",
+   "category_id": "d4477e14-b778-5687-b5fe-5eabbe355b19",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten_ichiba/shop-a-10001.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "宇治茶店"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 抹茶 宇治 100g",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "559cf19f-05c0-5b46-9ee9-08a2fecb87cd",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten_ichiba/shop-b-10002.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "家電ショップ"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 炊飯器 5.5合",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "c50678eb-dca7-5d90-a85b-bda195cc2555",
+   "category_id": "96b44677-5de2-57a3-955d-f73477391d8b",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten_ichiba/shop-c-10003.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "靴の店"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] スニーカー レディース",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "78efb8de-7c7a-53b1-a06b-90763bf21521",
+   "category_id": "0032c393-ad41-52ef-bb4e-dd02345ecdfb",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten_ichiba/shop-d-10004.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "刃物店"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 包丁 三徳 165mm",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "c37442b7-aacb-51de-98d2-12a46dbf1aae",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/rakuten_ichiba/shop-e-10005.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "デジタル店"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] ワイヤレスイヤホン",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "9c106fbb-cc24-5e1e-9090-0dda9d12d639",
+   "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/coupang/CP-1.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Coupang"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 무선 이어폰 노이즈캔슬링",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "3ee0463c-9caf-5af7-93fb-9bfe9005e4e3",
+   "category_id": "1d5c6f6b-6fee-54ee-819c-ebeab5edff50",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/coupang/CP-2.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Coupang"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 에어프라이어 5L",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "2261bec2-fb4f-58ec-b258-f689090e45fa",
+   "category_id": "e025364f-078e-5df1-bae1-71b055b39e1a",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/coupang/CP-3.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Coupang"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 러닝화 남성",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "f4df4dbf-7adc-5bb0-8752-3a24c08e3503",
+   "category_id": "d9935643-c1b9-5dfc-8eb7-fbedc63b44a7",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/coupang/CP-4.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Coupang"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 스킨케어 세트",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "285980ac-9d5b-555c-b881-4850c0fd3212",
+   "category_id": "7f3341da-30b0-5201-8b51-983c589e0381",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/coupang/CP-5.jpg"
+   ],
+   "rating": 4.5,
+   "review_count": 340,
+   "popularity": 0.4559,
+   "attributes": {
+    "merchant": "Coupang"
+   },
+   "translations": {
+    "en": {
+     "title": "[en] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] 백팩 노트북 15인치",
+     "description": null,
+     "bullet_points": []
+    }
+   }
   }
  ],
  "offers": [
@@ -14519,16 +16554,618 @@
    "delivery_days_min": 8,
    "delivery_days_max": 22,
    "is_active": true
+  },
+  {
+   "id": "43d1a3da-400d-5143-b7fe-809b1ebee419",
+   "product_id": "4e37fa14-4f2c-5ca7-8ef5-ca2c78132900",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MLA-1",
+   "url": "https://articulo.mercadolibre.example/MLA-1?matt_tool=mock",
+   "display_price_usd": 46,
+   "list_price_local": 45999,
+   "list_currency": "ARS",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "AR",
+   "ships_to": [
+    "AR"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "41ff46a8-2a78-5a16-a785-fe613ca307cc",
+   "product_id": "dcb7ce23-09f9-5aea-a04d-e4181418cb02",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MLB-1",
+   "url": "https://articulo.mercadolibre.example/MLB-1?matt_tool=mock",
+   "display_price_usd": 33.91,
+   "list_price_local": 189.9,
+   "list_currency": "BRL",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "BR",
+   "ships_to": [
+    "BR"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "d283ba0d-edd9-5d84-8ce1-1f9aeb48f32a",
+   "product_id": "a94a5c8b-0e14-5002-a044-f7340fee5b1a",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MLM-1",
+   "url": "https://articulo.mercadolibre.example/MLM-1?matt_tool=mock",
+   "display_price_usd": 66.62,
+   "list_price_local": 1299,
+   "list_currency": "MXN",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "MX",
+   "ships_to": [
+    "MX"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 4,
+   "is_active": true
+  },
+  {
+   "id": "9d0575a4-5f46-5ba2-ad08-e0cd47db4abc",
+   "product_id": "c0405e42-4ea1-541b-b568-1f71f5aac76d",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MCO-1",
+   "url": "https://articulo.mercadolibre.example/MCO-1?matt_tool=mock",
+   "display_price_usd": 23.76,
+   "list_price_local": 89900,
+   "list_currency": "COP",
+   "shipping_usd": 2.36,
+   "shipping_local": 9900,
+   "ships_from": "CO",
+   "ships_to": [
+    "CO"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "864ba802-1333-5920-85bb-5b4972991336",
+   "product_id": "df700247-c5cd-529e-92d9-ec6fa4bb67aa",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MLC-1",
+   "url": "https://articulo.mercadolibre.example/MLC-1?matt_tool=mock",
+   "display_price_usd": 36.83,
+   "list_price_local": 34990,
+   "list_currency": "CLP",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "CL",
+   "ships_to": [
+    "CL"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "202343fc-c5f3-59f4-83d5-0bf88a95b4a4",
+   "product_id": "eddf381c-d548-5343-af27-75d085b0073a",
+   "source_code": "mercadolibre",
+   "kind": "affiliate",
+   "external_id": "MPE-1",
+   "url": "https://articulo.mercadolibre.example/MPE-1?matt_tool=mock",
+   "display_price_usd": 37.07,
+   "list_price_local": 129,
+   "list_currency": "PEN",
+   "shipping_usd": 2.67,
+   "shipping_local": 10,
+   "ships_from": "PE",
+   "ships_to": [
+    "PE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "48a13538-ff1d-5f37-bdef-b465fecde69b",
+   "product_id": "e52547f8-0aa9-50da-8f7a-83a8c6084158",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "MY:101",
+   "url": "https://s.shopee.example/MY-101",
+   "display_price_usd": 20.23,
+   "list_price_local": 89,
+   "list_currency": "MYR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "MY",
+   "ships_to": [
+    "MY"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "ae20b72c-be5d-5ea0-873c-2d5060fd6e0c",
+   "product_id": "8e8a576e-8fc1-5e1c-ad99-e02b4ba4890c",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "SG:201",
+   "url": "https://s.shopee.example/SG-201",
+   "display_price_usd": 18.72,
+   "list_price_local": 24.9,
+   "list_currency": "SGD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "SG",
+   "ships_to": [
+    "SG"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "ed12f951-4b64-59e7-bd2c-2dad7aa1bc7c",
+   "product_id": "bf9b7d3c-336d-5b52-b8fd-10ad0d0fad10",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "TH:301",
+   "url": "https://s.shopee.example/TH-301",
+   "display_price_usd": 14.2,
+   "list_price_local": 450,
+   "list_currency": "THB",
+   "shipping_usd": 1.16,
+   "shipping_local": 40,
+   "ships_from": "TH",
+   "ships_to": [
+    "TH"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "6f4eb248-fe93-553c-b0a8-33cbe55818c6",
+   "product_id": "17587511-3cef-5255-b663-34423462a974",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "VN:401",
+   "url": "https://s.shopee.example/VN-401",
+   "display_price_usd": 5.31,
+   "list_price_local": 120000,
+   "list_currency": "VND",
+   "shipping_usd": 0.59,
+   "shipping_local": 15000,
+   "ships_from": "VN",
+   "ships_to": [
+    "VN"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "7fcab3ce-a31b-5bb5-8730-bc7241c787f8",
+   "product_id": "ebd18665-6315-5ade-8ebe-ee121de69109",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "ID:501",
+   "url": "https://s.shopee.example/ID-501",
+   "display_price_usd": 3.42,
+   "list_price_local": 45000,
+   "list_currency": "IDR",
+   "shipping_usd": 0.57,
+   "shipping_local": 9000,
+   "ships_from": "ID",
+   "ships_to": [
+    "ID"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "b489a534-2db4-54b4-93a7-e7e46bc5a9fc",
+   "product_id": "ced40273-a1ef-53eb-b3da-c050e493f8b3",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "PH:601",
+   "url": "https://s.shopee.example/PH-601",
+   "display_price_usd": 22.79,
+   "list_price_local": 1299,
+   "list_currency": "PHP",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "PH",
+   "ships_to": [
+    "PH"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 7,
+   "is_active": true
+  },
+  {
+   "id": "bcf775de-2e5c-5fa6-b536-97efdbd87c6d",
+   "product_id": "5164125e-65ed-507d-bc2a-ef0e691fd6c5",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "BR:701",
+   "url": "https://s.shopee.example/BR-701",
+   "display_price_usd": 14.27,
+   "list_price_local": 79.9,
+   "list_currency": "BRL",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "BR",
+   "ships_to": [
+    "BR"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 8,
+   "is_active": true
+  },
+  {
+   "id": "7c12aadf-a179-595c-8aea-01b360f2f77c",
+   "product_id": "0c8fe0fd-9379-5beb-bbdf-45138d5fcc11",
+   "source_code": "shopee",
+   "kind": "affiliate",
+   "external_id": "TW:801",
+   "url": "https://s.shopee.example/TW-801",
+   "display_price_usd": 14.07,
+   "list_price_local": 390,
+   "list_currency": "TWD",
+   "shipping_usd": 1.88,
+   "shipping_local": 60,
+   "ships_from": "TW",
+   "ships_to": [
+    "TW"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "630d2ca2-eb49-57e8-bd9f-526cbe0b15bf",
+   "product_id": "675337fa-9005-58e4-b383-16fe385f4ae8",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "MY:L1",
+   "url": "https://c.lazada.example/t/MY-L1",
+   "display_price_usd": 29.32,
+   "list_price_local": 129,
+   "list_currency": "MYR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "MY",
+   "ships_to": [
+    "MY"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "2a65e3a3-b2db-5712-bfa8-41878adff7ee",
+   "product_id": "b33a47ef-6018-5e7b-89a6-c20ef60c6715",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "PH:L2",
+   "url": "https://c.lazada.example/t/PH-L2",
+   "display_price_usd": 33.16,
+   "list_price_local": 1890,
+   "list_currency": "PHP",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "PH",
+   "ships_to": [
+    "PH"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "cd598d3b-c9c0-50ce-85c2-b1079d4b168d",
+   "product_id": "ba68908c-4bd8-5000-9675-29b336ffc587",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "TH:L3",
+   "url": "https://c.lazada.example/t/TH-L3",
+   "display_price_usd": 17.1,
+   "list_price_local": 590,
+   "list_currency": "THB",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "TH",
+   "ships_to": [
+    "TH"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "e1dff31e-bb51-51a1-ab42-85ea37caf920",
+   "product_id": "fdc87f8f-56c9-5fae-9342-7b13d0014547",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "ID:L4",
+   "url": "https://c.lazada.example/t/ID-L4",
+   "display_price_usd": 12.59,
+   "list_price_local": 199000,
+   "list_currency": "IDR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "ID",
+   "ships_to": [
+    "ID"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "c3975820-2221-5b69-95f9-9fb97402f350",
+   "product_id": "7c999c05-6dc5-5d8d-a414-48dfebc49beb",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "VN:L5",
+   "url": "https://c.lazada.example/t/VN-L5",
+   "display_price_usd": 50.79,
+   "list_price_local": 1290000,
+   "list_currency": "VND",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "VN",
+   "ships_to": [
+    "VN"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "5c1039e9-940f-571e-8c0c-f62dfd7d710a",
+   "product_id": "68dc76f4-b14b-5b23-aa7c-ed4152fc0e52",
+   "source_code": "lazada",
+   "kind": "affiliate",
+   "external_id": "SG:L6",
+   "url": "https://c.lazada.example/t/SG-L6",
+   "display_price_usd": 30,
+   "list_price_local": 39.9,
+   "list_currency": "SGD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "SG",
+   "ships_to": [
+    "SG"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "b590ac96-ebf1-5e49-a0ce-27060090ec74",
+   "product_id": "202bed23-60b2-577b-b6b6-23a89517d688",
+   "source_code": "rakuten_ichiba",
+   "kind": "affiliate",
+   "external_id": "shop-a:10001",
+   "url": "https://hb.afl.rakuten.example/ichiba/shop-a-10001",
+   "display_price_usd": 16.53,
+   "list_price_local": 2480,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "9a9fce77-9971-5bd5-88c6-fb75eca9bdd0",
+   "product_id": "559cf19f-05c0-5b46-9ee9-08a2fecb87cd",
+   "source_code": "rakuten_ichiba",
+   "kind": "affiliate",
+   "external_id": "shop-b:10002",
+   "url": "https://hb.afl.rakuten.example/ichiba/shop-b-10002",
+   "display_price_usd": 132,
+   "list_price_local": 19800,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "73ede7d6-e966-5650-a38a-78bee3e75cd1",
+   "product_id": "c50678eb-dca7-5d90-a85b-bda195cc2555",
+   "source_code": "rakuten_ichiba",
+   "kind": "affiliate",
+   "external_id": "shop-c:10003",
+   "url": "https://hb.afl.rakuten.example/ichiba/shop-c-10003",
+   "display_price_usd": 46.53,
+   "list_price_local": 6980,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 4,
+   "is_active": true
+  },
+  {
+   "id": "135a63f0-c3a2-5212-84f1-c622c839baa6",
+   "product_id": "78efb8de-7c7a-53b1-a06b-90763bf21521",
+   "source_code": "rakuten_ichiba",
+   "kind": "affiliate",
+   "external_id": "shop-d:10004",
+   "url": "https://hb.afl.rakuten.example/ichiba/shop-d-10004",
+   "display_price_usd": 58.67,
+   "list_price_local": 8800,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "883b78e5-f581-5b38-bba3-2a791af97423",
+   "product_id": "c37442b7-aacb-51de-98d2-12a46dbf1aae",
+   "source_code": "rakuten_ichiba",
+   "kind": "affiliate",
+   "external_id": "shop-e:10005",
+   "url": "https://hb.afl.rakuten.example/ichiba/shop-e-10005",
+   "display_price_usd": 26.6,
+   "list_price_local": 3990,
+   "list_currency": "JPY",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "JP",
+   "ships_to": [
+    "JP"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "1e7fd0fc-d04f-55ba-8621-d8ae1332c930",
+   "product_id": "9c106fbb-cc24-5e1e-9090-0dda9d12d639",
+   "source_code": "coupang",
+   "kind": "affiliate",
+   "external_id": "CP-1",
+   "url": "https://link.coupang.example/a/CP-1",
+   "display_price_usd": 42.75,
+   "list_price_local": 59000,
+   "list_currency": "KRW",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "KR",
+   "ships_to": [
+    "KR"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 1,
+   "is_active": true
+  },
+  {
+   "id": "3e9c5c35-51b2-5bab-b216-4c5c79fd42bb",
+   "product_id": "3ee0463c-9caf-5af7-93fb-9bfe9005e4e3",
+   "source_code": "coupang",
+   "kind": "affiliate",
+   "external_id": "CP-2",
+   "url": "https://link.coupang.example/a/CP-2",
+   "display_price_usd": 64.49,
+   "list_price_local": 89000,
+   "list_currency": "KRW",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "KR",
+   "ships_to": [
+    "KR"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 1,
+   "is_active": true
+  },
+  {
+   "id": "b10eb800-9b39-5ff0-ac28-2dcfd79bd7e4",
+   "product_id": "2261bec2-fb4f-58ec-b258-f689090e45fa",
+   "source_code": "coupang",
+   "kind": "affiliate",
+   "external_id": "CP-3",
+   "url": "https://link.coupang.example/a/CP-3",
+   "display_price_usd": 52.17,
+   "list_price_local": 69000,
+   "list_currency": "KRW",
+   "shipping_usd": 2.17,
+   "shipping_local": 3000,
+   "ships_from": "KR",
+   "ships_to": [
+    "KR"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 3,
+   "is_active": true
+  },
+  {
+   "id": "eae96b8b-e463-5dcd-ae7f-30ccd3f2483e",
+   "product_id": "f4df4dbf-7adc-5bb0-8752-3a24c08e3503",
+   "source_code": "coupang",
+   "kind": "affiliate",
+   "external_id": "CP-4",
+   "url": "https://link.coupang.example/a/CP-4",
+   "display_price_usd": 23.19,
+   "list_price_local": 32000,
+   "list_currency": "KRW",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "KR",
+   "ships_to": [
+    "KR"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 1,
+   "is_active": true
+  },
+  {
+   "id": "8c8e2031-ea8b-50d7-a7ee-6c946fe8d12b",
+   "product_id": "285980ac-9d5b-555c-b881-4850c0fd3212",
+   "source_code": "coupang",
+   "kind": "affiliate",
+   "external_id": "CP-5",
+   "url": "https://link.coupang.example/a/CP-5",
+   "display_price_usd": 32.61,
+   "list_price_local": 45000,
+   "list_currency": "KRW",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "KR",
+   "ships_to": [
+    "KR"
+   ],
+   "delivery_days_min": 1,
+   "delivery_days_max": 2,
+   "is_active": true
   }
  ],
  "fx_rates": {
   "AED": 3.6725,
+  "ARS": 1000,
   "AUD": 1.5,
   "BRL": 5.6,
   "CAD": 1.38,
   "CHF": 0.87,
   "CLP": 950,
   "CNY": 7.2,
+  "COP": 4200,
   "DKK": 6.85,
   "EGP": 48.5,
   "EUR": 0.92,
@@ -14545,13 +17182,16 @@
   "NGN": 1550,
   "NOK": 10.9,
   "NZD": 1.65,
+  "PEN": 3.75,
   "PHP": 57,
   "PKR": 278,
   "PLN": 4,
   "SAR": 3.75,
   "SEK": 10.6,
   "SGD": 1.33,
+  "THB": 34.5,
   "TRY": 34,
+  "TWD": 32,
   "TZS": 2700,
   "UGX": 3700,
   "USD": 1,
@@ -14560,12 +17200,14 @@
  },
  "currencies": {
   "AED": 2,
+  "ARS": 2,
   "AUD": 2,
   "BRL": 2,
   "CAD": 2,
   "CHF": 2,
   "CLP": 0,
   "CNY": 2,
+  "COP": 2,
   "DKK": 2,
   "EGP": 2,
   "EUR": 2,
@@ -14582,13 +17224,16 @@
   "NGN": 0,
   "NOK": 2,
   "NZD": 2,
+  "PEN": 2,
   "PHP": 2,
   "PKR": 0,
   "PLN": 2,
   "SAR": 2,
   "SEK": 2,
   "SGD": 2,
+  "THB": 2,
   "TRY": 2,
+  "TWD": 2,
   "TZS": 0,
   "UGX": 0,
   "USD": 2,

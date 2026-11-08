@@ -8,6 +8,7 @@ export const PARTNER_NAMES = [
   'Amazon', 'Temu', 'Shein', 'Jumia', 'Noon', 'Flipkart',
   // Worldwide sources ("Impact" alone is an ordinary word, so only its domain is matched)
   'eBay', 'Awin', 'Rakuten', 'Admitad', 'impact.com',
+  'Mercado Libre', 'Mercado Livre', 'MercadoLibre', 'Shopee', 'Lazada', 'Coupang',
 ];
 
 /** Whole-word, case-insensitive match of any partner name (so "noon" in "afternoon" is not flagged). */

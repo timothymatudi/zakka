@@ -6,7 +6,8 @@ The single source of truth every build agent follows. When the contract and your
 A worldwide AI shopping search and WhatsApp concierge. Products come from two kinds of source:
 - **Dropship suppliers** (CJ Dropshipping, AliExpress Dropshipping, Spocket, Printful). Zakka adds a markup, the customer pays Zakka, and the supplier ships.
 - **Affiliate partners** (Amazon via the Creators API, Temu, Shein, AliExpress Portals, Jumia, Noon, Flipkart). No markup: the customer clicks out and Zakka earns a commission.
-- **Worldwide sources** (eBay via the Browse API and eBay Partner Network, and the affiliate networks Awin, Impact, Rakuten Advertising and Admitad). Each one connects Zakka to many retailers in many countries. They are affiliate sources: the network is the source, and the retailer's name stays in the offer's internal attributes.
+- **Worldwide sources** (eBay via the Browse API and eBay Partner Network, and the affiliate networks Awin, Impact, Rakuten Advertising and Admitad). Each one connects Zakka to many retailers in many countries.
+- **Regional leaders** (Mercado Libre, Shopee, Lazada, Rakuten Ichiba, Coupang) cover Latin America, Southeast Asia, Japan and Korea, where no other source is local. They are affiliate sources: the network is the source, and the retailer's name stays in the offer's internal attributes.
 
 Customers see one catalog with an honest **total price in local currency** and a **delivery estimate to their country**.
 
@@ -34,7 +35,7 @@ The authoritative SQL is `supabase/migrations/0001_core.sql`. Summary:
 - `locales(code PK, name, dir 'ltr'|'rtl', is_active)`
 - `currencies(code PK, symbol, decimals)` and `fx_rates(base, quote, rate, fetched_at)`, where base is always `USD`
 - `categories(id, parent_id, slug, shopify_taxonomy_id, google_category_id, sort, is_top_level, icon)` and `category_translations(category_id, locale, name)`
-- `sources(id, kind 'dropship'|'affiliate', code, name, is_active, config jsonb)`, where code is one of `cj`, `aliexpress_ds`, `spocket`, `printful`, `amazon`, `temu`, `shein`, `aliexpress_aff`, `jumia`, `noon`, `flipkart`, `ebay`, `awin`, `impact`, `rakuten`, `admitad`
+- `sources(id, kind 'dropship'|'affiliate', code, name, is_active, config jsonb)`, where code is one of `cj`, `aliexpress_ds`, `spocket`, `printful`, `amazon`, `temu`, `shein`, `aliexpress_aff`, `jumia`, `noon`, `flipkart`, `ebay`, `awin`, `impact`, `rakuten`, `admitad`, `mercadolibre`, `shopee`, `lazada`, `rakuten_ichiba`, `coupang`
 - `products(id uuid, category_id, brand, gtin, image_urls text[], attributes jsonb, rating, review_count, is_active, created_at, updated_at)` and `product_translations(product_id, locale, title, description, bullet_points text[])`
 - `offers(id uuid, product_id, source_id, external_id, url, cost_usd, list_price_usd, shipping_usd, stock, ships_from char(2), ships_to text[], delivery_days_min, delivery_days_max, commission_rate, last_synced_at, is_active)`. Each offer is one source's way to buy one product. Affiliate offers have `url` set and `cost_usd` null. Dropship offers have `cost_usd` set.
 - `markup_rules(id, scope 'global'|'category'|'source'|'product', scope_id, percent, fixed_usd, round_to, priority, is_active)`
@@ -122,7 +123,7 @@ Base URL: `CATALOG_API_URL` (default `http://localhost:4020`).
 `en, es, fr, pt, ar, zh, hi, sw, de, id`
 
 ## Source names are hidden from customers (owner's decision)
-- Customer-facing UI and WhatsApp messages **never show supplier or partner names** (CJ, AliExpress, Spocket, Printful, Amazon, Temu, Shein, Jumia, Noon, Flipkart, eBay, Awin, Impact, Rakuten, Admitad, or the retailers inside those networks). No logos, no "Ships via X", no "Buy on X".
+- Customer-facing UI and WhatsApp messages **never show supplier or partner names** (CJ, AliExpress, Spocket, Printful, Amazon, Temu, Shein, Jumia, Noon, Flipkart, eBay, Awin, Impact, Rakuten, Admitad, Mercado Libre, Shopee, Lazada, Coupang, or the retailers inside those networks). No logos, no "Ships via X", no "Buy on X".
 - **Dropship** items look like Zakka's own products, for example "Sold by Zakka".
 - **Affiliate** items use a generic label, such as "Partner store", and the button "Continue to partner store". The "Affiliate link: Zakka may earn a commission" disclosure stays on every affiliate item.
 - Disclosure statements that a program requires (for example "As an Amazon Associate, Zakka earns from qualifying purchases") appear only on the site-wide footer and the `/legal/affiliates` page, never on product cards.

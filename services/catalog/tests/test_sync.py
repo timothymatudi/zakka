@@ -34,13 +34,13 @@ def sp(eid, **kw):
 
 def test_sync_all_sources_in_mock_mode(synced):
     offers = synced.list_offers(active_only=False)
-    assert len(offers) == 139
+    assert len(offers) == 169
     assert all(o.last_synced_at for o in offers)
     # every product has all 10 locales
     for pid in {o.product_id for o in offers}:
         assert synced.translation_locales(pid) == set(PHASE1_LOCALES)
     # display prices computed for every offer
-    assert len(synced.display_prices) == 139
+    assert len(synced.display_prices) == 169
 
 
 def test_gtin_dedupes_across_sources(synced):

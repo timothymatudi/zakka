@@ -1,0 +1,193 @@
+{
+  "_note": "MOCK fixture for source 'mercadolibre'. Fictional products, ids and URLs (*.example). attributes.merchant is the shop inside the marketplace (internal only).",
+  "source": "mercadolibre",
+  "currency": "ARS",
+  "products": [
+    {
+      "external_id": "MLA-1",
+      "title": "Auriculares Bluetooth Deportivos",
+      "category_hint": "Electrónica > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MLA-1.jpg"
+      ],
+      "list_price": "45999",
+      "shipping": "0",
+      "currency": "ARS",
+      "ships_from": "AR",
+      "ships_to": [
+        "AR"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://articulo.mercadolibre.example/MLA-1?matt_tool=mock",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Tienda AR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MLA-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "MLB-1",
+      "title": "Tênis Casual Feminino",
+      "category_hint": "Calçados > womens-shoes",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MLB-1.jpg"
+      ],
+      "list_price": "189.90",
+      "shipping": "0",
+      "currency": "BRL",
+      "ships_from": "BR",
+      "ships_to": [
+        "BR"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://articulo.mercadolibre.example/MLB-1?matt_tool=mock",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Loja BR"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MLB-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "MLM-1",
+      "title": "Freidora de Aire 5L",
+      "category_hint": "Cocina > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MLM-1.jpg"
+      ],
+      "list_price": "1299",
+      "shipping": "0",
+      "currency": "MXN",
+      "ships_from": "MX",
+      "ships_to": [
+        "MX"
+      ],
+      "delivery_days_min": 1,
+      "delivery_days_max": 4,
+      "url": "https://articulo.mercadolibre.example/MLM-1?matt_tool=mock",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Tienda MX"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MLM-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "MCO-1",
+      "title": "Morral Escolar Impermeable",
+      "category_hint": "Escolar > backpacks",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MCO-1.jpg"
+      ],
+      "list_price": "89900",
+      "shipping": "9900",
+      "currency": "COP",
+      "ships_from": "CO",
+      "ships_to": [
+        "CO"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://articulo.mercadolibre.example/MCO-1?matt_tool=mock",
+      "commission_rate": "0.06",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Tienda CO"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MCO-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "MLC-1",
+      "title": "Parlante Portátil 20W",
+      "category_hint": "Electrónica > audio-headphones",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MLC-1.jpg"
+      ],
+      "list_price": "34990",
+      "shipping": "0",
+      "currency": "CLP",
+      "ships_from": "CL",
+      "ships_to": [
+        "CL"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://articulo.mercadolibre.example/MLC-1?matt_tool=mock",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Tienda CL"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MLC-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "MPE-1",
+      "title": "Licuadora de Mano",
+      "category_hint": "Cocina > kitchen-appliances",
+      "image_urls": [
+        "https://images.zakka.example/mercadolibre/MPE-1.jpg"
+      ],
+      "list_price": "129",
+      "shipping": "10",
+      "currency": "PEN",
+      "ships_from": "PE",
+      "ships_to": [
+        "PE"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 6,
+      "url": "https://articulo.mercadolibre.example/MPE-1?matt_tool=mock",
+      "commission_rate": "0.05",
+      "rating": "4.5",
+      "review_count": 340,
+      "attributes": {
+        "merchant": "Tienda PE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/mercadolibre/MPE-1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

@@ -254,6 +254,18 @@ Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport
 | `rakuten` | Rakuten Advertising network | Seed queries | Yes | `RAKUTEN_ADV_TOKEN` |
 | `admitad` | Admitad network (Latin America, Asia, Eastern Europe, Turkey) | One page per joined program feed | No (feeds only) | `ADMITAD_CLIENT_ID`, `ADMITAD_CLIENT_SECRET`, `ADMITAD_WEBSITE_ID` |
 
+**Regional leaders** (`connectors/regional.py`) cover the markets the networks above leave thin:
+
+| Code | Market | How products come in | Keys |
+| --- | --- | --- | --- |
+| `mercadolibre` | Latin America | Not yet: the public docs no longer offer keyword search, so live mode refuses until the affiliate program provides an API or feed | `MERCADOLIBRE_AFFILIATE_ID` |
+| `shopee` | Malaysia, Singapore, Thailand, Vietnam, Indonesia, Philippines, Brazil, Taiwan | Affiliate Open API (GraphQL), one host per country in `SHOPEE_COUNTRIES` | `SHOPEE_APP_ID`, `SHOPEE_SECRET` |
+| `lazada` | Southeast Asia | Affiliate datafeeds, `LAZADA_FEED_URLS=MY=https://…,PH=https://…` | `LAZADA_FEED_URLS` |
+| `rakuten_ichiba` | Japan | Rakuten Web Service Item Search with your affiliate id | `RAKUTEN_APP_ID`, `RAKUTEN_AFFILIATE_ID` (+ `RAKUTEN_ACCESS_KEY`) |
+| `coupang` | South Korea | Coupang Partners Open API (HMAC) | `COUPANG_ACCESS_KEY`, `COUPANG_SECRET_KEY` |
+
+Shopee and Lazada document their affiliate APIs only inside their dashboards, and the Rakuten docs site was down when this was written, so field names and signing details are marked `TODO(confirm)` until tested with real keys.
+
 * Feed-only sources are skipped by live search, and JIT refresh leaves their offers to the next feed import (they have no single-item lookup).
 * Commission rates differ per retailer; `DEFAULT_COMMISSION` (4%) is an estimate until real rates are loaded.
 * Still to confirm with real accounts: Rakuten's XML element names and token renewal, Admitad's token call and feed columns, and your eBay daily call limit.

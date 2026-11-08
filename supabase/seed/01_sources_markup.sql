@@ -1,4 +1,4 @@
--- Seed: the 21 contract sources and the global markup rule.
+-- Seed: the 22 contract sources and the global markup rule.
 -- Idempotent: safe to re-run.
 --
 -- config holds PLACEHOLDERS only: no secrets, ever. Credentials come from the
@@ -42,6 +42,8 @@ insert into sources (kind, code, name, is_active, config) values
      '{"placeholder": true, "mode": "mock", "network": true, "env": ["RAKUTEN_ADV_TOKEN"]}'),
   ('affiliate', 'admitad',        'Admitad',                  true,
      '{"placeholder": true, "mode": "mock", "network": true, "feeds": true, "env": ["ADMITAD_CLIENT_ID", "ADMITAD_CLIENT_SECRET", "ADMITAD_WEBSITE_ID"]}'),
+  ('affiliate', 'cj_affiliate',   'CJ Affiliate',             true,
+     '{"placeholder": true, "mode": "mock", "network": true, "env": ["CJ_AFFILIATE_TOKEN", "CJ_AFFILIATE_COMPANY_ID", "CJ_AFFILIATE_WEBSITE_ID"]}'),
   -- Regional leaders where no other source is local
   ('affiliate', 'mercadolibre',   'Mercado Libre',            true,
      '{"placeholder": true, "mode": "mock", "env": ["MERCADOLIBRE_AFFILIATE_ID"], "countries": ["AR", "BR", "MX", "CO", "CL", "PE", "UY", "EC"]}'),

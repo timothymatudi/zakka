@@ -1,0 +1,263 @@
+{
+  "_note": "MOCK fixture for source 'cj_affiliate'. Fictional products, ids and URLs (*.example). attributes.merchant is the advertiser (internal only).",
+  "source": "cj_affiliate",
+  "currency": "USD",
+  "products": [
+    {
+      "external_id": "1001:A1",
+      "title": "Cordless Stick Vacuum",
+      "category_hint": "Home > vacuum-cleaners",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/1001-A1.jpg"
+      ],
+      "list_price": "199.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.anrdoezrs.example/click-mock-1001-A1",
+      "commission_rate": "0.04",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Retailer US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/1001-A1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "1001:A2",
+      "title": "Robot Vacuum with Mapping",
+      "category_hint": "Home > vacuum-cleaners",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/1001-A2.jpg"
+      ],
+      "list_price": "329.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 6,
+      "url": "https://www.anrdoezrs.example/click-mock-1001-A2",
+      "commission_rate": "0.04",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Retailer US"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/1001-A2-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "2002:B1",
+      "title": "Women's Trail Running Shoes",
+      "category_hint": "Shoes > womens-shoes",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/2002-B1.jpg"
+      ],
+      "list_price": "119.95",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.anrdoezrs.example/click-mock-2002-B1",
+      "commission_rate": "0.07",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Outdoor Brand"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/2002-B1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "3003:C1",
+      "title": "Stainless Cookware Set 10-Piece",
+      "category_hint": "Kitchen > cookware",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/3003-C1.jpg"
+      ],
+      "list_price": "149.00",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA"
+      ],
+      "delivery_days_min": 3,
+      "delivery_days_max": 7,
+      "url": "https://www.anrdoezrs.example/click-mock-3003-C1",
+      "commission_rate": "0.06",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Kitchen Brand"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/3003-C1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "4004:D1",
+      "title": "Merino Wool Sweater",
+      "category_hint": "Clothing > mens-fashion",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/4004-D1.jpg"
+      ],
+      "list_price": "89.00",
+      "shipping": "4.95",
+      "currency": "GBP",
+      "ships_from": "GB",
+      "ships_to": [
+        "GB",
+        "IE"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.anrdoezrs.example/click-mock-4004-D1",
+      "commission_rate": "0.08",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Knitwear UK"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/4004-D1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "5005:E1",
+      "title": "Smart Watch GPS",
+      "category_hint": "Electronics > watches",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/5005-E1.jpg"
+      ],
+      "list_price": "249.00",
+      "shipping": "0",
+      "currency": "EUR",
+      "ships_from": "DE",
+      "ships_to": [
+        "DE",
+        "AT",
+        "NL"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.anrdoezrs.example/click-mock-5005-E1",
+      "commission_rate": "0.05",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Tech DE"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/5005-E1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "6006:F1",
+      "title": "Dog Bed Orthopedic Large",
+      "category_hint": "Pets > dog-supplies",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/6006-F1.jpg"
+      ],
+      "list_price": "79.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US"
+      ],
+      "delivery_days_min": 2,
+      "delivery_days_max": 5,
+      "url": "https://www.anrdoezrs.example/click-mock-6006-F1",
+      "commission_rate": "0.08",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Pet Store"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/6006-F1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    },
+    {
+      "external_id": "7007:G1",
+      "title": "Vitamin D3 Gummies",
+      "category_hint": "Health > vitamins-supplements",
+      "image_urls": [
+        "https://images.zakka.example/cj_affiliate/7007-G1.jpg"
+      ],
+      "list_price": "18.99",
+      "shipping": "0",
+      "currency": "USD",
+      "ships_from": "US",
+      "ships_to": [
+        "US",
+        "CA",
+        "AU",
+        "GB"
+      ],
+      "delivery_days_min": 4,
+      "delivery_days_max": 12,
+      "url": "https://www.anrdoezrs.example/click-mock-7007-G1",
+      "commission_rate": "0.10",
+      "rating": "4.4",
+      "review_count": 210,
+      "attributes": {
+        "merchant": "Wellness Brand"
+      },
+      "detail": {
+        "gallery": [
+          "https://images.zakka.example/cj_affiliate/7007-G1-2.jpg"
+        ],
+        "attributes": {},
+        "bullet_points": []
+      }
+    }
+  ]
+}

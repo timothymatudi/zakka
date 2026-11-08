@@ -19,7 +19,7 @@ export function localeAlternates(locale: Locale, path: string) {
 
 /** Contract: customer-facing output never names suppliers or partners. */
 const PARTNER_RE =
-  /\b(?:cj\s*dropshipping|aliexpress|spocket|printful|amazon(?:\.[a-z.]+)?|temu|shein|jumia(?:\.[a-z.]+)?|flipkart|noon\.com|noon|ebay(?:\.[a-z.]+)?|awin|rakuten|admitad|impact\.com|mercado\s*li[bv]re|shopee|lazada|coupang|cj)\b/gi;
+  /\b(?:cj\s*dropshipping|aliexpress|spocket|printful|amazon(?:\.[a-z.]+)?|temu|shein|jumia(?:\.[a-z.]+)?|flipkart|noon\.com|noon|ebay(?:\.[a-z.]+)?|awin|rakuten|admitad|impact\.com|mercado\s*li[bv]re|shopee|lazada|coupang|commission\s*junction|cj)\b/gi;
 
 export function hasPartnerName(text: string | null | undefined): boolean {
   return !!text && new RegExp(PARTNER_RE.source, 'i').test(text);

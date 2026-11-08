@@ -13,7 +13,7 @@ def test_export_schema_and_determinism(tmp_path):
     data = json.loads((tmp_path / "a.json").read_text(encoding="utf-8"))
     assert set(data) == {"generated_at", "categories", "sources", "products", "offers", "fx_rates", "currencies"}
     assert len(data["categories"]) == 122 and all(len(c["names"]) == 10 for c in data["categories"])
-    assert len(data["sources"]) == 21 and len(data["offers"]) == 169
+    assert len(data["sources"]) == 22 and len(data["offers"]) == 177
     p = data["products"][0]
     assert {"id", "category_id", "brand", "gtin", "image_urls", "rating", "review_count", "popularity",
             "translations"} <= set(p)
@@ -56,7 +56,7 @@ def test_dev_catalog_coverage():
     assert len({top(p["category_id"]) for p in data["products"]}) == 20          # every top-level category
     assert {o["source_code"] for o in data["offers"]} == {
         "cj", "aliexpress_ds", "spocket", "printful", "amazon", "temu", "shein", "aliexpress_aff", "jumia", "noon", "flipkart",
-        "ebay", "awin", "impact", "rakuten", "admitad",
+        "ebay", "awin", "impact", "rakuten", "admitad", "cj_affiliate",
         "mercadolibre", "shopee", "lazada", "rakuten_ichiba", "coupang"}
     assert {"CN", "US", "AE", "SA", "KE", "NG", "IN", "EG", "DE"} <= {o["ships_from"] for o in data["offers"]}
     sw = [p["translations"]["sw"]["title"] for p in data["products"]]

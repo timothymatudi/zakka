@@ -530,8 +530,103 @@ class AdmitadConnector(_AffiliateBase):
         raise NotSupportedError("admitad has no single-item lookup; offers refresh with the feed import")
 
 
+# ---- CJ Affiliate (Commission Junction) -------------------------------------------------------------------
+
+CJ_QUERY = """query Products($companyId: ID!, $keywords: [String!], $limit: Int, $offset: Int, $pid: ID!) {
+  products(companyId: $companyId, keywords: $keywords, partnerStatus: JOINED, limit: $limit, offset: $offset) {
+    totalCount count
+    resultList {
+      ... on Shopping {
+        id title description brand link imageLink additionalImageLink gtin availability
+        advertiserId advertiserName advertiserCountry
+        price { amount currency } salePrice { amount currency }
+        shipping { price { amount currency } country }
+        linkCode(pid: $pid) { clickUrl }
+      }
+    }
+  }
+}"""
+
+
+class CJAffiliateConnector(_AffiliateBase):
+    """CJ Affiliate Product Feed GraphQL API (``ads.api.cj.com/query``), products of joined advertisers.
+
+    Schema checked from an introspection of CJ's endpoint (2026-08): ``products(companyId!, keywords,
+    partnerStatus, limit, offset)`` returning ``resultList`` of ``Shopping`` items with
+    ``linkCode(pid!) { clickUrl }`` for the tracked link. TODO(confirm) with a real token: the
+    ``limit`` maximum and whether ``shipping`` is one object or a list (both are handled).
+    """
+
+    code = "cj_affiliate"
+    name = "CJ Affiliate"
+    env_keys = ("CJ_AFFILIATE_TOKEN", "CJ_AFFILIATE_COMPANY_ID", "CJ_AFFILIATE_WEBSITE_ID")
+    docs_url = "https://developers.cj.com/graphql/reference/Product%20Feed"
+    seed_env = "CJ_AFFILIATE_SEED_QUERIES"
+    page_size = 100
+    rate_limit_per_sec = 0.4  # TODO(confirm) CJ's per-minute limit for the product API
+    API = "https://ads.api.cj.com/query"
+
+    def _query(self, keyword: str | None, limit: int, offset: int = 0) -> tuple[list[SourceProduct], int]:
+        variables: dict[str, Any] = {"companyId": self.key("CJ_AFFILIATE_COMPANY_ID"), "pid": self.key("CJ_AFFILIATE_WEBSITE_ID"),
+                                     "limit": min(limit, 100), "offset": offset}
+        if keyword:
+            variables["keywords"] = [w for w in keyword.split() if w]
+        resp = self._check(self.http.post(self.API, json={"query": CJ_QUERY, "variables": variables},
+                                          headers={"Authorization": f"Bearer {self.key('CJ_AFFILIATE_TOKEN')}"}))
+        body = resp.json()
+        if body.get("errors"):
+            raise ConnectorError(f"[cj_affiliate] {body['errors'][0].get('message')}")
+        data = (body.get("data") or {}).get("products") or {}
+        items = [p for p in (self._parse(r) for r in data.get("resultList") or []) if p]
+        return items, int(data.get("totalCount") or 0)
+
+    def _parse(self, raw: dict) -> SourceProduct | None:
+        if not raw or not raw.get("id"):
+            return None
+        sale, regular = raw.get("salePrice") or {}, raw.get("price") or {}
+        price = _dec(sale.get("amount")) or _dec(regular.get("amount"))
+        url = ((raw.get("linkCode") or {}).get("clickUrl")) or None
+        if price is None or not url:  # never fall back to the untracked product link
+            return None
+        ships = raw.get("shipping") or []
+        ships = ships if isinstance(ships, list) else [ships]
+        countries = sorted({s.get("country").upper() for s in ships if s.get("country")})
+        home = (raw.get("advertiserCountry") or (countries[0] if countries else "US")).upper()[:2]
+        ship_cost = next((_dec((s.get("price") or {}).get("amount")) for s in ships if (s.get("price") or {}).get("amount") is not None), None)
+        extra = raw.get("additionalImageLink") or []
+        extra = extra if isinstance(extra, list) else [extra]
+        return SourceProduct(
+            external_id=f"{raw.get('advertiserId', '')}:{raw['id']}",
+            title=raw.get("title") or "",
+            description=raw.get("description") or None,
+            brand=raw.get("brand") or None,
+            gtin=raw.get("gtin") or None,
+            image_urls=[u for u in [raw.get("imageLink"), *extra] if u][:6],
+            currency=sale.get("currency") or regular.get("currency") or "USD",
+            list_price=price,
+            shipping=ship_cost or Decimal("0"),
+            stock=0 if str(raw.get("availability") or "").upper() == "OUT_OF_STOCK" else None,
+            ships_from=home, ships_to=countries or [home],
+            delivery_days_min=2, delivery_days_max=7,
+            url=url, commission_rate=DEFAULT_COMMISSION,
+            attributes={"merchant": raw.get("advertiserName"), "advertiser_id": raw.get("advertiserId")},
+        )
+
+    def _live_search(self, query: str, country: str | None, limit: int) -> list[SourceProduct]:
+        items, _ = self._query(query, limit)
+        return [p for p in items if not country or country.upper() in p.ships_to][:limit]
+
+    def _live_products(self, page: int) -> ProductPage:
+        """Catalogue import: one page per seed query (CJ's product search needs a keyword or filter)."""
+        queries = self.seed_queries()
+        if page < 1 or page > len(queries):
+            return ProductPage(items=[], page=page, next_page=None)
+        items, _ = self._query(queries[page - 1], self.page_size)
+        return ProductPage(items=items, page=page, next_page=page + 1 if page < len(queries) else None)
+
+
 NETWORK_CONNECTORS: tuple[type[Connector], ...] = (
-    EbayConnector, AwinConnector, ImpactConnector, RakutenAdvertisingConnector, AdmitadConnector,
+    EbayConnector, AwinConnector, ImpactConnector, RakutenAdvertisingConnector, AdmitadConnector, CJAffiliateConnector,
 )
 
 __all__ = [c.__name__ for c in NETWORK_CONNECTORS] + ["NETWORK_CONNECTORS", "EBAY_SITES", "DEFAULT_COMMISSION"]

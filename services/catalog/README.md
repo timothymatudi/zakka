@@ -253,6 +253,7 @@ Live adapter code paths for CJ and Printful are tested with `httpx.MockTransport
 | `impact` | Impact network (strong in North America) | One page per catalog | Yes (ItemSearch) | `IMPACT_ACCOUNT_SID`, `IMPACT_AUTH_TOKEN` |
 | `rakuten` | Rakuten Advertising network | Seed queries | Yes | `RAKUTEN_ADV_TOKEN` |
 | `admitad` | Admitad network (Latin America, Asia, Eastern Europe, Turkey) | One page per joined program feed | No (feeds only) | `ADMITAD_CLIENT_ID`, `ADMITAD_CLIENT_SECRET`, `ADMITAD_WEBSITE_ID` |
+| `cj_affiliate` | CJ Affiliate (Commission Junction), many large US and European retailers | Seed queries over joined advertisers (GraphQL `products`) | Yes | `CJ_AFFILIATE_TOKEN`, `CJ_AFFILIATE_COMPANY_ID`, `CJ_AFFILIATE_WEBSITE_ID` |
 
 **Regional leaders** (`connectors/regional.py`) cover the markets the networks above leave thin:
 

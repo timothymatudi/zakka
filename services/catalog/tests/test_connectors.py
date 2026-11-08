@@ -17,7 +17,7 @@ from zakka_catalog.connectors.amazon import parse_partner_tags, with_tag
 from zakka_catalog.models import Address, SupplierOrderLine, SupplierOrderRequest
 
 EXPECTED = {"cj", "aliexpress_ds", "spocket", "printful", "amazon", "temu", "shein", "aliexpress_aff",
-            "jumia", "noon", "flipkart", "ebay", "awin", "impact", "rakuten", "admitad",
+            "jumia", "noon", "flipkart", "ebay", "awin", "impact", "rakuten", "admitad", "cj_affiliate",
             "mercadolibre", "shopee", "lazada", "rakuten_ichiba", "coupang"}
 ADDR = Address(name="T", line1="1 St", city="Austin", country_code="US")
 

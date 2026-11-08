@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T00:04:39+00:00",
+ "generated_at": "2026-11-08T05:13:08+00:00",
  "categories": [
   {
    "id": "b3b24ad3-19b7-5916-b269-86b194c3cf05",
@@ -2180,6 +2180,11 @@
   {
    "id": "e0b1c2d3-0009-5a00-8000-000000000010",
    "code": "coupang",
+   "kind": "affiliate"
+  },
+  {
+   "id": "e0b1c2d3-0011-5a00-8000-000000000c11",
+   "code": "cj_affiliate",
    "kind": "affiliate"
   }
  ],
@@ -10948,6 +10953,542 @@
    }
   },
   {
+   "id": "03655ffa-494e-5550-8117-dcee5208c835",
+   "category_id": "0fb47ef3-8b59-5bcb-8aa1-ad579df45e1d",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/1001-A1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Retailer US"
+   },
+   "translations": {
+    "en": {
+     "title": "Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Cordless Stick Vacuum",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "e7c4e814-c495-52c7-b2e1-21fb8cbed05f",
+   "category_id": "0fb47ef3-8b59-5bcb-8aa1-ad579df45e1d",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/1001-A2.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Retailer US"
+   },
+   "translations": {
+    "en": {
+     "title": "Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Robot Vacuum with Mapping",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "50f3279c-0200-5186-bd91-4892fe3cef47",
+   "category_id": "96b44677-5de2-57a3-955d-f73477391d8b",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/2002-B1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Outdoor Brand"
+   },
+   "translations": {
+    "en": {
+     "title": "Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Women's Trail Running Shoes",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "35f127ea-acaa-502b-be08-12045c3617d5",
+   "category_id": "0032c393-ad41-52ef-bb4e-dd02345ecdfb",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/3003-C1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Kitchen Brand"
+   },
+   "translations": {
+    "en": {
+     "title": "Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Stainless Cookware Set 10-Piece",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "21768052-c2d8-5e63-bfcc-7a337c4a3c44",
+   "category_id": "1264adfb-afb5-5025-bee8-dea7072266cd",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/4004-D1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Knitwear UK"
+   },
+   "translations": {
+    "en": {
+     "title": "Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Merino Wool Sweater",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "4138d025-b01d-5ea2-859d-92c90c76996b",
+   "category_id": "7afb9d0f-10b2-507d-9323-897e367dd02a",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/5005-E1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Tech DE"
+   },
+   "translations": {
+    "en": {
+     "title": "Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Smart Watch GPS",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "228818c8-dd87-5e2d-a8f5-0fb4663f3aa3",
+   "category_id": "b3659a2a-c973-5ca1-a0cd-5dcbc793a660",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/6006-F1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Pet Store"
+   },
+   "translations": {
+    "en": {
+     "title": "Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Dog Bed Orthopedic Large",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
+   "id": "d02c8220-b684-50e2-997b-322e8f4ac360",
+   "category_id": "d4ea460a-72f6-575f-9c7d-67c50899cec9",
+   "brand": null,
+   "gtin": null,
+   "image_urls": [
+    "https://images.zakka.example/cj_affiliate/7007-G1.jpg"
+   ],
+   "rating": 4.4,
+   "review_count": 210,
+   "popularity": 0.4091,
+   "attributes": {
+    "merchant": "Wellness Brand"
+   },
+   "translations": {
+    "en": {
+     "title": "Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "es": {
+     "title": "[es] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "fr": {
+     "title": "[fr] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "pt": {
+     "title": "[pt] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "ar": {
+     "title": "[ar] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "zh": {
+     "title": "[zh] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "hi": {
+     "title": "[hi] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "sw": {
+     "title": "[sw] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "de": {
+     "title": "[de] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    },
+    "id": {
+     "title": "[id] Vitamin D3 Gummies",
+     "description": null,
+     "bullet_points": []
+    }
+   }
+  },
+  {
    "id": "4e37fa14-4f2c-5ca7-8ef5-ca2c78132900",
    "category_id": "53c7ffe1-a950-5456-8951-e31c482592db",
    "brand": null,
@@ -16553,6 +17094,174 @@
    ],
    "delivery_days_min": 8,
    "delivery_days_max": 22,
+   "is_active": true
+  },
+  {
+   "id": "0065c703-6634-5ad7-8836-919395757078",
+   "product_id": "03655ffa-494e-5550-8117-dcee5208c835",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "1001:A1",
+   "url": "https://www.anrdoezrs.example/click-mock-1001-A1",
+   "display_price_usd": 199.99,
+   "list_price_local": 199.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "54c6ab47-8f3c-56ab-a803-64889957aa0b",
+   "product_id": "e7c4e814-c495-52c7-b2e1-21fb8cbed05f",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "1001:A2",
+   "url": "https://www.anrdoezrs.example/click-mock-1001-A2",
+   "display_price_usd": 329,
+   "list_price_local": 329,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 6,
+   "is_active": true
+  },
+  {
+   "id": "8303623b-bf59-5606-87ab-d4329ab79afd",
+   "product_id": "50f3279c-0200-5186-bd91-4892fe3cef47",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "2002:B1",
+   "url": "https://www.anrdoezrs.example/click-mock-2002-B1",
+   "display_price_usd": 119.95,
+   "list_price_local": 119.95,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "efba598b-1e51-5322-9c7b-ea890374d50d",
+   "product_id": "35f127ea-acaa-502b-be08-12045c3617d5",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "3003:C1",
+   "url": "https://www.anrdoezrs.example/click-mock-3003-C1",
+   "display_price_usd": 149,
+   "list_price_local": 149,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "CA",
+    "US"
+   ],
+   "delivery_days_min": 3,
+   "delivery_days_max": 7,
+   "is_active": true
+  },
+  {
+   "id": "bf8a1eab-f180-5b1c-b221-71a03941bb9e",
+   "product_id": "21768052-c2d8-5e63-bfcc-7a337c4a3c44",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "4004:D1",
+   "url": "https://www.anrdoezrs.example/click-mock-4004-D1",
+   "display_price_usd": 120.45,
+   "list_price_local": 89,
+   "list_currency": "GBP",
+   "shipping_usd": 6.35,
+   "shipping_local": 4.95,
+   "ships_from": "GB",
+   "ships_to": [
+    "GB",
+    "IE"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "24f7b770-cfba-5928-8f49-4a7ccb9e8218",
+   "product_id": "4138d025-b01d-5ea2-859d-92c90c76996b",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "5005:E1",
+   "url": "https://www.anrdoezrs.example/click-mock-5005-E1",
+   "display_price_usd": 270.65,
+   "list_price_local": 249,
+   "list_currency": "EUR",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "DE",
+   "ships_to": [
+    "AT",
+    "DE",
+    "NL"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "6bb0ae93-d7d4-5f2f-a582-c2b4589f6f89",
+   "product_id": "228818c8-dd87-5e2d-a8f5-0fb4663f3aa3",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "6006:F1",
+   "url": "https://www.anrdoezrs.example/click-mock-6006-F1",
+   "display_price_usd": 79.99,
+   "list_price_local": 79.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "US"
+   ],
+   "delivery_days_min": 2,
+   "delivery_days_max": 5,
+   "is_active": true
+  },
+  {
+   "id": "cf783cd0-09c2-53d9-8081-f0340cf661e3",
+   "product_id": "d02c8220-b684-50e2-997b-322e8f4ac360",
+   "source_code": "cj_affiliate",
+   "kind": "affiliate",
+   "external_id": "7007:G1",
+   "url": "https://www.anrdoezrs.example/click-mock-7007-G1",
+   "display_price_usd": 18.99,
+   "list_price_local": 18.99,
+   "list_currency": "USD",
+   "shipping_usd": 0,
+   "shipping_local": 0,
+   "ships_from": "US",
+   "ships_to": [
+    "AU",
+    "CA",
+    "GB",
+    "US"
+   ],
+   "delivery_days_min": 4,
+   "delivery_days_max": 12,
    "is_active": true
   },
   {

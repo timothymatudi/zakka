@@ -52,6 +52,7 @@ const SOURCE_LIST: [SourceCode, SourceKind, string][] = [
   ['impact', 'affiliate', 'Impact'],
   ['rakuten', 'affiliate', 'Rakuten Advertising'],
   ['admitad', 'affiliate', 'Admitad'],
+  ['cj_affiliate', 'affiliate', 'CJ Affiliate'],
   ['mercadolibre', 'affiliate', 'Mercado Libre'],
   ['shopee', 'affiliate', 'Shopee'],
   ['lazada', 'affiliate', 'Lazada'],

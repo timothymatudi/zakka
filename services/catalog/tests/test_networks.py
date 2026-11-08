@@ -15,6 +15,7 @@ NETWORKS = {
     "impact": {"IMPACT_ACCOUNT_SID": "IRabc", "IMPACT_AUTH_TOKEN": "tok"},
     "rakuten": {"RAKUTEN_ADV_TOKEN": "rt"},
     "admitad": {"ADMITAD_CLIENT_ID": "aid", "ADMITAD_CLIENT_SECRET": "asec", "ADMITAD_WEBSITE_ID": "77"},
+    "cj_affiliate": {"CJ_AFFILIATE_TOKEN": "pat", "CJ_AFFILIATE_COMPANY_ID": "7000001", "CJ_AFFILIATE_WEBSITE_ID": "100200"},
 }
 
 
@@ -257,3 +258,41 @@ def test_ebay_token_is_cached():
     c.fetch_live("a", "US", 1)
     c.fetch_live("b", "GB", 1)
     assert len(tokens) == 1
+
+
+# --- CJ Affiliate ---------------------------------------------------------------------------------------
+
+def test_cj_affiliate_graphql_search_uses_tracked_links_only():
+    seen = {}
+
+    def handler(request):
+        seen["auth"] = request.headers["Authorization"]
+        seen["body"] = json.loads(request.content)
+        return httpx.Response(200, json={"data": {"products": {"totalCount": 2, "count": 2, "resultList": [
+            {"id": "SKU1", "title": "Robot Vacuum", "brand": "Clean", "advertiserId": "1001", "advertiserName": "Retailer US",
+             "advertiserCountry": "US", "imageLink": "https://img.example/1.jpg", "additionalImageLink": ["https://img.example/1b.jpg"],
+             "price": {"amount": "349.00", "currency": "USD"}, "salePrice": {"amount": "299.00", "currency": "USD"},
+             "availability": "IN_STOCK", "gtin": "0000000000017",
+             "shipping": [{"price": {"amount": "0", "currency": "USD"}, "country": "US"}, {"country": "CA"}],
+             "linkCode": {"clickUrl": "https://www.anrdoezrs.net/click-100200-1"}},
+            {"id": "SKU2", "title": "No link", "advertiserId": "1001", "price": {"amount": "10", "currency": "USD"}, "linkCode": None},
+        ]}}})
+
+    c = get_connector("cj_affiliate", env=NETWORKS["cj_affiliate"], http=client(handler))
+    items = c.fetch_live("robot vacuum", "CA", 10)
+    assert seen["auth"] == "Bearer pat"
+    v = seen["body"]["variables"]
+    assert v["companyId"] == "7000001" and v["pid"] == "100200" and v["keywords"] == ["robot", "vacuum"]
+    assert "partnerStatus: JOINED" in seen["body"]["query"]
+    assert len(items) == 1  # the item without a tracked click URL is dropped
+    p = items[0]
+    assert p.external_id == "1001:SKU1" and p.list_price == Decimal("299.00")  # sale price wins
+    assert p.url.startswith("https://www.anrdoezrs.net/") and p.ships_to == ["CA", "US"] and p.ships_from == "US"
+    assert p.image_urls == ["https://img.example/1.jpg", "https://img.example/1b.jpg"] and p.attributes["merchant"] == "Retailer US"
+
+
+def test_cj_affiliate_reports_graphql_errors():
+    c = get_connector("cj_affiliate", env=NETWORKS["cj_affiliate"],
+                      http=client(lambda r: httpx.Response(200, json={"errors": [{"message": "Not authorized"}]})))
+    with pytest.raises(Exception, match="Not authorized"):
+        c.fetch_live("lamp", "US", 5)

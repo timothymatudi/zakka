@@ -1,6 +1,7 @@
 import 'server-only';
 import { LOCALES, type Locale } from '@shared/types';
-import { CATEGORIES, PRODUCTS } from './mock/catalog';
+import { PRODUCTS } from './mock/catalog';
+import { getCategories } from './categories';
 import { LOCALE_DEFAULT_COUNTRY } from './markets';
 import { search } from './search';
 import { absUrl, xmlEscape } from './seo';
@@ -12,7 +13,7 @@ const PAGE = 100;
 /** Locale-independent paths ("" = home) for one locale's sitemap. */
 export async function sitemapPaths(locale: Locale): Promise<string[]> {
   const paths = [''];
-  for (const c of CATEGORIES) paths.push(`/c/${c.slug}`, `/best/${c.slug}`);
+  for (const c of await getCategories()) paths.push(`/c/${c.slug}`, `/best/${c.slug}`);
   for (const id of await productIds(locale)) paths.push(`/p/${encodeURIComponent(id)}`);
   return paths;
 }

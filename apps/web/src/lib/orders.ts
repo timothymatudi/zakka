@@ -1,6 +1,6 @@
 import 'server-only';
 import type { OrderStatus } from '@shared/types';
-import { dbInsert, dbSelect } from './db';
+import { dbInsert, dbSelect, dbWrite } from './db';
 import { hasSupabase } from './config';
 import { PRODUCTS } from './mock/catalog';
 
@@ -151,9 +151,13 @@ export async function saveOrder(order: StoredOrder): Promise<StoredOrder> {
 }
 
 export async function updateOrder(id: string, patch: Partial<StoredOrder>): Promise<void> {
+  const { items: _i, shipments: _s, country_code: _c, ...row } = { items: [], shipments: [], country_code: undefined, ...patch };
+  void _i; void _s; void _c;
+  if (hasSupabase() && Object.keys(row).length > 0) {
+    await dbWrite('PATCH', 'orders', `id=eq.${encodeURIComponent(id)}`, row);
+  }
   const existing = store().get(id);
   if (existing) store().set(id, { ...existing, ...patch });
-  // TODO(live): PATCH orders via PostgREST once payment webhooks exist (concierge/payments owner).
 }
 
 export async function getOrder(id: string): Promise<StoredOrder | null> {

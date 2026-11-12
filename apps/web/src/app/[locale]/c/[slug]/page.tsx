@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@shared/types';
 import { getMarket } from '@/lib/market.server';
-import { CATEGORIES } from '@/lib/mock/catalog';
+import { getCategories } from '@/lib/categories';
 import { SearchResults, type RawParams } from '@/components/SearchResults';
 import { localeAlternates } from '@/lib/seo';
 
@@ -12,15 +12,16 @@ type Props = { params: Promise<{ locale: Locale; slug: string }>; searchParams: 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'categories' });
-  if (!CATEGORIES.some((c) => c.slug === slug)) return {};
+  const categories = await getCategories();
+  if (!categories.some((c) => c.slug === slug)) return {};
   return { title: t(slug), alternates: localeAlternates(locale, `/c/${slug}`) };
 }
 
-// TODO(live): load top-level categories + category_translations from Supabase instead of the mock list.
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const cat = CATEGORIES.find((c) => c.slug === slug);
+  const categories = await getCategories();
+  const cat = categories.find((c) => c.slug === slug);
   if (!cat) notFound();
   const sp = await searchParams;
   const t = await getTranslations('categories');

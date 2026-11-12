@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import type { Market } from '@/lib/markets';
 import { search } from '@/lib/search';
 import { regionName, whatsappLink } from '@/lib/format';
-import { CATEGORIES } from '@/lib/mock/catalog';
+import { getCategories } from '@/lib/categories';
 import { ProductCard } from './ProductCard';
 
 export type RawParams = Record<string, string | string[] | undefined>;
@@ -41,6 +41,7 @@ export async function SearchResults({
   const tc = await getTranslations('categories');
   const tw = await getTranslations('whatsapp');
 
+  const categories = await getCategories();
   const q = one(sp.q) ?? '';
   const category = fixedCategory ?? one(sp.category);
   const minLocal = num(sp.min);
@@ -71,8 +72,8 @@ export async function SearchResults({
   });
   const pages = Math.max(1, Math.ceil(res.found / res.per_page));
   // Facet values may be display names (live) or slugs (mock); only slugs can drive the category filter.
-  const catFacet = res.facets.category_slug ?? (res.facets.category_path ?? []).filter((f) => CATEGORIES.some((c) => c.slug === f.value));
-  const catLabel = (f: { value: string; label?: string }) => (CATEGORIES.some((c) => c.slug === f.value) ? tc(f.value) : (f.label ?? f.value));
+  const catFacet = res.facets.category_slug ?? (res.facets.category_path ?? []).filter((f) => categories.some((c) => c.slug === f.value));
+  const catLabel = (f: { value: string; label?: string }) => (categories.some((c) => c.slug === f.value) ? tc(f.value) : (f.label ?? f.value));
   const fromFacet = res.facets.ships_from ?? [];
 
   const current: Record<string, string> = {};
@@ -91,7 +92,7 @@ export async function SearchResults({
           <legend className="mb-1.5 font-bold">{t('category')}</legend>
           <select name="category" defaultValue={category ?? ''} className="field">
             <option value="">{t('any')}</option>
-            {CATEGORIES.map((c) => {
+            {categories.map((c) => {
               const count = catFacet.find((f) => f.value === c.slug)?.count;
               return (
                 <option key={c.slug} value={c.slug}>

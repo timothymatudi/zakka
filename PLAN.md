@@ -4,7 +4,7 @@ The single list of everything left to finish the project. Tick a box (`[x]`) the
 verified, and add the date. Nothing counts as done until it has been checked.
 
 - **Me** = Claude does it. **You** = needs the owner (sign-ups, keys, decisions, legal review).
-- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **15 of 74 done**.
+- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **16 of 74 done**.
 - Last error check: 2026-11-12. All test suites pass (catalog 289, concierge 114, search 77, db scripts 5). Web typecheck and lint clean. No new tasks ticked — the 8 already done remain the only done items. Node modules were missing and have now been installed.
 
 ## Audit result (2026-11-10)
@@ -36,7 +36,7 @@ What was checked, and what it showed:
 - [x] A6. Add favicon, app icon, web manifest and a social share image (2026-11-10)
 - [x] A7. Upgrade Next.js to clear 2 security advisories (next: moderate, postcss: high). The fix is Next 16, a major upgrade, so it needs a full re-test (2026-11-12: upgraded to 16.4.6; postcss high cleared; minimatch moderate in @typescript-eslint dev dep has no upstream fix yet)
 - [x] A8. Payment method names in all 10 languages (2026-11-10: they are brand names, so the spelling is the same everywhere)
-- [ ] A9. Translate 66 admin and coverage texts into 9 languages (internal pages, low priority)
+- [x] A9. Translate 66 admin and coverage texts into 9 languages (2026-11-12: all 66 translated by Claude, not reviewed by native speakers; admin pages checked in every language at phone width with no errors and no English left)
 - [ ] A10. Load category pages from Supabase instead of the mock list. Code written 2026-11-12 and the mock fallback is checked; tick after G2 proves it on real Supabase
 - [ ] A11. Update order status from payment webhooks. Code written 2026-11-12: `updateOrder` now writes to Supabase, and the concierge moves the order to paid on its webhook; tick after H4 proves it with a sandbox payment
 - [x] A12. Add web tests: payment fallback, checkout, sign-in gate, admin gate (2026-11-12: 44 tests in `apps/web/test`, run with `npm test` and in CI)

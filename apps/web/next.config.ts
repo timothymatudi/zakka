@@ -1,7 +1,11 @@
+import path from 'node:path';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
+// The repo root. The app imports ../../packages/shared, so the bundler must be allowed to read from here.
+const repoRoot = path.join(__dirname, '..', '..');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -35,6 +39,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Allows importing ../../packages/shared (outside this app) per the contract.
   experimental: { externalDir: true },
+  turbopack: { root: repoRoot },
+  outputFileTracingRoot: repoRoot,
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },

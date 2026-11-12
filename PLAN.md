@@ -4,7 +4,7 @@ The single list of everything left to finish the project. Tick a box (`[x]`) the
 verified, and add the date. Nothing counts as done until it has been checked.
 
 - **Me** = Claude does it. **You** = needs the owner (sign-ups, keys, decisions, legal review).
-- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **14 of 74 done**.
+- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **15 of 74 done**.
 - Last error check: 2026-11-12. All test suites pass (catalog 289, concierge 114, search 77, db scripts 5). Web typecheck and lint clean. No new tasks ticked — the 8 already done remain the only done items. Node modules were missing and have now been installed.
 
 ## Audit result (2026-11-10)
@@ -22,7 +22,7 @@ What was checked, and what it showed:
 | Admin and account pages signed in (en, de, ar) | All load; missing translations fall back to English |
 | Migrations 0001-0009 and seeds on local Postgres 17 | Apply cleanly (pgvector column shimmed locally) |
 | Live store APIs | **None tested: no keys yet** |
-| Web tests | 44 pass (added 2026-11-12) |
+| Web tests | 48 pass (added 2026-11-12) |
 | CI | Runs on every push; green on GitHub (2026-11-12) |
 | Hosting config | **None exists** |
 
@@ -43,7 +43,7 @@ What was checked, and what it showed:
 - [x] A13. Check every page at phone width (375 px) and in right-to-left Arabic (2026-11-12: 24 page types in all 10 languages at 375 px, including cart and checkout with an item, account and admin; fixed the language picker running off the screen, the cart overflowing with long prices, English product text scrambled on Arabic pages, arrows pointing the wrong way in Arabic, and cramped admin markup selects)
 - [ ] A14. Rename the directory label "Connected" to "Built" on the sign-up checklist page (the page is not in this repo; do it where the page lives)
 - [x] A15. Show a signed-in customer their own orders on `/orders` (2026-11-12: signed-in users see their order list; guests see the lookup form)
-- [ ] A16. Tighten the content policy with per-request nonces (today it allows inline scripts, which Next.js needs without nonces)
+- [x] A16. Tighten the content policy with per-request nonces (2026-11-12: pages get a fresh script nonce on every request and inline scripts are no longer allowed; API routes, images and files get a deny-all policy; browser-tested on the production build: no violations on any page, cart, language switch, sign-in and admin still work, and an injected inline handler that ran under the old policy is now blocked)
 
 ## B. Web app: needs you
 

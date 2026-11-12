@@ -1,6 +1,7 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing, isLocale } from './i18n/routing';
+import { newNonce, pageCsp } from './lib/csp';
 import { ACCESS_COOKIE, REFRESH_COOKIE, authMode, fetchUser, isAdmin, isExpired, refreshSession, sessionCookies } from './lib/auth-core';
 
 const intl = createMiddleware(routing);
@@ -45,7 +46,16 @@ export default async function middleware(req: NextRequest) {
     if (!isAdmin(user)) return new NextResponse('Not found', { status: 404 });
   }
 
-  return intl(req);
+  // Every page gets its own script nonce. Next.js reads the policy from the request headers and puts
+  // the nonce on the scripts it renders; the browser enforces the same policy from the response.
+  const nonce = newNonce();
+  const csp = pageCsp(nonce);
+  const headers = new Headers(req.headers);
+  headers.set('x-nonce', nonce);
+  headers.set('Content-Security-Policy', csp);
+  const res = intl(new NextRequest(req, { headers }));
+  res.headers.set('Content-Security-Policy', csp);
+  return res;
 }
 
 export const config = {

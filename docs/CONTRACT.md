@@ -16,7 +16,7 @@ Customers see one catalog with an honest **total price in local currency** and a
 | Path | Owner | Stack |
 | --- | --- | --- |
 | `supabase/` | Agent 1, Database | Postgres SQL migrations, seeds, RLS |
-| `apps/web/` | Agent 2, Storefront | Next.js 15 (App Router), TypeScript, Tailwind, next-intl |
+| `apps/web/` | Agent 2, Storefront | Next.js 16 (App Router), TypeScript, Tailwind, next-intl |
 | `services/catalog/` | Agent 3, Catalog | Python 3.12+, httpx, pydantic |
 | `services/search/` | Agent 4, Search | Node 22+ TypeScript, Typesense client |
 | `services/concierge/` | Agent 5, Concierge | Node 22+ TypeScript, Fastify |

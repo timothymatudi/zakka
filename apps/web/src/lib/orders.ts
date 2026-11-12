@@ -178,6 +178,21 @@ export async function getOrder(id: string): Promise<StoredOrder | null> {
   };
 }
 
+/** Orders for a signed-in customer. Live: filtered by customer_id; mock: empty (mock orders have no customer). */
+export async function listOrdersByCustomer(customerId: string): Promise<StoredOrder[]> {
+  if (hasSupabase()) {
+    const rows = await dbSelect<Omit<StoredOrder, 'items' | 'shipments'>>(
+      'orders',
+      `select=id,customer_id,status,currency,subtotal,shipping,tax,total,total_usd,payment_provider,payment_ref,channel,created_at,shipping_address` +
+        `&customer_id=eq.${customerId}&order=created_at.desc&limit=200`,
+    );
+    if (rows) {
+      return rows.map((r) => ({ ...r, total: Number(r.total), total_usd: Number(r.total_usd), items: [], shipments: [] }));
+    }
+  }
+  return [...store().values()].filter((o) => o.customer_id === customerId).sort((a, b) => b.created_at.localeCompare(a.created_at));
+}
+
 /** Latest orders for the admin. Live: from Supabase (service role); mock: the in-memory store. */
 export async function listOrders(limit = 200): Promise<StoredOrder[]> {
   if (hasSupabase()) {

@@ -170,7 +170,9 @@
       "delivered": "Imefikishwa",
       "cancelled": "Imeghairiwa",
       "refunded": "Imerejeshewa pesa"
-    }
+    },
+    "myOrders": "Maagizo yangu",
+    "noOrders": "Bado hakuna maagizo."
   },
   "account": {
     "title": "Akaunti yako",

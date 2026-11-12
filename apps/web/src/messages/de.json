@@ -170,7 +170,9 @@
       "delivered": "Zugestellt",
       "cancelled": "Storniert",
       "refunded": "Erstattet"
-    }
+    },
+    "myOrders": "Meine Bestellungen",
+    "noOrders": "Noch keine Bestellungen."
   },
   "account": {
     "title": "Dein Konto",

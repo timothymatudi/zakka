@@ -52,6 +52,7 @@ export function Providers({ market, children }: { market: Market; children: Reac
   useEffect(() => {
     try {
       const raw = localStorage.getItem(CART_KEY);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: hydration-safe localStorage read on mount; `ready` guards the write-back
       if (raw) setItems(JSON.parse(raw) as CartItem[]);
     } catch {
       /* storage unavailable */

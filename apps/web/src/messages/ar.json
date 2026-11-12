@@ -170,7 +170,9 @@
       "delivered": "تم التسليم",
       "cancelled": "ملغى",
       "refunded": "مسترد"
-    }
+    },
+    "myOrders": "طلباتي",
+    "noOrders": "لا توجد طلبات بعد."
   },
   "account": {
     "title": "حسابك",

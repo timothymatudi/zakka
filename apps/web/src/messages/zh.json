@@ -170,7 +170,9 @@
       "delivered": "已送达",
       "cancelled": "已取消",
       "refunded": "已退款"
-    }
+    },
+    "myOrders": "我的订单",
+    "noOrders": "暂无订单。"
   },
   "account": {
     "title": "你的账户",

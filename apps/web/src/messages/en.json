@@ -170,7 +170,9 @@
       "delivered": "Delivered",
       "cancelled": "Cancelled",
       "refunded": "Refunded"
-    }
+    },
+    "myOrders": "My orders",
+    "noOrders": "No orders yet."
   },
   "account": {
     "title": "Your account",

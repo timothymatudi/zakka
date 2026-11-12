@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export function SignOutButton({ label, className = 'font-semibold text-teal hover:underline' }: { label: string; className?: string }) {
   const locale = useLocale();
+  const router = useRouter();
   const [busy, setBusy] = useState(false);
   return (
     <button
@@ -14,7 +16,7 @@ export function SignOutButton({ label, className = 'font-semibold text-teal hove
       onClick={async () => {
         setBusy(true);
         await fetch('/api/auth/signout', { method: 'POST' }).catch(() => null);
-        window.location.assign(`/${locale}`);
+        router.push(`/${locale}`);
       }}
     >
       {label}

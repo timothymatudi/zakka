@@ -170,7 +170,9 @@
       "delivered": "Entregue",
       "cancelled": "Cancelado",
       "refunded": "Reembolsado"
-    }
+    },
+    "myOrders": "Meus pedidos",
+    "noOrders": "Ainda não há pedidos."
   },
   "account": {
     "title": "Sua conta",

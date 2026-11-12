@@ -170,7 +170,9 @@
       "delivered": "डिलीवर हो गया",
       "cancelled": "रद्द",
       "refunded": "रिफ़ंड हो गया"
-    }
+    },
+    "myOrders": "मेरे ऑर्डर",
+    "noOrders": "अभी तक कोई ऑर्डर नहीं।"
   },
   "account": {
     "title": "आपका खाता",

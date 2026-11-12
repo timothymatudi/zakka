@@ -6,6 +6,8 @@ import { getCheckoutPrice, resolveOffer } from '@/lib/products';
 import { newOrderId, saveOrder, updateOrder, type ShippingAddress, type StoredOrder, type StoredOrderItem } from '@/lib/orders';
 import { startPayment } from '@/lib/payments';
 import { isMethodAvailable } from '@/lib/payment-methods';
+import { currentCustomerId, sameOrigin } from '@/lib/auth';
+import { tooMany } from '@/lib/rate-limit';
 
 interface Body {
   locale?: string;
@@ -30,6 +32,9 @@ const bad = (error: string, status = 400) => NextResponse.json({ error }, { stat
  * Prices always come from the catalog service (or mock), never from the client.
  */
 export async function POST(req: Request) {
+  if (!sameOrigin(req)) return bad('bad_origin', 403);
+  const limited = tooMany(req, 'checkout', 10);
+  if (limited) return limited;
   let body: Body;
   try {
     body = (await req.json()) as Body;
@@ -85,7 +90,8 @@ export async function POST(req: Request) {
   const subtotal = Math.round(items.reduce((s, i) => s + i.unit_price * i.qty, 0) * f) / f;
   const order: StoredOrder = {
     id: newOrderId(),
-    customer_id: null, // TODO: link to customers row once auth exists
+    // The signed-in customer's row (created on first order); null for a guest checkout.
+    customer_id: await currentCustomerId({ create: true, locale, country_code: country }),
     status: 'pending_payment',
     currency: market.currency,
     subtotal,

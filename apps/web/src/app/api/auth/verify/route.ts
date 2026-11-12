@@ -1,12 +1,16 @@
 import { NextResponse } from 'next/server';
 import { EMAIL_RE, verifyEmailOtp } from '@/lib/auth-core';
 import { ensureCustomer, sameOrigin, setSessionCookies } from '@/lib/auth';
+import { tooMany } from '@/lib/rate-limit';
 import { isLocale } from '@/i18n/routing';
 import { COUNTRY_CODES, COUNTRY_COOKIE } from '@/lib/markets';
 
 /** Step 2 of sign-in: swap the emailed code for a session (httpOnly cookies) and make sure a customer row exists. */
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return NextResponse.json({ error: 'bad_origin' }, { status: 403 });
+  // A 6-digit code can be guessed; keep attempts from one address slow.
+  const limited = tooMany(req, 'verify', 10);
+  if (limited) return limited;
   const body = (await req.json().catch(() => null)) as { email?: unknown; code?: unknown; locale?: unknown } | null;
   const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
   const code = typeof body?.code === 'string' ? body.code.replace(/\s+/g, '') : '';

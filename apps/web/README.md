@@ -26,7 +26,7 @@ Shared types come from `../../packages/shared/src` through the `@shared/*` path 
 | `CATALOG_API_TOKEN` | Bearer token for catalog POST calls (`lib/catalog-forward.ts`). |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Server-only PostgREST inserts into `orders`, `order_items`, `affiliate_clicks`. Empty: in-memory store. |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Digits only, used for `wa.me` links. Empty: `https://wa.me/?text=…` (opens WhatsApp's chooser). |
-| `CONCIERGE_PUBLIC_URL`, `CONCIERGE_INTERNAL_TOKEN` | Payments are owned by the concierge. Checkout calls `POST /internal/payments/checkout` with header `x-internal-token`. Empty or unreachable: instant mock payment. |
+| `CONCIERGE_PUBLIC_URL`, `CONCIERGE_INTERNAL_TOKEN` | Payments are owned by the concierge. Checkout calls `POST /internal/payments/checkout` with header `x-internal-token`. Empty: instant mock payment in development, "provider unavailable" in production. Unreachable: always "provider unavailable"; the order is never marked paid. |
 | `WEB_BASE_URL` | Base for the payment `return_url` and `cancel_url`. |
 | `ZAKKA_FORCE_MOCK=1` | Ignore service URLs and use mock data. |
 
@@ -47,6 +47,8 @@ A down service is remembered for 30 seconds (`lib/http.ts`), so each page pays a
 
 API routes: `POST /api/checkout`, `GET /api/out/{offerId}` (records an affiliate click, then 302s to the partner), `POST /api/account`, `POST /api/auth/otp`, `POST /api/auth/verify`, `POST /api/auth/signout`, `GET|POST /api/admin/markup-rules`, `GET /api/orders/lookup`.
 
+**Abuse guards:** the write routes reject requests from other sites (403 `bad_origin`). Checkout allows 10 calls a minute per address, sign-in code requests 5 and code checks 10; beyond that they answer 429 `rate_limited` with `Retry-After`. The counter lives in each server process (`lib/rate-limit.ts`), so put a shared limit in front when running several servers. Security headers, including the content policy, are set in `next.config.ts`.
+
 **Partner names:** customer pages never name suppliers or partners. Dropship offers say "Sold by Zakka". Affiliate offers say "Partner store" with a "Continue to partner store" button and an "Affiliate link — Zakka may earn a commission" note. Comparison rows read "Zakka" and "Partner store 1, 2…". Program-required wording (for example the Amazon Associates sentence) appears only in the footer and on `/legal/affiliates`. Admin pages keep real names. Client components receive only the message namespaces they use.
 
 Country comes from the `zakka_country` cookie, then an edge geo header, then the locale's default. The header shows a persistent language and country picker and a "Chat on WhatsApp" button.
@@ -60,7 +62,7 @@ The web app never computes markup. Product pages use the catalog's `/offers/{id}
 - **Catalog and search** (`src/lib/mock/catalog.ts`): 40 invented products in 10 categories, with 94 offers across all 11 source codes. Dropship and affiliate offers are mixed, ship from 9 countries and cover 18 destination countries. Offer prices stand in for catalog output. Partner URLs point at `partner.example.com`. Images are emoji tiles; real `image` URLs render when present.
 - **Reference data** (`src/lib/markets.ts`): the countries, currencies and FX rates are mock values.
 - **Orders**: an in-memory store with 5 seeded demo orders, used when Supabase is not configured.
-- **Payments**: handled by the concierge. When it is not configured or unreachable, the order is paid at once (mock).
+- **Payments**: handled by the concierge. When it is not configured, a development build pays the order at once (mock). A production build refuses instead, so a misconfigured live site cannot hand out unpaid orders. An unreachable concierge always refuses.
 - **Auth** (no `SUPABASE_URL`/`SUPABASE_ANON_KEY`, not production): any email signs in with the code `000000`; emails starting with `admin@` are admins. Guests and mock users keep preferences in cookies.
 - **Admin data**: without `SUPABASE_SERVICE_ROLE_KEY`, admin pages show the mock catalog and markup rules are kept in memory.
 

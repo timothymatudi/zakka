@@ -72,7 +72,9 @@ export function CheckoutForm() {
               ? t('paymentRejected')
               : data.error === 'missing_contact'
                 ? t('checkDetails')
-                : t('error'),
+                : data.error === 'rate_limited'
+                  ? t('tooMany')
+                  : t('error'),
         );
         setBusy(false);
         return;

@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Kadi",
       "stripeSub": "Visa, Mastercard na zaidi",
+      "paypal": "PayPal",
       "paypalSub": "Lipa kwa akaunti yako ya PayPal",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Kadi, uhamisho wa benki, pesa kwa simu",
+      "paystack": "Paystack",
       "paystackSub": "Kadi, benki, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Lipa kwa simu yako"
     },
     "line2": "Nyumba, ghorofa n.k. (si lazima)",
@@ -142,7 +146,8 @@
     "postal": "Msimbo wa posta (si lazima)",
     "providerUnavailable": "Njia hii ya malipo haipatikani kwa sasa. Tafadhali jaribu njia nyingine.",
     "paymentRejected": "Hatukuweza kuanzisha malipo. Tafadhali kagua kikapu chako na ujaribu tena.",
-    "checkDetails": "Tafadhali kagua jina, anwani na namba ya simu (pamoja na msimbo wa nchi, k.m. +254…)."
+    "checkDetails": "Tafadhali kagua jina, anwani na namba ya simu (pamoja na msimbo wa nchi, k.m. +254…).",
+    "tooMany": "Majaribio ni mengi mno. Subiri dakika moja kisha ujaribu tena."
   },
   "order": {
     "title": "Fuatilia oda yako",
@@ -193,7 +198,10 @@
     "loading": "Inapakia…",
     "back": "Rudi",
     "notFound": "Ukurasa haupatikani",
-    "goHome": "Nenda ukurasa wa mwanzo"
+    "goHome": "Nenda ukurasa wa mwanzo",
+    "errorTitle": "Hitilafu imetokea",
+    "errorBody": "Haikuweza kupakia. Tafadhali jaribu tena.",
+    "retry": "Jaribu tena"
   },
   "legal": {
     "title": "Taarifa za ushirika",

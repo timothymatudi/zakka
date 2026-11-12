@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Kartu",
       "stripeSub": "Visa, Mastercard, dan lainnya",
+      "paypal": "PayPal",
       "paypalSub": "Bayar dengan akun PayPal",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Kartu, transfer bank, uang elektronik",
+      "paystack": "Paystack",
       "paystackSub": "Kartu, bank, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Bayar dari ponselmu"
     },
     "line2": "Unit, lantai, dll. (opsional)",
@@ -142,7 +146,8 @@
     "postal": "Kode pos (opsional)",
     "providerUnavailable": "Penyedia pembayaran ini sedang tidak tersedia. Silakan coba metode lain.",
     "paymentRejected": "Pembayaran tidak bisa dimulai. Periksa keranjangmu lalu coba lagi.",
-    "checkDetails": "Periksa nama, alamat, dan nomor telepon (dengan kode negara, mis. +62…)."
+    "checkDetails": "Periksa nama, alamat, dan nomor telepon (dengan kode negara, mis. +62…).",
+    "tooMany": "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi."
   },
   "order": {
     "title": "Lacak pesananmu",
@@ -193,7 +198,10 @@
     "loading": "Memuat…",
     "back": "Kembali",
     "notFound": "Halaman tidak ditemukan",
-    "goHome": "Ke beranda"
+    "goHome": "Ke beranda",
+    "errorTitle": "Terjadi kesalahan",
+    "errorBody": "Gagal memuat. Silakan coba lagi.",
+    "retry": "Coba lagi"
   },
   "legal": {
     "title": "Pengungkapan afiliasi",

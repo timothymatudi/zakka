@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Cartão",
       "stripeSub": "Visa, Mastercard e mais",
+      "paypal": "PayPal",
       "paypalSub": "Pague com sua conta PayPal",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Cartão, transferência, dinheiro móvel",
+      "paystack": "Paystack",
       "paystackSub": "Cartão, banco, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Pague pelo celular"
     },
     "line2": "Complemento (opcional)",
@@ -142,7 +146,8 @@
     "postal": "CEP / código postal (opcional)",
     "providerUnavailable": "Este meio de pagamento está indisponível agora. Tente outro.",
     "paymentRejected": "Não conseguimos iniciar o pagamento. Confira seu carrinho e tente novamente.",
-    "checkDetails": "Confira nome, endereço e telefone (com código do país, ex.: +55…)."
+    "checkDetails": "Confira nome, endereço e telefone (com código do país, ex.: +55…).",
+    "tooMany": "Muitas tentativas. Aguarde um minuto e tente novamente."
   },
   "order": {
     "title": "Rastreie seu pedido",
@@ -193,7 +198,10 @@
     "loading": "Carregando…",
     "back": "Voltar",
     "notFound": "Página não encontrada",
-    "goHome": "Ir para a página inicial"
+    "goHome": "Ir para a página inicial",
+    "errorTitle": "Algo deu errado",
+    "errorBody": "Não foi possível carregar. Tente novamente.",
+    "retry": "Tentar novamente"
   },
   "legal": {
     "title": "Divulgação de afiliados",

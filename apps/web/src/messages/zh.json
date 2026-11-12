@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "银行卡",
       "stripeSub": "Visa、Mastercard 等",
+      "paypal": "PayPal",
       "paypalSub": "使用 PayPal 账户付款",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "银行卡、转账、移动钱包",
+      "paystack": "Paystack",
       "paystackSub": "银行卡、银行、USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "用手机付款"
     },
     "line2": "门牌号、楼层等（可选）",
@@ -142,7 +146,8 @@
     "postal": "邮政编码（可选）",
     "providerUnavailable": "该支付方式暂时不可用，请换一种方式。",
     "paymentRejected": "无法发起付款，请检查购物车后重试。",
-    "checkDetails": "请检查姓名、地址和电话号码（含国家代码，例如 +86…）。"
+    "checkDetails": "请检查姓名、地址和电话号码（含国家代码，例如 +86…）。",
+    "tooMany": "尝试次数过多，请稍等一分钟后再试。"
   },
   "order": {
     "title": "查询订单",
@@ -193,7 +198,10 @@
     "loading": "加载中…",
     "back": "返回",
     "notFound": "页面不存在",
-    "goHome": "返回首页"
+    "goHome": "返回首页",
+    "errorTitle": "出了点问题",
+    "errorBody": "加载失败，请重试。",
+    "retry": "重试"
   },
   "legal": {
     "title": "联盟推广说明",

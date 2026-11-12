@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Tarjeta",
       "stripeSub": "Visa, Mastercard y más",
+      "paypal": "PayPal",
       "paypalSub": "Paga con tu cuenta de PayPal",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Tarjeta, transferencia, dinero móvil",
+      "paystack": "Paystack",
       "paystackSub": "Tarjeta, banco, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Paga desde tu teléfono"
     },
     "line2": "Piso, puerta, etc. (opcional)",
@@ -142,7 +146,8 @@
     "postal": "Código postal (opcional)",
     "providerUnavailable": "Este proveedor de pago no está disponible ahora. Prueba con otro método.",
     "paymentRejected": "No pudimos iniciar el pago. Revisa tu carrito e inténtalo de nuevo.",
-    "checkDetails": "Revisa tu nombre, dirección y teléfono (con prefijo del país, p. ej. +52…)."
+    "checkDetails": "Revisa tu nombre, dirección y teléfono (con prefijo del país, p. ej. +52…).",
+    "tooMany": "Demasiados intentos. Espera un minuto e inténtalo de nuevo."
   },
   "order": {
     "title": "Sigue tu pedido",
@@ -193,7 +198,10 @@
     "loading": "Cargando…",
     "back": "Volver",
     "notFound": "Página no encontrada",
-    "goHome": "Ir a la página de inicio"
+    "goHome": "Ir a la página de inicio",
+    "errorTitle": "Algo salió mal",
+    "errorBody": "No se pudo cargar. Inténtalo de nuevo.",
+    "retry": "Reintentar"
   },
   "legal": {
     "title": "Información sobre afiliados",

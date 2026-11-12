@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Carte",
       "stripeSub": "Visa, Mastercard et plus",
+      "paypal": "PayPal",
       "paypalSub": "Payer avec votre compte PayPal",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Carte, virement, mobile money",
+      "paystack": "Paystack",
       "paystackSub": "Carte, banque, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Payer depuis votre téléphone"
     },
     "line2": "Appartement, étage, etc. (facultatif)",
@@ -142,7 +146,8 @@
     "postal": "Code postal (facultatif)",
     "providerUnavailable": "Ce moyen de paiement est indisponible pour le moment. Essayez-en un autre.",
     "paymentRejected": "Impossible de lancer le paiement. Vérifiez votre panier et réessayez.",
-    "checkDetails": "Vérifiez votre nom, votre adresse et votre téléphone (avec l’indicatif, ex. +33…)."
+    "checkDetails": "Vérifiez votre nom, votre adresse et votre téléphone (avec l’indicatif, ex. +33…).",
+    "tooMany": "Trop de tentatives. Patientez une minute, puis réessayez."
   },
   "order": {
     "title": "Suivre votre commande",
@@ -193,7 +198,10 @@
     "loading": "Chargement…",
     "back": "Retour",
     "notFound": "Page introuvable",
-    "goHome": "Aller à l’accueil"
+    "goHome": "Aller à l’accueil",
+    "errorTitle": "Une erreur s'est produite",
+    "errorBody": "Le chargement a échoué. Veuillez réessayer.",
+    "retry": "Réessayer"
   },
   "legal": {
     "title": "Liens affiliés",

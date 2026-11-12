@@ -146,7 +146,8 @@
     "postal": "Postal code (optional)",
     "providerUnavailable": "This payment provider is unavailable right now. Please try another method.",
     "paymentRejected": "We couldn’t start this payment. Please check your cart and try again.",
-    "checkDetails": "Please check your name, address and phone number (with country code, e.g. +254…)."
+    "checkDetails": "Please check your name, address and phone number (with country code, e.g. +254…).",
+    "tooMany": "Too many attempts. Please wait a minute and try again."
   },
   "order": {
     "title": "Track your order",
@@ -197,7 +198,10 @@
     "loading": "Loading…",
     "back": "Back",
     "notFound": "Page not found",
-    "goHome": "Go to the home page"
+    "goHome": "Go to the home page",
+    "errorTitle": "Something went wrong",
+    "errorBody": "That didn't load. Please try again.",
+    "retry": "Try again"
   },
   "admin": {
     "title": "Zakka admin",

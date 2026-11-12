@@ -18,7 +18,7 @@ import { config } from '@/lib/config';
 // Every page depends on the visitor's country cookie (prices, delivery), so render per request.
 export const dynamic = 'force-dynamic';
 
-const CLIENT_NAMESPACES = ['nav', 'product', 'cart', 'checkout', 'account', 'auth', 'admin'] as const;
+const CLIENT_NAMESPACES = ['common', 'nav', 'product', 'cart', 'checkout', 'account', 'auth', 'admin'] as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

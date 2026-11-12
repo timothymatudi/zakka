@@ -132,9 +132,13 @@
     "methods": {
       "stripe": "Karte",
       "stripeSub": "Visa, Mastercard und mehr",
+      "paypal": "PayPal",
       "paypalSub": "Mit deinem PayPal-Konto zahlen",
+      "flutterwave": "Flutterwave",
       "flutterwaveSub": "Karte, Überweisung, Mobile Money",
+      "paystack": "Paystack",
       "paystackSub": "Karte, Bank, USSD",
+      "mpesa": "M-Pesa",
       "mpesaSub": "Mit dem Handy bezahlen"
     },
     "line2": "Wohnung, Etage usw. (optional)",
@@ -142,7 +146,8 @@
     "postal": "Postleitzahl (optional)",
     "providerUnavailable": "Dieser Zahlungsanbieter ist gerade nicht verfügbar. Bitte wähle eine andere Zahlungsart.",
     "paymentRejected": "Die Zahlung konnte nicht gestartet werden. Bitte prüfe deinen Warenkorb und versuche es erneut.",
-    "checkDetails": "Bitte prüfe Name, Adresse und Telefonnummer (mit Ländervorwahl, z. B. +49…)."
+    "checkDetails": "Bitte prüfe Name, Adresse und Telefonnummer (mit Ländervorwahl, z. B. +49…).",
+    "tooMany": "Zu viele Versuche. Bitte warte eine Minute und versuche es dann erneut."
   },
   "order": {
     "title": "Bestellung verfolgen",
@@ -193,7 +198,10 @@
     "loading": "Lädt…",
     "back": "Zurück",
     "notFound": "Seite nicht gefunden",
-    "goHome": "Zur Startseite"
+    "goHome": "Zur Startseite",
+    "errorTitle": "Etwas ist schiefgelaufen",
+    "errorBody": "Das konnte nicht geladen werden. Bitte versuche es erneut.",
+    "retry": "Erneut versuchen"
   },
   "legal": {
     "title": "Hinweise zu Affiliate-Links",

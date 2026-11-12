@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 import {
   ACCESS_COOKIE,
   REFRESH_COOKIE,
+  authMode,
   fetchUser,
   isAdmin,
   isExpired,
@@ -140,4 +141,26 @@ export async function asUser<T>(session: Session, method: 'GET' | 'PATCH', path:
 export async function getOwnCustomer(session: Session): Promise<CustomerPrefs | null> {
   const rows = await asUser<CustomerPrefs>(session, 'GET', `customers?auth_user_id=eq.${encodeURIComponent(session.user.id)}&select=${CUSTOMER_COLUMNS}`);
   return rows?.[0] ?? null;
+}
+
+/**
+ * `customers.id` of the signed-in customer, for linking orders and affiliate clicks. Null for guests, for mock
+ * sign-in, and when Supabase is not configured. With `create`, a signed-in user without a row gets one.
+ * Never throws: an order or a click must not fail because this lookup did.
+ */
+export async function currentCustomerId(opts: { create?: boolean; locale?: string; country_code?: string } = {}): Promise<string | null> {
+  if (!hasSupabase() || authMode() !== 'supabase') return null;
+  try {
+    const session = await getSessionForRoute();
+    if (!session) return null;
+    let own = await getOwnCustomer(session);
+    if (!own && opts.create) {
+      await ensureCustomer(session.user, { locale: opts.locale, country_code: opts.country_code });
+      own = await getOwnCustomer(session);
+    }
+    return own?.id ?? null;
+  } catch (err) {
+    console.error('[auth] customer lookup failed', err);
+    return null;
+  }
 }

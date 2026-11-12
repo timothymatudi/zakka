@@ -37,7 +37,8 @@ function orderPayload(order: StoredOrder) {
 
 /**
  * Starts payment through the concierge (POST /internal/payments/checkout).
- * Concierge not configured or unreachable: instant mock payment so the flow works offline.
+ * Concierge not configured: instant mock payment in development, so the flow works offline.
+ * In production that would settle orders nobody paid for, so it fails as "provider unavailable".
  */
 export async function startPayment(provider: PaymentMethod, order: StoredOrder, locale: string): Promise<PaymentOutcome> {
   const orderPage = `/${locale}/orders/${order.id}`;
@@ -49,7 +50,11 @@ export async function startPayment(provider: PaymentMethod, order: StoredOrder, 
     redirectUrl: `${orderPage}?placed=1`,
     settled: true,
   };
-  if (!config.conciergeUrl || !config.conciergeToken) return mock;
+  if (!config.conciergeUrl || !config.conciergeToken) {
+    if (process.env.NODE_ENV !== 'production') return mock;
+    console.error('[payments] concierge is not configured; refusing to settle an order without payment');
+    return { ok: false, error: 'provider_unavailable', status: 502 };
+  }
 
   let res: Response;
   try {

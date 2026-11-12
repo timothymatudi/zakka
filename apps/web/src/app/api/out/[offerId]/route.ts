@@ -4,6 +4,7 @@ import { isLocale } from '@/i18n/routing';
 import { COUNTRY_CODES, COUNTRY_COOKIE } from '@/lib/markets';
 import { resolveOffer } from '@/lib/products';
 import { recordAffiliateClick } from '@/lib/clicks';
+import { currentCustomerId } from '@/lib/auth';
 
 /**
  * Affiliate outbound link: records a row in affiliate_clicks, then 302s to the partner URL.
@@ -31,7 +32,7 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ offerId: st
   }
 
   await recordAffiliateClick({
-    customer_id: null, // TODO: set once customer sessions exist
+    customer_id: await currentCustomerId(), // null for guests; a click never creates a customer row
     offer_id: resolved.offer.offer_id,
     country_code: country,
     locale,

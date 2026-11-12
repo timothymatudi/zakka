@@ -322,8 +322,8 @@
     "updated": "Last updated: {date}",
     "company": {
       "legalName": "[Legal company name]",
-      "address": "[Registered address]",
-      "email": "[support email address]",
+      "address": "serving customers worldwide",
+      "email": "customersupport@zakka.com",
       "whatsapp": "[WhatsApp number]",
       "law": "[country or state whose law applies]",
       "returnDays": "14"

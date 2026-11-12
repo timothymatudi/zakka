@@ -8,7 +8,7 @@ on:
 
 jobs:
   web-typecheck:
-    name: Web typecheck, lint & build
+    name: Web typecheck, lint, tests & build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,6 +23,7 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm run lint
+      - run: npm test
       - run: npm run build
 
   search-test:

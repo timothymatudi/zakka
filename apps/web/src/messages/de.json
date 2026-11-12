@@ -239,5 +239,16 @@
     "signOut": "Abmelden",
     "signIn": "Anmelden",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Entwurf. Diese Seite wartet auf die rechtliche Prüfung und ist nicht endgültig.",
+    "englishOnly": "Diese Seite ist derzeit nur auf Englisch verfügbar.",
+    "updated": "Zuletzt aktualisiert: {date}",
+    "links": {
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "shipping-returns": "Versand und Rückgabe",
+      "contact": "Kontakt"
+    }
   }
 }

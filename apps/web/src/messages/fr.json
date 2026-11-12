@@ -239,5 +239,16 @@
     "signOut": "Se déconnecter",
     "signIn": "Se connecter",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Brouillon. Cette page est en attente de relecture juridique et n’est pas définitive.",
+    "englishOnly": "Cette page n’est disponible qu’en anglais pour le moment.",
+    "updated": "Dernière mise à jour : {date}",
+    "links": {
+      "privacy": "Confidentialité",
+      "terms": "Conditions",
+      "shipping-returns": "Livraison et retours",
+      "contact": "Contact"
+    }
   }
 }

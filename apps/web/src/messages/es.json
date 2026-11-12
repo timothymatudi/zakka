@@ -239,5 +239,16 @@
     "signOut": "Cerrar sesión",
     "signIn": "Iniciar sesión",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Borrador. Esta página está pendiente de revisión legal y no es definitiva.",
+    "englishOnly": "Esta página solo está disponible en inglés por ahora.",
+    "updated": "Última actualización: {date}",
+    "links": {
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "shipping-returns": "Envíos y devoluciones",
+      "contact": "Contacto"
+    }
   }
 }

@@ -239,5 +239,16 @@
     "signOut": "退出登录",
     "signIn": "登录",
     "admin": "管理后台"
+  },
+  "policies": {
+    "draftNotice": "草稿。此页面正在等待法律审核，并非最终版本。",
+    "englishOnly": "此页面目前仅提供英文版。",
+    "updated": "最后更新：{date}",
+    "links": {
+      "privacy": "隐私",
+      "terms": "条款",
+      "shipping-returns": "配送与退货",
+      "contact": "联系我们"
+    }
   }
 }

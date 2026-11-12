@@ -315,5 +315,287 @@
     "signOut": "Sign out",
     "signIn": "Sign in",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Draft. This page is waiting for legal review and is not final.",
+    "englishOnly": "This page is available in English only for now.",
+    "updated": "Last updated: {date}",
+    "company": {
+      "legalName": "[Legal company name]",
+      "address": "[Registered address]",
+      "email": "[support email address]",
+      "whatsapp": "[WhatsApp number]",
+      "law": "[country or state whose law applies]",
+      "returnDays": "14"
+    },
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "shipping-returns": "Shipping and returns",
+      "contact": "Contact"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "intro": "This policy explains what personal data Zakka collects, why, who receives it, and the choices you have. Zakka is run by {legalName}, {address}.",
+      "sections": [
+        {
+          "h": "What we collect",
+          "p": [
+            "Account: your email address, used to send a one-time sign-in code. We do not use passwords.",
+            "Orders: your name, phone number, delivery address, the items you bought, the amount, and the payment method and payment reference.",
+            "WhatsApp: if you message our WhatsApp concierge, your phone number and the messages you send.",
+            "Preferences: your language, your country, and whether you agreed to WhatsApp updates or marketing.",
+            "Partner store clicks: when you follow a link to a partner store, we record which offer was opened, when, and from which country, so the partner can credit the sale to Zakka.",
+            "Technical data: your IP address is used briefly to limit abuse of sign-in and checkout. It is not stored with your account."
+          ]
+        },
+        {
+          "h": "What we do not collect",
+          "p": [
+            "We never see or store your card number, mobile money PIN or bank login. Payment details go straight to the payment provider you choose.",
+            "We do not use advertising trackers or third-party analytics on this site."
+          ]
+        },
+        {
+          "h": "Why we use your data",
+          "p": [
+            "To sign you in, take and deliver your order, show order status and tracking, and answer your questions.",
+            "To show prices, delivery estimates and payment methods for your country.",
+            "To prevent fraud and abuse, and to meet legal duties such as keeping tax and accounting records.",
+            "To send marketing on WhatsApp, only if you opted in. Reply STOP at any time to end it."
+          ]
+        },
+        {
+          "h": "Who receives your data",
+          "p": [
+            "Suppliers and carriers: for items sold by Zakka, the supplier that ships your order receives your name, phone number and delivery address.",
+            "Payment providers: the provider you choose at checkout (Stripe, PayPal, Flutterwave, Paystack or M-Pesa) processes your payment under its own privacy policy.",
+            "Partner stores: when you continue to a partner store you leave Zakka. The store receives a tracking reference, not your Zakka account details, and its own privacy policy applies to anything you do there.",
+            "Service providers that run Zakka for us: Supabase (database and sign-in), Meta (WhatsApp messaging), Anthropic (the AI that helps answer concierge messages and describe products), and our hosting provider.",
+            "Authorities, when the law requires it.",
+            "We do not sell your personal data."
+          ]
+        },
+        {
+          "h": "AI assistance",
+          "p": [
+            "Messages you send to the WhatsApp concierge may be processed by an AI model to understand your request and draft a reply. Do not send payment card numbers, passwords or other sensitive details in chat. You can ask for a person at any time."
+          ]
+        },
+        {
+          "h": "Cookies and local storage",
+          "p": [
+            "Zakka uses only what the site needs to work: two sign-in cookies that keep you signed in, one cookie that remembers your country, and local storage in your browser for your cart. There are no advertising or analytics cookies."
+          ]
+        },
+        {
+          "h": "International transfers",
+          "p": [
+            "Zakka serves many countries, and our suppliers and service providers are located around the world. Your data may be processed outside your country. Where the law requires it, we rely on approved safeguards such as standard contractual clauses."
+          ]
+        },
+        {
+          "h": "How long we keep it",
+          "p": [
+            "Account data is kept until you ask us to delete your account. Order records are kept for as long as tax and accounting law requires. WhatsApp conversations and partner store click records are kept only as long as needed for support, commission claims and fraud prevention."
+          ]
+        },
+        {
+          "h": "Your rights",
+          "p": [
+            "Depending on where you live, you may have the right to see, correct, delete or export your data, to object to or limit how we use it, and to withdraw consent. To use any of these rights, write to {email}. You may also complain to your local data protection authority."
+          ]
+        },
+        {
+          "h": "Children",
+          "p": [
+            "Zakka is not for children under 16, and we do not knowingly collect their data."
+          ]
+        },
+        {
+          "h": "Changes",
+          "p": [
+            "If we change this policy we will post the new version here and update the date above."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "Questions about privacy: {email}, or {legalName}, {address}."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of service",
+      "intro": "These terms apply when you use Zakka on the web or through our WhatsApp concierge. Zakka is run by {legalName}, {address}. By using Zakka you agree to these terms.",
+      "sections": [
+        {
+          "h": "Two kinds of offers",
+          "p": [
+            "Sold by Zakka: you buy from Zakka. We take your payment, pass the order to our supplier, and are responsible for delivery, returns and support.",
+            "Partner store: you buy from another shop. Zakka only shows the offer and sends you to that store. Your contract, payment, delivery, returns and support are with that store, under its terms. Zakka may earn a commission, which does not change your price."
+          ]
+        },
+        {
+          "h": "Prices",
+          "p": [
+            "For items sold by Zakka, the price shown at checkout is the total for the item and delivery to your country, in the currency shown. Your country may charge import duties or taxes on delivery; these are not included unless the listing says so.",
+            "We check the price and stock again when you check out. If either has changed, we will tell you before you pay.",
+            "For partner stores, the price and delivery estimate come from the partner and can change. The price on the partner's site is the one that applies.",
+            "If an item is listed at a clearly wrong price by mistake, we may cancel the order and refund you in full."
+          ]
+        },
+        {
+          "h": "Orders and payment",
+          "p": [
+            "Your order is accepted when your payment is confirmed. If we cannot fulfil it, for example because the supplier is out of stock, we will cancel it and refund you in full.",
+            "Payments are handled by the payment provider you choose. Their terms apply to the payment itself."
+          ]
+        },
+        {
+          "h": "Delivery, returns and refunds",
+          "p": [
+            "See the Shipping and returns page, which is part of these terms."
+          ]
+        },
+        {
+          "h": "Your account",
+          "p": [
+            "You sign in with a one-time code sent to your email. Keep access to your email secure, and give accurate contact and delivery details. You must be old enough to enter a contract where you live."
+          ]
+        },
+        {
+          "h": "WhatsApp concierge",
+          "p": [
+            "The concierge helps you search, order and track. Replies may be drafted by AI and can contain mistakes; the price and details confirmed at checkout are the ones that count. We send marketing messages only if you opt in, and you can reply STOP at any time."
+          ]
+        },
+        {
+          "h": "Acceptable use",
+          "p": [
+            "Do not misuse Zakka: no fraud, no automated scraping, no attempts to break or overload the service, and no resale of our content without permission."
+          ]
+        },
+        {
+          "h": "Product information",
+          "p": [
+            "Product descriptions and translations are prepared with care, in part with AI, from supplier and partner data. Small differences in colour, size or packaging can occur. Tell us if something is wrong."
+          ]
+        },
+        {
+          "h": "Liability",
+          "p": [
+            "Nothing in these terms limits rights you have under consumer law that cannot be limited. Beyond that, Zakka is not liable for purchases made at partner stores, for delays outside our control, or for indirect losses. For items sold by Zakka, our liability is limited to the amount you paid for the order."
+          ]
+        },
+        {
+          "h": "Changes and governing law",
+          "p": [
+            "We may update these terms; the version posted when you place an order applies to that order. These terms are governed by the law of {law}, without removing any protection your own country's consumer law gives you."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "{legalName}, {address}. Email: {email}."
+          ]
+        }
+      ]
+    },
+    "shipping-returns": {
+      "title": "Shipping and returns",
+      "intro": "This page covers items marked “Sold by Zakka”. For items marked “Partner store”, delivery and returns are handled by that store under its own policy.",
+      "sections": [
+        {
+          "h": "Delivery",
+          "p": [
+            "Every listing shows a delivery estimate for your country. Estimates are in days from payment and are not guaranteed; customs and local carriers can add delays.",
+            "Items ship from our suppliers, so an order with several items may arrive in separate parcels.",
+            "When your order ships, you can follow it on your order page or by asking the WhatsApp concierge."
+          ]
+        },
+        {
+          "h": "Delivery cost, duties and taxes",
+          "p": [
+            "Delivery is included in the price shown at checkout. Import duties or taxes charged by your country on arrival are not included unless the listing says so, and are paid by you."
+          ]
+        },
+        {
+          "h": "If your order is late or does not arrive",
+          "p": [
+            "If your order has not arrived within 15 days after the latest estimated delivery date, contact us. We will trace it and, if it cannot be found, send it again or refund you in full."
+          ]
+        },
+        {
+          "h": "Damaged, faulty or wrong items",
+          "p": [
+            "Tell us within {returnDays} days of delivery, with your order number and a photo. We will replace the item or refund you, and you will not pay for return postage."
+          ]
+        },
+        {
+          "h": "Changing your mind",
+          "p": [
+            "You may return an unused item in its original packaging within {returnDays} days of delivery. Contact us first for the return address. You pay the return postage. We refund the item price once we receive it.",
+            "Some items cannot be returned once opened, for hygiene reasons, and personalised or made-to-order items cannot be returned unless faulty.",
+            "If the law where you live gives you a longer period or stronger rights, those apply."
+          ]
+        },
+        {
+          "h": "Cancelling",
+          "p": [
+            "You can cancel free of charge until the order has been passed to the supplier. After that, the returns rules above apply."
+          ]
+        },
+        {
+          "h": "Refunds",
+          "p": [
+            "Refunds go back to the payment method you used, usually within 10 working days of approval. Your bank or mobile money provider may take longer to show it."
+          ]
+        },
+        {
+          "h": "How to start",
+          "p": [
+            "Email {email} or message us on WhatsApp with your order number."
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "We are happy to help with orders, delivery, returns or anything else.",
+      "sections": [
+        {
+          "h": "Email",
+          "p": [
+            "{email}"
+          ]
+        },
+        {
+          "h": "WhatsApp",
+          "p": [
+            "{whatsapp}. The concierge answers in your language and can pass you to a person."
+          ]
+        },
+        {
+          "h": "Your order",
+          "p": [
+            "Have your order number ready. You can find it on your order page and in your confirmation message."
+          ]
+        },
+        {
+          "h": "Partner store purchases",
+          "p": [
+            "If you bought from a partner store, contact that store directly; it holds your order and payment."
+          ]
+        },
+        {
+          "h": "Company",
+          "p": [
+            "{legalName}, {address}"
+          ]
+        }
+      ]
+    }
   }
 }

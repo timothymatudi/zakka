@@ -1,10 +1,12 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { POLICIES } from '@/lib/policies';
 import { Logo } from './icons';
 
 export async function Footer() {
   const t = await getTranslations('footer');
   const nav = await getTranslations('nav');
+  const policies = await getTranslations('policies.links');
   return (
     <footer className="mt-16 border-t border-line bg-sand/60 pb-24">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 text-sm text-muted md:grid-cols-3">
@@ -29,6 +31,15 @@ export async function Footer() {
           <li>
             <Link href="/cart">{nav('cart')}</Link>
           </li>
+        </ul>
+        <ul className="flex flex-wrap gap-x-5 gap-y-1.5 md:col-span-3">
+          {POLICIES.map((policy) => (
+            <li key={policy}>
+              <Link href={`/legal/${policy}`} className="hover:underline">
+                {policies(policy)}
+              </Link>
+            </li>
+          ))}
         </ul>
         <p className="md:col-span-3">{t('rights', { year: new Date().getFullYear() })}</p>
       </div>

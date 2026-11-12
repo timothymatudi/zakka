@@ -239,5 +239,16 @@
     "signOut": "Keluar",
     "signIn": "Masuk",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Draf. Halaman ini menunggu tinjauan hukum dan belum final.",
+    "englishOnly": "Halaman ini untuk saat ini hanya tersedia dalam bahasa Inggris.",
+    "updated": "Terakhir diperbarui: {date}",
+    "links": {
+      "privacy": "Privasi",
+      "terms": "Ketentuan",
+      "shipping-returns": "Pengiriman dan pengembalian",
+      "contact": "Kontak"
+    }
   }
 }

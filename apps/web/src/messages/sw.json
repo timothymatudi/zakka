@@ -239,5 +239,16 @@
     "signOut": "Toka",
     "signIn": "Ingia",
     "admin": "Usimamizi"
+  },
+  "policies": {
+    "draftNotice": "Rasimu. Ukurasa huu unasubiri ukaguzi wa kisheria na si wa mwisho.",
+    "englishOnly": "Ukurasa huu unapatikana kwa Kiingereza pekee kwa sasa.",
+    "updated": "Ilisasishwa mwisho: {date}",
+    "links": {
+      "privacy": "Faragha",
+      "terms": "Masharti",
+      "shipping-returns": "Usafirishaji na urejeshaji",
+      "contact": "Wasiliana nasi"
+    }
   }
 }

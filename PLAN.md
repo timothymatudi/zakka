@@ -47,7 +47,7 @@ What was checked, and what it showed:
 
 ## B. Web app: needs you
 
-- [ ] B1. Privacy, Terms, Shipping and Returns, and Contact pages. Me: draft. You: review the legal wording
+- [ ] B1. Privacy, Terms, Shipping and Returns, and Contact pages. Drafted 2026-11-12 in English at `/legal/...`, linked from the footer, marked as drafts and hidden from search engines. You: (1) have the wording reviewed, (2) fill in `policies.company` in `apps/web/src/messages/en.json` (legal name, address, support email, WhatsApp number, governing law), (3) confirm the 14-day return window, the 15-day lost-parcel rule and the 10-working-day refund time. Me, after that: set `POLICY_DRAFT` to false in `apps/web/src/lib/policies.ts`, add the pages to the sitemap, and translate them into the other 9 languages
 - [ ] B2. Cookie notice and analytics: decide whether to add them (neither exists)
 - [ ] B3. Native-speaker review of the 1,220 category names (written by AI), especially ar, hi, sw, zh, id
 

@@ -239,5 +239,16 @@
     "signOut": "Sair",
     "signIn": "Entrar",
     "admin": "Admin"
+  },
+  "policies": {
+    "draftNotice": "Rascunho. Esta página aguarda revisão jurídica e não é definitiva.",
+    "englishOnly": "Esta página só está disponível em inglês por enquanto.",
+    "updated": "Última atualização: {date}",
+    "links": {
+      "privacy": "Privacidade",
+      "terms": "Termos",
+      "shipping-returns": "Envios e devoluções",
+      "contact": "Contacto"
+    }
   }
 }

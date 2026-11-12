@@ -88,7 +88,7 @@ export function CheckoutForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-6 md:grid-cols-[1fr_20rem]">
+    <form onSubmit={onSubmit} className="grid grid-cols-[minmax(0,1fr)] gap-6 md:grid-cols-[minmax(0,1fr)_20rem]">
       <div className="space-y-6">
         <fieldset className="card space-y-3 p-4">
           <legend className="px-1 text-lg font-extrabold">{t('contact')}</legend>
@@ -162,7 +162,7 @@ export function CheckoutForm() {
           {items.map((i) => (
             <li key={i.offerId} className="flex justify-between gap-2">
               <span className="line-clamp-1">
-                {i.qty} × {i.title}
+                {i.qty} × <bdi>{i.title}</bdi>
               </span>
               <span className="shrink-0 font-semibold">{money(cartUnit(i, market) * i.qty)}</span>
             </li>

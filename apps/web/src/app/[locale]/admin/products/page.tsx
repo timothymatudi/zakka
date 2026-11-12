@@ -18,7 +18,7 @@ export default async function AdminProducts({ params }: { params: Promise<{ loca
       head={[t('product'), t('category'), t('offers'), t('from'), t('rating')]}
       rows={rows.map((p) => [
         <Link key="t" href={`/p/${p.id}`} className="font-semibold hover:text-teal">
-          {p.title}
+          <bdi>{p.title}</bdi>
         </Link>,
         category(p.category),
         p.sources.join(', '),

@@ -35,8 +35,9 @@ export function MarketPicker() {
     start(() => nextRouter.refresh());
   };
 
+  // On phones the panel is anchored to the header, so it spans the screen instead of running off its edge.
   return (
-    <details className="relative">
+    <details className="sm:relative">
       <summary
         className="flex cursor-pointer list-none items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-semibold [&::-webkit-details-marker]:hidden"
         aria-label={`${t('language')} / ${t('country')}`}
@@ -47,7 +48,7 @@ export function MarketPicker() {
         <span>{market.country}</span>
         {pending && <span className="ms-1 h-2 w-2 animate-pulse rounded-full bg-coral" />}
       </summary>
-      <div className="card absolute end-0 z-40 mt-2 w-72 max-w-[calc(100vw-2rem)] space-y-3 p-4 shadow-lg">
+      <div className="card absolute inset-x-4 z-40 mt-2 space-y-3 p-4 shadow-lg sm:inset-x-auto sm:end-0 sm:w-72">
         <label className="block text-sm font-semibold">
           {t('language')}
           <select className="field mt-1" value={locale} onChange={(e) => onLocale(e.target.value)}>

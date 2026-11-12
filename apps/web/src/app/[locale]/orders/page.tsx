@@ -68,7 +68,7 @@ export default async function OrdersLookupPage({ params }: { params: Promise<{ l
             <button className="btn btn-primary w-full">{t('find')}</button>
           </form>
           <Link href={`/orders/${DEMO_ORDER}`} className="inline-block text-sm font-bold text-teal hover:underline">
-            {t('demo')} →
+            {t('demo')} <span aria-hidden className="inline-block rtl:-scale-x-100">→</span>
           </Link>
         </>
       )}

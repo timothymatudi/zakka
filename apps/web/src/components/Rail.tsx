@@ -29,7 +29,7 @@ export function Rail({
           {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
         </div>
         <Link href={href} className="shrink-0 text-sm font-bold text-teal hover:underline">
-          {seeAll} →
+          {seeAll} <span aria-hidden className="inline-block rtl:-scale-x-100">→</span>
         </Link>
       </div>
       <div className="rail">

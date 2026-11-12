@@ -77,7 +77,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
           <div key={s.tracking_number} className="mt-4 rounded-xl bg-sand p-3 text-sm">
             <p className="font-bold">{t('tracking')}</p>
             <p dir="ltr">{t('trackingNumber', { carrier: s.carrier, number: s.tracking_number })}</p>
-            <p className="text-muted">{s.last_event}</p>
+            <p className="text-muted"><bdi>{s.last_event}</bdi></p>
             {s.tracking_url && (
               <a href={s.tracking_url} target="_blank" rel="noopener noreferrer" className="font-bold text-teal hover:underline">
                 {s.tracking_url}
@@ -93,7 +93,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
           {order.items.map((i) => (
             <li key={i.offer_id} className="flex justify-between gap-2">
               <Link href={`/p/${i.product_id}`} className="hover:text-teal">
-                {i.qty} × {i.title || i.product_id.slice(0, 8)}
+                {i.qty} × <bdi>{i.title || i.product_id.slice(0, 8)}</bdi>
               </Link>
               <span className="font-semibold">{money(i.unit_price * i.qty)}</span>
             </li>

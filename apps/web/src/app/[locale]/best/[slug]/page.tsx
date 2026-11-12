@@ -62,7 +62,7 @@ export default async function BestPage({ params, searchParams }: Props) {
       )}
       <p className="mt-6">
         <Link href={`/c/${slug}`} className="font-bold text-teal hover:underline">
-          {t('seeAll', vars)} →
+          {t('seeAll', vars)} <span aria-hidden className="inline-block rtl:-scale-x-100">→</span>
         </Link>
       </p>
     </>

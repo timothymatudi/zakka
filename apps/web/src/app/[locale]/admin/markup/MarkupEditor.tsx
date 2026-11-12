@@ -64,7 +64,7 @@ export function MarkupEditor({ initial, targets, live }: { initial: MarkupRule[]
                       const scope = e.target.value as MarkupRule['scope'];
                       patch(i, { scope, scope_id: scope === 'global' ? null : targets[scope][0]?.id ?? null });
                     }}
-                    className="field py-1"
+                    className="field min-w-28 py-1"
                   >
                     {SCOPES.map((s) => (
                       <option key={s}>{s}</option>
@@ -75,7 +75,7 @@ export function MarkupEditor({ initial, targets, live }: { initial: MarkupRule[]
                   {r.scope === 'global' ? (
                     <span className="text-muted">—</span>
                   ) : (
-                    <select value={r.scope_id ?? ''} onChange={(e) => patch(i, { scope_id: e.target.value })} className="field max-w-56 py-1">
+                    <select value={r.scope_id ?? ''} onChange={(e) => patch(i, { scope_id: e.target.value })} className="field min-w-36 max-w-56 py-1">
                       {targets[r.scope].map((x) => (
                         <option key={x.id} value={x.id}>
                           {x.label}

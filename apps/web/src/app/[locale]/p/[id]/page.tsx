@@ -85,7 +85,9 @@ export default async function ProductPage({ params, searchParams }: Props) {
         </div>
         <div>
           {product.brand && <p className="text-xs font-bold uppercase tracking-[0.1em] text-muted">{product.brand}</p>}
-          <h1 className="mt-1 text-2xl font-extrabold leading-tight md:text-3xl">{product.title}</h1>
+          <h1 className="mt-1 text-2xl font-extrabold leading-tight md:text-3xl">
+            <bdi>{product.title}</bdi>
+          </h1>
           {product.rating != null && (
             <p className="mt-2 flex items-center gap-1 text-sm">
               <StarIcon className="text-teal" />
@@ -144,13 +146,17 @@ export default async function ProductPage({ params, searchParams }: Props) {
             </div>
           )}
           {!best && <p className="card mt-4 p-4 font-semibold">{t('notShipping', { country })}</p>}
-          <p className="mt-5 text-[0.95rem] leading-relaxed">{product.description}</p>
+          <p className="mt-5 text-[0.95rem] leading-relaxed">
+            <bdi>{product.description}</bdi>
+          </p>
           {product.bullet_points && product.bullet_points.length > 0 && (
             <>
               <h2 className="mt-4 font-bold">{t('highlights')}</h2>
               <ul className="mt-1 list-disc space-y-0.5 ps-5 text-sm">
                 {product.bullet_points.map((b) => (
-                  <li key={b}>{b}</li>
+                  <li key={b}>
+                    <bdi>{b}</bdi>
+                  </li>
                 ))}
               </ul>
             </>

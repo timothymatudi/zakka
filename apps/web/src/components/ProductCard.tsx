@@ -57,7 +57,9 @@ export async function ProductCard({ doc, market, locale }: { doc: SearchDocument
             {isAff ? t('affiliate') : t('zakkaCheckout')}
           </span>
         </div>
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-teal">{doc.title}</h3>
+        <h3 className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-teal">
+          <bdi>{doc.title}</bdi>
+        </h3>
         {doc.rating != null && (
           <p className="flex items-center gap-1 text-xs text-muted">
             <StarIcon className="text-teal" />

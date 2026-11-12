@@ -4,7 +4,7 @@ The single list of everything left to finish the project. Tick a box (`[x]`) the
 verified, and add the date. Nothing counts as done until it has been checked.
 
 - **Me** = Claude does it. **You** = needs the owner (sign-ups, keys, decisions, legal review).
-- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **13 of 74 done**.
+- Last full audit: 2026-11-10. Last update: 2026-11-12. Progress: **14 of 74 done**.
 - Last error check: 2026-11-12. All test suites pass (catalog 289, concierge 114, search 77, db scripts 5). Web typecheck and lint clean. No new tasks ticked — the 8 already done remain the only done items. Node modules were missing and have now been installed.
 
 ## Audit result (2026-11-10)
@@ -40,7 +40,7 @@ What was checked, and what it showed:
 - [ ] A10. Load category pages from Supabase instead of the mock list. Code written 2026-11-12 and the mock fallback is checked; tick after G2 proves it on real Supabase
 - [ ] A11. Update order status from payment webhooks. Code written 2026-11-12: `updateOrder` now writes to Supabase, and the concierge moves the order to paid on its webhook; tick after H4 proves it with a sandbox payment
 - [x] A12. Add web tests: payment fallback, checkout, sign-in gate, admin gate (2026-11-12: 44 tests in `apps/web/test`, run with `npm test` and in CI)
-- [ ] A13. Check every page at phone width (375px) and in right-to-left Arabic
+- [x] A13. Check every page at phone width (375 px) and in right-to-left Arabic (2026-11-12: 24 page types in all 10 languages at 375 px, including cart and checkout with an item, account and admin; fixed the language picker running off the screen, the cart overflowing with long prices, English product text scrambled on Arabic pages, arrows pointing the wrong way in Arabic, and cramped admin markup selects)
 - [ ] A14. Rename the directory label "Connected" to "Built" on the sign-up checklist page (the page is not in this repo; do it where the page lives)
 - [x] A15. Show a signed-in customer their own orders on `/orders` (2026-11-12: signed-in users see their order list; guests see the lookup form)
 - [ ] A16. Tighten the content policy with per-request nonces (today it allows inline scripts, which Next.js needs without nonces)

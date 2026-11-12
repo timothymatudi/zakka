@@ -29,7 +29,7 @@ export function CartView() {
   const subtotal = lines.reduce((s, l) => s + l.unit * l.qty, 0);
 
   return (
-    <div className="grid gap-6 md:grid-cols-[1fr_20rem]">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 md:grid-cols-[minmax(0,1fr)_20rem]">
       <ul className="space-y-3">
         {lines.map((l) => (
           <li key={l.offerId} className="card flex gap-3 p-3">
@@ -38,12 +38,12 @@ export function CartView() {
             </Link>
             <div className="min-w-0 flex-1">
               <Link href={`/p/${l.productId}`} className="line-clamp-2 font-semibold hover:text-teal">
-                {l.title}
+                <bdi>{l.title}</bdi>
               </Link>
               {l.deliveryMin != null && l.deliveryMax != null && (
                 <p className="text-xs font-medium text-teal">{tp('days', { min: l.deliveryMin, max: l.deliveryMax })}</p>
               )}
-              <div className="mt-2 flex items-center gap-3">
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                 <label className="flex items-center gap-1.5 text-sm">
                   <span className="sr-only">{t('qty')}</span>
                   <button type="button" className="h-8 w-8 rounded-full ring-1 ring-line" onClick={() => setQty(l.offerId, l.qty - 1)} aria-label="−">
@@ -61,7 +61,7 @@ export function CartView() {
                 </button>
               </div>
             </div>
-            <p className="font-extrabold">{money(l.unit * l.qty)}</p>
+            <p className="shrink-0 whitespace-nowrap font-extrabold">{money(l.unit * l.qty)}</p>
           </li>
         ))}
         <li className="text-xs text-muted">{t('affiliateNote')}</li>

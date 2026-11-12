@@ -122,7 +122,9 @@ class CoupangConnector(_AffiliateBase):
     page_size = 10  # products/search limit maximum
     rate_limit_per_sec = 0.1  # TODO(confirm) Partners search allows only a few calls per minute
     HOST = "https://api-gateway.coupang.com"
-    PATH = "/v2/providers/affiliate_open_api/apis/openapi/products/search"
+    # Base is .../affiliate_open_api/apis/openapi/v1 (third-party readme); the v1 segment was missing.
+    # TODO(confirm) against the Partners docs once reachable.
+    PATH = "/v2/providers/affiliate_open_api/apis/openapi/v1/products/search"
 
     def _search(self, keyword: str, limit: int) -> list[SourceProduct]:
         query = urlencode({"keyword": keyword, "limit": min(limit, 10)})

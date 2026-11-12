@@ -67,7 +67,7 @@ def test_coupang_signature_and_search():
 
     def handler(request):
         assert request.headers["Authorization"].startswith("CEA algorithm=HmacSHA256, access-key=ak")
-        assert request.url.path.endswith("/openapi/products/search")
+        assert request.url.path.endswith("/openapi/v1/products/search")
         return httpx.Response(200, json={"rCode": "0", "rMessage": "", "data": {"productData": [
             {"productId": 7, "productName": "에어프라이어", "productPrice": 89000, "productImage": "https://img/7.jpg",
              "productUrl": "https://link.coupang.com/a/x", "isRocket": True, "isFreeShipping": True, "categoryName": "주방가전"}]}})
